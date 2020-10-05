@@ -1,29 +1,66 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
-const router = new VueRouter({
+export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: [
+    {
+      path: '/login',
+      name: 'login',
+      meta: {layout: 'empty'},
+      component: () => import('../views/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      meta: {layout: 'empty'},
+      component: () => import('../views/Registration.vue')
+    },
+    {
+      path: '/',
+      name: 'home',
+      meta: {layout: 'main'},
+      component: () => import('../views/Home.vue')
+    },
+    {
+      path: '/departments',
+      name: 'Departments',
+      meta: {layout: 'main'},
+      component: () => import('../views/Departments.vue')
+    },
+    {
+      path: '/department/:id',
+      name: 'Department',
+      meta: {layout: 'main'},
+      component: () => import('../views/Department.vue')
+    },
+    {
+      path: '/worker',
+      name: 'Worker',
+      meta: {layout: 'main'},
+      component: () => import('../views/Worker.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      meta: {layout: 'main'},
+      component: () => import('../views/Profile.vue')
+    },
+    {
+      path: '/lists',
+      name: 'WorkerLists',
+      meta: {layout: 'main'},
+      component: () => import('../views/WorkerLists.vue')
+    },
+    {
+      path: '/recruitment',
+      name: 'Recruitment',
+      meta: {layout: 'main'},
+      component: () => import('../views/Recruitment.vue')
+    }
+  ]
 })
 
-export default router
