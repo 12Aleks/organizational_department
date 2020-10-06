@@ -10,8 +10,30 @@ import Loader from '@/components/Loader'
 Vue.config.productionTip = false
 Vue.component('Loader', Loader)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
+
+
+firebase.initializeApp({
+  apiKey: "AIzaSyB1ssHVP4ZHvxAI7oABIjuI7mYz7jphxgg",
+  authDomain: "departments-1c007.firebaseapp.com",
+  databaseURL: "https://departments-1c007.firebaseio.com",
+  projectId: "departments-1c007",
+  storageBucket: "departments-1c007.appspot.com",
+  messagingSenderId: "523183450453",
+  appId: "1:523183450453:web:1ba0a3608b04dbb1d167dc",
+  measurementId: "G-MWGML83R2H"
+});
+
+let app
+
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})
