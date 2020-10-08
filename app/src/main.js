@@ -3,13 +3,16 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import Vuelidate from 'vuelidate'
 import 'materialize-css/dist/js/materialize.min'
-
 import Loader from '@/components/Loader'
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader)
+Vue.use(Vuelidate)
 
+
+/*firebase*/
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'

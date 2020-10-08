@@ -14,7 +14,7 @@ export default new Router({
       component: () => import('../views/Login.vue')
     },
     {
-      path: '/register',
+      path: '/registration',
       name: 'register',
       meta: {layout: 'empty'},
       component: () => import('../views/Registration.vue')

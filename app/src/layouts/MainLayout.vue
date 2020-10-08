@@ -4,7 +4,7 @@
       <navbar @click="isOpen = !isOpen"></navbar>
       <sidebar :value="isOpen"></sidebar>
 
-      <main class="app-content">
+      <main class="app-content" :class="{full : !isOpen}">
         <div class="app-page">
           <router-view/>
         </div>

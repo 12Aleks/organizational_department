@@ -1,10 +1,8 @@
 <template>
     <div>
-        <div class="app-main-layout">
-            <main class="app-content">
-                <div class="app-page">
-                    <div>
-                        <div class="page-title">
+        <div class="app-page">
+            <div>
+                  <div class="page-title">
                             <h3>Zespoły</h3>
                         </div>
 
@@ -19,8 +17,6 @@
                         </div>
                     </div>
                 </div>
-            </main>
-        </div>
     </div>
 </template>
 
