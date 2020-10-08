@@ -5,11 +5,13 @@ import router from './router'
 import store from './store'
 import Vuelidate from 'vuelidate'
 import 'materialize-css/dist/js/materialize.min'
+import message from './message/message.info'
 import Loader from '@/components/Loader'
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader)
 Vue.use(Vuelidate)
+Vue.use(message)
 
 
 /*firebase*/

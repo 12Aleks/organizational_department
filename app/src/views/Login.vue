@@ -70,6 +70,11 @@
                 required
             }
         },
+        mounted(){
+            if(message[this.$route.query.message]){
+                this.$message(messages[this.$route.query.message])
+            }
+        },
         methods:{
           async submitHandler() {
                 if(this.$v.$invalid){
