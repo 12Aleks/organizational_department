@@ -21,13 +21,13 @@
 
           <ul id='dropdown' class='dropdown-content'>
             <li>
-              <a href="#" class="black-text">
+              <router-link to="/profile" class="black-text">
                 <i class="material-icons">account_circle</i>Профиль
-              </a>
+              </router-link>
             </li>
             <li class="divider" tabindex="-1"></li>
             <li>
-              <a href="#" class="black-text">
+              <a href="#" class="black-text" @click.prevent="logOut">
                 <i class="material-icons">assignment_return</i>Выйти
               </a>
             </li>
@@ -41,6 +41,7 @@
 
 <script>
   import M from "materialize-css";
+  import firebase from 'firebase/app'
 export default {
   data: () => ({
     date: new Date(),
@@ -50,6 +51,12 @@ export default {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true
     });
+  },
+  methods:{
+   async logOut(){
+       await this.$store.dispatch('logout')
+       this.$router.push('/login?message=logout')
+    }
   },
   beforeDestroy() {
     clearInterval(this.interval);

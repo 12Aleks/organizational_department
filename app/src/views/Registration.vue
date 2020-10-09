@@ -23,7 +23,7 @@
                                   v-model="password"
                                   :class="{invalid: ($v.password.$dirty && !$v.password.required || $v.password.$dirty && !$v.password.minLength)}"
                           >
-                          <label for="password">Пароль</label>
+                          <label for="password">Hasło</label>
                           <small v-if="$v.password.$dirty && !$v.password.required" class="helper-text invalid">To pole należy wypełnić</small>
                           <small v-else-if="$v.password.$dirty && !$v.password.minLength" class="helper-text invalid">Hasło jest za krótkie, minimalna długość - {{$v.password.$params.minLength.min}} znaków</small>
                       </div>
@@ -32,10 +32,10 @@
                                   id="name"
                                   type="text"
                                   class="validate"
-                                  v-model="name"
+                                  v-model.trim="name"
                                   :class="{invalid: ($v.name.$dirty && !$v.name.required)}"
                           >
-                          <label for="name">Имя</label>
+                          <label for="name">Imię</label>
                           <small v-if='$v.name.$dirty && !$v.name.required' class="helper-text invalid">To pole należy wypełnić</small>
                       </div>
                       <p>
