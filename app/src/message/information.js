@@ -1,5 +1,5 @@
 export default {
-    'logout': 'Test',
+    'logout': 'Wylogowałeś się ze swojego konta',
     'login': 'FirstLogin',
     'auth/user-not-found': 'NoUserWithEmail',
     'auth/wrong-password': 'WrongPassword',

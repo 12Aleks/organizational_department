@@ -53,6 +53,7 @@
 
 <script>
     import {email, minLength, required} from 'vuelidate/lib/validators'
+    import information from "../message/information";
 
     export default {
         name: "Login",
@@ -71,8 +72,8 @@
             }
         },
         mounted(){
-            if(message[this.$route.query.message]){
-                this.$message(messages[this.$route.query.message])
+            if(information[this.$route.query.message]){
+                this.$message(33)
             }
         },
         methods:{
@@ -84,7 +85,7 @@
                 const formData = {
                     email: this.email,
                     password: this.password
-                }
+                };
                 try{
                     await this.$store.dispatch('login', formData)
                     this.$router.push('/')
