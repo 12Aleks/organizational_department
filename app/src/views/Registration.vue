@@ -38,6 +38,17 @@
                           <label for="name">Imię</label>
                           <small v-if='$v.name.$dirty && !$v.name.required' class="helper-text invalid">To pole należy wypełnić</small>
                       </div>
+                      <div class="input-field">
+                          <input
+                                  id="department"
+                                  type="text"
+                                  class="validate"
+                                  v-model.trim="department"
+                                  :class="{invalid: ($v.department.$dirty && !$v.department.required)}"
+                          >
+                          <label for="name">Zespół</label>
+                          <small v-if='$v.department.$dirty && !$v.department.required' class="helper-text invalid">To pole należy wypełnić</small>
+                      </div>
                       <p>
                           <label>
                               <input type="checkbox" />
@@ -74,7 +85,8 @@
         data: () => ({
             name: '',
             email: '',
-            password: ''
+            password: '',
+            department: ''
         }),
         validations: {
             email: {
@@ -86,6 +98,9 @@
                 required
             },
             name: {
+                required
+            },
+            department: {
                 required
             }
         },
@@ -99,7 +114,8 @@
                const formRegData = {
                    name: this.name,
                    email: this.email,
-                   password: this.password
+                   password: this.password,
+                   department: this.department
                }
 
                try{

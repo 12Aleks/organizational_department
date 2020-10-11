@@ -73,7 +73,7 @@
         },
         mounted(){
             if(information[this.$route.query.message]){
-                this.$message(33)
+                this.$message(information[this.$route.query.message])
             }
         },
         methods:{

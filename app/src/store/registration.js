@@ -10,12 +10,12 @@ export default {
                 throw e
             }
         },
-        async registrations({commit, dispatch}, {name, email, password}){
+        async registrations({commit, dispatch}, {name, department, email, password}){
           try{
               await firebase.auth().createUserWithEmailAndPassword(email, password)
               const uid = await dispatch('getUid');
               await firebase.database().ref(`/users/${uid}/info`).set({
-                  name
+                  name, department
               })
           }catch(e){
               commit('setError', e)
