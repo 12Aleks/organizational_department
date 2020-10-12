@@ -46,7 +46,7 @@
                                   v-model.trim="department"
                                   :class="{invalid: ($v.department.$dirty && !$v.department.required)}"
                           >
-                          <label for="name">Zespół</label>
+                          <label for="department">Zespół</label>
                           <small v-if='$v.department.$dirty && !$v.department.required' class="helper-text invalid">To pole należy wypełnić</small>
                       </div>
                       <p>
@@ -66,7 +66,6 @@
                               <i class="material-icons right">send</i>
                           </button>
                       </div>
-
                       <p class="center">
                           Masz już konto?
                           <router-link to="/login">Zaloguj!</router-link>
@@ -86,7 +85,8 @@
             name: '',
             email: '',
             password: '',
-            department: ''
+            department: '',
+            photo: '../assets/images/profile.jpg'
         }),
         validations: {
             email: {
@@ -115,7 +115,8 @@
                    name: this.name,
                    email: this.email,
                    password: this.password,
-                   department: this.department
+                   department: this.department,
+                   photo: this.photo
                }
 
                try{

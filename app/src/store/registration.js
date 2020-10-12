@@ -10,16 +10,30 @@ export default {
                 throw e
             }
         },
-        async registrations({commit, dispatch}, {name, department, email, password}){
+        async registrations({commit, dispatch}, {name, department, email, password, photo}){
           try{
               await firebase.auth().createUserWithEmailAndPassword(email, password)
               const uid = await dispatch('getUid');
               await firebase.database().ref(`/users/${uid}/info`).set({
                   name, department
+              });
+              await firebase.storage().ref(`/users/${uid}/photo`).storageRef.child({
+                  photo
               })
           }catch(e){
               commit('setError', e)
               throw e
+          }
+        },
+        async onFileChange({commit, dispatch}, {photo}){
+          try{
+              const uid = await dispatch('getUid');
+              const storageData =  await firebase.storage().ref(`/users/${uid}/photo`)
+                    storageData.put(photo)
+                    return storageData.getDownloadURL()
+
+          }catch(e){
+
           }
         },
         getUid(){

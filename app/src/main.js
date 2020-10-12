@@ -14,10 +14,12 @@ Vue.use(Vuelidate)
 Vue.use(message)
 
 
+
 /*firebase*/
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
+import 'firebase/storage'
 
 
 firebase.initializeApp({
