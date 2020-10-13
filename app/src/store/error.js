@@ -14,7 +14,5 @@ export default {
         clearError(state) {
             state.error = null
         },
-    },
-    actions: {
-    },
+    }
 }

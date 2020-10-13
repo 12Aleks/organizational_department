@@ -1,7 +1,7 @@
 export default {
     'logout': 'Wylogowałeś się ze swojego konta',
-    'login': 'FirstLogin',
-    'auth/user-not-found': 'NoUserWithEmail',
-    'auth/wrong-password': 'WrongPassword',
-    'auth/email-already-in-use': 'EmailInUse'
+    'login': 'Najpierw musisz się zalogować',
+    'auth/user-not-found': 'Użytkownik z takimi danymi nie istnieje!',
+    'auth/wrong-password': 'Wpisałeś nieprawidłowe hasło!',
+    'auth/email-already-in-use': 'Taki e-mail już istnieje'
 }

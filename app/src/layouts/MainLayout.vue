@@ -19,6 +19,7 @@
 <script>
   import Navbar from "@/components/Navbar";
   import Sidebar from "@/components/Sidebar";
+  import information from "../message/information";
 
 
   export default {
@@ -35,6 +36,17 @@
     components: {
       Navbar,
       Sidebar
+    },
+    computed: {
+      error() {
+        return this.$store.getters.error
+      }
+    },
+    watch: {
+      error(fbError){
+        this.$error(information[fbError.code] || 'Coś poszło nie tak' )
+        console.log(fbError)
+      }
     }
   };
 </script>

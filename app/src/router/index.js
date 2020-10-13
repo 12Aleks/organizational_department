@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import firebase from "firebase/app";
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -22,46 +23,60 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Home.vue')
     },
     {
       path: '/departments',
       name: 'Departments',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Departments.vue')
     },
     {
       path: '/department/:id',
       name: 'Department',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Department.vue')
     },
     {
       path: '/worker',
       name: 'Worker',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Worker.vue')
     },
     {
       path: '/profile',
       name: 'profile',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Profile.vue')
     },
     {
       path: '/lists',
       name: 'WorkerLists',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/WorkerLists.vue')
     },
     {
       path: '/recruitment',
       name: 'Recruitment',
-      meta: {layout: 'main'},
+      meta: {layout: 'main', auth: true},
       component: () => import('../views/Recruitment.vue')
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next)=>{
+  const currentUser = firebase.auth().currentUser;
+  const requireAuth = to.matched.some(record => record.meta.auth);
+
+  if(requireAuth && !currentUser){
+    next('/login?message=login')
+  }else {
+    next()
+  }
+
+});
+
+export default router
 
 

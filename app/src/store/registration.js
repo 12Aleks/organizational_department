@@ -30,7 +30,8 @@ export default {
                     return storageData.getDownloadURL()
 
           }catch(e){
-
+             commit('setError', e)
+             throw e
           }
         },
         getUid(){
