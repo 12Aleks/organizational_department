@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import registration from "./registration"
 import error from "./error"
 import updateUserData from "./updateUserData";
+import  info from './info'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-    registration, error, updateUserData
+    registration, error, updateUserData, info
   }
 })

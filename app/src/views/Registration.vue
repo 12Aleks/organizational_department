@@ -85,8 +85,7 @@
             name: '',
             email: '',
             password: '',
-            department: '',
-            photo: '../assets/images/profile.jpg'
+            department: ''
         }),
         validations: {
             email: {
@@ -115,8 +114,7 @@
                    name: this.name,
                    email: this.email,
                    password: this.password,
-                   department: this.department,
-                   photo: this.photo
+                   department: this.department
                }
 
                try{
