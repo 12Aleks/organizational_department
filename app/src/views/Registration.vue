@@ -3,6 +3,7 @@
           <div class="grey darken-1 empty-layout">
               <form class="card auth-card" @submit.prevent="submitHandler">
                   <div class="card-content">
+                      <img :src="require('../assets/images/profile.jpg')" alt="photo" style="display: none">
                       <span class="card-title">Terma</span>
                       <div class="input-field">
                           <input
@@ -109,13 +110,14 @@
                    this.$v.$touch();
                    return
                }
-               const formRegData = {
-                   name: this.name,
-                   email: this.email,
-                   password: this.password,
-                   department: this.department,
-               };
+
                try{
+                   const formRegData = {
+                       name: this.name,
+                       email: this.email,
+                       password: this.password,
+                       department: this.department,
+                   };
                    await this.$store.dispatch('registrations', formRegData);
                    this.$router.push('/')
                }catch(e){}

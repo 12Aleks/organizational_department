@@ -30,6 +30,7 @@ export default {
                 const storageData = await firebase.storage().ref(`/users/${uid}/photo`)
                 const photo = await storageData.getDownloadURL()
                 commit('setPhoto', photo)
+
             } catch (e) {
                 commit('setError', e);
                 throw e

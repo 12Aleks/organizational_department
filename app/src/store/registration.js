@@ -10,19 +10,50 @@ export default {
                 throw e
             }
         },
-        async registrations({commit, dispatch}, {name, department, email, password, photo}){
+        async registrations({commit, dispatch}, {name, department, email, password}){
           try{
-              await firebase.auth().createUserWithEmailAndPassword(email, password)
-              const uid = await dispatch('getUid');
-              await firebase.database().ref(`/users/${uid}/info`).set({
-                  name, department, email
-              });
-              const storageData =  await firebase.storage().ref(`/users/${uid}/photo/`);
-              storageData.put(photo)
+              await firebase.auth().createUserWithEmailAndPassword(email, password).then(auth => {
+                  firebase
+                      .database()
+                      .ref(`/users/${auth.user.uid}/info`).set({
+                      name, department, email
+                  });
+                  firebase
+                      .storage()
+                      .ref("users")
+                      .child(auth.user.uid + "/profile.jpg")
+                      .put('gs://departments-1c007.appspot.com/profile.jpg');
+
+              })
+
           }catch(e){
               commit('setError', e);
               throw e
           }
+
+
+
+
+
+            function signUpUser() {
+                firebase.auth().createUserWithEmailAndPassword(email.value, pword.value).then(auth => {
+                    firebase
+                        .storage()
+                        .ref("users")
+                        .child(auth.user.uid + "/profile.jpg")
+                        .put(file);
+
+                }).catch(error => {
+                    console.log(error.message)
+                })
+            }
+
+
+
+
+
+
+
         },
         async onFileChange({commit, dispatch}, {photo}){
           try{
