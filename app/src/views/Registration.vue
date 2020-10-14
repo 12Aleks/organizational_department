@@ -106,19 +106,17 @@
         methods: {
             async submitHandler(){
                if(this.$v.$invalid){
-                   this.$v.$touch()
+                   this.$v.$touch();
                    return
                }
-
                const formRegData = {
                    name: this.name,
                    email: this.email,
                    password: this.password,
-                   department: this.department
-               }
-
+                   department: this.department,
+               };
                try{
-                   await this.$store.dispatch('registrations', formRegData)
+                   await this.$store.dispatch('registrations', formRegData);
                    this.$router.push('/')
                }catch(e){}
             }
