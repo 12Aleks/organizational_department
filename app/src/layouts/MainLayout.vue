@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="app-main-layout" >
+    <div class="app-main-layout grey lighten-5" >
       <navbar @click="isOpen = !isOpen"></navbar>
       <sidebar :value="isOpen"></sidebar>
 
@@ -50,3 +50,16 @@
     }
   };
 </script>
+<style lang="scss">
+  @media(max-width: 1023px){
+    .app-main-layout{
+      .app-content{
+        padding-left: 0;
+        transition: padding-left .3s;
+      }
+      .app-sidenav.open {
+        transform: translateX(-105%);
+      }
+    }
+  }
+</style>

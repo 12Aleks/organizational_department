@@ -1,9 +1,9 @@
 <template>
-    <div class="col s6">
-        <div class="page-title">
-            <h3>Zmiana danych osobowych</h3>
-        </div>
+    <div class="col s12 updateProfile">
         <div class="section">
+            <div class="page-title">
+                <h3>Zmiana danych osobowych</h3>
+            </div>
             <div  class="page-subtitle">
                 <h4 >Zmień  imię lub nazwę zespołu</h4>
             </div>
@@ -83,5 +83,8 @@
 </script>
 
 <style scoped>
-
+    div.section {
+        background: white;
+        padding: 20px 15px;
+    }
 </style>
