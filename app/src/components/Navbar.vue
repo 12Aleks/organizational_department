@@ -15,7 +15,7 @@
                   data-target="dropdown"
                   ref="dropdown"
           >
-            <div class="profile" :style='{ backgroundImage: `url("${userPhoto}")` }'></div> {{userInfo.name}}
+            <div class="profile" :style='{ backgroundImage: `url("${userInfo.photo}")` }'></div> {{userInfo.name}}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -46,8 +46,7 @@ export default {
   data: () => ({
     dropdown: null,
     time : new Date(),
-    interval: null,
-    backgroundImage: '@/assets/images/profile.jpg'
+    interval: null
   }),
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
@@ -60,13 +59,6 @@ export default {
   computed:{
     userInfo() {
       return this.$store.getters.info
-    },
-    userPhoto() {
-      if (!Object.keys(this.$store.getters.updatePhoto).length) {
-        return this.backgroundImage
-      } else {
-        return this.$store.getters.updatePhoto
-      }
     }
   },
   methods:{

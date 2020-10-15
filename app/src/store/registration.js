@@ -12,29 +12,16 @@ export default {
         },
         async registrations({commit, dispatch}, {name, department, email, password}){
           try{
-              await firebase.auth().createUserWithEmailAndPassword(email, password).then(auth => {
-                  firebase
-                      .database()
-                      .ref(`/users/${auth.user.uid}/info`).set({
-                      name, department, email
-                  });
-                  firebase
-                      .storage()
-                      .ref("users")
-                      .child(auth.user.uid + "/profile.jpg")
-                      .put('gs://departments-1c007.appspot.com/profile.jpg');
-
-              })
-
+              await firebase.auth().createUserWithEmailAndPassword(email, password);
+              const uid = await dispatch('getUid');
+              const photo =  await firebase.storage().ref(`profile.jpg`).getDownloadURL();
+              await firebase.database().ref(`/users/${uid}/info`).set({
+                  name, department, email, photo
+              });
           }catch(e){
               commit('setError', e);
               throw e
           }
-
-
-
-
-
             function signUpUser() {
                 firebase.auth().createUserWithEmailAndPassword(email.value, pword.value).then(auth => {
                     firebase
@@ -60,7 +47,11 @@ export default {
               const uid = await dispatch('getUid');
               const storageData =  await firebase.storage().ref(`/users/${uid}/photo`)
                     storageData.put(photo)
-                    return storageData.getDownloadURL()
+              let newPhoto = await storageData.getDownloadURL();
+              let updates = {};
+              updates[`/users/${uid}/info/photo`] = newPhoto;
+              await firebase.database().ref().update(updates);
+              return newPhoto
 
           }catch(e){
              commit('setError', e)

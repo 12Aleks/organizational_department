@@ -5,7 +5,7 @@
         </div>
         <div class="userInfoWrapper">
             <div class="promo promo-example">
-                <div class="profile" :style='{ backgroundImage: `url("${userPhoto}")` }'></div>
+                <div class="profile" :style='{ backgroundImage: `url("${userInfo.photo}")` }'></div>
                 <div class="description">
                     <p><span>Imię i nazwisko:</span> {{userInfo.name}}</p>
                 </div>
@@ -31,13 +31,6 @@
         computed: {
             userInfo() {
                 return this.$store.getters.info
-            },
-            userPhoto() {
-                if (Object.keys(this.$store.getters.updatePhoto).length) {
-                    return this.$store.getters.updatePhoto
-                }else{
-                    return this.defaultUserPhoto
-                }
             }
         }
     }
