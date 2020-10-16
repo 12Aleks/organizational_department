@@ -22,7 +22,7 @@ export default {
               commit('setError', e);
               throw e
           }
-            function signUpUser() {
+          function signUpUser() {
                 firebase.auth().createUserWithEmailAndPassword(email.value, pword.value).then(auth => {
                     firebase
                         .storage()
@@ -42,15 +42,25 @@ export default {
 
 
         },
-        async onFileChange({commit, dispatch}, {photo}){
+        async onFileChange({commit, dispatch}, {photo, name, department, email}){
           try{
               const uid = await dispatch('getUid');
               const storageData =  await firebase.storage().ref(`/users/${uid}/photo`)
                     storageData.put(photo)
               let newPhoto = await storageData.getDownloadURL();
-              let updates = {};
-              updates[`/users/${uid}/info/photo`] = newPhoto;
-              await firebase.database().ref().update(updates);
+              // let updates = {
+              //     name: name,
+              //     department: department,
+              //     email: email,
+              //     photo: newPhoto
+              // };
+              // updates[`/users/${uid}/info/photo`] = newPhoto;
+              await firebase.database().ref(`/users/${uid}/info/`).update({
+                  name: name,
+                  department: department,
+                  email: email,
+                  photo: newPhoto
+              });
               return newPhoto
 
           }catch(e){

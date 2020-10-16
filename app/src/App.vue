@@ -117,4 +117,19 @@
     background-attachment: fixed;
     padding: 20px 15px;
   }
+  div.profile, div#preview{
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+    height: 50vh;
+    overflow: hidden;
+    background: center center no-repeat;
+    background-size: cover;
+  }
 </style>
