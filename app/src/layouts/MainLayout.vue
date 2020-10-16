@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="app-main-layout grey lighten-5" >
+    <div class="app-main-layout grey lighten-4" >
       <navbar @click="isOpen = !isOpen"></navbar>
       <sidebar :value="isOpen"></sidebar>
 

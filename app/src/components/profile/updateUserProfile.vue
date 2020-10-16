@@ -1,74 +1,87 @@
 <template>
     <div class="col s12 updateProfile">
-        <div class="section">
-            <div class="page-title">
-                <h3>Zmiana danych osobowych</h3>
-            </div>
-            <div  class="page-subtitle">
-                <h4 >Zmień  imię lub nazwę zespołu</h4>
+        <div class="section img_attachment">
+            <div class="subpage-title">
+                <h4>Zmiana danych osobowych</h4>
             </div>
             <form class="form">
                 <div class="input-field">
-                    <input
+                    <input  v-model="name"
                             id="name"
                             type="text"
+                            :class="{invalid: $v.name.$dirty && !$v.name.minLength}"
                     >
                     <label for="name">Imię</label>
-                    <span
-                            class="helper-text invalid">Imię</span>
+                    <span class="helper-text invalid" v-if="$v.name.$dirty && !$v.name.minLength">Imię</span>
                 </div>
                 <div class="input-field">
                     <input
-                            id="departments"
+                            v-model="department"
+                            id="department"
                             type="text"
+                            :class="{invalid: $v.department.$dirty && !$v.department.minLength}"
                     >
-                    <label for="departments">Zespół</label>
-                    <span
-                            class="helper-text invalid">Zespół</span>
+                    <label for="department">Zespół</label>
+                    <span class="helper-text invalid" v-if="$v.department.$dirty && !$v.department.minLength">Zespół</span>
                 </div>
-
-                <button class="btn waves-effect waves-light" type="submit">
+                <div class="input-field">
+                    <input
+                            v-model="email"
+                            id="email"
+                            type="text"
+                            :class="{invalid: $v.email.$dirty && !$v.email.minLength}"
+                    >
+                    <label for="email">Email</label>
+                    <span class="helper-text invalid" v-if="$v.email.$dirty && !$v.email.minLength">Email</span>
+                </div>
+                <div class="input-field">
+                    <div>
+                        <img :src="photo" alt="" v-if="photo" width="30px" height="30px">
+                    </div>
+                    <input type="file" @change="onFileChanged">
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" @click="onUpload">
                     Zaktualizuj
                     <i class="material-icons right">send</i>
                 </button>
             </form>
         </div>
-        <div class="section">
-            <div class="page-subtitle">
-                <h4>Zmień swoje zdjęcie profilowe</h4>
-            </div>
-            <div>
-                <img :src="photo" alt="" v-if="photo" width="30px" height="30px">
-            </div>
-            <input type="file" @change="onFileChanged">
-            <button class="btn waves-effect waves-light" @click="onUpload">Zaktualizuj zdjęcie <i class="material-icons right">cloud_upload</i></button>
-
-
-
-        </div>
     </div>
 </template>
 
 <script>
-    import {required} from 'vuelidate/lib/validators'
+    import {minLength, email} from 'vuelidate/lib/validators'
 
     export default {
         name: "updateUserProfile",
+        props: {
+            userInfo: {
+                type: Object,
+                required: true
+            }
+        },
         data: () => ({
             name: '',
             department: '',
+            email: '',
             photo: null,
             photoSrc:  null,
         }),
-        validations: {
-            name: {required},
-            department: {required}
+        validations:{
+            name: {minLength: minLength(2)},
+            department: {minLength: minLength(2)},
+            email: {email}
         },
+
         methods: {
             onFileChanged (event) {
                 this.photoSrc = event.target.files[0]
             },
             async onUpload() {
+                if(this.$v.$invalid){
+                    this.$v.$touch()
+                    return
+                }
                 try{
                     this.photo = null;
                     const photoUpdate = {
@@ -83,8 +96,4 @@
 </script>
 
 <style scoped>
-    div.section {
-        background: white;
-        padding: 20px 15px;
-    }
 </style>

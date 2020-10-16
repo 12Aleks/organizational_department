@@ -108,5 +108,13 @@
     -ms-flex-direction: $properties;
     flex-direction: $properties;
   }
-
+  .img_attachment{
+    background-color: rgba(255,255,255, 1);
+    background-image: url("./assets/images/fabrik.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    padding: 20px 15px;
+  }
 </style>

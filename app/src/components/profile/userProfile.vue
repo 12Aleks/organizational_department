@@ -3,7 +3,7 @@
         <div class="page-title">
             <h3>Twoje konto</h3>
         </div>
-        <div class="userInfoWrapper">
+        <div class="userInfoWrapper img_attachment">
             <div class="photoWrapper">
                 <div class="profile" :style='{ backgroundImage: `url("${userInfo.photo}")` }'></div>
             </div>
@@ -25,12 +25,10 @@
 <script>
     export default {
         name: "userProfile",
-        data: () => ({
-            defaultUserPhoto: `../assets/images/profile.jpg`
-        }),
-        computed: {
-            userInfo() {
-                return this.$store.getters.info
+        props: {
+            userInfo: {
+                type: Object,
+                required: true
             }
         }
     }
@@ -38,7 +36,6 @@
 
 <style scoped lang="scss">
     div.userInfoWrapper{
-        background: white;
         padding: 20px 15px;
         margin-bottom: 15px;
         -webkit-box-align: center;

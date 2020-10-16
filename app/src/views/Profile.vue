@@ -2,8 +2,8 @@
     <div>
         <div class="app-page">
             <div class="row">
-                <user-profile />
-                <updateUserProfile />
+                <user-profile  :userInfo="userInfo"/>
+                <updateUserProfile :userInfo="userInfo" />
             </div>
         </div>
     </div>
@@ -22,10 +22,16 @@
         components: {
             userProfile,
             updateUserProfile
+        },
+        computed: {
+            userInfo() {
+                return this.$store.getters.info
+            }
         }
     }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
+
 
 </style>
