@@ -12,17 +12,12 @@
                 <div class="page-subtitle">
                     <h4>Dodaj tabele Exele z danymi pracownikow</h4>
                 </div>
-                <form>
-                <div class="input-field" >
-                    <span class="btn btn-file">
-                           Dodaj tabele Exele<input type="file" @change="onFileChanged">
-                    </span>
+                <div>
+                    <b>Import Excel File:</b>
+                    <div>
+                        <input type="file" class="fileSelect" @change='fileChange($event)' />
+                    </div>
                 </div>
-                <button class="btn waves-effect waves-light " type="submit">
-                    Wyślij dodane dane
-                    <i class="material-icons right">send</i>
-                </button>
-                </form>
             </div>
         </div>
     </div>
@@ -33,7 +28,19 @@
         name: "Home",
         data: () => ({
             loading: false
-        })
+        }),
+        methods:{
+            fileChange (e) {
+                    const fileDom = e.target || e.srcElement;
+                    const excelIO = new Excel.IO();
+
+                    excelIO.open(fileDom.files[0], (_data_) => {
+                        const newSalesData = extractSheetData(data);
+                         console.log(newSalesData);
+                    });
+
+            }
+        }
     }
 </script>
 
