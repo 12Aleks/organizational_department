@@ -3,19 +3,19 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import JsonExcel from "vue-json-excel";
 import Vuelidate from 'vuelidate'
 import 'materialize-css/dist/js/materialize.min'
 import message from './message/message.info'
 import Loader from '@/components/Loader'
 
+
 import dateFilter from "./filters/dateFilter";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader)
-Vue.component("downloadExcel", JsonExcel);
 Vue.use(Vuelidate)
 Vue.use(message)
+
 
 Vue.filter( 'dateFilter', dateFilter)
 
