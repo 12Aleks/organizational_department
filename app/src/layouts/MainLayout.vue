@@ -51,6 +51,30 @@
   };
 </script>
 <style lang="scss">
+  .img_attachment{
+    background-color: rgba(255,255,255, 1);
+    background-image: url("../assets/images/fabrik.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    padding: 20px 15px;
+  }
+  div.profile, div#preview{
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-flex;
+    display: -webkit-inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+    height: 50vh;
+    overflow: hidden;
+    background: center center no-repeat;
+    background-size: cover;
+  }
   @media(max-width: 1023px){
     .app-main-layout{
       .app-content{

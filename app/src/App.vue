@@ -108,28 +108,11 @@
     -ms-flex-direction: $properties;
     flex-direction: $properties;
   }
-  .img_attachment{
-    background-color: rgba(255,255,255, 1);
-    background-image: url("./assets/images/fabrik.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    background-attachment: fixed;
-    padding: 20px 15px;
+  .app-content {
+    height: 100vh;
+    .app-page {
+      height: 100%;
+    }
   }
-  div.profile, div#preview{
-    max-width: 150px;
-    max-height: 150px;
-    margin-right: 10px;
-    position: relative;
-    display: inline-flex;
-    display: -webkit-inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 50vh;
-    height: 50vh;
-    overflow: hidden;
-    background: center center no-repeat;
-    background-size: cover;
-  }
+
 </style>

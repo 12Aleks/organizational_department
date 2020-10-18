@@ -1,6 +1,17 @@
 <template>
   <div class="holder">
-    <div class="preloader" id="preloader"><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div><div class="background"></div></div>
+    <div class="preloader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </template>
 
@@ -10,7 +21,7 @@ export default {
   mounted() {
     const colors = ['#e57373', '#26a69a', '#90a4ae'];
     const rez = colors[Math.trunc(Math.random() * 3)];
-    document.querySelectorAll('.background').forEach(el => el.style.setProperty('--element-color', rez));
+    document.querySelectorAll('.preloader > div').forEach(el => el.style.setProperty('--element-color', rez));
   }
 }
 </script>
@@ -53,17 +64,17 @@ export default {
     width: 100%;
     height: 100%;
     opacity: 0;
-  }
-  .preloader div:before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 0;
-    width: 10%;
-    height: 10%;
-    background-color: var(--element-color);
-    transform: translateX(-50%);
-    border-radius: 50%;
+    &:before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 10%;
+      height: 10%;
+      background-color: var(--element-color);
+      transform: translateX(-50%);
+      border-radius: 50%;
+    }
   }
 
   @for $i from 1 through $count {

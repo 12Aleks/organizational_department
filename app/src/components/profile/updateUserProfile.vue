@@ -116,6 +116,8 @@
 <style scoped lang="scss">
     .section.img_attachment {
         padding: 20px 31px;
+        height:-webkit-calc(100vh - 463px);
+        height:calc(100vh - 463px);
     .btn-file {
         position: relative;
         overflow: hidden;

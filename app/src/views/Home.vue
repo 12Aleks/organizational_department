@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contet-wrapper">
         <div class="page-title">
             <h3>Import i export danych w formacie xlsx</h3>
             <Loader v-if='loading'></Loader>
@@ -7,6 +7,7 @@
                 <i class="material-icons">refresh</i>
             </button>
         </div>
+        <div class="row-wrapper">
         <div class="row img_attachment">
             <div class="col s12 m12">
                 <div class="page-subtitle">
@@ -16,6 +17,7 @@
                  <xlsx-convercion></xlsx-convercion>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </template>
@@ -35,6 +37,14 @@
 </script>
 
 <style scoped>
+    .contet-wrapper {
+        height: 100%;
+        padding: 2rem;
+    }
+    .img_attachment{
+        height:-webkit-calc(100vh - 250px);
+        height:calc(100vh - 250px);
+    }
     .btn-file {
         position: relative;
         overflow: hidden;

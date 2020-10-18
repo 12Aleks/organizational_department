@@ -1,12 +1,12 @@
 <template>
-    <div class="app-loader">
-            <div class="app-page">
+    <div>
+        <div class="app-page">
+            <div class="row">
                 <Loader v-if='loading'></Loader>
-                <div class="row">
-                    <user-profile :userInfo="userInfo"/>
-                    <updateUserProfile :userInfo="userInfo"/>
-                </div>
+                <user-profile  :userInfo="userInfo"/>
+                <updateUserProfile :userInfo="userInfo" />
             </div>
+        </div>
     </div>
 </template>
 
@@ -18,8 +18,8 @@
     export default {
         name: "Profile",
         data: () => ({
-            name: '',
-            loading: true,
+           name: '',
+           loading: false,
         }),
         components: {
             userProfile,
