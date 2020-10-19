@@ -10,7 +10,7 @@
            <i class="material-icons right">cloud_upload</i>
            </span>
             </div>
-            <Loader v-show="loading"/>
+            <Loader v-if="loading && selectedSheet"/>
             <div v-show="!loading && collection">
                 <xlsx-read :file="file">
                     <xlsx-sheets>
@@ -18,7 +18,7 @@
                             <div class="submit-wrapper">
 
                                 <div class="input-field select-wrapper">
-                                    <select v-model="selectedSheet" class="browser-default z-depth-1">
+                                    <select v-model="selectedSheet" class="browser-default z-depth-1" >
                                         <option v-for="sheet in sheets" :key="sheet" :value="sheet">
                                             {{ sheet }}
                                         </option>
@@ -27,7 +27,7 @@
                                 </div>
 
 
-                                <button class="btn waves-effect waves-light tableSend" type="submit" name="action">Dodaj żądane zakładki tabeli
+                                <button class="btn waves-effect waves-light tableSend" type="submit"  >Dodaj żądane zakładki tabeli
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>
@@ -36,7 +36,7 @@
                     <div class="table-wrapper z-depth-1">
                         <xlsx-table :sheet="selectedSheet"/>
                     </div>
-                    <xlsx-json @parsed="jsonData">
+                    <xlsx-json @parsed="jsonData" :sheet="selectedSheet">
                     </xlsx-json>
                 </xlsx-read>
             </div>
@@ -71,7 +71,7 @@
                 this.loading = false;
                 console.log(this.collection)
             }
-        }
+        },
     }
 </script>
 
@@ -143,9 +143,6 @@
         position: absolute;
         top: 0;
         right: 0;
-        /*min-width: 100%;*/
-        /*min-height: 100%;*/
-        /*font-size: 100px;*/
         text-align: right;
         filter: alpha(opacity=0);
         opacity: 0;
