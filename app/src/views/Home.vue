@@ -1,7 +1,7 @@
 <template>
     <div class="contet-wrapper">
         <div class="page-title">
-            <h3>Import i export danych w formacie xlsx</h3>
+            <h3>Import danych w formacie xlsx</h3>
             <Loader v-if='loading'></Loader>
             <button class="btn waves-effect waves-light btn-small">
                 <i class="material-icons">refresh</i>
@@ -10,9 +10,6 @@
         <div class="row-wrapper">
         <div class="row img_attachment">
             <div class="col s12 m12">
-                <div class="page-subtitle">
-                    <h4>Dodaj tabele Exele z danymi</h4>
-                </div>
                 <div>
                  <xlsx-convercion></xlsx-convercion>
                 </div>
@@ -23,7 +20,6 @@
 </template>
 
 <script>
-
     import xlsxConvercion from "../components/conversion/xlsxConvercion";
     export default {
         name: "Home",

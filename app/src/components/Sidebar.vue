@@ -19,7 +19,7 @@ export default {
   props: ['value'],
   data: () => ({
     links: [
-      {title: 'Import i export danych', url: '/', exact: true},
+      {title: 'Import danych', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
       {title: 'Zespół rekrutacji', url: '/recruitment'},
       {title: 'Lista osób', url: '/lists'},

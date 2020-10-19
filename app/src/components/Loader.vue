@@ -32,14 +32,11 @@ export default {
   $size: 70;
 
   .holder {
-    position: relative;
-    /*position: absolute;*/
-    /*left: 0px;*/
-    /*top: 0px;*/
-    /*bottom: 0px;*/
-    /*right: 0px;*/
-    /*width: 100%;*/
-    /*height: 100%;*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
     /*background-color: #2D2F48;*/
   }
   .preloader {

@@ -1,32 +1,45 @@
 <template>
     <div>
         <section>
-            <span class="btn btn-file">
+            <div v-if="!loading  && !collection" class="importButton">
+                <div class="page-subtitle">
+                    <h4>Dodaj tabele Exele z danymi</h4>
+                </div>
+                <span class="btn btn-file">
                   Dodaj plik<input type="file" @change="onChange">
            <i class="material-icons right">cloud_upload</i>
            </span>
+            </div>
+            <Loader v-show="loading"/>
+            <div v-show="!loading && collection">
+                <xlsx-read :file="file">
+                    <xlsx-sheets>
+                        <template #default="{sheets}">
+                            <div class="submit-wrapper">
 
-            <xlsx-read :file="file" >
-                <Loader v-if="loading" />
-                <xlsx-sheets v-else>
-                    <template #default="{sheets}" >
-                        <div class="input-field select-wrapper" >
-                            <select v-model="selectedSheet" class="browser-default z-depth-1">
-                                <option v-for="sheet in sheets" :key="sheet" :value="sheet">
-                                    {{ sheet }}
-                                </option>
-                            </select>
-                            <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
-                        </div>
-                    </template>
-                </xlsx-sheets>
-                <div v-else class="table-wrapper">
-                    <xlsx-table :sheet="selectedSheet"/>
-                </div>
-                <xlsx-json @parsed="jsonData">
-                </xlsx-json>
-            </xlsx-read>
+                                <div class="input-field select-wrapper">
+                                    <select v-model="selectedSheet" class="browser-default z-depth-1">
+                                        <option v-for="sheet in sheets" :key="sheet" :value="sheet">
+                                            {{ sheet }}
+                                        </option>
+                                    </select>
+                                    <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
+                                </div>
 
+
+                                <button class="btn waves-effect waves-light tableSend" type="submit" name="action">Dodaj żądane zakładki tabeli
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </template>
+                    </xlsx-sheets>
+                    <div class="table-wrapper z-depth-1">
+                        <xlsx-table :sheet="selectedSheet"/>
+                    </div>
+                    <xlsx-json @parsed="jsonData">
+                    </xlsx-json>
+                </xlsx-read>
+            </div>
         </section>
     </div>
 </template>
@@ -37,10 +50,10 @@
     export default {
         name: "xlsxConvercion",
         data() {
-            return{
+            return {
                 file: null,
                 collection: null,
-                loading: null,
+                loading: false,
                 selectedSheet: null,
             }
         },
@@ -50,10 +63,10 @@
         },
         methods: {
             onChange(event) {
+                this.loading = true;
                 this.file = event.target.files ? event.target.files[0] : null;
             },
             jsonData(collectionData) {
-                this.loading = true;
                 this.collection = collectionData;
                 this.loading = false;
                 console.log(this.collection)
@@ -63,6 +76,33 @@
 </script>
 
 <style scoped lang="scss">
+    .submit-wrapper {
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+    }
+    .btn.tableSend{
+        margin-left: 15px;
+        height: 42px;
+        @media(min-width: 1199.98px){
+            height: 44px;
+        }
+    }
+
+    .importButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+    section {
+        position: relative;
+        height: -webkit-calc(100vh - 342px);
+        height: calc(100vh - 342px);
+    }
+
     .input-field.select-wrapper {
         label {
             margin-left: 10px;
@@ -82,14 +122,17 @@
 
     .table-wrapper {
         overflow: auto;
-        height:-webkit-calc(100vh - 470px);
-        height:calc(100vh - 470px);
+        height: -webkit-calc(100vh - 368px);
+        height: calc(100vh - 368px);
         border: 1px solid #90a4ae;
     }
 
     .btn-file {
         position: relative;
         overflow: hidden;
+        margin: 0 auto;
+        display: block;
+        max-width: 175px;
     }
 
     button.btn.waves-effect.waves-light {
@@ -100,9 +143,9 @@
         position: absolute;
         top: 0;
         right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
+        /*min-width: 100%;*/
+        /*min-height: 100%;*/
+        /*font-size: 100px;*/
         text-align: right;
         filter: alpha(opacity=0);
         opacity: 0;
