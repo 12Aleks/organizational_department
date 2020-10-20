@@ -10,13 +10,12 @@
            <i class="material-icons right">cloud_upload</i>
            </span>
             </div>
-            <Loader v-if="loading && selectedSheet"/>
-            <div v-show="!loading && collection">
-                <xlsx-read :file="file">
+            <div >
+                <Loader v-if="loading"/>
+                <xlsx-read :file="file" v-show="!loading && collection">
                     <xlsx-sheets>
-                        <template #default="{sheets}">
+                        <template #default="{sheets}" ref="details">
                             <div class="submit-wrapper">
-
                                 <div class="input-field select-wrapper">
                                     <select v-model="selectedSheet" class="browser-default z-depth-1" >
                                         <option v-for="sheet in sheets" :key="sheet" :value="sheet">
@@ -25,9 +24,7 @@
                                     </select>
                                     <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
                                 </div>
-
-
-                                <button class="btn waves-effect waves-light tableSend" type="submit"  >Dodaj żądane zakładki tabeli
+                                <button class="btn waves-effect waves-light tableSend" type="submit" @click="receiveData" >Dodaj żądane zakładki tabeli
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>
@@ -36,7 +33,7 @@
                     <div class="table-wrapper z-depth-1">
                         <xlsx-table :sheet="selectedSheet"/>
                     </div>
-                    <xlsx-json @parsed="jsonData" :sheet="selectedSheet">
+                    <xlsx-json :sheet="selectedSheet" ref="action">
                     </xlsx-json>
                 </xlsx-read>
             </div>
@@ -45,7 +42,8 @@
 </template>
 
 <script>
-    import {XlsxRead, XlsxJson, XlsxSheets, XlsxTable} from "vue-xlsx/dist/vue-xlsx.es.js"
+    import {XlsxRead, XlsxSheets, XlsxTable} from "vue-xlsx/dist/vue-xlsx.es.js"
+    import  XlsxJson from './XlsxJson'
 
     export default {
         name: "xlsxConvercion",
@@ -55,9 +53,9 @@
                 collection: null,
                 loading: false,
                 selectedSheet: null,
+                selected: null
             }
         },
-
         components: {
             XlsxRead, XlsxJson, XlsxTable, XlsxSheets
         },
@@ -65,13 +63,16 @@
             onChange(event) {
                 this.loading = true;
                 this.file = event.target.files ? event.target.files[0] : null;
+                this.$refs.action.newCollection()
             },
             jsonData(collectionData) {
                 this.collection = collectionData;
                 this.loading = false;
-                console.log(this.collection)
+            },
+            receiveData(){
+                console.log(this.collection);
             }
-        },
+        }
     }
 </script>
 
