@@ -1,40 +1,43 @@
 <template>
     <div>
         <section>
-            <div v-if="!loading  && !collection" class="importButton">
-                <div class="page-subtitle">
-                    <h4>Dodaj tabele Exele z danymi</h4>
-                </div>
-                <span class="btn btn-file">
-                  Dodaj plik<input type="file" @change="onChange">
-           <i class="material-icons right">cloud_upload</i>
-           </span>
-            </div>
-            <div >
-                <Loader v-if="loading"/>
-                <xlsx-read :file="file" v-show="!loading && collection">
-                    <xlsx-sheets>
-                        <template #default="{sheets}" ref="details">
-                            <div class="submit-wrapper">
-                                <div class="input-field select-wrapper">
-                                    <select v-model="selectedSheet" class="browser-default z-depth-1" >
-                                        <option v-for="sheet in sheets" :key="sheet" :value="sheet">
-                                            {{ sheet }}
-                                        </option>
-                                    </select>
-                                    <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
-                                </div>
-                                <button class="btn waves-effect waves-light tableSend" type="submit" @click="receiveData" >Dodaj żądane zakładki tabeli
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                        </template>
-                    </xlsx-sheets>
-                    <div class="table-wrapper z-depth-1">
-                        <xlsx-table :sheet="selectedSheet"/>
+            <div>
+                <div v-if="load && !collection" class="importButton">
+                    <div class="page-subtitle">
+                        <h4>Dodaj tabele Exele z danymi</h4>
                     </div>
-                    <xlsx-json :sheet="selectedSheet" ref="action">
-                    </xlsx-json>
+                    <span class="btn btn-file">
+                               Dodaj plik<input type="file" @change="onChange">
+                               <i class="material-icons right">cloud_upload</i>
+                            </span>
+                </div>
+                <xlsx-read :file="file">
+                    <template #default="{loading}">
+                        <Loader v-if="loading && !collection && !load"/>
+                        <xlsx-sheets v-show="!loading && !load">
+                            <template #default="{sheets}" ref="details">
+                                <div class="submit-wrapper">
+                                    <div class="input-field select-wrapper">
+                                        <select v-model="selectedSheet" class="browser-default z-depth-1">
+                                            <option v-for="sheet in sheets" :key="sheet" :value="sheet">
+                                                {{ sheet }}
+                                            </option>
+                                        </select>
+                                        <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
+                                    </div>
+                                    <button class="btn waves-effect waves-light tableSend" type="submit"
+                                            @click="receiveData">Dodaj żądane zakładki tabeli
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </template>
+                        </xlsx-sheets>
+                        <div class="table-wrapper z-depth-1" v-show="!loading && !load">
+                            <xlsx-table :sheet="selectedSheet"/>
+                        </div>
+                        <xlsx-json :sheet="selectedSheet" v-if="!loading && !load" @parsed="jsonData">
+                        </xlsx-json>
+                    </template>
                 </xlsx-read>
             </div>
         </section>
@@ -43,7 +46,7 @@
 
 <script>
     import {XlsxRead, XlsxSheets, XlsxTable} from "vue-xlsx/dist/vue-xlsx.es.js"
-    import  XlsxJson from './XlsxJson'
+    import XlsxJson from './XlsxJson'
 
     export default {
         name: "xlsxConvercion",
@@ -51,9 +54,9 @@
             return {
                 file: null,
                 collection: null,
+                load: true,
                 loading: false,
-                selectedSheet: null,
-                selected: null
+                selectedSheet: null
             }
         },
         components: {
@@ -61,15 +64,14 @@
         },
         methods: {
             onChange(event) {
-                this.loading = true;
+                this.load = false
                 this.file = event.target.files ? event.target.files[0] : null;
-                this.$refs.action.newCollection()
             },
             jsonData(collectionData) {
                 this.collection = collectionData;
                 this.loading = false;
             },
-            receiveData(){
+            receiveData() {
                 console.log(this.collection);
             }
         }
@@ -82,10 +84,11 @@
         display: -webkit-inline-flex;
         display: inline-flex;
     }
-    .btn.tableSend{
+
+    .btn.tableSend {
         margin-left: 15px;
         height: 42px;
-        @media(min-width: 1199.98px){
+        @media(min-width: 1199.98px) {
             height: 44px;
         }
     }
@@ -153,3 +156,4 @@
         display: block;
     }
 </style>
+
