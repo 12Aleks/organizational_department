@@ -7,12 +7,14 @@ import Vuelidate from 'vuelidate'
 import 'materialize-css/dist/js/materialize.min'
 import message from './message/message.info'
 import Loader from '@/components/Loader'
+import Information from "./components/ather/Information";
 
 
 import dateFilter from "./filters/dateFilter";
 
 Vue.config.productionTip = false
-Vue.component('Loader', Loader)
+Vue.component('Loader', Loader);
+Vue.component('Information', Information)
 Vue.use(Vuelidate)
 Vue.use(message)
 

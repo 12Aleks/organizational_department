@@ -2,10 +2,11 @@
     <div class="contet-wrapper">
         <div class="page-title">
             <h3>Import danych w formacie xlsx</h3>
+
             <Loader v-if='loading'></Loader>
-            <button class="btn waves-effect waves-light btn-small">
-                <i class="material-icons">refresh</i>
-            </button>
+<!--            <button class="btn waves-effect waves-light btn-small">-->
+<!--                <i class="material-icons">refresh</i>-->
+<!--            </button>-->
         </div>
         <div class="row-wrapper">
         <div class="row img_attachment">
@@ -24,7 +25,7 @@
     export default {
         name: "Home",
         data: () => ({
-            loading: false
+            loading: false,
         }),
         components: {
             xlsxConvercion

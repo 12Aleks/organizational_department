@@ -1,15 +1,16 @@
 <template>
     <div>
         <section>
+            <information :infoForUser="infoForUser"/>
             <div>
                 <div v-if="load && !collection" class="importButton">
                     <div class="page-subtitle">
                         <h4>Dodaj tabele Exele z danymi</h4>
                     </div>
-                    <span class="btn btn-file">
-                               Dodaj plik<input type="file" @change="onChange">
-                               <i class="material-icons right">cloud_upload</i>
-                            </span>
+                    <span class="btn btn-file ">
+                      Dodaj plik<input type="file" @change="onChange">
+                      <i class="material-icons right">cloud_upload</i>
+                    </span>
                 </div>
                 <xlsx-read :file="file">
                     <template #default="{loading}">
@@ -26,7 +27,7 @@
                                         <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
                                     </div>
                                     <button class="btn waves-effect waves-light tableSend" type="submit"
-                                            @click="receiveData">Dodaj żądane zakładki tabeli
+                                            @click="receiveData">Dodaj potrzebną zakładkę tabeli
                                         <i class="material-icons right">send</i>
                                     </button>
                                 </div>
@@ -45,8 +46,7 @@
 </template>
 
 <script>
-    import {XlsxRead, XlsxSheets, XlsxTable} from "vue-xlsx/dist/vue-xlsx.es.js"
-    import XlsxJson from './XlsxJson'
+    import {XlsxRead, XlsxSheets, XlsxTable, XlsxJson} from "vue-xlsx/dist/vue-xlsx.es.js"
 
     export default {
         name: "xlsxConvercion",
@@ -56,7 +56,8 @@
                 collection: null,
                 load: true,
                 loading: false,
-                selectedSheet: null
+                selectedSheet: null,
+                infoForUser: 'Kliknij przycisk "Dodaj plik", wybierz żądany plik w formacie xlsx i dodaj go do aplikacji'
             }
         },
         components: {
@@ -64,8 +65,9 @@
         },
         methods: {
             onChange(event) {
-                this.load = false
+                this.load = false;
                 this.file = event.target.files ? event.target.files[0] : null;
+                this.infoForUser = 'Wybierz potrzebną zakładkę w oknie wyboru i kliknij przycisk "Dodaj potrzebną zakładkę tabeli"';
             },
             jsonData(collectionData) {
                 this.collection = collectionData;
@@ -73,6 +75,8 @@
             },
             receiveData() {
                 console.log(this.collection);
+                const filt = Object.fromEntries(Object.entries(this.collection).filter(key => this.collection[key] !== 0))
+                console.log(filt);
             }
         }
     }
