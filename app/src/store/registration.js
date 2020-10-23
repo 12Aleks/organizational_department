@@ -15,7 +15,7 @@ export default {
               await firebase.auth().createUserWithEmailAndPassword(email, password);
               const uid = await dispatch('getUid');
               const photo =  await firebase.storage().ref(`profile.jpg`).getDownloadURL();
-              await firebase.database().ref(`/users/${uid}/info`).set({
+              await firebase.database().ref(`/profiles/${uid}/info`).set({
                   name, department, email, photo
               });
           }catch(e){
@@ -26,7 +26,7 @@ export default {
                 firebase.auth().createUserWithEmailAndPassword(email.value, pword.value).then(auth => {
                     firebase
                         .storage()
-                        .ref("users")
+                        .ref("profiles")
                         .child(auth.user.uid + "/profile.jpg")
                         .put(file);
 
@@ -34,13 +34,6 @@ export default {
                     console.log(error.message)
                 })
             }
-
-
-
-
-
-
-
         },
         async onFileChange({commit, dispatch}, {photo, name, department, email}){
           try{

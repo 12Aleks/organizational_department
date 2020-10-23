@@ -73,10 +73,32 @@
                 this.collection = collectionData;
                 this.loading = false;
             },
-            receiveData() {
-                console.log(this.collection);
-                const filt = Object.fromEntries(Object.entries(this.collection).filter(key => this.collection[key] !== 0))
-                console.log(filt);
+            async receiveData() {
+                try{
+                    this.load = true;
+                    const cats = [];
+                    const result = await Object.fromEntries(Object.entries(this.collection).filter((el, i) => el[i] != 0));
+                    Object.keys(result).map((key) => {
+                        cats.push({
+                            name: result[key].__EMPTY_1,
+                            department: result[key]['(Wszystko)'],
+                            process: result[key]['WYBÓR STANOWISKA'],
+                            sections: result[key].__EMPTY,
+                            salary: Math.round(result[key].__EMPTY_2),
+                            per_hour: Math.round(result[key].__EMPTY_3),
+                            salary_worker: Math.round(result[key].__EMPTY_4),
+                            per_hour_worker: Math.round(result[key].__EMPTY_5),
+                            salary_department: Math.round(result[key].__EMPTY_6),
+                            per_hour_department: Math.round(result[key].__EMPTY_7),
+                            salary_HR: Math.round(result[key].__EMPTY_8),
+                            per_hour_HR: Math.round(result[key].__EMPTY_9),
+                            final_salary: Math.round(result[key].__EMPTY_10),
+                            final_per_hour: Math.round(result[key].__EMPTY_11)
+                        });
+                    });
+                    await this.$store.dispatch('dataUsers', cats);
+                    this.load = false;
+                }catch(e){}
             }
         }
     }
