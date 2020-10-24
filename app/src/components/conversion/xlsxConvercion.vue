@@ -74,31 +74,37 @@
                 this.loading = false;
             },
             async receiveData() {
-                try{
-                    this.load = true;
-                    const cats = [];
+                try {
+                    this.load = false;
+                    this.loading = true;
+                    const list = [];
                     const result = await Object.fromEntries(Object.entries(this.collection).filter((el, i) => el[i] != 0));
                     Object.keys(result).map((key) => {
-                        cats.push({
+                        list.push({
                             name: result[key].__EMPTY_1,
                             department: result[key]['(Wszystko)'],
                             process: result[key]['WYBÓR STANOWISKA'],
                             sections: result[key].__EMPTY,
-                            salary: Math.round(result[key].__EMPTY_2),
-                            per_hour: Math.round(result[key].__EMPTY_3),
-                            salary_worker: Math.round(result[key].__EMPTY_4),
-                            per_hour_worker: Math.round(result[key].__EMPTY_5),
-                            salary_department: Math.round(result[key].__EMPTY_6),
-                            per_hour_department: Math.round(result[key].__EMPTY_7),
-                            salary_HR: Math.round(result[key].__EMPTY_8),
-                            per_hour_HR: Math.round(result[key].__EMPTY_9),
-                            final_salary: Math.round(result[key].__EMPTY_10),
-                            final_per_hour: Math.round(result[key].__EMPTY_11)
+                            salary: result[key].__EMPTY_2 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_2),
+                            per_hour: result[key].__EMPTY_3 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_3),
+                            salary_worker: result[key].__EMPTY_4 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_4),
+                            per_hour_worker: result[key].__EMPTY_5 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_5),
+                            salary_department: result[key].__EMPTY_6 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_6),
+                            per_hour_department: result[key].__EMPTY_7 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_7),
+                            salary_HR: result[key].__EMPTY_8 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_8),
+                            per_hour_HR: result[key].__EMPTY_9 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_9),
+                            final_salary: result[key].__EMPTY_10 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_10),
+                            final_per_hour: result[key].__EMPTY_11 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_11)
                         });
                     });
-                    await this.$store.dispatch('dataUsers', cats);
-                    this.load = false;
-                }catch(e){}
+                    const workers = Object.values(list).filter( (k) => k.name !== undefined);
+
+                    console.log(workers );
+                    await this.$store.dispatch('dataUsers', workers);
+                    this.load = true;
+                    this.loading = false;
+                } catch (e) {
+                }
             }
         }
     }
