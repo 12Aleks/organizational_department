@@ -8,12 +8,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col s12 m6 l4">
-
-                            </div>
-
-                            <div class="col s12 m6 l8">
-
+                            <div class="col s12 m12">
+<!--                                {{workersInfo}}-->
+                               <ul>
+                                   <li v-for="(value, name, index) in workersInfo" :key="index" >
+                                       {{ value['name']  }}
+                                   </li>
+                               </ul>
                             </div>
                         </div>
                     </div>
@@ -23,8 +24,17 @@
 </template>
 
 <script>
+
     export default {
-        name: "WorkerLists"
+        name: "WorkerLists",
+        async mounted() {
+           await this.$store.dispatch('receiveData')
+        },
+        computed: {
+            workersInfo() {
+                return this.$store.getters.receiveData
+            }
+        }
     }
 </script>
 

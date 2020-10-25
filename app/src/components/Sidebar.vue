@@ -22,7 +22,8 @@ export default {
       {title: 'Import danych', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
       {title: 'Zespół rekrutacji', url: '/recruitment'},
-      {title: 'Lista osób', url: '/lists'},
+      {title: 'Lista pracowników', url: '/lists'},
+      {title: 'Nowi pracownicy', url: '/new_workers'},
     ]
   })
 }

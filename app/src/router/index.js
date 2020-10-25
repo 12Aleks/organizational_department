@@ -61,6 +61,12 @@ const router =  new Router({
       name: 'Recruitment',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Recruitment.vue')
+    },
+    {
+      path: '/new_workers',
+      name: 'newWorkerList',
+      meta: {layout: 'main', auth: true},
+      component: () => import('../views/newWorkerList.vue')
     }
   ]
 });

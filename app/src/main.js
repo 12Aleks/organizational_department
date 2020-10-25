@@ -11,6 +11,7 @@ import Information from "./components/ather/Information";
 
 
 import dateFilter from "./filters/dateFilter";
+import newWorkersFilter from "./filters/newWorkersFilter";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
@@ -20,6 +21,7 @@ Vue.use(message)
 
 
 Vue.filter( 'dateFilter', dateFilter)
+Vue.filter( 'newWorkersFilter', newWorkersFilter)
 
 
 

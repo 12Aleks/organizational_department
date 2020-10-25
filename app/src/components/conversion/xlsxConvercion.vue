@@ -76,8 +76,6 @@
             },
             async receiveData() {
                 try {
-                    this.load = false;
-                    this.loading = true;
                     const list = [];
                     const result = await Object.fromEntries(Object.entries(this.collection).filter((el, i) => el[i] != 0));
                     Object.keys(result).map((key) => {
@@ -99,9 +97,11 @@
                         });
                     });
                     const workers = Object.values(list).filter( (k) => k.name !== undefined);
-                    await this.$store.dispatch('dataUsers', workers);
-                    this.load = true;
-                    this.loading = false;
+                    console.log(workers )
+                    // await this.$store.dispatch('dataUsers', workers);
+
+                    const newWorkers = Object.values(workers).filter( (k) => k.final_salary != 0 && k.final_per_hour != 0);
+                    console.log(newWorkers)
                     this.$router.push(`/lists`)
                 } catch (e) {
                 }
