@@ -8,7 +8,7 @@ export default {
               // const status =
               //     console.log(status)
               // }
-              await firebase.database().ref('/users/data').push(cats);
+              await firebase.database().ref('/users').set(cats);
               console.log(cats)
           }catch (e) {
               // this.commit('setError', true);

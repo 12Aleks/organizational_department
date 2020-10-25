@@ -14,7 +14,7 @@
                 </div>
                 <xlsx-read :file="file">
                     <template #default="{loading}">
-                        <Loader v-if="loading && !collection && !load"/>
+                        <Loader v-if="loading && !load"/>
                         <xlsx-sheets v-show="!loading && !load">
                             <template #default="{sheets}" ref="details">
                                 <div class="submit-wrapper">
@@ -66,6 +66,7 @@
         methods: {
             onChange(event) {
                 this.load = false;
+                this.loading = true;
                 this.file = event.target.files ? event.target.files[0] : null;
                 this.infoForUser = 'Wybierz potrzebną zakładkę w oknie wyboru i kliknij przycisk "Dodaj potrzebną zakładkę tabeli"';
             },
@@ -98,11 +99,10 @@
                         });
                     });
                     const workers = Object.values(list).filter( (k) => k.name !== undefined);
-
-                    console.log(workers );
                     await this.$store.dispatch('dataUsers', workers);
                     this.load = true;
                     this.loading = false;
+                    this.$router.push(`/lists`)
                 } catch (e) {
                 }
             }
