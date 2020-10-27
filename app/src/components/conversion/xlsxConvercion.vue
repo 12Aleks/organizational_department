@@ -81,7 +81,7 @@
                     Object.keys(result).map((key) => {
                         list.push({
                             name: result[key].__EMPTY_1,
-                            department: result[key]['(Wszystko)'],
+                            department: result[key]['(Wszystko)'] === undefined || result[key]['(Wszystko)'] === '(puste)'? result[key]['WYBÓR STANOWISKA'] : result[key]['(Wszystko)'],
                             process: result[key]['WYBÓR STANOWISKA'],
                             sections: result[key].__EMPTY,
                             salary: result[key].__EMPTY_2 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_2),
@@ -96,12 +96,8 @@
                             final_per_hour: result[key].__EMPTY_11 === undefined ? 'data not found' : Math.round(result[key].__EMPTY_11)
                         });
                     });
-                    const workers = Object.values(list).filter( (k) => k.name !== undefined);
-                    console.log(workers )
-                    // await this.$store.dispatch('dataUsers', workers);
-
-                    const newWorkers = Object.values(workers).filter( (k) => k.final_salary != 0 && k.final_per_hour != 0);
-                    console.log(newWorkers)
+                    const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);
+                    await this.$store.dispatch('dataUsers', workers);
                     this.$router.push(`/lists`)
                 } catch (e) {
                 }

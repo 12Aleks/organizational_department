@@ -12,7 +12,7 @@ import { Bar } from 'vue-chartjs'
 
 
 import dateFilter from "./filters/dateFilter";
-import newWorkersFilter from "./filters/newWorkersFilter";
+import departments from "./filters/departments";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
@@ -22,7 +22,7 @@ Vue.use(message)
 
 
 Vue.filter( 'dateFilter', dateFilter)
-Vue.filter( 'newWorkersFilter', newWorkersFilter)
+Vue.filter( 'departmentFilter', departments)
 
 
 
