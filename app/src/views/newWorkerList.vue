@@ -5,9 +5,9 @@
                 <div class="page-title">
                     <h3>Nowi pracownicy</h3>
                 </div>
-
                 <div class="row img_attachment">
-                    <div class="col s12 m12">
+                    <Loader v-if="loader" />
+                    <div v-else class="col s12 m12">
                         <ul class="tabs" ref="tabs">
                             <li class="tab col s3"><a href="#test1">Lista nowzch pracownikow</a></li>
                             <li class="tab col s3"><a class="active" href="#test2">Diagramy</a></li>
@@ -43,7 +43,9 @@
                     </div>
 
                     <div id="test2" class="col s12">
-                        <canvas ref="canvas" style="height:100% !important;"></canvas>
+                        <div class="wrapper">
+                            <canvas ref="canvas" style="height:100% !important;"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,30 +55,33 @@
 
 <script>
 
-    import {Pie} from 'vue-chartjs'
+    import {Line} from 'vue-chartjs'
     import M from 'materialize-css'
 
     export default {
         name: "newWorkerList",
-        extends: Pie,
+        extends: Line,
         data: () => ({
             sortParam: '',
             instance: null,
-            newWorkers: this.newWorkers
+            loader: false
         }),
         async mounted() {
-            await this.$store.dispatch('receiveData');
             this.instance = M.Tabs.init(this.$refs.tabs);
+            if (!Object.keys(this.$store.getters.receiveData).length) {
+                await this.$store.dispatch('receiveData');
+            }
             this.setup(this.newWorkers)
         },
         computed: {
             workersInfo() {
-                return this.$store.getters.receiveData
+                this.loader = true;
+                return this.$store.getters.receiveData;
             },
             newWorkers() {
-                const arrg = this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
-                console.log(arrg)
-                return arrg
+                const result = this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
+                this.loader = false;
+                return result;
             },
             sortedList() {
                 switch (this.sortParam) {
@@ -103,37 +108,13 @@
                         data: newWorkers.map((item, i, arr) => {
                             return arr[i].final_salary
                         }),
+                        label: 'Wynagrodzenie',
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgb(255,70,86, 0.2)',
-                            'rgb(73,117,235, 0.2)',
-                            'rgb(169,255,72, 0.2)',
-                            'rgb(65,192,159, 0.2)',
-                            'rgb(111,73,255, 0.2)',
-                            'rgb(255,134,25,0.2)'
+                            'rgba(229,115,115,0.91)',
                         ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgb(255,70,86, 1)',
-                            'rgb(73,117,235, 1)',
-                            'rgb(169,255,72, 1)',
-                            'rgb(65,192,159, 1)',
-                            'rgb(111,73,255, 1)',
-                            'rgb(255,134,25, 1)'
-                        ],
-                        borderWidth: 1
+                        pointBackgroundColor: '#e54d63',
                     }]
-                })
+                }, {responsive: true, maintainAspectRatio: false})
             }
         },
         beforeDestroy() {
@@ -148,7 +129,11 @@
     .img_attachment {
         height: -webkit-calc(100vh - 253px);
         height: calc(100vh - 253px);
-
+        .wrapper{
+            padding-bottom: 30px;
+            height: -webkit-calc(100vh - 365px);
+            height: calc(100vh - 365px);
+        }
         .tabs {
             margin-bottom: 10px;
             border-bottom: 1px solid #bbbbbb;
@@ -177,3 +162,4 @@
     }
 
 </style>
+
