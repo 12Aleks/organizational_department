@@ -6,33 +6,21 @@
                     <h3>Zespoły</h3>
                 </div>
                 <div class="row img_attachment">
-                    <div class="tabs-vertical ">
-                        <div class="col s4 m3 l2">
-                            <ul class="tabs" ref="tabs">
-                                <li class="tab">
-                                    <a class="waves-effect waves-cyan" href="#appsDir"><i class="zmdi zmdi-apps"></i>Apps</a>
-                                </li>
-                                <li class="tab">
-                                    <a class="waves-effect waves-cyan" href="#emailDir"><i class="zmdi zmdi-email"></i>Email</a>
-                                </li>
-                                <li class="tab">
-                                    <a class="waves-effect waves-cyan" href="#codeDir"><i class="zmdi zmdi-code"></i>Code</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col s8 m9 l6">
-                            <div id="appsDir" class="tab-content"> One</div>
-                            <div id="emailDir" class="tab-content"> Two</div>
-                            <div id="codeDir" class="tab-content">Three</div>
+                    <div class="col">
+                        <div class="tabordion">
+                            <section v-for="(value, name, index) in process" :key="index" :id="name">
+                                <input type="radio" name="sections" :id="`${name}${index}`" checked>
+                                <label :for="`${name}${index}`" class="grey lighten-2">{{name}}</label>
+                                <article>
+                                    <h5>{{name}}</h5>
+                                    <div  v-for="department in $options.filters.departmentFilter(value)" :key="index">
+                                        <p>Zespol: {{department}}</p>
+                                    </div>
+
+                                </article>
+                            </section>
                         </div>
                     </div>
-                    <!--                            <div class="col s3 m3" v-for="(value, name, index) in process" :key="index">-->
-                    <!--                                     <h6>Process: {{name}}</h6>-->
-                    <!--                                     <div v-for="v in $options.filters.departmentFilter(value)" :key="index">-->
-                    <!--                                         Zespol: {{v}}-->
-                    <!--                                     </div>-->
-
-                    <!--                            </div>-->
                 </div>
             </div>
         </div>
@@ -45,10 +33,10 @@
     export default {
         name: "Departments",
         data: () => ({
-            loader: false
+            loader: false,
         }),
         async mounted() {
-            this.instance = M.Tabs.init(this.$refs.tabs);
+            this.instance =  M.Tabs.init(this.$refs.tabs);
             if (!Object.keys(this.$store.getters.receiveData).length) {
                 await this.$store.dispatch('receiveData');
             }
@@ -73,62 +61,117 @@
 </script>
 
 <style scoped lang="scss">
-    $tabs-underline-color: red;
-    $tabs-text-color: green;
-
     .img_attachment {
         background-image: url("../assets/images/terma_0.png");
         height: -webkit-calc(100vh - 205px);
         height: calc(100vh - 205px);
     }
-    .tabs-vertical {
-        .tabs {
-            height: auto;
-            -ms-flex-direction: column;
-            -webkit-flex-direction: column;
-            flex-direction: column;
-        }
-        .tab {
+    .tabordion {
+        color: #333;
+        display: block;
+        font-family: arial, sans-serif;
+        margin: auto;
+        position: relative;
+        width: 80%;
+    }
+
+    .tabordion input[name="sections"] {
+        left: -9999px;
+        position: absolute;
+        top: -9999px;
+    }
+
+    .tabordion section {
+        display: block;
+    }
+
+    .tabordion section label {
+        border:1px solid #fff;
+        background-color: #d3d3d363;
+        cursor: pointer;
+        display: block;
+        font-size: 0.9em;
+        padding: 8px 16px;
+        position: relative;
+        width: 180px;
+        z-index:100;
+    }
+
+    .tabordion section article {
+        display: none;
+        left: 230px;
+        min-width: 300px;
+        padding: 0 0 0 21px;
+        position: absolute;
+        top: 0;
+    }
+
+
+    .tabordion input[name="sections"]:checked + label {
+        background: #eee;
+        color: #bbb;
+    }
+
+    .tabordion input[name="sections"]:checked ~ article {
+        display: block;
+    }
+
+
+    @media (max-width: 533px) {
+
+        h1 {
             width: 100%;
-            -webkit-box-flex: 1;
-            -webkit-flex-grow: 1;
-            flex-grow: 1;
-            display: block;
-            float: left;
-            text-align: left;
-            line-height: 48px;
-            height: 48px;
-            padding: 0;
-            margin: 0;
-            text-transform: uppercase;
-            text-overflow: ellipsis;
-            .active {
-                -moz-transition: border-color .5s ease;
-                -o-transition: border-color .5s ease;
-                -webkit-transition: border-color .5s ease;
-                transition: border-color .5s ease;
-                border-right: 3px solid $tabs-underline-color;
-                color: $tabs-text-color;
-            }
-            :hover {}
-            a {
-                color: $tabs-text-color;
-                display: block;
-                width: 100%;
-                height: 100%;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                &:hover {
-                    color: lighten($tabs-text-color, 20%);
-                }
-            }
-            &.disabled a {
-                color: lighten($tabs-text-color, 20%);
-                cursor: default;
-            }
         }
-        .indicator {
-            display: none;
+
+        .tabordion {
+            width: 100%;
+        }
+
+        .tabordion section label {
+            font-size: 1em;
+            width: 160px;
+        }
+
+        .tabordion section article {
+            left: 200px;
+            min-width: 270px;
+        }
+
+        .tabordion section article:after {
+            background-color: #ccc;
+            bottom: 0;
+            content: "";
+            display: block;
+            left:-199px;
+            position: absolute;
+            top: 0;
+            width: 200px;
+
+        }
+
+    }
+
+
+    @media (max-width: 768px) {
+        h1 {
+            width: 96%;
+        }
+
+        .tabordion {
+            width: 96%;
         }
     }
+
+
+    @media (min-width: 1366px) {
+        h1 {
+            width: 70%;
+        }
+
+        .tabordion {
+            width: 70%;
+        }
+    }
+
+
 </style>
