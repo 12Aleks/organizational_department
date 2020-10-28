@@ -1,6 +1,5 @@
 <template>
     <div>
-
                 <div class="app-page">
                     <div>
                         <div class="page-title">
@@ -58,10 +57,14 @@
 </script>
 
 <style scoped>
+    .img_attachment {
+        height: -webkit-calc(100vh - 205px);
+        height: calc(100vh - 205px);
+    }
     .table-wrapper {
         overflow: auto;
-        height: -webkit-calc(100vh - 293px);
-        height: calc(100vh - 293px);
+        height: -webkit-calc(100vh - 245px);
+        height: calc(100vh - 245px);
     }
     table{
         table-layout: fixed;

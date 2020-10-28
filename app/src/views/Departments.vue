@@ -78,8 +78,8 @@
 
     .img_attachment {
         background-image: url("../assets/images/terma_0.png");
-        height: -webkit-calc(100vh - 253px);
-        height: calc(100vh - 253px);
+        height: -webkit-calc(100vh - 205px);
+        height: calc(100vh - 205px);
     }
     .tabs-vertical {
         .tabs {

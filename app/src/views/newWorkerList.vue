@@ -138,12 +138,12 @@
 
 <style scoped lang="scss">
     .img_attachment {
-        height: -webkit-calc(100vh - 253px);
-        height: calc(100vh - 253px);
+        height: -webkit-calc(100vh - 205px);
+        height: calc(100vh - 205px);
         .wrapper{
             padding-bottom: 30px;
-            height: -webkit-calc(100vh - 365px);
-            height: calc(100vh - 365px);
+            height: -webkit-calc(100vh - 320px);
+            height: calc(100vh - 320px);
         }
         .tabs {
             margin-bottom: 10px;
@@ -160,8 +160,8 @@
 
         .table-wrapper {
             overflow: auto;
-            height: -webkit-calc(100vh - 365px);
-            height: calc(100vh - 365px);
+            height: -webkit-calc(100vh - 315px);
+            height: calc(100vh - 315px);
 
             table {
                 table-layout: fixed;
