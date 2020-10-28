@@ -55,12 +55,12 @@
 
 <script>
 
-    import {Line} from 'vue-chartjs'
+    import { Bar } from 'vue-chartjs'
     import M from 'materialize-css'
 
     export default {
         name: "newWorkerList",
-        extends: Line,
+        extends: Bar,
         data: () => ({
             sortParam: '',
             instance: null,
@@ -102,6 +102,19 @@
         },
         methods: {
             setup(newWorkers) {
+                function dynamicColors() {
+                    let r = Math.floor(Math.random() * 255);
+                    let g = Math.floor(Math.random() * 255);
+                    let b = Math.floor(Math.random() * 255);
+                    return "rgba(" + r + "," + g + "," + b + ", 0.6)";
+                }
+                function poolColors(a) {
+                    let pool = [];
+                    for( let i = 0; i < a; i++) {
+                        pool.push(dynamicColors());
+                    }
+                    return pool;
+                }
                 this.renderChart({
                     labels: newWorkers.map((c) => c.name),
                     datasets: [{
@@ -109,10 +122,8 @@
                             return arr[i].final_salary
                         }),
                         label: 'Wynagrodzenie',
-                        backgroundColor: [
-                            'rgba(229,115,115,0.91)',
-                        ],
-                        pointBackgroundColor: '#e54d63',
+                        backgroundColor: poolColors(newWorkers.length),
+                        // pointBackgroundColor: '#e54d63',
                     }]
                 }, {responsive: true, maintainAspectRatio: false})
             }
@@ -160,5 +171,6 @@
             }
         }
     }
+
 </style>
 
