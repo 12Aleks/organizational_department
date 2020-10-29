@@ -38,10 +38,6 @@
         height: 100%;
         padding: 2rem;
     }
-    .img_attachment{
-        height:-webkit-calc(100vh - 250px);
-        height:calc(100vh - 250px);
-    }
     .btn-file {
         position: relative;
         overflow: hidden;

@@ -57,10 +57,6 @@
 </script>
 
 <style scoped>
-    .img_attachment {
-        height: -webkit-calc(100vh - 205px);
-        height: calc(100vh - 205px);
-    }
     .table-wrapper {
         overflow: auto;
         height: -webkit-calc(100vh - 245px);

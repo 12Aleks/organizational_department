@@ -59,6 +59,8 @@
     background-position: bottom;
     background-attachment: fixed;
     padding: 20px 15px;
+    height:-webkit-calc(100vh - 205px);
+    height:calc(100vh - 205px);
   }
   div.profile, div#preview{
     max-width: 150px;

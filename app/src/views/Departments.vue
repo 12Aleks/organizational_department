@@ -63,8 +63,7 @@
 <style scoped lang="scss">
     .img_attachment {
         background-image: url("../assets/images/terma_0.png");
-        height: -webkit-calc(100vh - 205px);
-        height: calc(100vh - 205px);
+        position: relative;
     }
     .tabordion {
         color: #333;
@@ -72,7 +71,7 @@
         font-family: arial, sans-serif;
         margin: auto;
         position: relative;
-        width: 80%;
+        /*width: 80%;*/
     }
 
     .tabordion input[name="sections"] {
@@ -99,11 +98,17 @@
 
     .tabordion section article {
         display: none;
-        left: 230px;
-        min-width: 300px;
+        left: 200px;
+        /*min-width: 300px;*/
+        /*width: 100%;*/
+        white-space: nowrap;
         padding: 0 0 0 21px;
         position: absolute;
         top: 0;
+        @media(max-width: 767.98px){
+            min-width: 300px;
+            white-space: inherit;
+        }
     }
 
 
@@ -145,7 +150,7 @@
             left:-199px;
             position: absolute;
             top: 0;
-            width: 200px;
+            /*width: 200px;*/
 
         }
 
