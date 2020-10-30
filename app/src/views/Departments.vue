@@ -8,13 +8,13 @@
                 <div class="row img_attachment">
                     <div class="col">
                         <div class="tabordion">
-                            <section v-for="(value, name, index) in process" :key="index" :id="name">
-                                <input type="radio" name="sections" :id="`${name}${index}`" checked>
-                                <label :for="`${name}${index}`" class="grey lighten-2">{{name}}</label>
+                            <section v-for="(value, name, index) in process" :key="value.index" :id="name">
+                                <input type="radio" name="sections" :id="`${name}-${index}`" checked >
+                                <label :for="`${name}-${index}`" class="grey lighten-2">{{name}}</label>
                                 <article>
                                     <h5>{{name}}</h5>
-                                    <div  v-for="department in $options.filters.departmentFilter(value)" :key="index">
-                                        <p>Zespol: {{department}}</p>
+                                    <div  v-for="department in $options.filters.departmentFilter(value)" :key="department">
+                                        <p>Zespol: {{department}} </p>
                                     </div>
 
                                 </article>
