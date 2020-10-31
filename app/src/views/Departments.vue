@@ -15,6 +15,7 @@
                                     <h5>{{name}}</h5>
                                     <div  v-for="department in $options.filters.departmentFilter(value)" :key="department">
                                         <p>Zespol: {{department}} </p>
+                                        <Sections :department="department"/>
                                     </div>
 
                                 </article>
@@ -29,6 +30,7 @@
 
 <script>
     import M from "materialize-css";
+    import Sections from "@/views/Sections";
 
     export default {
         name: "Departments",
@@ -40,6 +42,9 @@
             if (!Object.keys(this.$store.getters.receiveData).length) {
                 await this.$store.dispatch('receiveData');
             }
+        },
+        components: {
+          Sections
         },
         computed: {
             workersInfo() {

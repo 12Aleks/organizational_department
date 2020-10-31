@@ -8,11 +8,10 @@ import 'materialize-css/dist/js/materialize.min'
 import message from './message/message.info'
 import Loader from '@/components/Loader'
 import Information from "./components/ather/Information";
-import { Bar } from 'vue-chartjs'
-
 
 import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
+import sections from "./filters/sections";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
@@ -23,6 +22,7 @@ Vue.use(message)
 
 Vue.filter( 'dateFilter', dateFilter)
 Vue.filter( 'departmentFilter', departments)
+Vue.filter( 'sectionsFilter', sections)
 
 
 
