@@ -84,13 +84,12 @@ export default {
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
         const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 &&  el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
-        console.log(res)
         Object.keys(res).map((key) => {
             list.push({
                 name: res[key]['__EMPTY_3'] ,
                 department: res[key]['__EMPTY_1']  === undefined || res[key]['__EMPTY_1'] === '(puste)'? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'] ,
                 process:  res[key]['__EMPTY_0'],
-                sections: res[key]['__EMPTY_2'],
+                sections: res[key]['__EMPTY_2'] === undefined || res[key]['__EMPTY_2'] === ' '? '(puste)': res[key]['__EMPTY_2'],
                 salary: res[key]['__EMPTY_4'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_4']),
                 per_hour: res[key]['__EMPTY_5'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_5']),
                 salary_worker: res[key]['__EMPTY_6'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_6']),
