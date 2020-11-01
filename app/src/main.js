@@ -12,6 +12,7 @@ import Information from "./components/ather/Information";
 import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
 import sections from "./filters/sections";
+import department from "./filters/department";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
@@ -21,8 +22,9 @@ Vue.use(message)
 
 
 Vue.filter( 'dateFilter', dateFilter)
-Vue.filter( 'departmentFilter', departments)
+Vue.filter( 'departmentsFilter', departments)
 Vue.filter( 'sectionsFilter', sections)
+Vue.filter( 'departmentFilter', department)
 
 
 

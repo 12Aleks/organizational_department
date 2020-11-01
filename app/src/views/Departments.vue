@@ -13,11 +13,9 @@
                                 <label :for="`${name}-${index}`" class="grey lighten-2">{{name}}</label>
                                 <article>
                                     <h5>{{name}}</h5>
-                                    <div  v-for="department in $options.filters.departmentFilter(value)" :key="department">
-                                        <p>Zespol: {{department}} </p>
-                                        <Sections :department="department"/>
+                                    <div  v-for="department in $options.filters.departmentsFilter(value)" :key="department">
+                                        <Sections  :value="department"/>
                                     </div>
-
                                 </article>
                             </section>
                         </div>

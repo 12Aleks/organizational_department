@@ -1,7 +1,10 @@
 <template>
   <div>
+    <p>Zespol: {{value[0]}} </p>
     <ul>
-      <li v-for="(d, index) in $options.filters.sectionsFilter(department)" :key="index">{{ d }}</li>
+      <li v-for="(section) in $options.filters.sectionsFilter(value)" :key="section">
+        {{ section }}
+      </li>
     </ul>
   </div>
 </template>
@@ -14,7 +17,7 @@ export default {
        sections: null
     }
   },
-  props: ['department']
+  props: ['value']
 }
 </script>
 
