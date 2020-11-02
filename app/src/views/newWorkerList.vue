@@ -29,8 +29,8 @@
                 </thead>
                 <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
                 <tr>
-                  <td class="{active}">{{value.name }}</td>
-                  <td>{{value.sections==='(puste)' && value.department ==='(puste)'? value.process
+                  <td>{{value.name }}</td>
+                  <td>{{value.sections ==='(puste)' && value.department ==='(puste)'? value.process
                       : value.department }}
                   </td>
                   <td>{{value.sections !=='(puste)'? value.sections : '(puste)' }}</td>
@@ -43,8 +43,19 @@
           </div>
 
           <div id="test2" class="col s12">
-            <div class="wrapper">
-              <canvas ref="canvas" style="height:100% !important;"></canvas>
+            <div class="row">
+              <div class="col s10 m10 l10">
+                <div class="wrapper">
+                  <canvas ref="canvas" style="height:100% !important;"></canvas>
+                </div>
+              </div>
+              <div class="col s2 m2 l2">
+                <h6 class="center">Filtrowacz po:</h6>
+                <div>
+                  <a class="waves-effect waves-light btn-small" @click="surname" ><i class="material-icons left">person</i>Nazwisku pracownika</a>
+                  <a class="waves-effect waves-light btn-small" @click="salary"><i class="material-icons left">monetization_on</i>Sumie wynagrodzenia</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +75,8 @@ export default {
   data: () => ({
     sortParam: '',
     instance: null,
-    loader: true
+    loader: true,
+    surnames: true
   }),
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
@@ -72,7 +84,8 @@ export default {
       await this.$store.dispatch('receiveData');
     }
     this.loader = false;
-    this.setup(this.newWorkers)
+    this.setup(this.newWorkers, this.surn)
+
 
   },
   computed: {
@@ -80,8 +93,7 @@ export default {
       return this.$store.getters.receiveData;
     },
     newWorkers() {
-      const result = this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
-      return result;
+      return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
     },
     sortedList() {
       switch (this.sortParam) {
@@ -98,10 +110,20 @@ export default {
         default:
           return this.newWorkers;
       }
+    },
+    surn() {
+      return this.newWorkers.map((c) => c.name)
     }
   },
   methods: {
-    setup(newWorkers) {
+    surname() {
+      const surn = this.newWorkers.map((c) => c.name).sort()
+      this.setup(this.newWorkers, surn)
+    },
+    salary(){
+
+    },
+    setup(newWorkers, surnames) {
       function dynamicColors() {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
@@ -116,7 +138,7 @@ export default {
         return pool;
       }
       this.renderChart({
-        labels: newWorkers.map((c) => c.name),
+        labels: surnames,
         datasets: [{
           data: newWorkers.map((item, i, arr) => {
             return arr[i].final_salary
@@ -130,7 +152,7 @@ export default {
   },
   beforeDestroy() {
     if (this.instance && this.instance.distroy) {
-      this.instance.distroy
+      this.instance.distroy()
     }
   }
 }
@@ -160,24 +182,6 @@ $red: rgba(255, 104, 115, 1);
 
     .tab a.active {
       color: #9b9b9b;
-    }
-  }
-
-  .table-wrapper {
-    overflow: auto;
-    height: -webkit-calc(100vh - 315px);
-    height: calc(100vh - 315px);
-
-    table {
-      table-layout: fixed;
-      th{
-        background-color: $blue;
-        color: $white;
-        text-align: center;
-      }
-      .highlight>tbody>tr:hover {
-        background-color: $blue;
-      }
     }
   }
 }

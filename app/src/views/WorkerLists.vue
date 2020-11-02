@@ -1,68 +1,95 @@
 <template>
-    <div>
-                <div class="app-page">
-                    <div>
-                        <div class="page-title">
-                            <h3>Lista osob</h3>
-                        </div>
+  <div>
+    <div class="app-page">
+      <div>
+        <div class="page-title">
+          <h3>Lista osob</h3>
+        </div>
 
-                        <div class="row img_attachment">
-                            <div class="col s12 m12">
-                                <div class="table-wrapper">
-                                    <table class="highlight">
-                                        <thead>
-                                        <tr>
-                                            <th>Nawisko i Imię</th>
-                                            <th>ZESPÓŁ</th>
-                                            <th>KOMÓRKA</th>
-                                            <th>Aktualne wynagrodzenie [CKP]/ wynagrodzenie za godzinę</th>
-                                            <th>Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
-                                                wynagrodzenie za godzinę
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="table" v-for="(value, name, index) in workersInfo" :key="index">
-                                        <tr>
-                                            <td>{{value.name }}</td>
-                                            <td>{{value.sections==='(puste)' && value.department ==='(puste)'? value.process :
-                                                value.department }}
-                                            </td>
-                                            <td>{{value.sections !=='(puste)'? value.sections : '(puste)' }}</td>
-                                            <td>{{value.salary}}zł / {{value.per_hour}}zł/h</td>
-                                            <td>{{value.final_salary }}zł / {{value.final_per_hour }}zł/h</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row img_attachment">
+          <Loader v-if="loader" />
+          <div v-show="!loader" class="col s12 m12">
+            <div class="table-wrapper">
+              <table class="highlight">
+                <thead>
+                <tr>
+                  <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
+                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">ZESPÓŁ</th>
+                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">KOMÓRKA</th>
+                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne wynagrodzenie [CKP]/ wynagrodzenie za godzinę</th>
+                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
+                    wynagrodzenie za godzinę
+                  </th>
+                </tr>
+                </thead>
+                <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
+                <tr>
+                  <td>{{ value.name }}</td>
+                  <td>{{
+                      value.sections === '(puste)' && value.department === '(puste)' ? value.process :
+                          value.department
+                    }}
+                  </td>
+                  <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
+                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/h</td>
+                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 
-    export default {
-        name: "WorkerLists",
-        async mounted() {
-           await this.$store.dispatch('receiveData')
-        },
-        computed: {
-            workersInfo() {
-                return this.$store.getters.receiveData
-            },
-        }
+export default {
+  name: "WorkerLists",
+  data(){
+    return {
+      sortParam: '',
+      loader: true
     }
+  },
+  async mounted() {
+    await this.$store.dispatch('receiveData')
+    this.loader = false;
+    this.setup(this.workersInfo)
+  },
+  computed: {
+    workersInfo() {
+      return this.$store.getters.receiveData
+    },
+    sortedList() {
+      switch (this.sortParam) {
+        case 'name':
+          return this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        case 'department':
+          return this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+        case 'sections':
+          return this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        case 'salary':
+          return this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+        case 'final_salary':
+          return this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+        default:
+          return this.workersInfo;
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
-    .table-wrapper {
-        overflow: auto;
-        height: -webkit-calc(100vh - 245px);
-        height: calc(100vh - 245px);
-    }
-    table{
-        table-layout: fixed;
-    }
+.table-wrapper {
+  height: -webkit-calc(100vh - 245px);
+  height: calc(100vh - 245px);
+}
+
+table {
+  table-layout: fixed;
+}
 </style>
