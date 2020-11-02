@@ -6,11 +6,12 @@
           <h3>Zespoły</h3>
         </div>
         <div class="row img_attachment">
-          <div class="col s12 m12 l12">
+          <Loader v-if="loader"/>
+          <div v-else class="col s12 m12 l12">
             <div class="tabordion">
               <section v-for="(value, name, index) in process" :key="value.index" :id="name">
-                <input type="radio" name="sections" :id="`${name}-${index}`" checked>
-                <label :for="`${name}-${index}`" class="grey lighten-2 z-depth-1">{{ name }}</label>
+                <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
+                <label :for="`${name}-${index}`" class=" z-depth-1">{{ name }}</label>
                 <article class="z-depth-1">
                   <h5>Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">
@@ -35,35 +36,33 @@ import Sections from "@/views/Sections";
 export default {
   name: "Departments",
   data: () => ({
-    loader: false,
+    loader: true,
   }),
   async mounted() {
     if (!Object.keys(this.$store.getters.receiveData).length) {
       await this.$store.dispatch('receiveData');
     }
+    this.loader = false;
   },
   components: {
     Sections
   },
   computed: {
     workersInfo() {
-      this.loader = true;
       return this.$store.getters.receiveData;
     },
     process() {
-      const process = this.workersInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
-      this.loader = false;
-      return process;
+      return this.workersInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-$lightgrey: rgba(220, 231, 235, 0.5);
+$turquoise:  #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
-$blue: #26a69a;
+$blue: rgb(81, 110, 133);
 $red: rgba(255, 104, 115, 1);
 .img_attachment {
   background-image: url("../assets/images/terma_0.png");
@@ -72,7 +71,7 @@ $red: rgba(255, 104, 115, 1);
 
 .tabordion {
   position: relative;
-  width: 80%;
+  width: 100%;
   color: $black;
   margin: 0;
 
@@ -84,6 +83,7 @@ $red: rgba(255, 104, 115, 1);
     h5 {
       padding-bottom: .6rem;
       border-bottom: solid 1px rgba(51, 51, 51, .12);
+      margin-bottom: 1.5rem;
     }
 
     input[name="sections"] {
@@ -93,7 +93,7 @@ $red: rgba(255, 104, 115, 1);
 
       &:checked + label {
         background: $white;
-        color: $black;
+        color: $turquoise;
       }
 
       &:checked ~ article {
@@ -102,7 +102,7 @@ $red: rgba(255, 104, 115, 1);
     }
 
     label {
-      background: $lightgrey;
+      background: $turquoise;
       border-bottom: 1px solid $blue;
       font-size: 0.9em;
       font-weight: 400;
@@ -125,8 +125,8 @@ $red: rgba(255, 104, 115, 1);
       background: white;
       font-weight: 300;
       line-height: 1.7;
-      height: -webkit-calc(100vh - 245px);
-      height: calc(100vh - 245px);
+      max-height: -webkit-calc(100vh - 245px);
+      max-height: calc(100vh - 245px);
       overflow: auto;
 
       p {
@@ -156,7 +156,7 @@ $red: rgba(255, 104, 115, 1);
 
     section {
       label {
-        background: $lightgrey;
+        background: $turquoise;
         border-left: 1px solid $blue;
         padding: 0.6em 2.5%;
         width: 20%;

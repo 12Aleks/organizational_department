@@ -1,8 +1,8 @@
 <template>
-  <ul class="collapsible" ref="accord">
+  <ul class="collapsible z-depth-1" ref="accord">
     <li>
-      <div class="collapsible-header"><div><i class="large material-icons right">people_outline</i><h6>Zespol:
-        {{ value[0] }}</h6></div><i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">arrow_drop_down_circle</i></div>
+      <div class="collapsible-header grey lighten-3"><div><i class="large material-icons right">people_outline</i><h6>Zespol:
+        {{ value[0] }}</h6></div><i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i></div>
       <div class="collapsible-body" :class="{passive: $options.filters.sectionsFilter(value).length <= 0 }">
         <ul>
           <li v-for="section in $options.filters.sectionsFilter(value)" :key="section">
@@ -43,6 +43,14 @@ export default {
 .collapsible {
   margin-top: 0;
   margin-bottom: 0;
+  .active .collapsible-header {
+    i.tiny{
+      transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);;
+    }
+  }
   .collapsible-header {
     display: flex;
     align-items: center;
@@ -55,9 +63,13 @@ export default {
         margin: .5rem 0;
       }
     }
-    padding: 0.6rem 1rem;
+    padding: 0.3rem 1rem;
     i.tiny{
-      font-size: 1.5rem !important;
+      font-size: 1.4rem !important;
+      transform: rotate(90deg);
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -o-transform: rotate(90deg);;
     }
   }
   .collapsible-body {
