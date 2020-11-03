@@ -12,17 +12,26 @@
               <li class="tab col s3"><a href="#test2">Diagramy</a></li>
             </ul>
           </div>
-          <Loader v-if="loader" />
+          <Loader v-if="loader"/>
           <div v-show="!loader" id="test1" class="col s12">
             <div class="table-wrapper">
               <table class="highlight">
                 <thead>
                 <tr>
-                  <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
-                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">ZESPÓŁ</th>
-                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">KOMÓRKA</th>
-                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne wynagrodzenie [CKP]/ wynagrodzenie za godzinę</th>
-                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
+                  <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i
+                    Imię
+                  </th>
+                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">
+                    ZESPÓŁ
+                  </th>
+                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">
+                    KOMÓRKA
+                  </th>
+                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne
+                    wynagrodzenie [CKP]/ wynagrodzenie za godzinę
+                  </th>
+                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">
+                    Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
                     wynagrodzenie za godzinę
                   </th>
                 </tr>
@@ -44,18 +53,34 @@
 
           <div id="test2" class="col s12">
             <div class="row">
+              <div class="col s2 m2 l2">
+                <div class="button_wrapper">
+                  <h6 class="center">Filtrowacz po:</h6>
+                  <a class="waves-effect waves-light btn-small" @click="salaryWorkers('surname')"><i
+                      class="material-icons left">person</i>Nazwisku</a>
+                  <a class="waves-effect waves-light btn-small" @click="salaryWorkers('salary')"><i
+                      class="material-icons left">monetization_on</i>Sumie</a>
+                  <h6 class="center">Pokazać po: </h6>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Koncowa suma/H</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Koncowa suma </a>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Suma pracownika/H</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Suma pracownika</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Suma zespolu/H</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
+                      class="material-icons left">person</i>Suma zespolu</a>
+                </div>
+              </div>
               <div class="col s10 m10 l10">
                 <div class="wrapper">
                   <canvas ref="canvas" style="height:100% !important;"></canvas>
                 </div>
               </div>
-              <div class="col s2 m2 l2">
-                <h6 class="center">Filtrowacz po:</h6>
-                <div>
-                  <a class="waves-effect waves-light btn-small" @click="surname" ><i class="material-icons left">person</i>Nazwisku pracownika</a>
-                  <a class="waves-effect waves-light btn-small" @click="salary"><i class="material-icons left">monetization_on</i>Sumie wynagrodzenia</a>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -66,7 +91,7 @@
 
 <script>
 
-import { Bar } from 'vue-chartjs'
+import {Bar} from 'vue-chartjs'
 import M from 'materialize-css'
 
 export default {
@@ -74,9 +99,10 @@ export default {
   extends: Bar,
   data: () => ({
     sortParam: '',
+    sortDiaram: '',
     instance: null,
     loader: true,
-    surnames: true
+    surnames: true,
   }),
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
@@ -84,9 +110,7 @@ export default {
       await this.$store.dispatch('receiveData');
     }
     this.loader = false;
-    this.setup(this.newWorkers, this.surn)
-
-
+    this.setup(this.newWorkers)
   },
   computed: {
     workersInfo() {
@@ -110,35 +134,40 @@ export default {
         default:
           return this.newWorkers;
       }
-    },
-    surn() {
-      return this.newWorkers.map((c) => c.name)
     }
   },
   methods: {
-    surname() {
-      const surn = this.newWorkers.map((c) => c.name).sort()
-      this.setup(this.newWorkers, surn)
+    salaryWorkers(data) {
+      if (data === 'surname') {
+        const newSurname = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        this.setup(newSurname);
+      } else if (data === 'salary') {
+        const newSalary = this.newWorkers.sort((d1, d2) => {
+          return (d1.final_salary - d2.final_salary)
+        });
+        this.setup(newSalary);
+      } else {
+        this.setup(this.newWorkers)
+      }
     },
-    salary(){
-
-    },
-    setup(newWorkers, surnames) {
+    setup(newWorkers) {
       function dynamicColors() {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
         return "rgba(" + r + "," + g + "," + b + ", 0.6)";
       }
+
       function poolColors(a) {
         let pool = [];
-        for( let i = 0; i < a; i++) {
+        for (let i = 0; i < a; i++) {
           pool.push(dynamicColors());
         }
         return pool;
       }
+
       this.renderChart({
-        labels: surnames,
+        labels: newWorkers.map((c) => c.name),
         datasets: [{
           data: newWorkers.map((item, i, arr) => {
             return arr[i].final_salary
@@ -149,7 +178,8 @@ export default {
         }]
       }, {responsive: true, maintainAspectRatio: false})
     }
-  },
+  }
+  ,
   beforeDestroy() {
     if (this.instance && this.instance.distroy) {
       this.instance.distroy()
@@ -159,7 +189,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise:  #26a69a;
+$turquoise: #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: #57758c94;
@@ -167,11 +197,13 @@ $red: rgba(255, 104, 115, 1);
 .img_attachment {
   height: -webkit-calc(100vh - 205px);
   height: calc(100vh - 205px);
-  .wrapper{
+
+  .wrapper {
     padding-bottom: 30px;
     height: -webkit-calc(100vh - 320px);
     height: calc(100vh - 320px);
   }
+
   .tabs {
     margin-bottom: 10px;
     border-bottom: 1px solid $red;
@@ -183,6 +215,27 @@ $red: rgba(255, 104, 115, 1);
     .tab a.active {
       color: #9b9b9b;
     }
+  }
+}
+
+.button_wrapper {
+  margin-top: 30px;
+
+  h6 {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #9b9b9b
+  }
+
+  a {
+    width: 100%;
+    max-width: 180px;
+    margin: 10px auto 0;
+    display: block;
+    text-align: left;
+    font-size: 10px;
   }
 }
 
