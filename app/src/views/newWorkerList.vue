@@ -8,12 +8,12 @@
         <div class="row img_attachment">
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
-              <li class="tab col s3"><a class="active" href="#test1">Lista nowzch pracownikow</a></li>
-              <li class="tab col s3"><a href="#test2">Diagramy</a></li>
+              <li class="tab col s3"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
+              <li class="tab col s3"><a href="#tabSecond">Diagramy</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
-          <div v-show="!loader" id="test1" class="col s12">
+          <div v-show="!loader" id="tabFirst" class="col s12">
             <div class="table-wrapper">
               <table class="highlight">
                 <thead>
@@ -38,44 +38,32 @@
                 </thead>
                 <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
                 <tr>
-                  <td>{{value.name }}</td>
-                  <td>{{value.sections ==='(puste)' && value.department ==='(puste)'? value.process
-                      : value.department }}
+                  <td>{{ value.name }}</td>
+                  <td>{{
+                      value.sections === '(puste)' && value.department === '(puste)' ? value.process
+                          : value.department
+                    }}
                   </td>
-                  <td>{{value.sections !=='(puste)'? value.sections : '(puste)' }}</td>
-                  <td>{{value.salary}}zł / {{value.per_hour}}zł/h</td>
-                  <td>{{value.final_salary }}zł / {{value.final_per_hour }}zł/h</td>
+                  <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
+                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/h</td>
+                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
                 </tr>
                 </tbody>
               </table>
             </div>
           </div>
 
-          <div id="test2" class="col s12">
+          <div id="tabSecond" class="col s12">
             <div class="row">
-              <div class="col s2 m2 l2">
+              <div class="col s12 m12 l12">
                 <div class="button_wrapper">
-                  <h6 class="center">Filtrowacz po:</h6>
-                  <a class="waves-effect waves-light btn-small" @click="salaryWorkers('surname')"><i
-                      class="material-icons left">person</i>Nazwisku</a>
-                  <a class="waves-effect waves-light btn-small" @click="salaryWorkers('salary')"><i
-                      class="material-icons left">monetization_on</i>Sumie</a>
-                  <h6 class="center">Pokazać po: </h6>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Koncowa suma/H</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Koncowa suma </a>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Suma pracownika/H</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Suma pracownika</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Suma zespolu/H</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-1"><i
-                      class="material-icons left">person</i>Suma zespolu</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-2" @click="salaryWorkers('surname')"><i
+                      class="material-icons left ">person</i>Filtrować po nazwisku</a>
+                  <a class="waves-effect waves-light btn-small orange lighten-2" @click="salaryWorkers('salary')"><i
+                      class="material-icons left">monetization_on</i>Filtrować po sumie</a>
                 </div>
               </div>
-              <div class="col s10 m10 l10">
+              <div class="col s12 m12 l12">
                 <div class="wrapper">
                   <canvas ref="canvas" style="height:100% !important;"></canvas>
                 </div>
@@ -176,7 +164,7 @@ export default {
           backgroundColor: poolColors(newWorkers.length),
           // pointBackgroundColor: '#e54d63',
         }]
-      }, {responsive: true, maintainAspectRatio: false})
+      }, {responsive: true, maintainAspectRatio: false, legend: {display: false}})
     }
   }
   ,
@@ -195,9 +183,6 @@ $white: rgba(254, 255, 250, 1);
 $blue: #57758c94;
 $red: rgba(255, 104, 115, 1);
 .img_attachment {
-  height: -webkit-calc(100vh - 205px);
-  height: calc(100vh - 205px);
-
   .wrapper {
     padding-bottom: 30px;
     height: -webkit-calc(100vh - 320px);
@@ -217,25 +202,22 @@ $red: rgba(255, 104, 115, 1);
     }
   }
 }
-
+h6 {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #9b9b9b;
+}
 .button_wrapper {
-  margin-top: 30px;
-
-  h6 {
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 14px;
-    margin-bottom: 20px;
-    color: #9b9b9b
-  }
-
+  display: flex;
+  justify-content: center;
   a {
-    width: 100%;
-    max-width: 180px;
-    margin: 10px auto 0;
-    display: block;
+    width: 250px;
+    max-width: 250px;
+    margin: 15px;
     text-align: left;
-    font-size: 10px;
+    font-size: 14px;
   }
 }
 
