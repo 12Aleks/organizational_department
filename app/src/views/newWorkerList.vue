@@ -9,7 +9,7 @@
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
               <li class="tab col s3"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
-              <li class="tab col s3"><a href="#tabSecond">Diagramy</a></li>
+              <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
@@ -52,14 +52,15 @@
               </table>
             </div>
           </div>
-
           <div id="tabSecond" class="col s12">
             <div class="row">
               <div class="col s12 m12 l12">
                 <div class="button_wrapper">
-                  <a class="waves-effect waves-light btn-small orange lighten-2" @click="salaryWorkers('surname')"><i
+                  <a class="waves-effect waves-light btn-small orange lighten-2"
+                     @click="salaryWorkers('surname')"><i
                       class="material-icons left ">person</i>Filtrować po nazwisku</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-2" @click="salaryWorkers('salary')"><i
+                  <a class="waves-effect waves-light btn-small orange lighten-2"
+                     @click="salaryWorkers('salary')"><i
                       class="material-icons left">monetization_on</i>Filtrować po sumie</a>
                 </div>
               </div>
@@ -68,7 +69,6 @@
                   <canvas ref="canvas" style="height:100% !important;"></canvas>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -87,7 +87,6 @@ export default {
   extends: Bar,
   data: () => ({
     sortParam: '',
-    sortDiaram: '',
     instance: null,
     loader: true,
     surnames: true,
@@ -139,32 +138,49 @@ export default {
       }
     },
     setup(newWorkers) {
-      function dynamicColors() {
-        let r = Math.floor(Math.random() * 255);
-        let g = Math.floor(Math.random() * 255);
-        let b = Math.floor(Math.random() * 255);
-        return "rgba(" + r + "," + g + "," + b + ", 0.6)";
-      }
 
-      function poolColors(a) {
-        let pool = [];
-        for (let i = 0; i < a; i++) {
-          pool.push(dynamicColors());
-        }
-        return pool;
-      }
-
-      this.renderChart({
+      let data = {
         labels: newWorkers.map((c) => c.name),
-        datasets: [{
-          data: newWorkers.map((item, i, arr) => {
-            return arr[i].final_salary
-          }),
-          label: 'Wynagrodzenie',
-          backgroundColor: poolColors(newWorkers.length),
-          // pointBackgroundColor: '#e54d63',
-        }]
-      }, {responsive: true, maintainAspectRatio: false, legend: {display: false}})
+        datasets: [
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].final_salary
+            }),
+            label: 'Uzgodnione z pracownikiem',
+            backgroundColor: 'rgba(38, 166, 154, 0.8)',
+            order: 1
+          },
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].salary
+            }),
+            label: 'Aktualne wynagrodzenie',
+            backgroundColor: 'rgba(255, 104, 115, 0.8)',
+            hidden: true,
+            order: 2
+          },
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].salary_worker
+            }),
+            label: 'Propozycja pracownika',
+            backgroundColor: 'rgba(255, 183, 77, 0.8)',
+            hidden: true,
+            order: 3
+          },
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].salary_department
+            }),
+            label: 'Propozycja zespółu pracownika',
+            backgroundColor: 'rgba(41, 182, 246, 0.8)',
+            hidden: true,
+            order: 4
+          }
+        ]
+      };
+      const options  = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
+      this.renderChart(data, options)
     }
   }
   ,
@@ -176,7 +192,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 $turquoise: #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
@@ -187,6 +203,7 @@ $red: rgba(255, 104, 115, 1);
     padding-bottom: 30px;
     height: -webkit-calc(100vh - 320px);
     height: calc(100vh - 320px);
+    position: relative;
   }
 
   .tabs {
@@ -202,6 +219,7 @@ $red: rgba(255, 104, 115, 1);
     }
   }
 }
+
 h6 {
   text-transform: uppercase;
   font-weight: 400;
@@ -209,12 +227,14 @@ h6 {
   margin-top: 10px;
   color: #9b9b9b;
 }
+
 .button_wrapper {
   display: flex;
   justify-content: center;
+
   a {
-    width: 250px;
-    max-width: 250px;
+    width: 280px;
+    max-width: 280px;
     margin: 15px;
     text-align: left;
     font-size: 14px;
