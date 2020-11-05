@@ -38,7 +38,7 @@ export default {
         async onFileChange({commit, dispatch}, {photo, name, department, email}){
           try{
               const uid = await dispatch('getUid');
-              const storageData =  await firebase.storage().ref(`/users/${uid}/photo`)
+              const storageData =  await firebase.storage().ref(`/profiles/${uid}/photo`)
                     storageData.put(photo)
               let newPhoto = await storageData.getDownloadURL();
               // let updates = {
@@ -48,7 +48,7 @@ export default {
               //     photo: newPhoto
               // };
               // updates[`/users/${uid}/info/photo`] = newPhoto;
-              await firebase.database().ref(`/users/${uid}/info/`).update({
+              await firebase.database().ref(`/profiles/${uid}/info/`).update({
                   name: name,
                   department: department,
                   email: email,

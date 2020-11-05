@@ -22,17 +22,16 @@
                     Imię
                   </th>
                   <th :class="{active: sortParam==='department'}" @click="sortParam='department'">
-                    ZESPÓŁ
+                    Zespół
                   </th>
                   <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">
-                    KOMÓRKA
+                    Komórka
                   </th>
                   <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne
-                    wynagrodzenie [CKP]/ wynagrodzenie za godzinę
+                    wynagrodzenie <br >([CKP]/za godzinę)
                   </th>
                   <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">
-                    Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
-                    wynagrodzenie za godzinę
+                    Uzgodnione z Pracownikiem <br > ([CKP]/za godzinę)
                   </th>
                 </tr>
                 </thead>

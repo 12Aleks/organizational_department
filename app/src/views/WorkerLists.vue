@@ -14,11 +14,10 @@
                 <thead>
                 <tr>
                   <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
-                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">ZESPÓŁ</th>
-                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">KOMÓRKA</th>
-                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne wynagrodzenie [CKP]/ wynagrodzenie za godzinę</th>
-                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">Propozycja Zespołu Personalnego w uzgodnieniu z Pracownikiem [CKP]/
-                    wynagrodzenie za godzinę
+                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">Zespół</th>
+                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">Komórka</th>
+                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne wynagrodzenie <br /> ([CKP]/za godzinę)</th>
+                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">Uzgodnione z Pracownikiem <br />([CKP]/za godzinę)
                   </th>
                 </tr>
                 </thead>
