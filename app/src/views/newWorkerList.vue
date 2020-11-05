@@ -52,23 +52,7 @@
             </div>
           </div>
           <div id="tabSecond" class="col s12">
-            <div class="row">
-              <div class="col s12 m12 l12">
-                <div class="button_wrapper">
-                  <a class="waves-effect waves-light btn-small orange lighten-2"
-                     @click="salaryWorkers('surname')"><i
-                      class="material-icons left ">person</i>Filtrować po nazwisku</a>
-                  <a class="waves-effect waves-light btn-small orange lighten-2"
-                     @click="salaryWorkers('salary')"><i
-                      class="material-icons left">monetization_on</i>Filtrować po sumie</a>
-                </div>
-              </div>
-              <div class="col s12 m12 l12">
-                <div class="wrapper">
-                  <canvas ref="canvas" style="height:100% !important;"></canvas>
-                </div>
-              </div>
-            </div>
+             <worker-chart></worker-chart>
           </div>
         </div>
       </div>
@@ -78,12 +62,11 @@
 
 <script>
 
-import {Bar} from 'vue-chartjs'
 import M from 'materialize-css'
+import workerChart from "@/components/Charts/workerChart";
 
 export default {
   name: "newWorkerList",
-  extends: Bar,
   data: () => ({
     sortParam: '',
     instance: null,
@@ -97,6 +80,9 @@ export default {
     }
     this.loader = false;
     this.setup(this.newWorkers)
+  },
+  components:{
+    workerChart
   },
   computed: {
     workersInfo() {
@@ -122,70 +108,9 @@ export default {
       }
     }
   },
-  methods: {
-    salaryWorkers(data) {
-      if (data === 'surname') {
-        const newSurname = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
-        this.setup(newSurname);
-      } else if (data === 'salary') {
-        const newSalary = this.newWorkers.sort((d1, d2) => {
-          return (d1.final_salary - d2.final_salary)
-        });
-        this.setup(newSalary);
-      } else {
-        this.setup(this.newWorkers)
-      }
-    },
-    setup(newWorkers) {
-
-      let data = {
-        labels: newWorkers.map((c) => c.name),
-        datasets: [
-          {
-            data: newWorkers.map((item, i, arr) => {
-              return arr[i].final_salary
-            }),
-            label: 'Uzgodnione z pracownikiem',
-            backgroundColor: 'rgba(38, 166, 154, 0.8)',
-            order: 1
-          },
-          {
-            data: newWorkers.map((item, i, arr) => {
-              return arr[i].salary
-            }),
-            label: 'Aktualne wynagrodzenie',
-            backgroundColor: 'rgba(255, 104, 115, 0.8)',
-            hidden: true,
-            order: 2
-          },
-          {
-            data: newWorkers.map((item, i, arr) => {
-              return arr[i].salary_worker
-            }),
-            label: 'Propozycja pracownika',
-            backgroundColor: 'rgba(255, 183, 77, 0.8)',
-            hidden: true,
-            order: 3
-          },
-          {
-            data: newWorkers.map((item, i, arr) => {
-              return arr[i].salary_department
-            }),
-            label: 'Propozycja zespółu pracownika',
-            backgroundColor: 'rgba(41, 182, 246, 0.8)',
-            hidden: true,
-            order: 4
-          }
-        ]
-      };
-      const options  = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
-      this.renderChart(data, options)
-    }
-  }
-  ,
-  beforeDestroy() {
-    if (this.instance && this.instance.distroy) {
-      this.instance.distroy()
+  destroyed() {
+    if (this.instance && this.instance.destroy) {
+      this.instance.destroy()
     }
   }
 }
@@ -225,19 +150,6 @@ h6 {
   font-size: 14px;
   margin-top: 10px;
   color: #9b9b9b;
-}
-
-.button_wrapper {
-  display: flex;
-  justify-content: center;
-
-  a {
-    width: 280px;
-    max-width: 280px;
-    margin: 15px;
-    text-align: left;
-    font-size: 14px;
-  }
 }
 
 </style>
