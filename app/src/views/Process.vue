@@ -6,11 +6,11 @@
                     <Loader v-if="loader"/>
                     <div v-else class="col s12 m12 l12">
                         <div>
-                            <h3 class="flow-text center">ZESPÓŁ : {{departmentName.toUpperCase()}}</h3>
+                            <h3 class="flow-text center">PROCESS : {{processName.toUpperCase()}}</h3>
                         </div>
                     </div>
                     <div class="col s12 m8">
-                       <p>{{process}}</p>
+                        <p>{{process}}</p>
                     </div>
                     <div class="col s12 m4">
 
@@ -23,13 +23,13 @@
 
 <script>
     export default {
-        name: "Department",
+        name: "Process",
         data: () => ({
             loader: true,
-            departmentName: null
+            processName: null
         }),
         async mounted() {
-            this.departmentName = this.$route.params.id;
+            this.processName = this.$route.params.id;
             if (!Object.keys(this.$store.getters.receiveData).length) {
                 await this.$store.dispatch('receiveData')
             }
@@ -40,19 +40,14 @@
                 return this.$store.getters.receiveData;
             },
             process() {
-                const process = this.workersInfo.reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {});
-                const dep = Object.entries(process).filter(el => el[0].toLowerCase() === this.departmentName? el : null)
+                const process = this.workersInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+                const dep = Object.entries(process).filter(el => el[0].toLowerCase() === this.processName? el : null)
                 return dep
             }
         }
     }
 </script>
 
-<style scoped lang="scss">
-    div.title-wrapper {
-        max-width: 215px;
-        display: block;
-        margin: 0 auto;
-    }
+<style scoped>
 
 </style>

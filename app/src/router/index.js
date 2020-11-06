@@ -27,6 +27,12 @@ const router =  new Router({
       component: () => import('../views/Home.vue')
     },
     {
+      path: '/process/:id',
+      name: 'Process',
+      meta: {layout: 'main', auth: true},
+      component: () => import('../views/Process.vue')
+    },
+    {
       path: '/departments',
       name: 'Departments',
       meta: {layout: 'main', auth: true},

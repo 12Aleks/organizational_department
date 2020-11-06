@@ -119,20 +119,37 @@ export default {
   display: inline-flex;
 }
 
+
+button.btn.waves-effect.waves-light {
+  margin-top: 15px;
+}
+
+.importButton {
+  h4{
+    @media(min-width: 1199.98px){
+      margin-bottom: 2rem;
+    }
+  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  span.btn.btn-file {
+    @media(min-width: 1199.98px){
+      font-size: 18px;
+      height: 46px;
+      line-height: 46px;
+    }
+  }
+}
+
 .btn.tableSend {
   margin-left: 15px;
   height: 42px;
   @media(min-width: 1199.98px) {
     height: 44px;
   }
-}
-
-.importButton {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
 }
 
 section {

@@ -1,25 +1,26 @@
 <template>
     <div class="contet-wrapper">
-        <div class="page-title">
-            <h3>Import danych w formacie xlsx</h3>
-<!--            <button class="btn waves-effect waves-light btn-small">-->
-<!--                <i class="material-icons">refresh</i>-->
-<!--            </button>-->
-        </div>
+        <!--        <div class="page-title">-->
+        <!--            <h3>Import danych w formacie xlsx</h3>-->
+        <!--            <button class="btn waves-effect waves-light btn-small">-->
+        <!--                <i class="material-icons">refresh</i>-->
+        <!--            </button>-->
+        <!--        </div>-->
         <div class="row-wrapper">
-        <div class="row img_attachment">
-            <div class="col s12 m12">
-                <div>
-                 <xlsx-convercion></xlsx-convercion>
+            <div class="row img_attachment">
+                <div class="col s12 m12">
+                    <div>
+                        <xlsx-convercion></xlsx-convercion>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </template>
 
 <script>
     import xlsxConvercion from "../components/conversion/xlsxConvercion";
+
     export default {
         name: "Home",
         components: {
@@ -28,31 +29,13 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .contet-wrapper {
         height: 100%;
         padding: 2rem;
-    }
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-    button.btn.waves-effect.waves-light {
-        margin-top: 15px;
-    }
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
+        .img_attachment {
+            height: calc(100vh - 145px);
+            height: -webkit-calc(100vh - 145px);
+        }
     }
 </style>

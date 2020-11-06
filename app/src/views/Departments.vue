@@ -13,10 +13,10 @@
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
                 <label :for="`${name}-${index}`" class=" z-depth-1">{{ name }}</label>
                 <article class="z-depth-1">
-                  <h5>Proces: {{ name }}</h5>
+                  <h5 @click="$router.push('/process/' + name.toLowerCase())">Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">
                     <li v-for="(department, index) in $options.filters.departmentsFilter(value)" :key="index">
-                      <Sections :value="department"/>
+                      <Sections :value="department" :name="name"/>
                     </li>
                   </ul>
                 </article>

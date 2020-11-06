@@ -28,7 +28,7 @@ export default {
       dis: null
     }
   },
-  props: ['value'],
+  props: ['value', 'name'],
   mounted() {
     this.instance = M.Collapsible.init(this.$refs.accord);
   },
