@@ -13,6 +13,7 @@ import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
 import sections from "./filters/sections";
 import department from "./filters/department";
+import lang from "./filters/lang";
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
@@ -25,6 +26,7 @@ Vue.filter( 'dateFilter', dateFilter)
 Vue.filter( 'departmentsFilter', departments)
 Vue.filter( 'sectionsFilter', sections)
 Vue.filter( 'departmentFilter', department)
+Vue.filter( 'langFilter', lang)
 
 
 

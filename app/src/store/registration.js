@@ -41,13 +41,6 @@ export default {
               const storageData =  await firebase.storage().ref(`/profiles/${uid}/photo`)
                     storageData.put(photo)
               let newPhoto = await storageData.getDownloadURL();
-              // let updates = {
-              //     name: name,
-              //     department: department,
-              //     email: email,
-              //     photo: newPhoto
-              // };
-              // updates[`/users/${uid}/info/photo`] = newPhoto;
               await firebase.database().ref(`/profiles/${uid}/info/`).update({
                   name: name,
                   department: department,

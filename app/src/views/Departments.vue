@@ -13,7 +13,7 @@
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
                 <label :for="`${name}-${index}`" class=" z-depth-1">{{ name }}</label>
                 <article class="z-depth-1">
-                  <h5 @click="$router.push('/process/' + name.toLowerCase())">Proces: {{ name }}</h5>
+                  <h5>Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">
                     <li v-for="(department, index) in $options.filters.departmentsFilter(value)" :key="index">
                       <Sections :value="department" :name="name"/>
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import M from "materialize-css";
 import Sections from "@/views/Sections";
 
 export default {
@@ -48,11 +47,8 @@ export default {
     Sections
   },
   computed: {
-    workersInfo() {
-      return this.$store.getters.receiveData;
-    },
     process() {
-      return this.workersInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+      return this.$store.getters.receiveData
     }
   }
 }

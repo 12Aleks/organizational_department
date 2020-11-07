@@ -3,7 +3,7 @@
     <li>
       <div class="collapsible-header grey lighten-3"><div>
         <i class="large material-icons right">people_outline</i>
-        <h6 @click="$router.push('/department/' + value[0].toLowerCase())">Zespol: {{ value[0] }}</h6></div><i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i></div>
+        <h6 @click="departmentPath">Zespol: {{ value[0] }}</h6></div><i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i></div>
       <div class="collapsible-body" :class="{passive: $options.filters.sectionsFilter(value).length <= 0 }">
         <ul>
           <li v-for="section in $options.filters.sectionsFilter(value)" :key="section">
@@ -32,8 +32,14 @@ export default {
   mounted() {
     this.instance = M.Collapsible.init(this.$refs.accord);
   },
+  methods:{
+   async departmentPath(){
+      await this.$store.dispatch('departmentName', this.value[0])
+      this.$router.push('/department/' + this.value[0].toLowerCase())
+    }
+  },
   beforeDestroy() {
-    if (this.instance && this.instance.destroy()) {
+    if (this.instance && this.instance.destroy) {
       this.instance.destroy()
     }
   }
