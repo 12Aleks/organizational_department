@@ -3,22 +3,22 @@ import firebase from "firebase/app";
 export default {
     state: {
         workersInfo: [],
-        departmentName: null,
+        departmentSelect: null,
     },
     getters: {
         receiveData(state) {
             return state.workersInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
         },
         department(state) {
-            return state.departmentName
+            return state.departmentSelect
         }
     },
     mutations: {
         receiveData(state, data) {
             state.workersInfo = data
         },
-        departmentName(state, departmentName) {
-            state.departmentName = state.workersInfo.reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName]
+        departmentName(state, payload) {
+            state.departmentSelect = payload
         }
     },
     actions: {
@@ -30,19 +30,21 @@ export default {
                 throw e
             }
         },
-        async receiveData({commit, dispatch}, departmentName ) {
+        async receiveData({commit}) {
             try {
                 const data = (await firebase.database().ref('/users').once('value')).val();
                 const workersData = await Object.keys(data).map(key => ({...data[key]}))
                 commit('receiveData', workersData);
-                dispatch('departmentName', departmentName )
             } catch (e) {
                 this.commit('setError', true);
                 throw e
             }
         },
-        departmentName({commit}, departmentName) {
-            commit('departmentName', departmentName)
+        async departmentName({commit, dispatch}, departmentName) {
+            const data = (await firebase.database().ref('/users').once('value')).val();
+            const workersData = await Object.keys(data).map(key => ({...data[key]})).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName.toUpperCase()]
+            commit('departmentName', workersData)
+            return workersData
         }
     }
 }

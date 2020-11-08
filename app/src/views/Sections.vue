@@ -29,7 +29,7 @@ export default {
     }
   },
   props: ['value', 'name'],
-  mounted() {
+  bemounted() {
     this.instance = M.Collapsible.init(this.$refs.accord);
   },
   methods:{

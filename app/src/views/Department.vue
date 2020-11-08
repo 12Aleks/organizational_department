@@ -10,10 +10,10 @@
             </div>
           </div>
           <div class="col s12 m8">
-            <p>{{ process }}</p>
+            <p>{{ question }}</p>
           </div>
           <div class="col s12 m4">
-            <p>Liczba osób w zespole: {{process}} </p>
+            <p>Liczba osób w zespole: {{question.length}}</p>
 
             <p>Najwyższe wynagrodzenie w zespole (CKP): </p>
             <p>Za godzine (CKP):</p>
@@ -37,20 +37,19 @@ export default {
   data: () => ({
     loader: true,
     departmentName: null,
-    question: null
+    question: []
   }),
+  async mounted() {
+    const departmentName = this.$route.params.id;
+    this.question = await this.$store.dispatch('departmentName', departmentName)
+    this.departmentName = departmentName.toUpperCase();
+    this.loader = false
+  },
   computed: {
     process() {
       return this.$store.getters.department
     }
   },
-  async mounted() {
-    this.departmentName = await this.$route.params.id.toUpperCase();
-    if (!Object.keys(this.$store.getters.receiveData).length) {
-      await this.$store.dispatch('receiveData', this.departmentName)
-    }
-    this.loader = false
-  }
 }
 </script>
 
