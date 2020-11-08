@@ -44,8 +44,8 @@
                     }}
                   </td>
                   <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
-                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/h</td>
-                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
+                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
+                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
                 </tr>
                 </tbody>
               </table>
@@ -72,22 +72,17 @@ export default {
     instance: null,
     loader: true,
     surnames: true,
+    workersInfo: []
   }),
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
-    if (!Object.keys(this.$store.getters.receiveData).length) {
-      await this.$store.dispatch('receiveData');
-    }
+    this.workersInfo = await this.$store.dispatch('receiveData');
     this.loader = false;
-    this.setup(this.newWorkers)
   },
   components:{
     workerChart
   },
   computed: {
-    workersInfo() {
-      return this.$store.getters.receiveData;
-    },
     newWorkers() {
       return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
     },

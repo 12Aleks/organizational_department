@@ -29,8 +29,8 @@ export default {
     }
   },
   props: ['value', 'name'],
-  bemounted() {
-    this.instance = M.Collapsible.init(this.$refs.accord);
+  async mounted() {
+    this.instance = await M.Collapsible.init(this.$refs.accord);
   },
   methods:{
    async departmentPath(){

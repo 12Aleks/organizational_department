@@ -5,24 +5,10 @@
         <div class="row img_attachment">
           <Loader v-if="loader"/>
           <div v-else class="col s12 m12 l12">
-            <div>
-              <h3 class="flow-text center">ZESPÓŁ : {{ departmentName }}</h3>
-            </div>
           </div>
-          <div class="col s12 m8">
-            <p>{{ question }}</p>
-          </div>
-          <div class="col s12 m4">
-            <p>Liczba osób w zespole: {{question.length}}</p>
-
-            <p>Najwyższe wynagrodzenie w zespole (CKP): </p>
-            <p>Za godzine (CKP):</p>
-
-            <p>Najniższe wynagrodzenie w zespole (CKP):</p>
-            <p>Za godzine (CKP):</p>
-
-            <p>Przeciętne wynagrodzenie w zespole (CKP):</p>
-            <p>Za godzine (CKP):</p>
+          <detail :departmentInfo='departmentInfo' :departmentName="departmentName"/>
+          <div class="col s12 m12 box-wrappers">
+            <p>{{ process }}</p>
           </div>
         </div>
       </div>
@@ -31,23 +17,25 @@
 </template>
 
 <script>
+import detail from "@/components/department/detail";
 
 export default {
   name: "Department",
   data: () => ({
     loader: true,
     departmentName: null,
-    question: []
+    departmentInfo: []
   }),
+  components: {detail},
   async mounted() {
-    const departmentName = this.$route.params.id;
-    this.question = await this.$store.dispatch('departmentName', departmentName)
-    this.departmentName = departmentName.toUpperCase();
+    this.departmentName = this.$route.params.id.toUpperCase();
+    this.departmentInfo = await this.$store.dispatch('departmentName',this.departmentName)
     this.loader = false
   },
   computed: {
     process() {
-      return this.$store.getters.department
+      const all = this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+      return Object.keys(all)
     }
   },
 }
@@ -57,7 +45,7 @@ export default {
 .img_attachment {
   height: calc(100vh - 122px);
   height: -webkit-calc(100vh - 122px);
-
+  background: #ffffff;
   div.title-wrapper {
     max-width: 215px;
     display: block;

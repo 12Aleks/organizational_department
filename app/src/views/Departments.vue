@@ -36,11 +36,10 @@ export default {
   name: "Departments",
   data: () => ({
     loader: true,
+    proc: []
   }),
   async mounted() {
-    if (!Object.keys(this.$store.getters.receiveData).length) {
-      await this.$store.dispatch('receiveData');
-    }
+    this.proc = await this.$store.dispatch('receiveData');
     this.loader = false;
   },
   components: {
@@ -48,7 +47,7 @@ export default {
   },
   computed: {
     process() {
-      return this.$store.getters.receiveData
+      return this.proc.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
     }
   }
 }

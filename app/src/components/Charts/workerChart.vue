@@ -23,16 +23,14 @@ import {Bar} from 'vue-chartjs'
 export default {
 name: "workerChart",
   extends: Bar,
+  data: () =>({
+    workersInfo: []
+  }),
   async mounted() {
-    if (!Object.keys(this.$store.getters.receiveData).length) {
-      await this.$store.dispatch('receiveData');
-    }
+    this.workersInfo = await this.$store.dispatch('receiveData');
     this.setup(this.newWorkers)
   },
   computed: {
-    workersInfo() {
-      return this.$store.getters.receiveData;
-    },
     newWorkers() {
       return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
     },

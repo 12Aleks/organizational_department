@@ -30,8 +30,8 @@
                     }}
                   </td>
                   <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
-                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/h</td>
-                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
+                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
+                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
                 </tr>
                 </tbody>
               </table>
@@ -50,18 +50,15 @@ export default {
   data(){
     return {
       sortParam: '',
-      loader: true
+      loader: true,
+      workersInfo: []
     }
   },
   async mounted() {
-    await this.$store.dispatch('receiveData')
+    this.workersInfo = await this.$store.dispatch('receiveData');
     this.loader = false;
-    this.setup(this.workersInfo)
   },
   computed: {
-    workersInfo() {
-      return this.$store.getters.receiveData
-    },
     sortedList() {
       switch (this.sortParam) {
         case 'name':

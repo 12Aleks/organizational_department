@@ -27,7 +27,7 @@ export default {
   name: "MainLayout",
   data: () => ({
     isOpen: false,
-    loader: true
+    loader: true,
   }),
   async mounted() {
     if (!Object.keys(this.$store.getters.info).length) {
