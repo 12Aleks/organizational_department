@@ -30,7 +30,7 @@ const router =  new Router({
       path: '/process/:id',
       name: 'Process',
       meta: {layout: 'main', auth: true},
-      component: () => import('../views/Process.vue')
+      component: () => import('../components/department/Process.vue')
     },
     {
       path: '/departments',

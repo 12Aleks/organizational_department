@@ -25,7 +25,7 @@ export default {
             try{
                 const data = (await firebase.database().ref('/users').once('value')).val();
                 const workersData = await Object.keys(data).map(key => ({...data[key]})).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName]
-                commit('departmentName', workersData)
+                commit('receiveData', workersData)
                 return workersData
             }catch (e) {
                 this.commit('setError', true);
