@@ -4,42 +4,72 @@
       <table class="highlight">
         <thead>
         <tr>
-          <th >Nawisko i Imię</th>
-          <th >Process</th>
-          <th >Komórka</th>
-          <th >Aktualne wynagrodzenie <br /> ([CKP]/za godzinę)</th>
-          <th >Uzgodnione z Pracownikiem <br />([CKP]/za godzinę)
-          </th>
+          <th>Nawisko i Imię</th>
+          <th>Process</th>
+          <th>Komórka</th>
+          <th>Aktualne wynagrodzenie <br/> ([CKP]/za godzinę)</th>
+          <th>Propozycja pracownika<br/>([CKP]/za godzinę)</th>
+          <th>Propozycja zespolu pracownika<br/>([CKP]/za godzinę)</th>
+          <th>Uzgodnione z Pracownikiem <br/>([CKP]/za godzinę)</th>
         </tr>
         </thead>
-        <tbody id="table" v-for="(value, name, index) in process" :key="index" >
+        <tbody id="table" v-for="(value, name, index) in process" :key="index">
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td colspan="7" class="center subtitle">{{ name }}</td>
+        </tr>
+        <tr v-for="(v, i) in value" :key="i">
+          <td>{{ v.name }}</td>
+          <td>{{v.process}}</td>
+          <td>{{v.sections}}</td>
+          <td>{{ v.salary }}zł / {{ v.per_hour }}zł/god.</td>
+          <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker}}zł/god.</td>
+          <td>{{ v.salary_department }}zł / {{ v.per_hour_department }}zł/god.</td>
+          <td>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/god.</td>
         </tr>
         </tbody>
       </table>
-      <p>{{ process }}</p>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
-        name: "Process",
-        props: ['process'],
-        data: () => ({
-
-        }),
-        computed:{
-
-        }
-    }
+export default {
+  name: "Process",
+  props: ['process'],
+  data: () => ({}),
+  computed: {}
+}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$lightTurquoise: rgba(38, 166, 154, .4);
+$turquoise: #26a69a;
+$white: rgba(254, 255, 250, 1);
+.subtitle {
+  background-color: #4184491c;
+}
 
+tr {
+  th.subtitle {
+    background-color: #8f8a8a;
+    td{
+      font-weight: 600;
+      color:$turquoise;
+    }
+  }
+  th {
+    background-color: $turquoise;
+    text-transform: uppercase;
+    font-size: .78rem;
+    color: $white;
+  }
+  td{
+    font-size: .85rem;
+  }
+  th, td {
+    border: 1px solid $lightTurquoise;
+    border-collapse: collapse;
+    text-align: center;
+  }
+}
 </style>

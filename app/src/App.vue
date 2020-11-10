@@ -55,6 +55,7 @@ $red: rgba(255, 104, 115, 1);
     }
     th{
       background-color: $blue;
+      cursor: pointer;
       color: $white;
       text-align: center;
       font-size: 16px;
