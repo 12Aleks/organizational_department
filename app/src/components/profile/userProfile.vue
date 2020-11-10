@@ -1,9 +1,6 @@
 <template>
-  <div class="col s12">
-    <div class="page-title">
-      <h3>Twoje konto</h3>
-    </div>
-    <div class="userInfoWrapper img_attachment">
+  <div class="col s12 m6 l6">
+    <div class="userInfoWrapper">
       <div class="photoWrapper">
         <div class="profile" :style='{ backgroundImage: `url("${userInfo.photo}")` }'></div>
       </div>
@@ -42,9 +39,6 @@ div.userInfoWrapper.img_attachment {
   box-align: center;
   align-items: center;
   display: flex;
-  height: -webkit-calc(100vh - 725px);
-  height: calc(100vh - 725px);
-
   .photoWrapper, .descriptionWrapper{
     /*display: inline-block;*/
     /*margin: 0 auto;*/

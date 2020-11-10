@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="app-page">
-      <div class="row">
+      <div class="page-title">
+        <h3>Twoje konto</h3>
+      </div>
+      <div class="row img_attachment">
         <Loader v-if='loading'></Loader>
         <user-profile  :userInfo="userInfo"/>
         <updateUserProfile :userInfo="userInfo" />

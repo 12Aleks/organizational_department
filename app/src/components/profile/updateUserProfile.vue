@@ -1,6 +1,6 @@
 <template>
-  <div class="col s12 updateProfile">
-    <div class="section img_attachment">
+  <div class="col s12 m6 l6 updateProfile">
+    <div class="section">
       <div class="page-subtitle">
         <h4>Zmiana danych osobowych</h4>
       </div>
@@ -114,10 +114,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.section.img_attachment {
+.section {
   padding: 20px 31px;
-  height:-webkit-calc(100vh - 414px);
-  height:calc(100vh - 414px);
   .btn-file {
     position: relative;
     overflow: hidden;
