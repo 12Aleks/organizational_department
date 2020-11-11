@@ -42,34 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$lightTurquoise: rgba(38, 166, 154, .4);
-$turquoise: #26a69a;
-$white: rgba(254, 255, 250, 1);
 .subtitle {
   background-color: #4184491c;
-}
-
-tr {
-  th.subtitle {
-    background-color: #8f8a8a;
-    td{
-      font-weight: 600;
-      color:$turquoise;
-    }
-  }
-  th {
-    background-color: $turquoise;
-    text-transform: uppercase;
-    font-size: .78rem;
-    color: $white;
-  }
-  td{
-    font-size: .85rem;
-  }
-  th, td {
-    border: 1px solid $lightTurquoise;
-    border-collapse: collapse;
-    text-align: center;
-  }
 }
 </style>

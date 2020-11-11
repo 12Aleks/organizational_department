@@ -3,7 +3,7 @@
     <div class="app-page">
       <div>
         <div class="page-title">
-          <h3>Nowi pracownicy</h3>
+          <h3 class="flow-text">Nowi pracownicy</h3>
         </div>
         <div class="row img_attachment">
           <div class="col s12 m12">

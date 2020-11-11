@@ -3,7 +3,7 @@
     <div class="app-page">
       <div>
         <div class="page-title">
-          <h3>Zespoły</h3>
+          <h3 >Zespoły</h3>
         </div>
         <div class="row img_attachment">
           <Loader v-if="loader"/>
@@ -99,7 +99,7 @@ $red: rgba(255, 104, 115, 1);
     label {
       background: $turquoise;
       border-bottom: 1px solid $blue;
-      font-size: 0.9em;
+      font-size: .85rem;
       font-weight: 400;
       color: $white;
       cursor: pointer;
@@ -123,7 +123,6 @@ $red: rgba(255, 104, 115, 1);
       max-height: -webkit-calc(100vh - 245px);
       max-height: calc(100vh - 245px);
       overflow: auto;
-
       p {
         margin-bottom: 1em;
       }
@@ -148,19 +147,40 @@ $red: rgba(255, 104, 115, 1);
   .tabordion {
     width: 100%;
     color: $black;
-
     section {
+      h5 {
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: 1.2rem ;
+        }
+        margin-bottom: 1.2rem;
+      }
       label {
         background: $turquoise;
         border-left: 1px solid $blue;
         padding: 0.6em 2.5%;
+        font-size: 0.9rem;
         width: 20%;
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          padding: 0.35em 2.5%;
+          font-size: .78rem ;
+        }
       }
-
       article {
         position: absolute;
         width: 77.5%;
-        left: 22.5%
+        left: 22.5%;
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          padding: 1rem 1.5rem;
+        }
       }
     }
   }

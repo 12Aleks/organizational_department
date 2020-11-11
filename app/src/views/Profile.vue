@@ -2,7 +2,7 @@
   <div>
     <div class="app-page">
       <div class="page-title">
-        <h3>Twoje konto</h3>
+        <h3 class="flow-text">Twoje konto</h3>
       </div>
       <div class="row img_attachment">
         <Loader v-if='loading'></Loader>

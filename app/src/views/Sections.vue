@@ -68,6 +68,13 @@ export default {
       align-items: center;
       h6{
         margin: .5rem 0;
+        font-size: 1rem;
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: .95rem ;
+        }
       }
     }
     padding: 0.3rem 1rem;
@@ -81,6 +88,18 @@ export default {
   }
   .collapsible-body {
     padding: 1rem 2rem;
+    li{
+      span{
+        font-size: .9rem;
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: .85rem ;
+        }
+      }
+    }
+
   }
   .collapsible-body.passive {
     border-bottom: 0 !important;

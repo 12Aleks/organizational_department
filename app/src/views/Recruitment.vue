@@ -3,7 +3,7 @@
                 <div class="app-page">
                     <div>
                         <div class="page-title">
-                            <h3>Zespoł rekrutacji</h3>
+                            <h3 class="flow-text">Zespoł rekrutacji</h3>
                         </div>
 
                         <div class="row">

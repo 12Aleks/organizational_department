@@ -28,6 +28,7 @@ export default {
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/styles/index.css';
 $turquoise:  #26a69a;
+$lightTurquoise: rgba(38, 166, 154, .4);
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgba(120, 151, 163, 0.98);
@@ -43,27 +44,56 @@ $red: rgba(255, 104, 115, 1);
   overflow: auto;
   height: -webkit-calc(100vh - 315px);
   height: calc(100vh - 315px);
+  -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
+  box-shadow: inset 0 0 4px 0 $light-blue;
   table {
     table-layout: fixed;
     position: relative;
-
     th.active{
       background-color: $white;
-      color: $blue;
+      color: $turquoise;
       -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
       box-shadow: inset 0 0 4px 0 $light-blue;
     }
+    th.subtitle {
+      background-color: #8f8a8a;
+      td{
+        font-weight: 600;
+        color:$turquoise;
+      }
+    }
     th{
-      background-color: $blue;
+      background-color: $turquoise;
+      text-transform: uppercase;
       cursor: pointer;
       color: $white;
       text-align: center;
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 400;
       position: sticky;
       top: 0;
       -webkit-box-shadow:  0 1px 4px 0 $light-blue;
       box-shadow:  0 1px 4px 0 $light-blue;
+      @media screen
+      and (min-device-width: 1200px)
+      and (max-device-width: 1600px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: .78rem;
+      }
+    }
+    td{
+      font-size: .95rem;
+      @media screen
+      and (min-device-width: 1200px)
+      and (max-device-width: 1600px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: .85rem;
+      }
+    }
+    th, td {
+      border: 1px solid $lightTurquoise;
+      border-collapse: collapse;
+      text-align: center;
     }
     .highlight>tbody>tr:hover {
       background-color: $blue;
