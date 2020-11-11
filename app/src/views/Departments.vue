@@ -11,7 +11,7 @@
             <div class="tabordion">
               <section v-for="(value, name, index) in process" :key="value.index" :id="name">
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
-                <label :for="`${name}-${index}`" class=" z-depth-1">{{ name }}</label>
+                <label :for="`${name}-${index}`" class=" z-depth-1"><i class="material-icons left">assignment_ind</i>{{ name }}  </label>
                 <article class="z-depth-1">
                   <h5>Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">

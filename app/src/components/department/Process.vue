@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m8 l9 box-wrappers">
+  <div class="col s12 m12 l12 box-wrappers">
     <div class="table-wrapper">
       <table class="highlight">
         <thead>
@@ -17,7 +17,7 @@
         <tr>
           <td colspan="7" class="center subtitle">{{ name }}</td>
         </tr>
-        <tr v-for="(v, i) in value" :key="i">
+        <tr v-for="(v, i) in value" :key="i" :class="{newWorker: v.final_salary}">
           <td>{{ v.name }}</td>
           <td>{{v.process}}</td>
           <td>{{v.sections}}</td>
@@ -42,7 +42,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$red: rgba(255, 104, 115, .7);
 .subtitle {
   background-color: #4184491c;
+}
+.table-wrapper{
+  height: -webkit-calc(100vh - 355px);
+  height: calc(100vh - 355px);
+  .newWorker{
+    background-color: $red;
+  }
 }
 </style>

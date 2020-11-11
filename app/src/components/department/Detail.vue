@@ -1,30 +1,53 @@
 <template>
-  <div class="col s12 m4 l3 ">
-    <div class="box-wrapper">
-      <h6 class="valign-wrapper border"><i class="material-icons left">people_outline</i>Liczba osób w
-        zespole: {{ departmentInfo.length }}
-      </h6>
-      <h6 class="valign-wrapper border"><i class="material-icons left">trending_up</i>Najwyższe wynagrodzenie w
-        zespole:</h6>
-      <ul class="info-wrapper">
-        <li>Wynagrodzenie całkowite (CKP): {{ max }} zł.</li>
-        <li>Za godzinę (CKP): {{ maxHour }} zł.</li>
-      </ul>
-      <h6 class="valign-wrapper border"><i class="material-icons left">vertical_align_center</i>Przeciętne wynagrodzenie w
-        zespole:</h6>
-      <ul class="info-wrapper">
-        <li>Wynagrodzenie całkowite (CKP): {{ average }} zł.</li>
-        <li>Za godzinę (CKP): {{ averageHour }} zł.</li>
-      </ul>
-
-      <h6 class="valign-wrapper border"><i class="material-icons left">trending_down</i>Najniższe wynagrodzenie w
-        zespole:</h6>
-      <ul class="info-wrapper">
-        <li> Wynagrodzenie całkowite (CKP): {{ min }} zł.</li>
-        <li> Za godzinę (CKP): {{ minHour }} zł.</li>
-      </ul>
+  <div class="col s12 m12 l12 ">
+    <div class="department-wrapper">
+      <table class="responsive-table">
+        <thead>
+        <tr class="subtitle">
+          <th colspan="3">
+            <h3 class="flow-text valign-wrapper border"><i class="material-icons left">people_outline</i>
+              ZESPÓŁ - {{ departmentName }}<span> (liczba osób w zespole: {{ departmentInfo.length }})</span></h3>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <div>
+              <h6 class="valign-wrapper border"><i class="material-icons left">trending_up</i>Najwyższe wynagrodzenie w
+                zespole:</h6>
+              <ul class="info-wrapper">
+                <li>Wynagrodzenie całkowite (CKP): {{ max }} zł.</li>
+                <li>Za godzinę (CKP): {{ maxHour }} zł.</li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div>
+              <h6 class="valign-wrapper border"><i class="material-icons left">vertical_align_center</i>Przeciętne
+                wynagrodzenie w
+                zespole:</h6>
+              <ul class="info-wrapper">
+                <li>Wynagrodzenie całkowite (CKP): {{ average }} zł.</li>
+                <li>Za godzinę (CKP): {{ averageHour }} zł.</li>
+              </ul>
+            </div>
+          </td>
+          <td>
+            <div>
+              <h6 class="valign-wrapper border"><i class="material-icons left">trending_down</i>Najniższe wynagrodzenie
+                w
+                zespole:</h6>
+              <ul class="info-wrapper">
+                <li> Wynagrodzenie całkowite (CKP): {{ min }} zł.</li>
+                <li> Za godzinę (CKP): {{ minHour }} zł.</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-
   </div>
 </template>
 
@@ -62,23 +85,70 @@ $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgb(81, 110, 133);
 
-.box-wrapper {
-  max-width: 380px;
+.department-wrapper {
+  max-width: 100%;
   display: block;
-  h6.border {
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 600;
-    color: $turquoise;
-    i {
-      border: 1px solid $turquoise;
-      font-size: 1rem;
-      padding: 3px;
+
+  table {
+    margin-bottom: 15px;
+    th, td {
+      border: 1px solid $lightTurquoise;
+      border-collapse: collapse;
+      text-align: center;
+      padding: 5px 5px;
+    }
+    thead{
+      tr{
+        th{
+          background-color: $turquoise;
+        }
+      }
+    }
+    tbody{
+      tr{
+        td{
+
+          div{
+            max-width: 350px;
+            display: block;
+            margin: 0 auto;
+          }
+
+        }
+      }
+    }
+    h3.border, h6.border {
+      text-transform: uppercase;
+      font-weight: 600;
+      i {
+        border: 1px solid $turquoise;
+        font-size: 1rem;
+        padding: 3px;
+        color: $white;
+        background-color: $turquoise;
+        border-radius: 50%;
+      }
+    }
+    h3.border{
+      font-size: 1.2rem;
+      font-weight: 600;
+      justify-content: center;
       color: $white;
-      background: $turquoise;
-      border-radius: 50%;
+      margin: 5px;
+      i{
+       font-size: 1.7rem;
+      }
+      span{
+        text-transform: lowercase;
+        margin-left: 5px;
+      }
+    }
+    h6.border{
+      color: $turquoise;
+      font-size: 1rem;
     }
   }
+
 
   .info-wrapper {
     max-width: 290px;
@@ -92,6 +162,7 @@ $blue: rgb(81, 110, 133);
       color: $black;
       text-transform: uppercase;
       font-size: 13px;
+      text-align: left;
     }
 
   }
