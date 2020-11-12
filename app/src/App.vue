@@ -42,8 +42,8 @@ $red: rgba(255, 104, 115, 1);
 }
 .table-wrapper {
   overflow: auto;
-  height: -webkit-calc(100vh - 315px);
-  height: calc(100vh - 315px);
+  height: -webkit-calc(100vh - 290px);
+  height: calc(100vh - 290px);
   -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
   box-shadow: inset 0 0 4px 0 $light-blue;
   table {
@@ -79,6 +79,7 @@ $red: rgba(255, 104, 115, 1);
       and (max-device-width: 1600px)
       and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .78rem;
+        padding: 7px;
       }
     }
     td{
@@ -88,6 +89,7 @@ $red: rgba(255, 104, 115, 1);
       and (max-device-width: 1600px)
       and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .85rem;
+        padding: 7px;
       }
     }
     th, td {

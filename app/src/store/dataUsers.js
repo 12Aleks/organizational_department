@@ -6,29 +6,25 @@ export default {
             try {
                 await firebase.database().ref('/users').set(cats);
             } catch (e) {
-                this.commit('setError', true);
+                commit('setError', true);
                 throw e
             }
         },
-        async receiveData({commit}) {
+        async receiveData({commit, dispatch}) {
             try {
                 const data = (await firebase.database().ref('/users').once('value')).val();
-                const workersData = await Object.keys(data).map(key => ({...data[key]}))
-                commit('receiveData', workersData);
-                return workersData
+                return await Object.keys(data).map(key => ({...data[key]}))
             } catch (e) {
-                this.commit('setError', true);
+                commit('setError', true);
                 throw e
             }
         },
         async departmentName({commit, dispatch}, departmentName) {
             try{
                 const data = (await firebase.database().ref('/users').once('value')).val();
-                const workersData = await Object.keys(data).map(key => ({...data[key]})).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName]
-                commit('receiveData', workersData)
-                return workersData
+                return await Object.keys(data).map(key => ({...data[key]})).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName]
             }catch (e) {
-                this.commit('setError', true);
+                commit('setError', true);
                 throw e
             }
         }

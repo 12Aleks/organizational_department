@@ -168,7 +168,10 @@ $red: rgba(255, 104, 115, 1);
         and (max-device-width: 1600px)
         and (-webkit-min-device-pixel-ratio: 1) {
           padding: 0.35em 2.5%;
-          font-size: .78rem ;
+          font-size: .78rem;
+          i{
+            font-size: 1.2rem;
+          }
         }
       }
       article {

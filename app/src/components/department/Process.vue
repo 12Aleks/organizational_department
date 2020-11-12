@@ -4,13 +4,21 @@
       <table class="highlight">
         <thead>
         <tr>
-          <th>Nawisko i Imię</th>
-          <th>Process</th>
-          <th>Komórka</th>
-          <th>Aktualne wynagrodzenie <br/> ([CKP]/za godzinę)</th>
-          <th>Propozycja pracownika<br/>([CKP]/za godzinę)</th>
-          <th>Propozycja zespolu pracownika<br/>([CKP]/za godzinę)</th>
-          <th>Uzgodnione z Pracownikiem <br/>([CKP]/za godzinę)</th>
+          <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
+          <th :class="{active: sortParam==='process'}" @click="sortParam='process'">Process</th>
+          <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">Komórka</th>
+          <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne wynagrodzenie <br/> ([CKP]/za
+            godzinę)
+          </th>
+          <th :class="{active: sortParam==='salary_worker'}" @click="sortParam='salary_worker'">Propozycja
+            pracownika<br/>([CKP]/za godzinę)
+          </th>
+          <th :class="{active: sortParam==='salary_department'}" @click="sortParam='salary_department'">Propozycja
+            zespolu pracownika<br/>([CKP]/za godzinę)
+          </th>
+          <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">Uzgodnione z Pracownikiem
+            <br/>([CKP]/za godzinę)
+          </th>
         </tr>
         </thead>
         <tbody id="table" v-for="(value, name, index) in process" :key="index">
@@ -33,11 +41,36 @@
 </template>
 
 <script>
+
+
 export default {
   name: "Process",
   props: ['process'],
-  data: () => ({}),
-  computed: {}
+  data: () => ({
+    sortParam: '',
+  }),
+  computed: {
+    sortedList() {
+      switch (this.sortParam) {
+        case 'name':
+          return this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        case 'process':
+          return this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+        case 'sections':
+          return this.process.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        case 'salary':
+          return this.process.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+        case 'salary_worker':
+          return this.process.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
+        case 'salary_department':
+          return this.process.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
+        case 'final_salary':
+          return this.process.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+        default:
+          return this.process;
+      }
+    }
+  }
 }
 </script>
 
@@ -46,7 +79,9 @@ $red: rgba(255, 104, 115, .7);
 .subtitle {
   background-color: #4184491c;
 }
-.table-wrapper{
+
+
+.table-wrapper {
   height: -webkit-calc(100vh - 355px);
   height: calc(100vh - 355px);
   .newWorker{

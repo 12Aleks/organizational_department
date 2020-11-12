@@ -142,10 +142,28 @@ $blue: rgb(81, 110, 133);
         text-transform: lowercase;
         margin-left: 5px;
       }
+      @media screen
+      and (min-device-width: 1200px)
+      and (max-device-width: 1600px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: 1rem;
+        margin: 0;
+        i{
+          font-size: 1.5rem;
+        }
+      }
     }
     h6.border{
       color: $turquoise;
       font-size: 1rem;
+      @media screen
+      and (min-device-width: 1200px)
+      and (max-device-width: 1600px)
+      and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: .9rem;
+        margin-top: 7px;
+
+      }
     }
   }
 

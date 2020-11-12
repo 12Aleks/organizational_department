@@ -81,8 +81,8 @@ export default {
 
 <style scoped>
 .table-wrapper {
-  height: -webkit-calc(100vh - 245px);
-  height: calc(100vh - 245px);
+  height: -webkit-calc(100vh - 225px);
+  height: calc(100vh - 225px);
 }
 
 table {
