@@ -3,7 +3,7 @@
     <div class="app-page">
       <div>
         <div class="page-title">
-          <h3 >Zespoły</h3>
+          <h3>Zespoły</h3>
         </div>
         <div class="row img_attachment">
           <Loader v-if="loader"/>
@@ -11,12 +11,15 @@
             <div class="tabordion">
               <section v-for="(value, name, index) in process" :key="value.index" :id="name">
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
-                <label :for="`${name}-${index}`" class=" z-depth-1"><i class="material-icons left">assignment_ind</i>{{ name }}  </label>
+                <label :for="`${name}-${index}`"
+                       class="z-depth-1"><i class="material-icons right" v-if="newWorkers.includes(name)">fiber_new</i>{{
+                    name
+                  }}</label>
                 <article class="z-depth-1">
                   <h5>Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">
                     <li v-for="(department, index) in $options.filters.departmentsFilter(value)" :key="index">
-                      <Sections :value="department" :name="name"/>
+                      <Sections :value="department" :name="name" :proc="proc"/>
                     </li>
                   </ul>
                 </article>
@@ -46,6 +49,9 @@ export default {
     Sections
   },
   computed: {
+    newWorkers() {
+      return Object.keys(this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}));
+    },
     process() {
       return this.proc.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
     }
@@ -54,7 +60,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise:  #26a69a;
+$turquoise: #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgb(81, 110, 133);
@@ -123,6 +129,7 @@ $red: rgba(255, 104, 115, 1);
       max-height: -webkit-calc(100vh - 245px);
       max-height: calc(100vh - 245px);
       overflow: auto;
+
       p {
         margin-bottom: 1em;
       }
@@ -147,41 +154,35 @@ $red: rgba(255, 104, 115, 1);
   .tabordion {
     width: 100%;
     color: $black;
+
     section {
       h5 {
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
-          font-size: 1.2rem ;
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: 1.2rem;
         }
         margin-bottom: 1.2rem;
       }
+
       label {
         background: $turquoise;
         border-left: 1px solid $blue;
         padding: 0.6em 2.5%;
         font-size: 0.9rem;
         width: 20%;
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           padding: 0.35em 2.5%;
           font-size: .78rem;
-          i{
+          i {
             font-size: 1.2rem;
           }
         }
       }
+
       article {
         position: absolute;
         width: 77.5%;
         left: 22.5%;
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           padding: 1rem 1.5rem;
         }
       }

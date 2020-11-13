@@ -1,15 +1,21 @@
 <template>
   <ul class="collapsible z-depth-1" ref="accord">
     <li>
-      <div class="collapsible-header grey lighten-3"><div>
-        <i class="large material-icons right">people_outline</i>
-        <h6 @click="departmentPath">Zespol: {{ value[0] }}</h6></div><i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i></div>
+      <div class="collapsible-header grey lighten-3">
+        <div>
+          <i class="large material-icons left">people_outline</i>
+          <h6 @click="departmentPath">Zespol: {{ value[0] }}</h6>
+          <i class="material-icons right" v-if="newWorkers.includes(value[0])">fiber_new</i>
+        </div>
+        <i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i>
+      </div>
       <div class="collapsible-body" :class="{passive: $options.filters.sectionsFilter(value).length <= 0 }">
         <ul>
           <li v-for="section in $options.filters.sectionsFilter(value)" :key="section">
         <span> {{
             section === '(puste)' || section === undefined ? ($options.filters.sectionsFilter(value).length >= 0 ? value[0] : null) : `Komórka: ${section}`
-          }}</span>
+          }}
+        </span>
           </li>
         </ul>
       </div>
@@ -28,12 +34,17 @@ export default {
       dis: null
     }
   },
-  props: ['value', 'name'],
+  props: ['value', 'name', 'proc'],
   async mounted() {
     this.instance = await M.Collapsible.init(this.$refs.accord);
   },
-  methods:{
-   async departmentPath(){
+  computed: {
+    newWorkers() {
+      return Object.keys(this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {}));
+    },
+  },
+  methods: {
+    async departmentPath() {
       await this.$store.dispatch('departmentName', this.value[0])
       this.$router.push('/department/' + this.value[0].toLowerCase())
     }
@@ -50,35 +61,38 @@ export default {
 .collapsible {
   margin-top: 0;
   margin-bottom: 0;
+
   .active .collapsible-header {
-    i.tiny{
+    i.tiny {
       transform: rotate(-90deg);
       -webkit-transform: rotate(-90deg);
       -moz-transform: rotate(-90deg);
       -o-transform: rotate(-90deg);;
     }
   }
+
   .collapsible-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    div{
+
+    div {
       width: 80%;
       display: inline-flex;
       align-items: center;
-      h6{
+
+      h6 {
         margin: .5rem 0;
         font-size: 1rem;
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
-          font-size: .95rem ;
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: .95rem;
         }
       }
     }
+
     padding: 0.3rem 1rem;
-    i.tiny{
+
+    i.tiny {
       font-size: 1.4rem !important;
       transform: rotate(90deg);
       -webkit-transform: rotate(90deg);
@@ -86,21 +100,21 @@ export default {
       -o-transform: rotate(90deg);;
     }
   }
+
   .collapsible-body {
     padding: 1rem 2rem;
-    li{
-      span{
+
+    li {
+      span {
         font-size: .9rem;
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
-          font-size: .85rem ;
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: .85rem;
         }
       }
     }
 
   }
+
   .collapsible-body.passive {
     border-bottom: 0 !important;
     padding: 0 !important;
