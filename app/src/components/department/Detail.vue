@@ -4,7 +4,7 @@
       <table class="responsive-table">
         <thead>
         <tr class="subtitle">
-          <th colspan="3" >
+          <th colspan="3">
             <div class="title-wrapper">
               <h3 class="flow-text valign-wrapper border">
                 <i class="material-icons left">people_outline</i>
@@ -68,8 +68,8 @@ export default {
   data: () => ({
     isHidden: true
   }),
-  methods:{
-    isHiddenTable(){
+  methods: {
+    isHiddenTable() {
       this.isHidden = !this.isHidden;
       styleTable.$emit('changeTable')
     }
@@ -107,26 +107,50 @@ $blue: rgb(81, 110, 133);
 .department-wrapper {
   max-width: 100%;
   display: block;
+
   table {
     margin-bottom: 15px;
+
     th, td {
       border: 1px solid $lightTurquoise;
       border-collapse: collapse;
       text-align: center;
       padding: 5px 5px;
     }
-    thead{
-      tr{
-        th{
+
+    thead {
+      tr {
+        th {
           background-color: $turquoise;
+
+          .button-right {
+            height: 34px;
+            width: 34px;
+
+            i {
+              line-height: 35px;
+              padding-right: 1px;
+            }
+
+            @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+              height: 28px;
+              width: 28px;
+              i {
+                font-size: 1.6rem;
+                line-height: 28px;
+                padding-right: 0;
+              }
+            }
+          }
         }
       }
     }
-    tbody{
-      tr{
-        td{
 
-          div{
+    tbody {
+      tr {
+        td {
+
+          div {
             max-width: 350px;
             display: block;
             margin: 0 auto;
@@ -135,16 +159,11 @@ $blue: rgb(81, 110, 133);
         }
       }
     }
-    tbody{
-     .button-right{
-       height: 35px;
-       width: 34px;
-       line-height: 36px;
-     }
-    }
+
     h3.border, h6.border {
       text-transform: uppercase;
       font-weight: 600;
+
       i {
         border: 1px solid $turquoise;
         font-size: 1rem;
@@ -154,48 +173,50 @@ $blue: rgb(81, 110, 133);
         border-radius: 50%;
       }
     }
-    .title-wrapper{
+
+    .title-wrapper {
       position: relative;
-      a.button-right{
+
+      a.button-right {
         position: absolute;
         right: 15px;
         top: 0;
-        i{
+
+        i {
           font-size: 1.2rem;
         }
       }
-      h3.border{
+
+      h3.border {
         font-size: 1.2rem;
         font-weight: 600;
         justify-content: center;
         color: $white;
         margin: 5px;
-        i{
+
+        i {
           font-size: 1.7rem;
         }
-        span{
+
+        span {
           text-transform: lowercase;
           margin-left: 5px;
         }
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
+
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           font-size: 1rem;
           margin: 0;
-          i{
+          i {
             font-size: 1.5rem;
           }
         }
       }
     }
-    h6.border{
+
+    h6.border {
       color: $turquoise;
       font-size: 1rem;
-      @media screen
-      and (min-device-width: 1200px)
-      and (max-device-width: 1600px)
-      and (-webkit-min-device-pixel-ratio: 1) {
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .9rem;
         margin-top: 7px;
 

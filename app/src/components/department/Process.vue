@@ -56,7 +56,7 @@ export default {
       })
   },
   computed: {
-    sortedList() {
+    sortedList(value) {
       switch (this.sortParam) {
         case 'name':
           return this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
