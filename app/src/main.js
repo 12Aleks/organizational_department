@@ -15,6 +15,8 @@ import sections from "./filters/sections";
 import department from "./filters/department";
 import lang from "./filters/lang";
 
+export const styleTable = new Vue();
+
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
 Vue.component('Information', Information)

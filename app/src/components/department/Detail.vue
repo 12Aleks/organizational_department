@@ -4,13 +4,21 @@
       <table class="responsive-table">
         <thead>
         <tr class="subtitle">
-          <th colspan="3">
-            <h3 class="flow-text valign-wrapper border"><i class="material-icons left">people_outline</i>
-              ZESPÓŁ - {{ departmentName }}<span> (liczba osób w zespole: {{ departmentInfo.length }})</span></h3>
+          <th colspan="3" >
+            <div class="title-wrapper">
+              <h3 class="flow-text valign-wrapper border">
+                <i class="material-icons left">people_outline</i>
+                ZESPÓŁ - {{ departmentName }}<span> (liczba osób w zespole: {{ departmentInfo.length }})</span>
+              </h3>
+              <a class="btn-floating red lighten-2 button-right" @click="isHiddenTable">
+                <i v-if="!isHidden" class="material-icons">expand_more</i>
+                <i v-else class="material-icons">expand_less</i>
+              </a>
+            </div>
           </th>
         </tr>
         </thead>
-        <tbody>
+        <tbody v-show="isHidden">
         <tr>
           <td>
             <div>
@@ -52,9 +60,20 @@
 </template>
 
 <script>
+import {styleTable} from "@/main";
+
 export default {
   name: "detail",
   props: ['departmentInfo', 'departmentName'],
+  data: () => ({
+    isHidden: true
+  }),
+  methods:{
+    isHiddenTable(){
+      this.isHidden = !this.isHidden;
+      styleTable.$emit('changeTable')
+    }
+  },
   computed: {
     max() {
       return Math.max.apply(null, this.departmentInfo.map(el => (el.salary)))
@@ -88,7 +107,6 @@ $blue: rgb(81, 110, 133);
 .department-wrapper {
   max-width: 100%;
   display: block;
-
   table {
     margin-bottom: 15px;
     th, td {
@@ -117,6 +135,13 @@ $blue: rgb(81, 110, 133);
         }
       }
     }
+    tbody{
+     .button-right{
+       height: 35px;
+       width: 34px;
+       line-height: 36px;
+     }
+    }
     h3.border, h6.border {
       text-transform: uppercase;
       font-weight: 600;
@@ -129,27 +154,38 @@ $blue: rgb(81, 110, 133);
         border-radius: 50%;
       }
     }
-    h3.border{
-      font-size: 1.2rem;
-      font-weight: 600;
-      justify-content: center;
-      color: $white;
-      margin: 5px;
-      i{
-       font-size: 1.7rem;
-      }
-      span{
-        text-transform: lowercase;
-        margin-left: 5px;
-      }
-      @media screen
-      and (min-device-width: 1200px)
-      and (max-device-width: 1600px)
-      and (-webkit-min-device-pixel-ratio: 1) {
-        font-size: 1rem;
-        margin: 0;
+    .title-wrapper{
+      position: relative;
+      a.button-right{
+        position: absolute;
+        right: 15px;
+        top: 0;
         i{
-          font-size: 1.5rem;
+          font-size: 1.2rem;
+        }
+      }
+      h3.border{
+        font-size: 1.2rem;
+        font-weight: 600;
+        justify-content: center;
+        color: $white;
+        margin: 5px;
+        i{
+          font-size: 1.7rem;
+        }
+        span{
+          text-transform: lowercase;
+          margin-left: 5px;
+        }
+        @media screen
+        and (min-device-width: 1200px)
+        and (max-device-width: 1600px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: 1rem;
+          margin: 0;
+          i{
+            font-size: 1.5rem;
+          }
         }
       }
     }

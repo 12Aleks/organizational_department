@@ -1,6 +1,6 @@
 <template>
   <div class="col s12 m12 l12 box-wrappers">
-    <div class="table-wrapper">
+    <div class="table-wrapper" :class="{'table-height': changeTable }">
       <table class="highlight">
         <thead>
         <tr>
@@ -41,14 +41,20 @@
 </template>
 
 <script>
-
+import {styleTable} from "@/main";
 
 export default {
   name: "Process",
   props: ['process'],
   data: () => ({
     sortParam: '',
+    changeTable: false
   }),
+  created(){
+      styleTable.$on('changeTable', () => {
+         return this.changeTable = !this.changeTable
+      })
+  },
   computed: {
     sortedList() {
       switch (this.sortParam) {
@@ -80,7 +86,6 @@ $red: rgba(255, 104, 115, .7);
   background-color: #4184491c;
 }
 
-
 .table-wrapper {
   height: -webkit-calc(100vh - 355px);
   height: calc(100vh - 355px);
@@ -88,4 +93,9 @@ $red: rgba(255, 104, 115, .7);
     background-color: $red;
   }
 }
+.table-wrapper.table-height{
+  height: -webkit-calc(100vh - 233px);
+  height: calc(100vh - 233px);
+}
+
 </style>
