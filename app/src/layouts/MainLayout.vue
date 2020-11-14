@@ -53,6 +53,7 @@ export default {
 };
 </script>
 <style lang="scss">
+$red: rgba(255, 104, 115, 1);
 .img_attachment{
   background-color: rgba(255,255,255, 1);
   background-image: url("../assets/images/fabrik.png");
@@ -65,6 +66,18 @@ export default {
   height:calc(100vh - 185px);
   -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+  .tabs {
+    margin-bottom: 10px;
+    border-bottom: 1px solid $red;
+
+    .tab a, .tab a:hover, .tab a.active {
+      color: #bbbbbb;
+    }
+
+    .tab a.active {
+      color: #9b9b9b;
+    }
+  }
 }
 div.profile, div#preview{
   max-width: 150px;

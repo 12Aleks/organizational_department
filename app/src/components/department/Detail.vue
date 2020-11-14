@@ -10,7 +10,7 @@
                 <i class="material-icons left">people_outline</i>
                 ZESPÓŁ - {{ departmentName }}<span> (liczba osób w zespole: {{ departmentInfo.length }})</span>
               </h3>
-              <a class="btn-floating red lighten-2 button-right" @click="isHiddenTable">
+              <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable">
                 <i v-if="!isHidden" class="material-icons">expand_more</i>
                 <i v-else class="material-icons">expand_less</i>
               </a>
@@ -130,6 +130,7 @@ $blue: rgb(81, 110, 133);
             i {
               line-height: 35px;
               padding-right: 1px;
+              color: $turquoise;
             }
 
             @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {

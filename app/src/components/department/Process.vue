@@ -87,15 +87,15 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 355px);
-  height: calc(100vh - 355px);
+  height: -webkit-calc(100vh - 408px);
+  height: calc(100vh - 408px);
   .newWorker{
     background-color: $red;
   }
 }
 .table-wrapper.table-height{
-  height: -webkit-calc(100vh - 233px);
-  height: calc(100vh - 233px);
+  height: -webkit-calc(100vh - 290px);
+  height: calc(100vh - 290px);
 }
 
 </style>

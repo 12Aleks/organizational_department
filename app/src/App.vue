@@ -101,6 +101,7 @@ $red: rgba(255, 104, 115, 1);
       background-color: $blue;
     }
   }
+
 }
 
 </style>

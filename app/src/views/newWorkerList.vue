@@ -116,26 +116,12 @@ $turquoise: #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: #57758c94;
-$red: rgba(255, 104, 115, 1);
 .img_attachment {
   .wrapper {
     padding-bottom: 30px;
     height: -webkit-calc(100vh - 320px);
     height: calc(100vh - 320px);
     position: relative;
-  }
-
-  .tabs {
-    margin-bottom: 10px;
-    border-bottom: 1px solid $red;
-
-    .tab a, .tab a:hover, .tab a.active {
-      color: #bbbbbb;
-    }
-
-    .tab a.active {
-      color: #9b9b9b;
-    }
   }
 }
 
