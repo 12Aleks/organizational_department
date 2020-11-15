@@ -53,7 +53,10 @@ export default {
 };
 </script>
 <style lang="scss">
+$lightFirstRed: #ffebee;
+$lightSecondRed: #ffcdd2;
 $red: rgba(255, 104, 115, 1);
+$darkenGrey:  grey;
 .img_attachment{
   background-color: rgba(255,255,255, 1);
   background-image: url("../assets/images/fabrik.png");
@@ -70,12 +73,15 @@ $red: rgba(255, 104, 115, 1);
     margin-bottom: 10px;
     border-bottom: 1px solid $red;
 
-    .tab a, .tab a:hover, .tab a.active {
-      color: #bbbbbb;
+    .tab a {
+      color: $darkenGrey;
+      background-color: $lightFirstRed;
     }
 
-    .tab a.active {
-      color: #9b9b9b;
+
+    .tab a.active, .tab a:hover, .tab a:focus, .tab a:focus.active  {
+      color: $darkenGrey;
+      background-color: $lightSecondRed;
     }
   }
 }

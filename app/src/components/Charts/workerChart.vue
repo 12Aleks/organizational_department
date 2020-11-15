@@ -98,6 +98,12 @@ name: "workerChart",
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  padding-bottom: 30px;
+  height: -webkit-calc(100vh - 320px);
+  height: calc(100vh - 320px);
+  position: relative;
+}
 .button_wrapper {
   display: flex;
   justify-content: center;

@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m12 l12 ">
+
     <div class="department-wrapper">
       <table class="responsive-table">
         <thead>
@@ -56,7 +56,7 @@
         </tbody>
       </table>
     </div>
-  </div>
+
 </template>
 
 <script>

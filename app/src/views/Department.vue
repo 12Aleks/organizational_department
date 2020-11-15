@@ -11,10 +11,11 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-          <detail :departmentInfo='departmentInfo' :departmentName="departmentName"/>
-          <process :process="process"></process>
+             <detail :departmentInfo='departmentInfo' :departmentName="departmentName"/>
+             <process :process="process" />
           </div>
           <div id="tabSecond" class="col s12">
+             <department-charts  :departmentName='departmentName'/>
           </div>
         </div>
       </div>
@@ -23,6 +24,7 @@
 </template>
 <script>
 import M from 'materialize-css'
+import departmentCharts from "@/components/Charts/departmentCharts";
 import detail from "@/components/department/Detail";
 import process from "@/components/department/Process"
 
@@ -34,7 +36,9 @@ export default {
     instance: null,
     departmentInfo: []
   }),
-  components: {detail, process},
+  components: {
+    detail, process, departmentCharts
+  },
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.departmentName = this.$route.params.id.toUpperCase();
@@ -43,8 +47,7 @@ export default {
   },
   computed: {
     process() {
-      const all = this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
-      return all
+      return this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
     }
   },
   destroyed() {
@@ -61,7 +64,6 @@ export default {
   height: calc(100vh - 122px);
   height: -webkit-calc(100vh - 122px);
   background: #ffffff;
-
 }
 
 </style>

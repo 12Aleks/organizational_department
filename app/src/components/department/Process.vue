@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m12 l12 box-wrappers">
+  <div class="box-wrappers">
     <div class="table-wrapper" :class="{'table-height': changeTable }">
       <table class="highlight">
         <thead>

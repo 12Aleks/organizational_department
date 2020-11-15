@@ -52,7 +52,7 @@
             </div>
           </div>
           <div id="tabSecond" class="col s12">
-             <worker-chart></worker-chart>
+             <worker-chart/>
           </div>
         </div>
       </div>
@@ -111,18 +111,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $turquoise: #26a69a;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: #57758c94;
 .img_attachment {
-  .wrapper {
-    padding-bottom: 30px;
-    height: -webkit-calc(100vh - 320px);
-    height: calc(100vh - 320px);
-    position: relative;
-  }
+
 }
 
 h6 {
