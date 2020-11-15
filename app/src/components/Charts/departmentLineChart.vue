@@ -3,10 +3,10 @@
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
         <a class="waves-effect waves-light btn-small orange lighten-2"
-           ><i
+        ><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
         <a class="waves-effect waves-light btn-small orange lighten-2"
-          ><i
+        ><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
     </div>
@@ -19,11 +19,10 @@
 </template>
 
 <script>
-import {Bar} from 'vue-chartjs'
-
+import {Line} from 'vue-chartjs'
 export default {
-  name: "departmentCharts",
-  extends: Bar,
+name: "departmentLineChart",
+  extends: Line,
   data: () => ({
     departmentWorkers: []
   }),
@@ -32,7 +31,7 @@ export default {
     this.chartDepartment(this.departmentWorkers)
   },
   methods: {
-   chartDepartment(departmentWorkers) {
+    chartDepartment(departmentWorkers) {
       console.log(departmentWorkers)
       const data = {
         labels: departmentWorkers.map((c) => c.name),
@@ -75,12 +74,12 @@ export default {
   display: flex;
   justify-content: center;
 
-  a {
-    width: 280px;
-    max-width: 280px;
-    margin: 15px;
-    text-align: left;
-    font-size: 14px;
-  }
+a {
+  width: 280px;
+  max-width: 280px;
+  margin: 15px;
+  text-align: left;
+  font-size: 14px;
+}
 }
 </style>

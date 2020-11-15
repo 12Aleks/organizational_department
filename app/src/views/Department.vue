@@ -7,6 +7,7 @@
             <ul class="tabs" ref="tabs">
               <li class="tab col s3"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
               <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy</a></li>
+              <li class="tab col s3"><a href="#tabthird">Wykres liniowy</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
@@ -15,7 +16,10 @@
              <process :process="process" />
           </div>
           <div id="tabSecond" class="col s12">
-             <department-charts  :departmentName='departmentName'/>
+             <departmentBarChart/>
+          </div>
+          <div id="tabthird" class="col s12">
+            <departmentLineChart />
           </div>
         </div>
       </div>
@@ -24,7 +28,8 @@
 </template>
 <script>
 import M from 'materialize-css'
-import departmentCharts from "@/components/Charts/departmentCharts";
+import departmentBarChart from "@/components/Charts/departmentBarChart";
+import departmentLineChart from "@/components/Charts/departmentLineChart";
 import detail from "@/components/department/Detail";
 import process from "@/components/department/Process"
 
@@ -37,7 +42,7 @@ export default {
     departmentInfo: []
   }),
   components: {
-    detail, process, departmentCharts
+    detail, process, departmentBarChart, departmentLineChart
   },
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
