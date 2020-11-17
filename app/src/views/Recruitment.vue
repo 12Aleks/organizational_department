@@ -5,16 +5,10 @@
                         <div class="page-title">
                             <h3 class="flow-text">Zespoł rekrutacji</h3>
                         </div>
-
-                        <div class="row">
-                            <div class="col s12 m6 l4">
-
-                            </div>
-
-                            <div class="col s12 m6 l8">
-
-                            </div>
+                      <div class="row img_attachment">
+                        <div class="col s12 m12">
                         </div>
+                      </div>
                     </div>
                 </div>
     </div>

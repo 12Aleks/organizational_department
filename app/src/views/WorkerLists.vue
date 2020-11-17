@@ -51,7 +51,8 @@ export default {
     return {
       sortParam: '',
       loader: true,
-      workersInfo: []
+      workersInfo: [],
+      worker: ''
     }
   },
   async mounted() {
@@ -60,20 +61,21 @@ export default {
   },
   computed: {
     sortedList() {
-      switch (this.sortParam) {
-        case 'name':
-          return this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
-        case 'department':
-          return this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
-        case 'sections':
-          return this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
-        case 'salary':
-          return this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
-        case 'final_salary':
-          return this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
-        default:
-          return this.workersInfo;
-      }
+
+        switch (this.sortParam) {
+          case 'name':
+            return this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          case 'department':
+            return this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+          case 'sections':
+            return this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          case 'salary':
+            return this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+          case 'final_salary':
+            return this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+          default:
+            return this.workersInfo;
+        }
     }
   }
 }
