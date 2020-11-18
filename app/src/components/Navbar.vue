@@ -61,7 +61,7 @@ export default {
     links: [
       {title: 'Import danych', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
-      {title: 'Zespół rekrutacji', url: '/recruitment'},
+      {title: 'Podział zespolów', url: '/recruitment'},
       {title: 'Lista pracowników', url: '/lists'},
       {title: 'Nowi pracownicy', url: '/new_workers'},
     ]

@@ -5,7 +5,7 @@
       <div>
         <div v-if="load && !collection" class="importButton">
           <div class="page-subtitle">
-            <h4>Dodaj tabele Exele z danymi</h4>
+            <h4>Dodaj tabele Exele z danymi pracowników</h4>
           </div>
           <span class="btn btn-file ">
                       Dodaj plik<input type="file" @change="onChange">
