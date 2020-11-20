@@ -4,11 +4,11 @@
       <table class="responsive-table">
         <thead>
         <tr class="subtitle">
-          <th colspan="3">
+          <th colspan="4">
             <div class="title-wrapper">
               <h3 class="flow-text valign-wrapper border">
                 <i class="material-icons left">people_outline</i>
-                ZESPÓŁ - {{ departmentName }}<span> (liczba osób w zespole: {{ departmentInfo.length }})</span>
+                ZESPÓŁ - {{ departmentName }}
               </h3>
               <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable">
                 <i v-if="!isHidden" class="material-icons">expand_more</i>
@@ -20,21 +20,25 @@
         </thead>
         <tbody v-show="isHidden">
         <tr>
+          <td colspan="2"><h6 class="center border">Liczba osób w zespołe: {{ departmentInfo.length }}</h6></td>
+          <td colspan="2"><h6 class="center border">Suma wynagrodzeń zespołu: {{all}} zł.</h6></td>
+        </tr>
+        <tr>
           <td>
             <div>
               <h6 class="valign-wrapper border"><i class="material-icons left">trending_up</i>Najwyższe wynagrodzenie w
-                zespole:</h6>
+                zespołe:</h6>
               <ul class="info-wrapper">
                 <li>Wynagrodzenie całkowite (CKP): {{ max }} zł.</li>
                 <li>Za godzinę (CKP): {{ maxHour }} zł.</li>
               </ul>
             </div>
           </td>
-          <td>
+          <td colspan="2">
             <div>
               <h6 class="valign-wrapper border"><i class="material-icons left">vertical_align_center</i>Przeciętne
                 wynagrodzenie w
-                zespole:</h6>
+                zespołe:</h6>
               <ul class="info-wrapper">
                 <li>Wynagrodzenie całkowite (CKP): {{ average }} zł.</li>
                 <li>Za godzinę (CKP): {{ averageHour }} zł.</li>
@@ -93,6 +97,9 @@ export default {
     minHour() {
       return Math.min.apply(null, this.departmentInfo.map(el => (el.per_hour)))
     },
+    all(){
+      return this.departmentInfo.map(el => (el.salary)).reduce((arr, el) => (arr + el), 0).toFixed(2)
+    }
   }
 }
 </script>

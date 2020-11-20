@@ -87,8 +87,8 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 408px);
-  height: calc(100vh - 408px);
+  height: -webkit-calc(100vh - 470px);
+  height: calc(100vh - 470px);
   .newWorker{
     background-color: $red;
   }

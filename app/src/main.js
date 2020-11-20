@@ -8,6 +8,7 @@ import 'materialize-css/dist/js/materialize.min'
 import message from './message/message.info'
 import Loader from '@/components/Loader'
 import Information from "./components/ather/Information";
+import Tooltipe from './directives/tooltip.directive'
 
 import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
@@ -19,7 +20,9 @@ export const styleTable = new Vue();
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
+Vue.directive('tooltipe', Tooltipe)
 Vue.component('Information', Information)
+
 Vue.use(Vuelidate)
 Vue.use(message)
 

@@ -12,7 +12,12 @@
               <section v-for="(value, name, index) in process" :key="value.index" :id="name">
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
                 <label :for="`${name}-${index}`"
-                       class="z-depth-1"><i class="material-icons right" v-if="newWorkers.includes(name)">fiber_new</i>{{
+                       class="z-depth-1">
+                       <i class="material-icons right"
+                          v-if="newWorkers.includes(name)"
+                          ref="tool"
+                          v-tooltipe=" `Nowy pracownik - proces ${name}`"
+                       >fiber_new</i>{{
                     name
                   }}</label>
                 <article class="z-depth-1">
@@ -34,12 +39,15 @@
 
 <script>
 import Sections from "@/views/Sections";
+import M from 'materialize-css'
 
 export default {
   name: "Departments",
   data: () => ({
     loader: true,
-    proc: []
+    proc: [],
+    instances: null,
+    options: 'New worker'
   }),
   async mounted() {
     this.proc = await this.$store.dispatch('receiveData');
