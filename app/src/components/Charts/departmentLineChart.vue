@@ -10,6 +10,7 @@
 
 <script>
 import {Doughnut} from 'vue-chartjs'
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
 name: "departmentLineChart",
   extends: Doughnut,
@@ -20,6 +21,10 @@ name: "departmentLineChart",
     this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
     this.chartDepartment(this.departmentWorkers)
   },
+  components: {
+    ChartJsPluginDataLabels,
+  },
+
   methods: {
     chartDepartment(departmentWorkers) {
       function dynamicColors() {
@@ -37,16 +42,11 @@ name: "departmentLineChart",
       }
       const data = {
         labels: departmentWorkers.map((c) => c.name),
-
         datasets: [
-          {
-            data: departmentWorkers.map((item, i, arr) => {
+          { data: departmentWorkers.map((item, i, arr) => {
               return arr[i].salary
             }),
-            text: "Test",
-            label: 'Aktualne wynagrodzenie',
             backgroundColor:  poolColors(departmentWorkers.length),
-            order: 1
           }
         ]
       };
@@ -55,6 +55,13 @@ name: "departmentLineChart",
         responsive: true,
         maintainAspectRatio: false,
         legend: {display: true},
+        plugins: {
+          datalabels: {
+            formatter: function(value) {
+              return value + " zł";
+            }
+          }
+        },
       };
       this.renderChart(data, options)
     }
