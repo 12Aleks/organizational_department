@@ -1,16 +1,6 @@
 <template>
   <div class="row">
     <div class="col s12 m12 l12">
-      <div class="button_wrapper">
-        <a class="waves-effect waves-light btn-small orange lighten-2"
-        ><i
-            class="material-icons left ">person</i>Filtrować po nazwisku</a>
-        <a class="waves-effect waves-light btn-small orange lighten-2"
-        ><i
-            class="material-icons left">monetization_on</i>Filtrować po sumie</a>
-      </div>
-    </div>
-    <div class="col s12 m12 l12">
       <div class="wrapper">
         <canvas ref="canvas" style="height:100% !important;"></canvas>
       </div>
@@ -19,10 +9,10 @@
 </template>
 
 <script>
-import {Line} from 'vue-chartjs'
+import {Doughnut} from 'vue-chartjs'
 export default {
 name: "departmentLineChart",
-  extends: Line,
+  extends: Doughnut,
   data: () => ({
     departmentWorkers: []
   }),
@@ -32,31 +22,40 @@ name: "departmentLineChart",
   },
   methods: {
     chartDepartment(departmentWorkers) {
-      console.log(departmentWorkers)
+      function dynamicColors() {
+        let r = Math.floor(Math.random() * 255);
+        let g = Math.floor(Math.random() * 255);
+        let b = Math.floor(Math.random() * 255);
+        return "rgba(" + r + "," + g + "," + b + ", 0.6)";
+      }
+      function poolColors(a) {
+        let pool = [];
+        for( let i = 0; i < a; i++) {
+          pool.push(dynamicColors());
+        }
+        return pool;
+      }
       const data = {
         labels: departmentWorkers.map((c) => c.name),
+
         datasets: [
           {
             data: departmentWorkers.map((item, i, arr) => {
               return arr[i].salary
             }),
+            text: "Test",
             label: 'Aktualne wynagrodzenie',
-            backgroundColor: 'rgba(255, 104, 115, 0.8)',
+            backgroundColor:  poolColors(departmentWorkers.length),
             order: 1
-          },
-          {
-            data: departmentWorkers.map((item, i, arr) => {
-              return arr[i].salary_worker
-            }),
-            label: 'Propozycja pracownika',
-            backgroundColor: 'rgba(255, 183, 77, 0.8)',
-            hidden: true,
-            order: 3
-          },
+          }
         ]
       };
 
-      const options = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {display: true},
+      };
       this.renderChart(data, options)
     }
   }
@@ -66,8 +65,9 @@ name: "departmentLineChart",
 <style scoped lang="scss">
 .wrapper {
   padding-bottom: 30px;
-  height: -webkit-calc(100vh - 265px);
-  height: calc(100vh - 265px);
+  margin-top: 10px;
+  height: -webkit-calc(100vh - 210px);
+  height: calc(100vh - 210px);
   position: relative;
 }
 .button_wrapper {

@@ -6,8 +6,8 @@
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
               <li class="tab col s3"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
-              <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy</a></li>
-              <li class="tab col s3"><a href="#tabthird">Wykres liniowy</a></li>
+              <li class="tab col s3"><a href="#tabthird">Wykres kołowy aktualnych wynagrodzeń</a></li>
+              <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy (wszystkie parametry)</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
