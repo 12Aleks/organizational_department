@@ -7,10 +7,11 @@
           <div class="page-subtitle">
             <h4>Dodaj tabele Exele z danymi pracowników</h4>
           </div>
-          <span class="btn btn-file ">
-                      Dodaj plik<input type="file" @change="onChange">
-                      <i class="material-icons right">cloud_upload</i>
-                    </span>
+          <span class="btn btn-file">
+                      Dodaj plik
+            <input type="file" @change="onChange">
+            <i class="material-icons right">cloud_upload</i>
+          </span>
         </div>
         <xlsx-read :file="file">
           <template #default="{loading}">
@@ -148,7 +149,7 @@ button.btn.waves-effect.waves-light {
   margin-left: 15px;
   height: 42px;
   @media(min-width: 1199.98px) {
-    height: 44px;
+    height: 45px;
   }
 }
 
@@ -177,8 +178,8 @@ section {
 
 .table-wrapper {
   overflow: auto;
-  height: -webkit-calc(100vh - 368px);
-  height: calc(100vh - 368px);
+  height: -webkit-calc(100vh - 275px);
+  height: calc(100vh - 275px);
   border: 1px solid #90a4ae;
 }
 
@@ -196,6 +197,8 @@ button.btn.waves-effect.waves-light {
 
 .btn-file input[type=file] {
   position: absolute;
+  height: 48px;
+  width: 175px;
   top: 0;
   right: 0;
   text-align: right;
