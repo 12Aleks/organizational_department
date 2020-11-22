@@ -16,7 +16,6 @@
     watch: {
         error(fbError){
           this.$error(information[fbError.code] || 'Coś poszło nie tak' )
-          console.log(fbError)
         }
     }
   }

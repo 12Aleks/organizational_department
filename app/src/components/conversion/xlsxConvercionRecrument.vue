@@ -50,11 +50,9 @@ export default {
     },
     jsonData(collectionData) {
       this.collection = collectionData;
-      console.log(this.collection )
       // const col = Object.keys(this.collection).map(key => {
       //
       // })
-      console.log(col)
       this.loading = false;
     },
     async receiveData() {

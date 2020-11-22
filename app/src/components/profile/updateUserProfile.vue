@@ -79,11 +79,9 @@ export default {
   methods: {
     onFileChanged (event) {
       this.photoSrc = event.target.files[0]
-      console.log(this.photoSrc)
       if (this.photoSrc) {
         let fr = new FileReader();
         fr.addEventListener("load", function () {
-          console.log(fr.result)
           document.getElementById('preview').style.backgroundImage = "url(" + fr.result + ")";
         }, false);
         fr.readAsDataURL(this.photoSrc)
@@ -104,7 +102,6 @@ export default {
           photo: this.photoSrc
         };
 
-        console.log(updateData)
         this.photo =  await this.$store.dispatch('onFileChange', updateData );
         this.$message('Success')
       }catch(e){}

@@ -19,7 +19,7 @@
              <departmentBarChart/>
           </div>
           <div id="tabthird" class="col s12">
-            <departmentLineChart />
+            <departmentDoughnutChart />
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
 <script>
 import M from 'materialize-css'
 import departmentBarChart from "@/components/Charts/departmentBarChart";
-import departmentLineChart from "@/components/Charts/departmentLineChart";
+import departmentDoughnutChart from "@/components/Charts/departmentDoughnutChart";
 import detail from "@/components/department/Detail";
 import process from "@/components/department/Process"
 
@@ -42,7 +42,7 @@ export default {
     departmentInfo: []
   }),
   components: {
-    detail, process, departmentBarChart, departmentLineChart
+    detail, process, departmentBarChart, departmentDoughnutChart
   },
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);

@@ -12,7 +12,7 @@
 import {Doughnut} from 'vue-chartjs'
 import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
-name: "departmentLineChart",
+name: "departmentDoughnutChart",
   extends: Doughnut,
   data: () => ({
     departmentWorkers: []
@@ -24,7 +24,6 @@ name: "departmentLineChart",
   components: {
     ChartJsPluginDataLabels,
   },
-
   methods: {
     chartDepartment(departmentWorkers) {
       function dynamicColors() {

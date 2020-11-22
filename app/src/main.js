@@ -14,7 +14,6 @@ import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
 import sections from "./filters/sections";
 import department from "./filters/department";
-import lang from "./filters/lang";
 
 export const styleTable = new Vue();
 
@@ -26,13 +25,10 @@ Vue.component('Information', Information)
 Vue.use(Vuelidate)
 Vue.use(message)
 
-
 Vue.filter( 'dateFilter', dateFilter)
 Vue.filter( 'departmentsFilter', departments)
 Vue.filter( 'sectionsFilter', sections)
 Vue.filter( 'departmentFilter', department)
-Vue.filter( 'langFilter', lang)
-
 
 
 /*firebase*/

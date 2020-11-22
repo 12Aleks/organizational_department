@@ -33,7 +33,6 @@ export default {
   },
   methods: {
    chartDepartment(departmentWorkers) {
-      console.log(departmentWorkers)
       const data = {
         labels: departmentWorkers.map((c) => c.name),
         datasets: [
@@ -68,7 +67,6 @@ export default {
 
         ]
       };
-
       const options = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
       this.renderChart(data, options)
     }
