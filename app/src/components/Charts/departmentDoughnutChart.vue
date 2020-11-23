@@ -10,7 +10,7 @@
 
 <script>
 import {Doughnut} from 'vue-chartjs'
-import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
+// import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
 name: "departmentDoughnutChart",
   extends: Doughnut,
@@ -21,9 +21,9 @@ name: "departmentDoughnutChart",
     this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
     this.chartDepartment(this.departmentWorkers)
   },
-  components: {
-    ChartJsPluginDataLabels,
-  },
+  // components: {
+  //   ChartJsPluginDataLabels,
+  // },
   methods: {
     chartDepartment(departmentWorkers) {
       function dynamicColors() {
@@ -54,13 +54,13 @@ name: "departmentDoughnutChart",
         responsive: true,
         maintainAspectRatio: false,
         legend: {display: true},
-        plugins: {
-          datalabels: {
-            formatter: function(value) {
-              return value + " zł";
-            }
-          }
-        },
+        // plugins: {
+        //   datalabels: {
+        //     formatter: function(value) {
+        //       return value + " zł";
+        //     }
+        //   }
+        // },
       };
       this.renderChart(data, options)
     }

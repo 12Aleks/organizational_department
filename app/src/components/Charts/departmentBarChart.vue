@@ -3,10 +3,10 @@
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
         <a class="waves-effect waves-light btn-small orange lighten-2"
-           ><i
+           @click="departmentData('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
         <a class="waves-effect waves-light btn-small orange lighten-2"
-          ><i
+           @click="departmentData('salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
     </div>
@@ -32,7 +32,20 @@ export default {
     this.chartDepartment(this.departmentWorkers)
   },
   methods: {
-   chartDepartment(departmentWorkers) {
+    departmentData(data) {
+      if (data === 'surname') {
+        const newSurname = this.departmentWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        this.chartDepartment(newSurname);
+      } else if (data === 'salary') {
+        const newSalary = this.departmentWorkers.sort((d1, d2) => {
+          return (d1.salary - d2.salary)
+        });
+        this.chartDepartment(newSalary);
+      } else {
+        this.chartDepartment(this.departmentWorkers)
+      }
+    },
+    chartDepartment(departmentWorkers) {
       const data = {
         labels: departmentWorkers.map((c) => c.name),
         datasets: [
@@ -56,7 +69,7 @@ export default {
           },
           {
             data: departmentWorkers.map((item, i, arr) => {
-              return arr[i].salary_worker
+              return arr[i].final_salary
             }),
             label: 'Uzgodnione z pracownikiem',
             backgroundColor: 'rgba(38, 166, 154, 0.8)',
@@ -64,7 +77,6 @@ export default {
             fill: false,
             order: 3
           },
-
         ]
       };
       const options = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
@@ -81,6 +93,7 @@ export default {
   height: calc(100vh - 265px);
   position: relative;
 }
+
 .button_wrapper {
   display: flex;
   justify-content: center;

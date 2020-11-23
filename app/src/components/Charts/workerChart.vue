@@ -6,7 +6,7 @@
            @click="salaryWorkers('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
         <a class="waves-effect waves-light btn-small orange lighten-2"
-           @click="salaryWorkers('salary')"><i
+           @click="salaryWorkers('final_salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
     </div>
@@ -40,7 +40,7 @@ name: "workerChart",
       if (data === 'surname') {
         const newSurname = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.setup(newSurname);
-      } else if (data === 'salary') {
+      } else if (data === 'final_salary') {
         const newSalary = this.newWorkers.sort((d1, d2) => {
           return (d1.final_salary - d2.final_salary)
         });
