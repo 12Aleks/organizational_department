@@ -91,6 +91,11 @@ $red: rgba(255, 104, 115, 1);
         font-size: .85rem;
         padding: 7px;
       }
+      a{
+        display: block;
+        cursor: pointer;
+        color: $black;
+      }
     }
     th, td {
       border: 1px solid $lightTurquoise;

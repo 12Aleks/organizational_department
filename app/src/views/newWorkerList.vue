@@ -38,10 +38,13 @@
                 <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
                 <tr>
                   <td>{{ value.name }}</td>
-                  <td>{{
+                  <td>
+                    <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
+                          value.department}`">{{
                       value.sections === '(puste)' && value.department === '(puste)' ? value.process
                           : value.department
                     }}
+                    </router-link>
                   </td>
                   <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
                   <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
