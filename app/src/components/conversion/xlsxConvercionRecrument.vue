@@ -50,9 +50,9 @@ export default {
     },
     jsonData(collectionData) {
       this.collection = collectionData;
-      // const col = Object.keys(this.collection).map(key => {
-      //
-      // })
+
+      const col = this.collection.reduce((acc, n) => ((acc[n['Zespół']] = acc[n['Zespół']] || []).push(Object.keys(n)), acc), {})
+      console.log(col)
       this.loading = false;
     },
     async receiveData() {
@@ -65,28 +65,7 @@ export default {
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
         console.log(newArr)
-        // const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 && el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
-        // Object.keys(res).map((key) => {
-        //   list.push({
-        //     name: res[key]['__EMPTY_3'],
-        //     department: res[key]['__EMPTY_1'] === undefined || res[key]['__EMPTY_1'] === '(puste)' ? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'],
-        //     process: res[key]['__EMPTY_0'],
-        //     sections: res[key]['__EMPTY_2'] === undefined || res[key]['__EMPTY_2'] === ' ' ? '(puste)' : res[key]['__EMPTY_2'],
-        //     salary: res[key]['__EMPTY_4'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_4']),
-        //     per_hour: res[key]['__EMPTY_5'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_5']),
-        //     salary_worker: res[key]['__EMPTY_6'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_6']),
-        //     per_hour_worker: res[key]['__EMPTY_7'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_7']),
-        //     salary_department: res[key]['__EMPTY_8'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_8']),
-        //     per_hour_department: res[key]['__EMPTY_9'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_9']),
-        //     salary_HR: res[key]['__EMPTY_10'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_10']),
-        //     per_hour_HR: res[key]['__EMPTY_11'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_11']),
-        //     final_salary: res[key]['__EMPTY_12'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_12']),
-        //     final_per_hour: res[key]['__EMPTY_13'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_13'])
-        //   });
-        // });
-        // const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);
-        // await this.$store.dispatch('dataUsers', workers);
-        // this.$router.push(`/lists`)
+
       } catch (e) {
       }
     }
