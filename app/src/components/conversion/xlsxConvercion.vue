@@ -1,17 +1,44 @@
 <template>
   <div>
-    <section>
-      <information :infoForUser="infoForUser"/>
+    <section v-if="load" class="second">
+      <h6>Jak dodać plik XLSX do aplikacji?</h6>
+      <ol>
+        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie</li>
+        <li>Upewnij się, że plik nie przekracza rozmiaru 5MB</li>
+        <li>Przeciągnij i upuść przygotowany plik, lub kliknij pole i wybierz go aby przekonwertować go i dodać na serwer</li>
+        <li>Po dodaniu pliku wybierz w rozwijanej liście potrzebne zakładke</li>
+      </ol>
+    </section>
+    <section class="first">
       <div>
         <div v-if="load && !collection" class="importButton">
-          <div class="page-subtitle">
-            <h4>Dodaj tabele Exele z danymi pracowników</h4>
+          <div id="app">
+            <div v-if="!file">
+              <div :class="['dropZone', dragging ? 'dropZone-over' : '']" @dragenter="dragging = true"
+                   @dragleave="dragging = false">
+                <div class="dropZone-info" @drag="onChange">
+                  <span class="fa fa-cloud-upload dropZone-title"></span>
+                  <span class="dropZone-title">Przeciągnij i upuść dokument programu Microsoft Excel (XLSX), aby przekonwertować go i dodać na serwer</span><br>
+                  <span class="dropZone-title">lub kliknij pole i wybierz potrzebny plik.</span>
+                  <div class="dropZone-upload-limit-info">
+                    <div>obsługa rozszerzeń: xlsx</div>
+                    <div>maksymalny rozmiar pliku: 5 MB</div>
+                  </div>
+                </div>
+                <input type="file" @change="onChange">
+              </div>
+            </div>
+            <div v-else class="dropZone-uploaded">
+              <div class="dropZone-uploaded-info">
+                <span class="dropZone-title">Uploaded</span>
+                <span class="btn btn-file">Dodaj plik
+                   <input type="file" @change="onChange">
+                   <i class="material-icons right">cloud_upload</i>
+                </span>
+              </div>
+            </div>
           </div>
-          <span class="btn btn-file">
-                      Dodaj plik
-            <input type="file" @change="onChange">
-            <i class="material-icons right">cloud_upload</i>
-          </span>
+
         </div>
         <xlsx-read :file="file">
           <template #default="{loading}">
@@ -48,6 +75,7 @@
 
 <script>
 import {XlsxRead, XlsxSheets, XlsxTable, XlsxJson} from "vue-xlsx/dist/vue-xlsx.es.js"
+import Sections from "@/views/Sections";
 
 export default {
   name: "xlsxConvercion",
@@ -62,13 +90,19 @@ export default {
     }
   },
   components: {
+    Sections,
     XlsxRead, XlsxJson, XlsxTable, XlsxSheets
   },
   methods: {
     onChange(event) {
       this.load = false;
       this.loading = true;
-      this.file = event.target.files ? event.target.files[0] : null;
+      const file = event.target.files ? event.target.files[0] : null;
+      if(file.size > 5000000){
+        this.$message('Rozmiar pliku wjecej niz 5MB')
+      }else{
+        this.file = file
+      }
       this.infoForUser = 'Wybierz potrzebną zakładkę w oknie wyboru i kliknij przycisk "Dodaj potrzebną zakładkę tabeli"';
     },
     jsonData(collectionData) {
@@ -84,24 +118,24 @@ export default {
           await keys.push(`__EMPTY_${i}`)
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
-        const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 &&  el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
+        const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 && el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
         Object.keys(res).map((key) => {
-            list.push({
-                name: res[key]['__EMPTY_3'] ,
-                department: res[key]['__EMPTY_1']  === undefined || res[key]['__EMPTY_1'] === '(puste)'? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'] ,
-                process:  res[key]['__EMPTY_0'],
-                sections: res[key]['__EMPTY_2'] === undefined || res[key]['__EMPTY_2'] === ' '? '(puste)': res[key]['__EMPTY_2'],
-                salary: res[key]['__EMPTY_4'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_4']),
-                per_hour: res[key]['__EMPTY_5'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_5']),
-                salary_worker: res[key]['__EMPTY_6'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_6']),
-                per_hour_worker: res[key]['__EMPTY_7'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_7']),
-                salary_department: res[key]['__EMPTY_8']  === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_8']),
-                per_hour_department: res[key]['__EMPTY_9'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_9']),
-                salary_HR: res[key]['__EMPTY_10'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_10']),
-                per_hour_HR: res[key]['__EMPTY_11'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_11']),
-                final_salary: res[key]['__EMPTY_12'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_12']),
-                final_per_hour: res[key]['__EMPTY_13']  === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_13'])
-            });
+          list.push({
+            name: res[key]['__EMPTY_3'],
+            department: res[key]['__EMPTY_1'] === undefined || res[key]['__EMPTY_1'] === '(puste)' ? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'],
+            process: res[key]['__EMPTY_0'],
+            sections: res[key]['__EMPTY_2'] === undefined || res[key]['__EMPTY_2'] === ' ' ? '(puste)' : res[key]['__EMPTY_2'],
+            salary: res[key]['__EMPTY_4'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_4']),
+            per_hour: res[key]['__EMPTY_5'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_5']),
+            salary_worker: res[key]['__EMPTY_6'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_6']),
+            per_hour_worker: res[key]['__EMPTY_7'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_7']),
+            salary_department: res[key]['__EMPTY_8'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_8']),
+            per_hour_department: res[key]['__EMPTY_9'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_9']),
+            salary_HR: res[key]['__EMPTY_10'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_10']),
+            per_hour_HR: res[key]['__EMPTY_11'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_11']),
+            final_salary: res[key]['__EMPTY_12'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_12']),
+            final_per_hour: res[key]['__EMPTY_13'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_13'])
+          });
         });
         const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);
         await this.$store.dispatch('dataUsers', workers);
@@ -114,6 +148,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$turquoise:  #26a69a;
+$lightTurquoise: rgba(38, 166, 154, .4);
+$black: rgba(48, 69, 92, 1);
+$white: rgba(254, 255, 250, 1);
+$blue: rgba(120, 151, 163, 0.98);
+$light-blue:rgba(120, 151, 163, 0.5);
+$red: rgba(255, 104, 115, 1);
+
 .submit-wrapper {
   display: -ms-inline-flexbox;
   display: -webkit-inline-flex;
@@ -125,19 +167,20 @@ button.btn.waves-effect.waves-light {
   margin-top: 15px;
 }
 
+.page-subtitle h4 {
+  text-transform: uppercase;
+  color: $turquoise;
+  font-weight: 400;
+}
+
 .importButton {
-  h4{
-    @media(min-width: 1199.98px){
+  h4 {
+    @media(min-width: 1199.98px) {
       margin-bottom: 2rem;
     }
   }
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
   span.btn.btn-file {
-    @media(min-width: 1199.98px){
+    @media(min-width: 1199.98px) {
       font-size: 18px;
       height: 46px;
       line-height: 46px;
@@ -153,10 +196,88 @@ button.btn.waves-effect.waves-light {
   }
 }
 
-section {
+section.first, .dropZone {
   position: relative;
-  height: -webkit-calc(100vh - 342px);
-  height: calc(100vh - 342px);
+  height: -webkit-calc(100vh - 405px);
+  height: calc(100vh - 405px);
+}
+.dropZone {
+  border: 2px dashed $light-blue;
+  transition: 1s;
+  &:hover {
+    transition: 1s;
+    border: 2px dashed #2e94c4;
+    .dropZone-title {
+      color: #1975A0;
+    }
+  }
+  .dropZone-info {
+    color: #A8A8A8;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%);
+    text-align: center;
+  }
+  .dropZone-title {
+    color: #787878;
+  }
+  input {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  .dropZone-upload-limit-info {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}
+
+.dropZone-over {
+  background: #5C5C5C;
+  opacity: 0.8;
+}
+
+.dropZone-uploaded {
+  width: 80%;
+  height: 200px;
+  position: relative;
+  border: 2px dashed #eee;
+}
+
+.dropZone-uploaded-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #A8A8A8;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+  text-align: center;
+}
+
+.removeFile {
+  width: 200px;
+}
+
+section.second {
+  position: relative;
+  padding-top: 30px;
+  height: -webkit-calc(100vh - 720px);
+  height: calc(100vh - 720px);
+  ol{
+    li{
+      color: $black;
+    }
+  }
 }
 
 .input-field.select-wrapper {
