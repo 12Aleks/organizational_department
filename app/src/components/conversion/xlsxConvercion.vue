@@ -292,6 +292,7 @@ section.second {
 
   .browser-default {
     max-width: 400px;
+    width: 400px;
     border: 1px solid #26a69a;
     border-radius: 3px;
   }
