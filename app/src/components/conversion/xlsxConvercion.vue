@@ -271,8 +271,8 @@ section.first, .dropZone {
 section.second {
   position: relative;
   padding-top: 30px;
-  height: -webkit-calc(100vh - 720px);
-  height: calc(100vh - 720px);
+  height: -webkit-calc(100vh - 842px);
+  height: calc(100vh - 842px);
   ol{
     li{
       color: $black;
