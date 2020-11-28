@@ -2,6 +2,15 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
+        <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="sections.length > 1">
+          <option value="all">Wszystkie komórki</option>
+          <option v-for="(c, index) of sections"
+                  :key="index"
+                  :value="c"
+          >{{ c }}
+          </option>
+        </select>
+
         <a class="waves-effect waves-light btn-small orange lighten-2"
            @click="departmentData('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
@@ -25,11 +34,21 @@ export default {
   name: "departmentBarChart",
   extends: Bar,
   data: () => ({
-    departmentWorkers: []
+    departmentWorkers: [],
+    select: null,
+    current: 'all'
   }),
   async mounted() {
     this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
     this.chartDepartment(this.departmentWorkers)
+  },
+  computed: {
+    sections() {
+      return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}))
+    },
+    selected(){
+
+    }
   },
   methods: {
     departmentData(data) {
@@ -115,6 +134,7 @@ export default {
 .button_wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
 
   a {
     width: 280px;
@@ -122,6 +142,15 @@ export default {
     margin: 15px;
     text-align: left;
     font-size: 14px;
+  }
+  select{
+    height: 30px;
+    max-width: 350px;
+    text-transform: uppercase;
+    color: grey;
+    font-size: 14px;
+    padding: 4px;
+    margin: 15px;
   }
 }
 </style>
