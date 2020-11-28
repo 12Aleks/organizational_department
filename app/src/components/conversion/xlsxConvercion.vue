@@ -14,8 +14,7 @@
         <div v-if="load && !collection" class="importButton">
           <div id="app">
             <div v-if="!file">
-              <div :class="['dropZone', dragging ? 'dropZone-over' : '']" @dragenter="dragging = true"
-                   @dragleave="dragging = false">
+              <div class="dropZone ">
                 <div class="dropZone-info" @drag="onChange">
                   <span class="fa fa-cloud-upload dropZone-title"></span>
                   <span class="dropZone-title">Przeciągnij i upuść dokument programu Microsoft Excel (XLSX), aby przekonwertować go i dodać na serwer</span><br>
@@ -94,6 +93,7 @@ export default {
     XlsxRead, XlsxJson, XlsxTable, XlsxSheets
   },
   methods: {
+
     onChange(event) {
       this.load = false;
       this.loading = true;
@@ -119,12 +119,13 @@ export default {
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
         const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 && el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
+        console.log(res);
         Object.keys(res).map((key) => {
           list.push({
             name: res[key]['__EMPTY_3'],
-            department: res[key]['__EMPTY_1'] === undefined || res[key]['__EMPTY_1'] === '(puste)' ? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'],
+            department: res[key]['__EMPTY_1'] === undefined || res[key]['__EMPTY_1'] === '(puste)' || !res[key]['__EMPTY_1'].trim() ? res[key]['__EMPTY_0'] : res[key]['__EMPTY_1'],
             process: res[key]['__EMPTY_0'],
-            sections: res[key]['__EMPTY_2'] === undefined || res[key]['__EMPTY_2'] === ' ' ? '(puste)' : res[key]['__EMPTY_2'],
+            sections: res[key]['__EMPTY_2'] === '(puste)' || !res[key]['__EMPTY_2'].trim() ? '(puste)' : res[key]['__EMPTY_2'],
             salary: res[key]['__EMPTY_4'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_4']),
             per_hour: res[key]['__EMPTY_5'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_5']),
             salary_worker: res[key]['__EMPTY_6'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_6']),
@@ -240,10 +241,10 @@ section.first, .dropZone {
   }
 }
 
-.dropZone-over {
-  background: #5C5C5C;
-  opacity: 0.8;
-}
+//.dropZone-over {
+//  background: #5C5C5C;
+//  opacity: 0.8;
+//}
 
 .dropZone-uploaded {
   width: 80%;
@@ -271,8 +272,8 @@ section.first, .dropZone {
 section.second {
   position: relative;
   padding-top: 30px;
-  height: -webkit-calc(100vh - 842px);
-  height: calc(100vh - 842px);
+  height: -webkit-calc(100vh - 720px);
+  height: calc(100vh - 720px);
   ol{
     li{
       color: $black;

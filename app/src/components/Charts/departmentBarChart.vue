@@ -46,39 +46,57 @@ export default {
       }
     },
     chartDepartment(departmentWorkers) {
-      const data = {
-        labels: departmentWorkers.map((c) => c.name),
-        datasets: [
-          {
-            data: departmentWorkers.map((item, i, arr) => {
-              return arr[i].salary
-            }),
-            label: 'Aktualne wynagrodzenie',
-            backgroundColor: 'rgba(255, 104, 115, 0.8)',
-            order: 1
-          },
-          {
-            data: departmentWorkers.map((item, i, arr) => {
-              return arr[i].salary_worker
-            }),
-            label: 'Propozycja pracownika',
-            backgroundColor: 'rgba(255, 183, 77, 0.8)',
-            hidden: true,
-            fill: false,
-            order: 2
-          },
-          {
-            data: departmentWorkers.map((item, i, arr) => {
-              return arr[i].final_salary
-            }),
-            label: 'Uzgodnione z pracownikiem',
-            backgroundColor: 'rgba(38, 166, 154, 0.8)',
-            hidden: true,
-            fill: false,
-            order: 3
-          },
-        ]
-      };
+      let data;
+      let newWorkerInDepartment = departmentWorkers.filter((item, i, arr) => (arr[i].final_salary !== 0))
+      if (newWorkerInDepartment.length) {
+        data = {
+          labels: departmentWorkers.map((c) => c.name),
+          datasets: [
+            {
+              data: departmentWorkers.map((item, i, arr) => {
+                return arr[i].salary
+              }),
+              label: 'Aktualne wynagrodzenie',
+              backgroundColor: 'rgba(255, 104, 115, 0.8)',
+              order: 1
+            },
+            {
+              data: departmentWorkers.map((item, i, arr) => {
+                return arr[i].salary_worker
+              }),
+              label: 'Propozycja pracownika',
+              backgroundColor: 'rgba(255, 183, 77, 0.8)',
+              hidden: true,
+              fill: false,
+              order: 2
+            },
+            {
+              data: departmentWorkers.map((item, i, arr) => {
+                return arr[i].final_salary
+              }),
+              label: 'Uzgodnione z pracownikiem',
+              backgroundColor: 'rgba(38, 166, 154, 0.8)',
+              hidden: true,
+              fill: false,
+              order: 3
+            }
+          ]
+        };
+      } else {
+        data = {
+          labels: departmentWorkers.map((c) => c.name),
+          datasets: [
+            {
+              data: departmentWorkers.map((item, i, arr) => {
+                return arr[i].salary
+              }),
+              label: 'Aktualne wynagrodzenie',
+              backgroundColor: 'rgba(255, 104, 115, 0.8)',
+              order: 1
+            }]
+        }
+      }
+
       const options = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
       this.renderChart(data, options)
     }

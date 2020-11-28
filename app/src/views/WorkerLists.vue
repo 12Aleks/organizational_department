@@ -17,6 +17,9 @@
                   <th :class="{active: sortParam==='name' && selectWorker===''}"
                       @click="sortParam='name'; selectWorker = ''">Nawisko i Imię
                   </th>
+                  <th :class="{active: sortParam==='process' && selectWorker===''}"
+                      @click="sortParam='process'; selectWorker = ''">Process
+                  </th>
                   <th :class="{active: sortParam==='department' && selectWorker===''}"
                       @click="sortParam='department'; selectWorker = '' ">Zespół
                   </th>
@@ -35,6 +38,7 @@
                 <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
                 <tr>
                   <td>{{ value.name }}</td>
+                  <td>{{ value.process }}</td>
                   <td>
                     <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                           value.department}`">{{
@@ -80,6 +84,8 @@ export default {
     sortedList() {
       if (this.sortParam === 'name' && !this.selectWorker.length) {
         return this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+      } else if (this.sortParam === 'process' && !this.selectWorker.length) {
+        return this.workersInfo.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
       } else if (this.sortParam === 'department' && !this.selectWorker.length) {
         return this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
       } else if (this.sortParam === 'sections' && !this.selectWorker.length) {

@@ -16,7 +16,7 @@
                        <i class="material-icons right"
                           v-if="newWorkers.includes(name)"
                           ref="tool"
-                          v-tooltipe=" `Nowy pracownik - proces ${name}`"
+                          v-tooltipe="`Nowy pracownik - proces ${name}`"
                        >fiber_new</i>{{
                     name
                   }}</label>
@@ -39,7 +39,6 @@
 
 <script>
 import Sections from "@/views/Sections";
-import M from 'materialize-css'
 
 export default {
   name: "Departments",
