@@ -4,6 +4,7 @@
       <table class="highlight">
         <thead>
         <tr>
+          <th style="width: 50px" :class="{active: sortParam === 'number'}" @click="sortParam='number'">&#8470</th>
           <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
           <th :class="{active: sortParam==='process'}" @click="sortParam='process'">Process</th>
           <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">Komórka</th>
@@ -24,6 +25,7 @@
         <tbody id="table" v-for="(valueData, name, index) in process" :key="index">
         <tr><td colspan="7" class="center subtitle">{{ name }}</td></tr>
         <tr v-for="(v, i) in sortedList(valueData)" :key="i" :class="{newWorker: v.final_salary}">
+          <td style="width: 50px">{{ i }}</td>
           <td>{{ v.name }}</td>
           <td>{{ v.process }}</td>
           <td>{{ v.sections }}</td>
@@ -45,7 +47,8 @@ export default {
   props: ['process'],
   data: () => ({
     sortParam: '',
-    changeTable: false
+    changeTable: false,
+    n: 0
   }),
   created(){
       styleTable.$on('changeTable', () => {

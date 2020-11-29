@@ -10,7 +10,6 @@
           >{{ c }}
           </option>
         </select>
-
         <a class="waves-effect waves-light btn-small orange lighten-2"
            @click="departmentData('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
@@ -36,7 +35,8 @@ export default {
   data: () => ({
     departmentWorkers: [],
     select: null,
-    current: 'all'
+    current: 'all',
+    selectedElement: null,
   }),
   async mounted() {
     this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
@@ -45,9 +45,17 @@ export default {
   computed: {
     sections() {
       return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}))
-    },
-    selected(){
+    }
+  },
+  watch: {
+    current(selected) {
+      const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {})
+      let test = Object.keys(result).filter(key => key === selected).reduce((obj, key) => { obj[key] = result[key]; return obj;}, {});
 
+
+      console.log(test);
+
+      // this.chartDepartment(selectedArray)
     }
   },
   methods: {
@@ -143,7 +151,8 @@ export default {
     text-align: left;
     font-size: 14px;
   }
-  select{
+
+  select {
     height: 30px;
     max-width: 350px;
     text-transform: uppercase;
