@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
-        <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="sections.length > 1">
+        <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="process.length > 1  ">
           <option value="all">Wszystkie komórki</option>
-          <option v-for="(c, index) of sections"
+          <option v-for="(c, index) of process"
                   :key="index"
                   :value="c"
           >{{ c }}
@@ -43,28 +43,29 @@ export default {
     this.chartDepartment(this.departmentWorkers)
   },
   computed: {
-    sections() {
+    process() {
       return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}))
     }
   },
   watch: {
     current(selected) {
       const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {})
-      let test = Object.keys(result).filter(key => key === selected).reduce((obj, key) => { obj[key] = result[key]; return obj;}, {});
-
-
-      console.log(test);
-
-      // this.chartDepartment(selectedArray)
+      if(selected !== 'all'){
+        let selectedSection = Object.keys(result).filter(key => key === selected ).reduce((obj, key) => { obj[key] = result[key]; return obj;}, {});
+        this.selectedElement = selectedSection[selected];
+      }else{
+        this.selectedElement = this.departmentWorkers
+      }
+      this.chartDepartment(this.selectedElement)
     }
   },
   methods: {
     departmentData(data) {
       if (data === 'surname') {
-        const newSurname = this.departmentWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        const newSurname = this.selectedElement.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.chartDepartment(newSurname);
       } else if (data === 'salary') {
-        const newSalary = this.departmentWorkers.sort((d1, d2) => {
+        const newSalary = this.selectedElement.sort((d1, d2) => {
           return (d1.salary - d2.salary)
         });
         this.chartDepartment(newSalary);

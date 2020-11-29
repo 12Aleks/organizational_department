@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody id="table" v-for="(valueData, name, index) in process" :key="index">
-        <tr><td colspan="7" class="center subtitle">{{ name }}</td></tr>
+        <tr><td colspan="8" class="center subtitle">{{ name }}</td></tr>
         <tr v-for="(v, i) in sortedList(valueData)" :key="i" :class="{newWorker: v.final_salary}">
           <td style="width: 50px">{{ i }}</td>
           <td>{{ v.name }}</td>
