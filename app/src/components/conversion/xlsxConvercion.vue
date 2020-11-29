@@ -3,7 +3,7 @@
     <section v-if="load" class="second">
       <h6>Jak dodać plik XLSX do aplikacji?</h6>
       <ol>
-        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie</li>
+        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a href="./src/file/przyklad.xlsx" download>(przyklad potrzebnego pliku)</a></li>
         <li>Upewnij się, że plik nie przekracza rozmiaru 5MB</li>
         <li>Przeciągnij i upuść przygotowany plik, lub kliknij pole i wybierz go aby przekonwertować go i dodać na serwer</li>
         <li>Po dodaniu pliku wybierz w rozwijanej liście potrzebne zakładke</li>
@@ -199,8 +199,8 @@ button.btn.waves-effect.waves-light {
 
 section.first, .dropZone {
   position: relative;
-  height: -webkit-calc(100vh - 405px);
-  height: calc(100vh - 405px);
+  height: -webkit-calc(100vh - 398px);
+  height: calc(100vh - 398px);
 }
 .dropZone {
   border: 2px dashed $light-blue;
@@ -241,42 +241,22 @@ section.first, .dropZone {
   }
 }
 
-//.dropZone-over {
-//  background: #5C5C5C;
-//  opacity: 0.8;
-//}
-
-.dropZone-uploaded {
-  width: 80%;
-  height: 200px;
-  position: relative;
-  border: 2px dashed #eee;
-}
-
-.dropZone-uploaded-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #A8A8A8;
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  transform: translate(0, -50%);
-  text-align: center;
-}
-
-.removeFile {
-  width: 200px;
-}
-
 section.second {
   position: relative;
-  padding-top: 30px;
-  height: -webkit-calc(100vh - 720px);
-  height: calc(100vh - 720px);
+  background-color: rgba(224,224,224,0.5);
+  padding: 15px;
+  margin: 0 0 15px;
+  height: 100%;
+  h6{
+    margin-left: 27px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
   ol{
     li{
       color: $black;
+      margin-bottom: 3px;
+      font-size: 1.1rem;
     }
   }
 }

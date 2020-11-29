@@ -3,7 +3,7 @@
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
         <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="process.length > 1  ">
-          <option value="all">Wszystkie komórki</option>
+          <option value="all">Wszystkie processy</option>
           <option v-for="(c, index) of process"
                   :key="index"
                   :value="c"
@@ -61,11 +61,12 @@ export default {
   },
   methods: {
     departmentData(data) {
+      let originalState = this.selectedElement !== null? this.selectedElement: this.departmentWorkers
       if (data === 'surname') {
-        const newSurname = this.selectedElement.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        const newSurname =  originalState.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.chartDepartment(newSurname);
       } else if (data === 'salary') {
-        const newSalary = this.selectedElement.sort((d1, d2) => {
+        const newSalary = originalState.sort((d1, d2) => {
           return (d1.salary - d2.salary)
         });
         this.chartDepartment(newSalary);
