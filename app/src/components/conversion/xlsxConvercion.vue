@@ -6,7 +6,7 @@
         <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a href="./src/file/przyklad.xlsx" download>(przyklad potrzebnego pliku)</a></li>
         <li>Upewnij się, że plik nie przekracza rozmiaru 5MB</li>
         <li>Przeciągnij i upuść przygotowany plik, lub kliknij pole i wybierz go aby przekonwertować go i dodać na serwer</li>
-        <li>Po dodaniu pliku wybierz w rozwijanej liście potrzebne zakładke</li>
+        <li>Po dodaniu pliku wybierz z rozwijanej listy potrzebną zakładkę</li>
       </ol>
     </section>
     <section class="first">
