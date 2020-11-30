@@ -19,6 +19,9 @@
     import xlsxConvercionRecrument from "@/components/conversion/xlsxConvercionRecrument";
     export default {
         name: "Recruitment",
+        metaInfo:{
+            title: 'Podział zespolów'
+        },
         components: {
           xlsxConvercionRecrument
         }

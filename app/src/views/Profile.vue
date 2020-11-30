@@ -20,6 +20,9 @@ import updateUserProfile from "../components/profile/updateUserProfile";
 
 export default {
   name: "Profile",
+  metaInfo:{
+    title: 'Konto'
+  },
   data: () => ({
     name: '',
     loading: false,

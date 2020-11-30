@@ -17,6 +17,9 @@
 
     export default {
         name: "Home",
+        metaInfo:{
+            title: 'Import danych'
+        },
         components: {
             xlsxConvercion
         }

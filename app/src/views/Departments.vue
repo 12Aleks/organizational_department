@@ -42,6 +42,9 @@ import Sections from "@/views/Sections";
 
 export default {
   name: "Departments",
+  metaInfo:{
+    title: 'Zespoły'
+  },
   data: () => ({
     loader: true,
     proc: [],

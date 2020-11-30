@@ -70,6 +70,9 @@ import workerChart from "@/components/Charts/workerChart";
 
 export default {
   name: "newWorkerList",
+  metaInfo:{
+    title: 'Nowi pracownicy'
+  },
   data: () => ({
     sortParam: '',
     instance: null,

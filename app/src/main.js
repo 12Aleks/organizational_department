@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import Vuelidate from 'vuelidate'
+import VueMeta from 'vue-meta'
 import 'materialize-css/dist/js/materialize.min'
 import message from './message/message.info'
 import Loader from '@/components/Loader'
@@ -24,6 +25,7 @@ Vue.component('Information', Information)
 
 Vue.use(Vuelidate)
 Vue.use(message)
+Vue.use(VueMeta)
 
 Vue.filter( 'dateFilter', dateFilter)
 Vue.filter( 'departmentsFilter', departments)
