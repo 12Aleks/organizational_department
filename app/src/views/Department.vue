@@ -12,6 +12,7 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
+             <p>{{processName}}</p>
              <detail :departmentInfo='departmentInfo' :departmentName="departmentName"/>
              <process :process="process" />
           </div>
@@ -51,8 +52,13 @@ export default {
     this.loader = false
   },
   computed: {
+    processName(){
+      return this.$store.getters.processName
+    },
     process() {
-      return this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+      let proc =  this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+      console.log(proc);
+      return proc
     }
   },
   destroyed() {

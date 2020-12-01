@@ -39,9 +39,9 @@
                 <tr>
                   <td>{{ value.name }}</td>
                   <td>{{ value.process }}</td>
-                  <td>
-                    <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
-                          value.department}`">{{
+                  <td @click="processName(value.process)">
+                    <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase().split() :
+                          value.department.toLowerCase().split()}`">{{
                         value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                             value.department
                       }}
@@ -82,6 +82,11 @@ export default {
     this.defaultWorkersInfo = defaultWorkersInfo;
     this.workersInfo = defaultWorkersInfo;
     this.loader = false;
+  },
+  methods:{
+    processName(value){
+      this.$store.dispatch('processName', value)
+    }
   },
   computed: {
     sortedList() {
