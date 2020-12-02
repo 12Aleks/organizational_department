@@ -68,7 +68,7 @@ import {styleTable} from "@/main";
 
 export default {
   name: "detail",
-  props: ['departmentInfo', 'departmentName'],
+  props: ['departmentInfo', 'departmentName', 'process'],
   data: () => ({
     isHidden: true
   }),

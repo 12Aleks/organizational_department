@@ -12,9 +12,8 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-             <p>{{processName}}</p>
-             <detail :departmentInfo='departmentInfo' :departmentName="departmentName"/>
-             <process :process="process" />
+             <detail :process="process" :departmentInfo='departmentInfo' :departmentName="departmentName"/>
+             <process :process="process"  />
           </div>
           <div id="tabSecond" class="col s12">
              <departmentBarChart/>
@@ -52,13 +51,10 @@ export default {
     this.loader = false
   },
   computed: {
-    processName(){
-      return this.$store.getters.processName
-    },
     process() {
       let proc =  this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
-      console.log(proc);
       return proc
+      // return Object.keys(proc).filter(key => key === this.processName).reduce((obj, key) => { obj[key] = proc[key]; return obj;}, {});
     }
   },
   destroyed() {
