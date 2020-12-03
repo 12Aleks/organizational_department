@@ -31,22 +31,12 @@ const router =  new Router({
       name: 'Departments',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Departments.vue'),
-      children: [
-        {
-          path: '/:process',
-          name: 'Process',
-          meta: {layout: 'main', auth: true},
-          component: () => import('../views/Process.vue'),
-          children:  [
-            {
-              path: '/:id',
-              name: 'Department',
-              meta: {layout: 'main', auth: true},
-              component: () => import('../views/Department.vue'),
-            }
-          ]
-        }
-      ]
+    },
+    {
+      path: '/:process/:id',
+      name: 'Department',
+      meta: {layout: 'main', auth: true},
+      component: () => import('../views/Department.vue'),
     },
     {
       path: '/worker',

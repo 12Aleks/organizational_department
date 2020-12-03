@@ -39,7 +39,8 @@ export default {
     loader: true,
     departmentName: null,
     instance: null,
-    departmentInfo: []
+    departmentInfo: [],
+    selectProcess: null,
   }),
   components: {
     detail, process, departmentBarChart, departmentDoughnutChart
@@ -47,14 +48,15 @@ export default {
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.departmentName = this.$route.params.id.toUpperCase();
+    this.selectProcess = this.$route.params.process.toUpperCase();
+
     this.departmentInfo = await this.$store.dispatch('departmentName', this.departmentName)
     this.loader = false
   },
   computed: {
     process() {
       let proc =  this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
-      return proc
-      // return Object.keys(proc).filter(key => key === this.processName).reduce((obj, key) => { obj[key] = proc[key]; return obj;}, {});
+      return Object.keys(proc).filter(key => key === this.selectProcess).reduce((obj, key) => { obj[key] = proc[key]; return obj;}, {});
     }
   },
   destroyed() {
