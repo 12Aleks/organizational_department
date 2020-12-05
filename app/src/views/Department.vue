@@ -12,8 +12,8 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-             <detail :process="process" :departmentInfo='departmentInfo' :departmentName="departmentName"/>
-             <process :process="process"  />
+             <detail  :departmentInfo='departmentInfo' :departmentName="departmentName"/>
+             <process :process="departmentInfo"  />
           </div>
           <div id="tabSecond" class="col s12">
              <departmentBarChart/>
@@ -49,15 +49,14 @@ export default {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.departmentName = this.$route.params.id.toUpperCase();
     this.selectProcess = this.$route.params.process.toUpperCase();
-
-    this.departmentInfo = await this.$store.dispatch('departmentName', this.departmentName)
+    this.departmentInfo = await this.$store.dispatch('selectedProcessAndDepartment', {departmentName: this.departmentName, selectProcessName: this.selectProcess })
     this.loader = false
   },
   computed: {
-    process() {
-      let proc =  this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
-      return Object.keys(proc).filter(key => key === this.selectProcess).reduce((obj, key) => { obj[key] = proc[key]; return obj;}, {});
-    }
+    // process() {
+    //   let proc =  this.departmentInfo.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
+    //   return Object.keys(proc).filter(key => key === this.selectProcess).reduce((obj, key) => { obj[key] = proc[key]; return obj;}, {});
+    // }
   },
   destroyed() {
     if (this.instance && this.instance.destroy) {

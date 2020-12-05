@@ -22,9 +22,8 @@
           </th>
         </tr>
         </thead>
-        <tbody id="table" v-for="(valueData, name, index) in process" :key="index">
-        <tr><td colspan="8" class="center subtitle">{{ name }}</td></tr>
-        <tr v-for="(v, i) in sortedList(valueData)" :key="i" :class="{newWorker: v.final_salary}">
+        <tbody id="table" v-for="(v, i) in sortedList" :key="i" :class="{newWorker: v.final_salary}">
+        <tr>
           <td style="width: 50px">{{ i + 1 }}</td>
           <td>{{ v.name }}</td>
           <td>{{ v.process }}</td>
@@ -42,6 +41,7 @@
 
 <script>
 import {styleTable} from "@/main";
+
 export default {
   name: "Process",
   props: ['process'],
@@ -49,32 +49,30 @@ export default {
     sortParam: '',
     changeTable: false,
   }),
-  created(){
-      styleTable.$on('changeTable', () => {
-         return this.changeTable = !this.changeTable
-      })
+  created() {
+    styleTable.$on('changeTable', () => {
+      return this.changeTable = !this.changeTable
+    })
   },
   computed: {
     sortedList() {
-      return (valueData) => {
-        switch (this.sortParam) {
-          case 'name':
-            return valueData.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
-          case 'process':
-            return valueData.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
-          case 'sections':
-            return valueData.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
-          case 'salary':
-            return valueData.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
-          case 'salary_worker':
-            return valueData.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
-          case 'salary_department':
-            return valueData.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
-          case 'final_salary':
-            return valueData.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
-          default:
-            return valueData;
-        }
+      switch (this.sortParam) {
+        case 'name':
+          return this.process.values(valueData).sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        case 'process':
+          return this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+        case 'sections':
+          return this.process.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        case 'salary':
+          return this.process.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+        case 'salary_worker':
+          return this.process.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
+        case 'salary_department':
+          return this.process.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
+        case 'final_salary':
+          return this.process.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+        default:
+          return this.process;
       }
     }
   }
@@ -86,14 +84,17 @@ $red: rgba(255, 104, 115, .7);
 .subtitle {
   background-color: #4184491c;
 }
+
 .table-wrapper {
   height: -webkit-calc(100vh - 470px);
   height: calc(100vh - 470px);
-  .newWorker{
+
+  .newWorker {
     background-color: $red;
   }
 }
-.table-wrapper.table-height{
+
+.table-wrapper.table-height {
   height: -webkit-calc(100vh - 290px);
   height: calc(100vh - 290px);
 }
