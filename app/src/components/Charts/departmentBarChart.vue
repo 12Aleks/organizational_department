@@ -39,7 +39,10 @@ export default {
     selectedElement: null,
   }),
   async mounted() {
-    this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
+    this.departmentWorkers = await this.$store.dispatch('selectedProcessAndDepartment', {
+      departmentName: this.$route.params.id.toUpperCase(),
+      selectProcessName: this.$route.params.process.toUpperCase()
+    })
     this.chartDepartment(this.departmentWorkers)
   },
   computed: {
@@ -50,10 +53,13 @@ export default {
   watch: {
     current(selected) {
       const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {})
-      if(selected !== 'all'){
-        let selectedSection = Object.keys(result).filter(key => key === selected ).reduce((obj, key) => { obj[key] = result[key]; return obj;}, {});
+      if (selected !== 'all') {
+        let selectedSection = Object.keys(result).filter(key => key === selected).reduce((obj, key) => {
+          obj[key] = result[key];
+          return obj;
+        }, {});
         this.selectedElement = selectedSection[selected];
-      }else{
+      } else {
         this.selectedElement = this.departmentWorkers
       }
       this.chartDepartment(this.selectedElement)
@@ -61,9 +67,9 @@ export default {
   },
   methods: {
     departmentData(data) {
-      let originalState = this.selectedElement !== null? this.selectedElement: this.departmentWorkers
+      let originalState = this.selectedElement !== null ? this.selectedElement : this.departmentWorkers
       if (data === 'surname') {
-        const newSurname =  originalState.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        const newSurname = originalState.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.chartDepartment(newSurname);
       } else if (data === 'salary') {
         const newSalary = originalState.sort((d1, d2) => {
@@ -126,7 +132,18 @@ export default {
         }
       }
 
-      const options = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {display: true},
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      };
       this.renderChart(data, options)
     }
   }

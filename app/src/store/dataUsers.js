@@ -37,14 +37,6 @@ export default {
                 commit('setError', true);
                 throw e
             }
-        },
-        async processName({commit}, processName){
-            try{
-                await firebase.database().ref('/process').set(processName);
-            }catch (e) {
-                commit('setError', true);
-                throw e
-            }
         }
     }
 }

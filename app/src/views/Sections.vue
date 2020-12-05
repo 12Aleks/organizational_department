@@ -45,8 +45,6 @@ export default {
   },
   methods: {
     async departmentPath() {
-      await this.$store.dispatch('departmentName', this.value[0])
-      await this.$store.dispatch('processName', this.name)
       this.$router.push('/'+ this.name.toLowerCase() +'/' + this.value[0].toLowerCase())
     }
   },

@@ -90,7 +90,18 @@ name: "workerChart",
           }
         ]
       };
-      const options  = {responsive: true, maintainAspectRatio: false, legend: {display: true}};
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {display: true},
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      };
       this.renderChart(data, options)
     }
   }
