@@ -40,8 +40,8 @@
                   <td>{{ value.name }}</td>
                   <td>{{ value.process }}</td>
                   <td @click="processName(value.process)">
-                    <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase().split() :
-                          value.department.toLowerCase().split()}`">{{
+                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
+                          value.department.toLowerCase()}`">{{
                         value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                             value.department
                       }}

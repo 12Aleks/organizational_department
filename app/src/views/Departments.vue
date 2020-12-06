@@ -14,7 +14,7 @@
                 <label :for="`${name}-${index}`"
                        class="z-depth-1">
                        <i class="material-icons right"
-                          v-if="newWorkers.includes(name)"
+                          v-if=" worker.includes(name)"
                           ref="tool"
                           v-tooltipe="`Nowy pracownik - proces ${name}`"
                        >fiber_new</i>{{
@@ -24,7 +24,7 @@
                   <h5>Proces: {{ name }}</h5>
                   <ul class="collapsible" ref="accord">
                     <li v-for="(department, index) in $options.filters.departmentsFilter(value)" :key="index">
-                      <Sections :value="department" :name="name" :proc="proc"/>
+                      <Sections :value="department" :name="name" :proc="proc" :newWorkersInProcess="newWorkersInProcess"/>
                     </li>
                   </ul>
                 </article>
@@ -59,9 +59,12 @@ export default {
     Sections
   },
   computed: {
-    newWorkers() {
-      return Object.keys(this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}));
+    worker(){
+      return Object.keys(this.newWorkersInProcess)
     },
+    newWorkersInProcess() {
+      return this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n.department), acc), {})
+      },
     process() {
       return this.proc.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});
     }

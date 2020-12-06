@@ -21,6 +21,9 @@
                   <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i
                     Imię
                   </th>
+                  <th :class="{active: sortParam==='process' && selectWorker===''}"
+                      @click="sortParam='process'; selectWorker = ''">Process
+                  </th>
                   <th :class="{active: sortParam==='department'}" @click="sortParam='department'">
                     Zespół
                   </th>
@@ -38,8 +41,9 @@
                 <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
                 <tr>
                   <td>{{ value.name }}</td>
+                  <td>{{ value.process }}</td>стb
                   <td>
-                    <router-link :to="`/department/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
+                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                           value.department}`">{{
                       value.sections === '(puste)' && value.department === '(puste)' ? value.process
                           : value.department

@@ -19,15 +19,6 @@ export default {
                 throw e
             }
         },
-        async departmentName({commit, dispatch}, departmentName) {
-            try{
-                const data = (await firebase.database().ref('/users').once('value')).val();
-                return await Object.keys(data).map(key => ({...data[key]})).reduce((acc, n) => ((acc[n.department] = acc[n.department] || []).push(n), acc), {})[departmentName]
-            }catch (e) {
-                commit('setError', true);
-                throw e
-            }
-        },
         async selectedProcessAndDepartment({commit, dispatch}, payload) {
             try{
                 const data = (await firebase.database().ref('/users').once('value')).val();

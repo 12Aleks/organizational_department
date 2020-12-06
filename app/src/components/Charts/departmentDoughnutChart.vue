@@ -12,18 +12,18 @@
 import {Doughnut} from 'vue-chartjs'
 // import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
-name: "departmentDoughnutChart",
+  name: "departmentDoughnutChart",
   extends: Doughnut,
   data: () => ({
     departmentWorkers: []
   }),
   async mounted() {
-    this.departmentWorkers = await this.$store.dispatch('departmentName', this.$route.params.id.toUpperCase())
+    this.departmentWorkers = await this.$store.dispatch('selectedProcessAndDepartment', {
+      departmentName: this.$route.params.id.toUpperCase(),
+      selectProcessName: this.$route.params.process.toUpperCase()
+    })
     this.chartDepartment(this.departmentWorkers)
   },
-  // components: {
-  //   ChartJsPluginDataLabels,
-  // },
   methods: {
     chartDepartment(departmentWorkers) {
       function dynamicColors() {
@@ -32,20 +32,23 @@ name: "departmentDoughnutChart",
         let b = Math.floor(Math.random() * 255);
         return "rgba(" + r + "," + g + "," + b + ", 0.6)";
       }
+
       function poolColors(a) {
         let pool = [];
-        for( let i = 0; i < a; i++) {
+        for (let i = 0; i < a; i++) {
           pool.push(dynamicColors());
         }
         return pool;
       }
+
       const data = {
         labels: departmentWorkers.map((c) => c.name),
         datasets: [
-          { data: departmentWorkers.map((item, i, arr) => {
+          {
+            data: departmentWorkers.map((item, i, arr) => {
               return arr[i].salary
             }),
-            backgroundColor:  poolColors(departmentWorkers.length),
+            backgroundColor: poolColors(departmentWorkers.length),
           }
         ]
       };
@@ -76,16 +79,17 @@ name: "departmentDoughnutChart",
   height: calc(100vh - 210px);
   position: relative;
 }
+
 .button_wrapper {
   display: flex;
   justify-content: center;
 
-a {
-  width: 280px;
-  max-width: 280px;
-  margin: 15px;
-  text-align: left;
-  font-size: 14px;
-}
+  a {
+    width: 280px;
+    max-width: 280px;
+    margin: 15px;
+    text-align: left;
+    font-size: 14px;
+  }
 }
 </style>

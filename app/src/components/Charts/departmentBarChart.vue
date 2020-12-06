@@ -3,12 +3,13 @@
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
         <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="process.length > 1  ">
-          <option value="all">Wszystkie processy</option>
+          <option value="all">Wszystkie komorki</option>
           <option v-for="(c, index) of process"
                   :key="index"
                   :value="c"
+                  :class="{newWorkerClass:  (newWorkerInSections.length > 0? newWorkerInSections.includes(c) : false)}"
           >{{ c }}
-          </option>
+          </option>dsq
         </select>
         <a class="waves-effect waves-light btn-small orange lighten-2"
            @click="departmentData('surname')"><i
@@ -46,19 +47,23 @@ export default {
     this.chartDepartment(this.departmentWorkers)
   },
   computed: {
+    newWorkerInSections(){
+      return Object.keys(this.departmentWorkers.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
+    },
     process() {
-      return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {}))
+     return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
     }
   },
   watch: {
     current(selected) {
-      const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {})
-      if (selected !== 'all') {
-        let selectedSection = Object.keys(result).filter(key => key === selected).reduce((obj, key) => {
+      let renameSelected = selected === 'INNE'? '(puste)' : selected;
+      const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})
+      if (renameSelected !== 'all') {
+        let selectedSection = Object.keys(result).filter(key => key === renameSelected ).reduce((obj, key) => {
           obj[key] = result[key];
           return obj;
         }, {});
-        this.selectedElement = selectedSection[selected];
+        this.selectedElement = selectedSection[renameSelected];
       } else {
         this.selectedElement = this.departmentWorkers
       }
@@ -151,6 +156,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$red: rgba(255, 104, 115, 1);
+.newWorkerClass{
+  color: $red!important;
+}
 .wrapper {
   padding-bottom: 30px;
   height: -webkit-calc(100vh - 265px);
