@@ -18,6 +18,7 @@
               <table class="highlight">
                 <thead>
                 <tr>
+                  <th style="width: 50px" :class="{active: sortParam === 'number'}" @click="sortParam='number'">&#8470</th>
                   <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i
                     Imię
                   </th>
@@ -38,10 +39,11 @@
                   </th>
                 </tr>
                 </thead>
-                <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
+                <tbody id="table" v-for="(value, index) in sortedList" :key="index">
                 <tr>
+                  <td style="width: 50px">{{  index + 1  }}</td>
                   <td>{{ value.name }}</td>
-                  <td>{{ value.process }}</td>стb
+                  <td>{{ value.process }}</td>
                   <td>
                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                           value.department}`">{{

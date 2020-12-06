@@ -14,6 +14,7 @@
               <table class="highlight">
                 <thead>
                 <tr>
+                  <th style="width: 50px" :class="{active: sortParam === 'number'}" @click="sortParam='number'">&#8470</th>
                   <th :class="{active: sortParam==='name' && selectWorker===''}"
                       @click="sortParam='name'; selectWorker = ''">Nawisko i Imię
                   </th>
@@ -35,8 +36,9 @@
                   </th>
                 </tr>
                 </thead>
-                <tbody id="table" v-for="(value, name, index) in sortedList" :key="index">
+                <tbody id="table" v-for="(value, index) in sortedList" :key="index">
                 <tr>
+                  <td style="width: 50px">{{ index + 1 }}</td>
                   <td>{{ value.name }}</td>
                   <td>{{ value.process }}</td>
                   <td @click="processName(value.process)">
