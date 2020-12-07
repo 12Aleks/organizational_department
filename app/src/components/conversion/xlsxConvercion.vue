@@ -3,7 +3,7 @@
     <section v-if="load" class="second">
       <h6>Jak dodać plik XLSX do aplikacji?</h6>
       <ol>
-        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a href="./src/file/przyklad.xlsx" download>(przyklad potrzebnego pliku)</a></li>
+        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a :href="`${publicPath}file/przyklad.xlsx`"  download>(przyklad potrzebnego pliku)</a></li>
         <li>Upewnij się, że plik nie przekracza rozmiaru 5MB</li>
         <li>Przeciągnij i upuść przygotowany plik, lub kliknij pole i wybierz go aby przekonwertować go i dodać na serwer</li>
         <li>Po dodaniu pliku wybierz z rozwijanej listy potrzebną zakładkę</li>
@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       file: null,
+      publicPath: process.env.BASE_URL,
       collection: null,
       load: true,
       loading: false,
