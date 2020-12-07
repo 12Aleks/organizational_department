@@ -86,11 +86,15 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 470px);
-  height: calc(100vh - 470px);
+  height: -webkit-calc(100vh - 454px);
+  height: calc(100vh - 454px);
+  background-color: rgba(224,224,224,0.5);
 
   .newWorker {
     background-color: $red;
+  }
+  table{
+    background-color: #fff;
   }
 }
 
