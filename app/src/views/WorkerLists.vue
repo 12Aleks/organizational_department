@@ -14,7 +14,7 @@
               <table class="highlight">
                 <thead>
                 <tr>
-                  <th style="width: 50px" :class="{active: sortParam === 'number'}" @click="sortParam='number'">&#8470</th>
+                  <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
                   <th :class="{active: sortParam==='name' && selectWorker===''}"
                       @click="sortParam='name'; selectWorker = ''">Nawisko i Imię
                   </th>

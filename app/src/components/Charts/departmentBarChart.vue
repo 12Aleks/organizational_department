@@ -119,6 +119,15 @@ export default {
               hidden: true,
               fill: false,
               order: 3
+            },
+            {
+              data: departmentWorkers.map((item, i, arr) => {
+                return arr[i].salary_department
+              }),
+              label: 'Propozycja zespółu pracownika',
+              backgroundColor: 'rgba(41, 182, 246, 0.8)',
+              hidden: true,
+              order: 4
             }
           ]
         };

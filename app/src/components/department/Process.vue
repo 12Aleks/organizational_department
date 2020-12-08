@@ -4,7 +4,7 @@
       <table class="highlight">
         <thead>
         <tr>
-          <th style="width: 50px" :class="{active: sortParam === 'number'}" @click="sortParam='number'">&#8470</th>
+          <th style="width: 50px; background-color: #26a69a; color: #fff" >&#8470</th>
           <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i Imię</th>
           <th :class="{active: sortParam==='process'}" @click="sortParam='process'">Process</th>
           <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">Komórka</th>
@@ -58,7 +58,7 @@ export default {
     sortedList() {
       switch (this.sortParam) {
         case 'name':
-          return this.process.values(valueData).sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          return this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         case 'process':
           return this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
         case 'sections':
@@ -88,7 +88,6 @@ $red: rgba(255, 104, 115, .7);
 .table-wrapper {
   height: -webkit-calc(100vh - 443px);
   height: calc(100vh - 443px);
-  background-color: rgba(224,224,224,0.5);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     height: -webkit-calc(100vh - 411px);
     height: calc(100vh - 411px);
@@ -100,9 +99,6 @@ $red: rgba(255, 104, 115, .7);
 
   .newWorker {
     background-color: $red;
-  }
-  table{
-    background-color: #fff;
   }
 }
 

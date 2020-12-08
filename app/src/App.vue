@@ -46,7 +46,9 @@ $red: rgba(255, 104, 115, 1);
   height: calc(100vh - 266px);
   -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
   box-shadow: inset 0 0 4px 0 $light-blue;
+  background-color: rgba(224,224,224,0.5);
   table {
+    background-color: #fff;
     table-layout: fixed;
     position: relative;
     th.active{
