@@ -61,6 +61,11 @@
             email: '',
             password: ''
         }),
+      metaInfo() {
+        return {
+          title: this.$titleApp('Logowanie')
+        }
+      },
         validations: {
             email: {
                 required,

@@ -42,6 +42,11 @@ export default {
     departmentInfo: [],
     selectProcess: null,
   }),
+  metaInfo() {
+    return {
+      title: this.$titleApp('Zespoł')
+    }
+  },
   components: {
     detail, process, departmentBarChart, departmentDoughnutChart
   },

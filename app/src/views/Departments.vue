@@ -42,8 +42,10 @@ import Sections from "@/views/Sections";
 
 export default {
   name: "Departments",
-  metaInfo:{
-    title: 'Zespoły'
+  metaInfo() {
+    return {
+      title: this.$titleApp('Zespoły')
+    }
   },
   data: () => ({
     loader: true,

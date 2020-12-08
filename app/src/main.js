@@ -11,6 +11,8 @@ import Loader from '@/components/Loader'
 import Information from "./components/ather/Information";
 import Tooltipe from './directives/tooltip.directive'
 
+import titlePlugin from './utils/title.plugin'
+
 import dateFilter from "./filters/dateFilter";
 import departments from "./filters/departments";
 import sections from "./filters/sections";
@@ -24,6 +26,7 @@ Vue.directive('tooltipe', Tooltipe)
 Vue.component('Information', Information)
 
 Vue.use(Vuelidate)
+Vue.use(titlePlugin)
 Vue.use(message)
 Vue.use(VueMeta)
 

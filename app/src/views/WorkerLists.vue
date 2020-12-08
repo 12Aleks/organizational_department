@@ -67,8 +67,10 @@
 
 export default {
   name: "WorkerLists",
-  metaInfo:{
-    title: 'Lista pracowników'
+  metaInfo(){
+    return{
+      title: this.$titleApp('Lista pracowników')
+    }
   },
   data() {
     return {

@@ -20,8 +20,10 @@ import updateUserProfile from "../components/profile/updateUserProfile";
 
 export default {
   name: "Profile",
-  metaInfo:{
-    title: 'Konto'
+  metaInfo(){
+    return{
+      title: this.$titleApp('Konto')
+    }
   },
   data: () => ({
     name: '',
