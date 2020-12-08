@@ -144,7 +144,16 @@ $blue: rgb(81, 110, 133);
               height: 28px;
               width: 28px;
               i {
-                font-size: 1.6rem;
+                font-size: 1.4rem !important;
+                line-height: 28px;
+                padding-right: 0;
+              }
+            }
+            @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+              height: 28px;
+              width: 28px;
+              i {
+                font-size: 1.4rem !important;
                 line-height: 28px;
                 padding-right: 0;
               }
@@ -234,11 +243,8 @@ $blue: rgb(81, 110, 133);
 
 
   .info-wrapper {
-    max-width: 290px;
-    width: 100%;
     display: block;
-    margin: 15px 0 15px 25px;
-
+    margin: 15px 5px 15px 25px;
     li {
       list-style-type: circle;
       margin-bottom: 5px;

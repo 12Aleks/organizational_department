@@ -120,8 +120,8 @@ export default {
 
 <style scoped>
 .table-wrapper {
-  height: -webkit-calc(100vh - 290px);
-  height: calc(100vh - 290px);
+  height: -webkit-calc(100vh - 276px);
+  height: calc(100vh - 276px);
 }
 input[type='text']{
  margin-bottom: 15px;

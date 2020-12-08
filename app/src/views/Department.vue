@@ -63,8 +63,8 @@ export default {
 <style scoped lang="scss">
 
 .img_attachment {
-  height: calc(100vh - 122px);
-  height: -webkit-calc(100vh - 122px);
+  height: calc(100vh - 111px);
+  height: -webkit-calc(100vh - 111px);
   background: #ffffff;
 }
 

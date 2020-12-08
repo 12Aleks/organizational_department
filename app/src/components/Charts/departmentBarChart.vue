@@ -162,8 +162,8 @@ $red: rgba(255, 104, 115, 1);
 }
 .wrapper {
   padding-bottom: 30px;
-  height: -webkit-calc(100vh - 265px);
-  height: calc(100vh - 265px);
+  height: -webkit-calc(100vh - 250px);
+  height: calc(100vh - 250px);
   position: relative;
 }
 

@@ -42,8 +42,8 @@ $red: rgba(255, 104, 115, 1);
 }
 .table-wrapper {
   overflow: auto;
-  height: -webkit-calc(100vh - 290px);
-  height: calc(100vh - 290px);
+  height: -webkit-calc(100vh - 266px);
+  height: calc(100vh - 266px);
   -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
   box-shadow: inset 0 0 4px 0 $light-blue;
   table {

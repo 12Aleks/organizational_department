@@ -86,9 +86,17 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 454px);
-  height: calc(100vh - 454px);
+  height: -webkit-calc(100vh - 443px);
+  height: calc(100vh - 443px);
   background-color: rgba(224,224,224,0.5);
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    height: -webkit-calc(100vh - 411px);
+    height: calc(100vh - 411px);
+  }
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    height: -webkit-calc(100vh - 411px);
+    height: calc(100vh - 411px);
+  }
 
   .newWorker {
     background-color: $red;
@@ -99,7 +107,16 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper.table-height {
-  height: -webkit-calc(100vh - 290px);
-  height: calc(100vh - 290px);
+  height: -webkit-calc(100vh - 279px);
+  height: calc(100vh - 279px);
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    height: -webkit-calc(100vh - 259px);
+    height: calc(100vh - 259px);
+  }
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    height: -webkit-calc(100vh - 259px);
+    height: calc(100vh - 259px);
+  }
+
 }
 </style>
