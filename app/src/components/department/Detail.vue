@@ -10,7 +10,7 @@
                 <i class="material-icons left">people_outline</i>
                 ZESPÓŁ - {{ departmentName }}
               </h3>
-              <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable">
+              <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable" >
                 <i v-if="!isHidden" class="material-icons">expand_more</i>
                 <i v-else class="material-icons">expand_less</i>
               </a>

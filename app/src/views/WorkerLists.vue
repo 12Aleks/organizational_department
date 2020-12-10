@@ -16,22 +16,34 @@
                 <tr>
                   <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
                   <th :class="{active: sortParam==='name' && selectWorker===''}"
-                      @click="sortParam='name'; selectWorker = ''">Nawisko i Imię
+                      @click="sortParam='name'; selectWorker = ''"
+                      v-tooltipe="`Kliknij i sortuj według imienia i nazwiska`"
+                  >Nawisko i Imię
                   </th>
                   <th :class="{active: sortParam==='process' && selectWorker===''}"
-                      @click="sortParam='process'; selectWorker = ''">Process
+                      @click="sortParam='process'; selectWorker = ''"
+                      v-tooltipe="`Kliknij i sortuj według nazwy procesu`"
+                  >Process
                   </th>
                   <th :class="{active: sortParam==='department' && selectWorker===''}"
-                      @click="sortParam='department'; selectWorker = '' ">Zespół
+                      @click="sortParam='department'; selectWorker = '' "
+                      v-tooltipe="`Kliknij i sortuj według nazwy zespolu`"
+                  >Zespół
                   </th>
                   <th :class="{active: sortParam==='sections'&& selectWorker===''}"
-                      @click="sortParam='sections'; selectWorker = ''">Komórka
+                      @click="sortParam='sections'; selectWorker = ''"
+                      v-tooltipe="`Kliknij i sortuj według nazwy komórki`"
+                  >Komórka
                   </th>
                   <th :class="{active: sortParam==='salary'&& selectWorker === ''}"
-                      @click="sortParam='salary'; selectWorker = '' ">Aktualne wynagrodzenie <br/> ([CKP]/za godzinę)
+                      @click="sortParam='salary'; selectWorker = '' "
+                      v-tooltipe="`Kliknij i sortuj według sumy wynagrodzenia`"
+                  >Aktualne wynagrodzenie <br/> ([CKP]/za godzinę)
                   </th>
                   <th :class="{active: sortParam==='final_salary'&& selectWorker===''}"
-                      @click="sortParam='final_salary'; selectWorker = ''">Uzgodnione z Pracownikiem <br/>([CKP]/za
+                      @click="sortParam='final_salary'; selectWorker = ''"
+                      v-tooltipe="`Kliknij i sortuj według sumy uzgodnionej z pracownikiem`"
+                  >Uzgodnione z Pracownikiem <br/>([CKP]/za
                     godzinę)
                   </th>
                 </tr>
