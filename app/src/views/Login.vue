@@ -41,8 +41,8 @@
                     </div>
 
                     <p class="center">
-                        Nie masz konta?
-                        <router-link to="/registration">Załóż je teraz.</router-link>
+<!--                        Nie masz konta?-->
+<!--                        <router-link to="/registration">Załóż je teraz.</router-link>-->
                     </p>
                 </div>
             </form>
