@@ -15,7 +15,6 @@
                   <th>Binkiewicz Magdalena</th>
                   <th>Gasperowicz Jadwiga</th>
                   <th>Bigott Alicja</th>
-                  <th>Kalinowska Julia</th>
                   <th>Frejnagel Joachim</th>
                   <th>Valihun Dmytro / Rybicka Katarzyna</th>
                 </tr>
@@ -27,7 +26,6 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -38,7 +36,6 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -46,7 +43,6 @@
                   <td></td>
                   <td></td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -56,7 +52,6 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -64,7 +59,6 @@
                   <td></td>
                   <td></td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -74,7 +68,6 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -83,14 +76,12 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Produkty Surowe Profilowe pod Farbę</td>
                   <td></td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td class="red">X*</td>
@@ -101,14 +92,12 @@
                   <td class="red">X</td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Obróbka Plastyczna – CB60</td>
                   <td></td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td class="red">X*</td>
@@ -119,7 +108,6 @@
                   <td class="red">X</td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -128,14 +116,12 @@
                   <td class="red">X</td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Produkty Profilowe pod Chrom</td>
                   <td></td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td class="red">X*</td>
@@ -147,7 +133,6 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
@@ -156,33 +141,29 @@
                   <td></td>
                   <td class="red">X</td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Produkty Medyczne
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Zarządzanie Produktem –
                     Produkty Medyczne</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja - Obróbka Skrawaniem
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -195,14 +176,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X</td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Zarządzanie Produktem – Maszyny Budowlane – Krety – Serwis
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -215,13 +194,11 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X</td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Maszyny Budowlane - Techniki Światłowodowe</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -234,7 +211,6 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X</td>
                   <td class="red">X*</td>
                 </tr>
@@ -242,9 +218,8 @@
                   <td>Produkcja – Maszyny Budowlane – Wiertnica Grawitacyjna
                   </td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -252,9 +227,8 @@
                   <td>Zarządzanie Produktem – Maszyny Budowlane – Wiertnica Grawitacyjna
                   </td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -262,19 +236,17 @@
                   <td>Usługi - Wiertnica Grawitacyjna
                   </td>
                   <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Produkcja – Produkty Odlewane
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -282,10 +254,9 @@
                   <td>"Zarządzanie Produktem –
                     Produkty Odlewane"
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td class="red">X</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -294,9 +265,17 @@
                     Produkty Kompozytowe"
                   </td>
                   <td></td>
+                  <td class="red">X</td>
                   <td></td>
+                  <td></td>
+                  <td class="red">X*</td>
+                </tr>
+                <tr>
+                  <td>Zespół Techniczny
+                  </td>
                   <td></td>
                   <td class="red">X</td>
+                  <td></td>
                   <td></td>
                   <td class="red">X*</td>
                 </tr>
@@ -307,14 +286,30 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td class="red">X*</td>
+                </tr>
+                <tr>
+                  <td>Recepcja
+                  </td>
                   <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="red">X</td>
+                  <td class="red">X*</td>
+                </tr>
+                <tr>
+                  <td>Portiernia
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="red">X</td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Promocja – Graficy / Animatorzy
                   </td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -327,14 +322,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Ekonomia
                   </td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -346,14 +339,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X</td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Sprzedaż - Maszyny Budowlane
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -367,13 +358,11 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                   <td class="red">X*</td>
                 </tr>
                 <tr>
                   <td>Sprzedaż – Produkty Grzewcze – Eksport Wschód
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -388,12 +377,10 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td></td>
                 </tr>
                 <tr>
                   <td>Pomorska Fundacja Bracia Mniejsi
                   </td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td class="red">X</td>
@@ -404,7 +391,6 @@
                   <td>Prawnicy
                   </td>
                   <td class="red">X</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
