@@ -51,19 +51,6 @@ $red: rgba(255, 104, 115, 1);
     background-color: #fff;
     table-layout: fixed;
     position: relative;
-    th.active{
-      background-color: $white;
-      color: $turquoise;
-      -webkit-box-shadow: inset 0 0 4px 0 $light-blue;
-      box-shadow: inset 0 0 4px 0 $light-blue;
-    }
-    th.subtitle {
-      background-color: #8f8a8a;
-      td{
-        font-weight: 600;
-        color:$turquoise;
-      }
-    }
     th{
       background-color: $turquoise;
       text-transform: uppercase;
@@ -76,6 +63,10 @@ $red: rgba(255, 104, 115, 1);
       top: 0;
       -webkit-box-shadow:  0 1px 4px 0 $light-blue;
       box-shadow:  0 1px 4px 0 $light-blue;
+      span{
+        font-size: .6875rem;
+        font-style: italic;
+      }
       @media screen
       and (min-device-width: 1200px)
       and (max-device-width: 1600px)
@@ -84,6 +75,47 @@ $red: rgba(255, 104, 115, 1);
         padding: 7px;
       }
     }
+    th:not(:first-child){
+     font-size: .9rem;
+     &:after{
+      position: absolute;
+      bottom: 0.5em;
+      display: block;
+      opacity: 0.3;
+      right: 0.5em;
+      content: "\2193";
+      font-size: 1rem;
+    }
+    &:before{
+      right: 1em;
+      position: absolute;
+      bottom: 0.5em;
+      display: block;
+      opacity: 0.3;
+      content: "\2191";
+      font-size: 1rem;
+    }
+  }
+
+   th.active.toggle{
+     &:after{
+       opacity: .3;
+    }
+    &:before{
+      opacity: 1;
+    }
+   }
+    th.active{
+       &:after{
+         opacity: 1;
+      }
+      &:before{
+        opacity: .3;
+      }
+    }
+
+
+
     td{
       font-size: .95rem;
       @media screen

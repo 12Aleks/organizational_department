@@ -4,21 +4,20 @@
       <table class="highlight">
         <thead>
         <tr>
-          <th style="width: 50px; background-color: #26a69a; color: #fff" >&#8470</th>
-          <th :class="{active: sortParam === 'name'}" @click="sortParam='name'" v-tooltipe="`Kliknij i sortuj według imienia i nazwiska`">Nawisko i Imię</th>
-          <th :class="{active: sortParam==='process'}" @click="sortParam='process'" v-tooltipe="`Kliknij i sortuj według nazwy procesu`">Process</th>
-          <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'" v-tooltipe="`Kliknij i sortuj według nazwy komórki`">Komórka</th>
-          <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'" v-tooltipe="`Kliknij i sortuj według sumy wynagrodzenia`">Aktualne wynagrodzenie <br/> ([CKP]/za
-            godzinę)
+          <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
+          <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')">Nawisko i Imię</th>
+          <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )">Process</th>
+          <th :class="{active: sortParam==='sections',toggle: toggle}" @click="sort('sections')">Komórka</th>
+          <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne wynagrodzenie<br/><span>CKP / za godzinę</span>
           </th>
-          <th :class="{active: sortParam==='salary_worker'}" @click="sortParam='salary_worker'" v-tooltipe="`Kliknij i sortuj według sumy - propozycji pracownika`">Propozycja
-            pracownika<br/>([CKP]/za godzinę)
+          <th :class="{active: sortParam==='salary_worker', toggle: toggle}" @click="sort('salary_worker')">Propozycja
+            pracownika<br/><span>CKP / za godzinę</span>
           </th>
-          <th :class="{active: sortParam==='salary_department'}" @click="sortParam='salary_department'" v-tooltipe="`Kliknij i sortuj według sumy - propozycji zespolu pracownika`">Propozycja
-            zespolu pracownika<br/>([CKP]/za godzinę)
+          <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja
+            zespolu pracownika<br/><span>CKP / za godzinę</span>
           </th>
-          <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'" v-tooltipe="`Kliknij i sortuj według sumy uzgodnionej z pracownikiem`">Uzgodnione z Pracownikiem
-            <br/>([CKP]/za godzinę)
+          <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">Uzgodnione z Pracownikiem
+            <br/><span>CKP / za godzinę</span>
           </th>
         </tr>
         </thead>
@@ -47,6 +46,7 @@ export default {
   props: ['process'],
   data: () => ({
     sortParam: '',
+    toggle: false,
     changeTable: false,
   }),
   created() {
@@ -54,23 +54,36 @@ export default {
       return this.changeTable = !this.changeTable
     })
   },
+  methods: {
+    sort(value) {
+      this.sortParam = value;
+      this.toggle = !this.toggle
+    }
+  },
   computed: {
     sortedList() {
       switch (this.sortParam) {
         case 'name':
-          return this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          let name = this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          return this.toggle ? name : name.reverse()
         case 'process':
-          return this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+          let process = this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+          return this.toggle ? process : process.reverse()
         case 'sections':
-          return this.process.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          let sections = this.process.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          return this.toggle ? sections : sections.reverse()
         case 'salary':
-          return this.process.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+          let salary = this.process.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+          return this.toggle ? salary : salary.reverse()
         case 'salary_worker':
-          return this.process.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
+          let salary_worker = this.process.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
+          return this.toggle ? salary_worker : salary_worker.reverse()
         case 'salary_department':
-          return this.process.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
+          let salary_department = this.process.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
+          return this.toggle ? salary_department : salary_department.reverse()
         case 'final_salary':
-          return this.process.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+          let final_salary = this.process.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+          return this.toggle ? final_salary : final_salary.reverse()
         default:
           return this.process;
       }

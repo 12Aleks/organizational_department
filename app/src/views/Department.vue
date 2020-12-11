@@ -12,7 +12,7 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-             <detail  :departmentInfo='departmentInfo' :departmentName="departmentName"/>
+             <detail  :departmentInfo='departmentInfo' :departmentName="departmentName" :process="selectProcess"/>
              <process :process="departmentInfo"  />
           </div>
           <div id="tabSecond" class="col s12">
