@@ -15,36 +15,29 @@
                 <thead>
                 <tr>
                   <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
-                  <th :class="{active: sortParam==='name' && selectWorker===''}"
-                      @click="sortParam='name'; selectWorker = ''"
-                      v-tooltipe="`Kliknij i sortuj według imienia i nazwiska`"
+                  <th :class="{active: sortParam==='name' && selectWorker==='', toggle: toggle}"
+                      @click="sort('name'); selectWorker = ''"
                   >Nawisko i Imię
                   </th>
-                  <th :class="{active: sortParam==='process' && selectWorker===''}"
-                      @click="sortParam='process'; selectWorker = ''"
-                      v-tooltipe="`Kliknij i sortuj według nazwy procesu`"
+                  <th :class="{active: sortParam==='process' && selectWorker==='', toggle: toggle}"
+                      @click="sort('process'); selectWorker = ''"
                   >Process
                   </th>
-                  <th :class="{active: sortParam==='department' && selectWorker===''}"
-                      @click="sortParam='department'; selectWorker = '' "
-                      v-tooltipe="`Kliknij i sortuj według nazwy zespolu`"
+                  <th :class="{active: sortParam==='department' && selectWorker==='', toggle: toggle}"
+                      @click="sort('department'); selectWorker = '' "
                   >Zespół
                   </th>
-                  <th :class="{active: sortParam==='sections'&& selectWorker===''}"
-                      @click="sortParam='sections'; selectWorker = ''"
-                      v-tooltipe="`Kliknij i sortuj według nazwy komórki`"
+                  <th :class="{active: sortParam==='sections'&& selectWorker==='', toggle: toggle}"
+                      @click="sort('sections'); selectWorker = ''"
                   >Komórka
                   </th>
-                  <th :class="{active: sortParam==='salary'&& selectWorker === ''}"
-                      @click="sortParam='salary'; selectWorker = '' "
-                      v-tooltipe="`Kliknij i sortuj według sumy wynagrodzenia`"
-                  >Aktualne wynagrodzenie <br/> ([CKP]/za godzinę)
+                  <th :class="{active: sortParam==='salary'&& selectWorker === '', toggle: toggle}"
+                      @click="sort('salary'); selectWorker = '' "
+                  >Aktualne wynagrodzenie <br/><span>CKP / za godzinę</span>
                   </th>
-                  <th :class="{active: sortParam==='final_salary'&& selectWorker===''}"
-                      @click="sortParam='final_salary'; selectWorker = ''"
-                      v-tooltipe="`Kliknij i sortuj według sumy uzgodnionej z pracownikiem`"
-                  >Uzgodnione z Pracownikiem <br/>([CKP]/za
-                    godzinę)
+                  <th :class="{active: sortParam==='final_salary'&& selectWorker==='', toggle: toggle}"
+                      @click="sort('final_salary'); selectWorker = ''"
+                  >Uzgodnione z Pracownikiem <br/><span>CKP / za godzinę</span>
                   </th>
                 </tr>
                 </thead>
@@ -87,6 +80,7 @@ export default {
   data() {
     return {
       selectWorker: '',
+      toggle: false,
       sortParam: '',
       loader: true,
       workersInfo: [],
@@ -102,22 +96,32 @@ export default {
   methods:{
     processName(value){
       this.$store.dispatch('processName', value)
+    },
+    sort(value) {
+      this.sortParam = value;
+      this.toggle = !this.toggle
     }
   },
   computed: {
     sortedList() {
       if (this.sortParam === 'name' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        let name = this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        return this.toggle ? name : name.reverse()
       } else if (this.sortParam === 'process' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+        let process =  this.workersInfo.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+        return this.toggle ? process : process.reverse()
       } else if (this.sortParam === 'department' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+        let department = this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+        return this.toggle ? department  : department .reverse()
       } else if (this.sortParam === 'sections' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        let sections = this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        return this.toggle ? sections : sections.reverse()
       } else if (this.sortParam === 'salary' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+        let salary = this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+        return this.toggle ? salary : salary.reverse()
       } else if (this.sortParam === 'final_salary' && !this.selectWorker.length) {
-        return this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+        let final_salary = this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+        return this.toggle ? final_salary : final_salary.reverse()
       } else if (this.selectWorker.length) {
         let selectWorker = this.selectWorker.toUpperCase();
         return this.defaultWorkersInfo.filter(function (elem) {
