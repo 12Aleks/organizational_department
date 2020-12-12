@@ -9,7 +9,7 @@
                   :value="c"
                   :class="{newWorkerClass:  (newWorkerInSections.length > 0? newWorkerInSections.includes(c) : false)}"
           >{{ c }}
-          </option>dsq
+          </option>
         </select>
         <a class="waves-effect waves-light btn-small orange lighten-2"
            @click="departmentData('surname')"><i
@@ -33,6 +33,7 @@ import {Bar} from 'vue-chartjs'
 export default {
   name: "departmentBarChart",
   extends: Bar,
+  props: ['newWorkerInSections'],
   data: () => ({
     departmentWorkers: [],
     select: null,
@@ -47,9 +48,9 @@ export default {
     this.chartDepartment(this.departmentWorkers)
   },
   computed: {
-    newWorkerInSections(){
-      return Object.keys(this.departmentWorkers.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
-    },
+    // newWorkerInSections(){
+    //   return Object.keys(this.departmentWorkers.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
+    // },
     process() {
      return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
     }
@@ -165,10 +166,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$red: rgba(255, 104, 115, 1);
-.newWorkerClass{
-  color: $red!important;
-}
 .wrapper {
   padding-bottom: 30px;
   height: -webkit-calc(100vh - 250px);

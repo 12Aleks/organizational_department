@@ -12,11 +12,21 @@
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-             <detail  :departmentInfo='departmentInfo' :departmentName="departmentName" :process="selectProcess"/>
-             <process :process="departmentInfo"  />
+            <detail :departmentInfo='selectedElement' :departmentName="departmentName" :current="current"/>
+            <div class="section button_wrapper" v-if="process.length > 1">
+              <select class="browser-default z-depth-1" ref="select" v-model="current" >
+                <option value="all">Wszystkie komorki</option>
+                <option v-for="(c, index) of process"
+                        :key="index"
+                        :value="c"
+                        :class="{newWorkerClass:  (newWorkerInSections.length > 0? newWorkerInSections.includes(c) : false)}">
+                  {{ c }}</option>
+              </select>
+            </div>
+            <process :process="selectedElement" />
           </div>
           <div id="tabSecond" class="col s12">
-             <departmentBarChart />
+             <departmentBarChart :newWorkerInSections="newWorkerInSections" />
           </div>
           <div id="tabthird" class="col s12">
             <departmentDoughnutChart />
@@ -28,10 +38,11 @@
 </template>
 <script>
 import M from 'materialize-css'
+import detail from "@/components/department/Detail";
+import process from "@/components/department/Process";
 import departmentBarChart from "@/components/Charts/departmentBarChart";
 import departmentDoughnutChart from "@/components/Charts/departmentDoughnutChart";
-import detail from "@/components/department/Detail";
-import process from "@/components/department/Process"
+
 
 export default {
   name: "Department",
@@ -39,8 +50,11 @@ export default {
     loader: true,
     departmentName: null,
     instance: null,
+    select: null,
+    current: 'all',
     departmentInfo: [],
     selectProcess: null,
+    selectedElement: null
   }),
   metaInfo() {
     return {
@@ -55,7 +69,31 @@ export default {
     this.departmentName = this.$route.params.id.toUpperCase();
     this.selectProcess = this.$route.params.process.toUpperCase();
     this.departmentInfo = await this.$store.dispatch('selectedProcessAndDepartment', {departmentName: this.departmentName, selectProcessName: this.selectProcess })
+    this.selectedElement = this.departmentInfo;
     this.loader = false
+  },
+  watch: {
+    current(selected) {
+      let renameSelected = selected === 'INNE'? '(puste)' : selected;
+      const result = Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})
+      if (renameSelected !== 'all') {
+        let selectedSection = Object.keys(result).filter(key => key === renameSelected ).reduce((obj, key) => {
+          obj[key] = result[key];
+          return obj;
+        }, {});
+        this.selectedElement = selectedSection[renameSelected];
+      } else {
+        this.selectedElement = this.departmentInfo
+      }
+    }
+  },
+  computed: {
+    newWorkerInSections(){
+      return Object.keys(this.departmentInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
+    },
+    process() {
+      return Object.keys(Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
+    }
   },
   destroyed() {
     if (this.instance && this.instance.destroy) {
@@ -66,11 +104,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+$turquoise: #26a69a;
 .img_attachment {
   height: calc(100vh - 111px);
   height: -webkit-calc(100vh - 111px);
   background: #ffffff;
+}
+.section{
+  height: 40px;
+  background-color: $turquoise;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  select {
+    height: 30px;
+    max-width: 350px;
+    text-transform: uppercase;
+    color: grey;
+    font-size: 14px;
+    padding: 4px;
+    margin-left: 15px;
+  }
 }
 
 </style>

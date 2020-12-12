@@ -99,8 +99,8 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 443px);
-  height: calc(100vh - 443px);
+  height: -webkit-calc(100vh - 504px);
+  height: calc(100vh - 504px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     height: -webkit-calc(100vh - 411px);
     height: calc(100vh - 411px);
@@ -116,8 +116,8 @@ $red: rgba(255, 104, 115, .7);
 }
 
 .table-wrapper.table-height {
-  height: -webkit-calc(100vh - 279px);
-  height: calc(100vh - 279px);
+  height: -webkit-calc(100vh - 340px);
+  height: calc(100vh - 340px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     height: -webkit-calc(100vh - 259px);
     height: calc(100vh - 259px);

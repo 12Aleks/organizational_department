@@ -136,4 +136,7 @@ $red: rgba(255, 104, 115, 1);
     }
   }
 }
+.newWorkerClass{
+  color: $red!important;
+}
 </style>

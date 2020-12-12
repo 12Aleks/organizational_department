@@ -1,5 +1,4 @@
 <template>
-
     <div class="department-wrapper">
       <table class="responsive-table">
         <thead>
@@ -8,7 +7,7 @@
             <div class="title-wrapper">
               <h3 class="flow-text valign-wrapper border">
                 <i class="material-icons left">people_outline</i>
-                ZESPÓŁ - {{ departmentName }}
+                ZESPÓŁ - {{ departmentName }} <span v-if="current !== 'all'">/ KOMÓRKA - {{current}}</span>
               </h3>
               <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable" >
                 <i v-if="!isHidden" class="material-icons">expand_more</i>
@@ -20,14 +19,16 @@
         </thead>
         <tbody v-show="isHidden">
         <tr>
-          <td colspan="2"><h6 class="center border">Liczba osób w zespołe: {{ departmentInfo.length }}</h6></td>
-          <td colspan="2"><h6 class="center border">Suma wynagrodzeń zespołu: {{all}} zł.</h6></td>
+          <td colspan="2"><h6 class="center border">Liczba osób w <span v-if="current === 'all'">zespołe</span><span v-else>komórce</span>: {{ departmentInfo.length }}</h6></td>
+          <td colspan="2"><h6 class="center border">Suma wynagrodzeń <span v-if="current === 'all'">zespołu</span><span v-else>komórki</span>: {{all}} zł.</h6></td>
         </tr>
         <tr>
           <td>
             <div>
-              <h6 class="valign-wrapper border"><i class="material-icons left">trending_up</i>Najwyższe wynagrodzenie w
-                zespołe:</h6>
+              <h6 class="valign-wrapper border">
+                <i class="material-icons left">trending_up</i>
+                <span v-if="current === 'all'"> Najwyższe wynagrodzenie w zespołe</span>
+                <span v-else> Najwyższe wynagrodzenie w komórce</span>:</h6>
               <ul class="info-wrapper">
                 <li>Wynagrodzenie całkowite (CKP): {{ max }} zł.</li>
                 <li>Za godzinę (CKP): {{ maxHour }} zł.</li>
@@ -36,9 +37,9 @@
           </td>
           <td colspan="2">
             <div>
-              <h6 class="valign-wrapper border"><i class="material-icons left">vertical_align_center</i>Przeciętne
-                wynagrodzenie w
-                zespołe:</h6>
+              <h6 class="valign-wrapper border"><i class="material-icons left">vertical_align_center</i>
+                <span v-if="current === 'all'">Przeciętne wynagrodzenie w zespołe</span>
+                <span v-else>Przeciętne wynagrodzenie w komórce</span>:</h6>
               <ul class="info-wrapper">
                 <li>Wynagrodzenie całkowite (CKP): {{ average }} zł.</li>
                 <li>Za godzinę (CKP): {{ averageHour }} zł.</li>
@@ -47,9 +48,9 @@
           </td>
           <td>
             <div>
-              <h6 class="valign-wrapper border"><i class="material-icons left">trending_down</i>Najniższe wynagrodzenie
-                w
-                zespole:</h6>
+              <h6 class="valign-wrapper border"><i class="material-icons left">trending_down</i>
+                <span v-if="current === 'all'">Najniższe wynagrodzenie w zespołe</span>
+                <span v-else>Najniższe wynagrodzenie w komórce</span>:</h6>
               <ul class="info-wrapper">
                 <li> Wynagrodzenie całkowite (CKP): {{ min }} zł.</li>
                 <li> Za godzinę (CKP): {{ minHour }} zł.</li>
@@ -68,7 +69,7 @@ import {styleTable} from "@/main";
 
 export default {
   name: "detail",
-  props: ['departmentInfo', 'departmentName', 'process'],
+  props: ['departmentInfo', 'departmentName', 'current'],
   data: () => ({
     isHidden: true
   }),
@@ -116,7 +117,7 @@ $blue: rgb(81, 110, 133);
   display: block;
 
   table {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     th, td {
       border: 1px solid $lightTurquoise;
@@ -168,7 +169,7 @@ $blue: rgb(81, 110, 133);
         td {
 
           div {
-            max-width: 350px;
+            max-width: 380px;
             display: block;
             margin: 0 auto;
           }
@@ -204,7 +205,7 @@ $blue: rgb(81, 110, 133);
         }
       }
 
-      h3.border {
+      h3.border, h3.border span {
         font-size: 1.2rem;
         font-weight: 600;
         justify-content: center;
@@ -215,10 +216,10 @@ $blue: rgb(81, 110, 133);
           font-size: 1.7rem;
         }
 
-        span {
-          text-transform: lowercase;
-          margin-left: 5px;
-        }
+        //span {
+        //  text-transform: lowercase;
+        //  margin-left: 5px;
+        //}
 
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           font-size: 1rem;
@@ -230,7 +231,7 @@ $blue: rgb(81, 110, 133);
       }
     }
 
-    h6.border {
+    h6.border, h6.border span {
       color: $turquoise;
       font-size: 1rem;
       @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
