@@ -19,37 +19,36 @@
                 <thead>
                 <tr>
                   <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
-                  <th :class="{active: sortParam === 'name'}" @click="sortParam='name'">Nawisko i
+                  <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">Nawisko i
                     Imię
                   </th>
-                  <th :class="{active: sortParam==='process' && selectWorker===''}"
-                      @click="sortParam='process'; selectWorker = ''">Process
+                  <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">Process
                   </th>
-                  <th :class="{active: sortParam==='department'}" @click="sortParam='department'">
+                  <th :class="{active: sortParam==='department', toggle: toggle}" @click="sort('department')">
                     Zespół
                   </th>
-                  <th :class="{active: sortParam==='sections'}" @click="sortParam='sections'">
+                  <th :class="{active: sortParam==='sections', toggle: toggle}" @click="sort('sections')">
                     Komórka
                   </th>
-                  <th :class="{active: sortParam==='salary'}" @click="sortParam='salary'">Aktualne
-                    wynagrodzenie <br >([CKP]/za godzinę)
+                  <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne
+                    wynagrodzenie <br><span>CKP / za godzinę</span>
                   </th>
-                  <th :class="{active: sortParam==='final_salary'}" @click="sortParam='final_salary'">
-                    Uzgodnione z Pracownikiem <br > ([CKP]/za godzinę)
+                  <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">
+                    Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
                   </th>
                 </tr>
                 </thead>
                 <tbody id="table" v-for="(value, index) in sortedList" :key="index">
                 <tr>
-                  <td style="width: 50px">{{  index + 1  }}</td>
+                  <td style="width: 50px">{{ index + 1 }}</td>
                   <td>{{ value.name }}</td>
                   <td>{{ value.process }}</td>
                   <td>
                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
                           value.department}`">{{
-                      value.sections === '(puste)' && value.department === '(puste)' ? value.process
-                          : value.department
-                    }}
+                        value.sections === '(puste)' && value.department === '(puste)' ? value.process
+                            : value.department
+                      }}
                     </router-link>
                   </td>
                   <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
@@ -61,7 +60,7 @@
             </div>
           </div>
           <div id="tabSecond" class="col s12">
-             <worker-chart/>
+            <worker-chart/>
           </div>
         </div>
       </div>
@@ -83,6 +82,7 @@ export default {
   },
   data: () => ({
     sortParam: '',
+    toggle: false,
     instance: null,
     loader: true,
     surnames: true,
@@ -93,8 +93,14 @@ export default {
     this.workersInfo = await this.$store.dispatch('receiveData');
     this.loader = false;
   },
-  components:{
+  components: {
     workerChart
+  },
+  methods: {
+    sort(value) {
+      this.sortParam = value;
+      this.toggle = !this.toggle
+    }
   },
   computed: {
     newWorkers() {
@@ -103,15 +109,23 @@ export default {
     sortedList() {
       switch (this.sortParam) {
         case 'name':
-          return this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          let name = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          return this.toggle ? name : name.reverse()
+        case 'process':
+          let process = this.newWorkers.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+          return this.toggle ? process : process.reverse()
         case 'department':
-          return this.newWorkers.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+          let department = this.newWorkers.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+          return this.toggle ? department : department.reverse()
         case 'sections':
-          return this.newWorkers.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          let sections = this.newWorkers.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          return this.toggle ? sections : sections.reverse()
         case 'salary':
-          return this.newWorkers.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+          let salary = this.newWorkers.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
+          return this.toggle ? salary : salary.reverse()
         case 'final_salary':
-          return this.newWorkers.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+          let final_salary = this.newWorkers.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
+          return this.toggle ? final_salary : final_salary.reverse()
         default:
           return this.newWorkers;
       }
