@@ -5,15 +5,15 @@
         <div class="row img_attachment">
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
-              <li class="tab col s3"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
-              <li class="tab col s3"><a href="#tabthird">Wykres kołowy aktualnych wynagrodzeń</a></li>
-              <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy (wszystkie parametry)</a></li>
+              <li class="tab col s4"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
+              <li class="tab col s4"><a href="#tabthird">Wykres kołowy aktualnych wynagrodzeń</a></li>
+              <li class="tab col s4"><a href="#tabSecond">Wykres słupkowy (wszystkie parametry)</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
-          <div v-show="!loader" id="tabFirst" class="col s12">
+          <div v-show="!loader" id="tabFirst" class="col s12" :class="{quantitySections: !quantity }">
             <detail :departmentInfo='selectedElement' :departmentName="departmentName" :current="current"/>
-            <div class="section button_wrapper" v-if="process.length > 1">
+            <div class="section button_wrapper" v-if="quantity">
               <select class="browser-default z-depth-1" ref="select" v-model="current" >
                 <option value="all">Wszystkie komorki</option>
                 <option v-for="(c, index) of process"
@@ -88,6 +88,9 @@ export default {
     }
   },
   computed: {
+    quantity(){
+      return this.process.length > 1? true : 0
+    },
     newWorkerInSections(){
       return Object.keys(this.departmentInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
     },
@@ -117,7 +120,7 @@ $turquoise: #26a69a;
   margin-bottom: 10px;
   select {
     height: 30px;
-    max-width: 350px;
+    max-width: 400px;
     text-transform: uppercase;
     color: grey;
     font-size: 14px;

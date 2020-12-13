@@ -1,6 +1,6 @@
 <template>
     <div>
-
+           <h1>Worker</h1>
     </div>
 </template>
 

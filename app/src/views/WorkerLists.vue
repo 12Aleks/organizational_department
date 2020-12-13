@@ -5,12 +5,11 @@
         <div class="page-title">
           <h3 class="flow-text">Lista pracowników</h3>
         </div>
-
         <div class="row img_attachment">
           <Loader v-if="loader"/>
           <div v-show="!loader" class="col s12 m12">
             <input type="text" v-model="selectWorker" placeholder="Wyszukiwanie po imieniu i nazwisku">
-            <div class="table-wrapper">
+            <div class="table-wrapper z-depth-1">
               <table class="highlight">
                 <thead>
                 <tr>
@@ -136,13 +135,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$red: rgba(255, 104, 115, 1);
 .table-wrapper {
   height: -webkit-calc(100vh - 276px);
   height: calc(100vh - 276px);
 }
 input[type='text']{
  margin-bottom: 15px;
+ border-bottom: 1px solid $red;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
   text-transform: uppercase;

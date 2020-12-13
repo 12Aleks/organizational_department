@@ -24,7 +24,9 @@
         <tbody id="table" v-for="(v, i) in sortedList" :key="i" :class="{newWorker: v.final_salary}">
         <tr>
           <td style="width: 50px">{{ i + 1 }}</td>
-          <td>{{ v.name }}</td>
+
+          <td><router-link :to="`/${v.process.toLowerCase()}/${v.sections === '(puste)' && v.department === '(puste)' ? v.process.toLowerCase() :
+          v.department.toLowerCase()}/${v.name.toLowerCase()}`">{{ v.name }}</router-link></td>
           <td>{{ v.process }}</td>
           <td>{{ v.sections }}</td>
           <td>{{ v.salary }}zł / {{ v.per_hour }}zł/god.</td>
@@ -97,35 +99,60 @@ $red: rgba(255, 104, 115, .7);
 .subtitle {
   background-color: #4184491c;
 }
+.newWorker {
+  background-color: $red;
+}
+.quantitySections{
+  .table-wrapper {
+    height: -webkit-calc(100vh - 438px);
+    height: calc(100vh - 438px);
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+      height: -webkit-calc(100vh - 404px);
+      height: calc(100vh - 404px);
+    }
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+      height: -webkit-calc(100vh - 404px);
+      height: calc(100vh - 404px);
+    }
+  }
+  .table-wrapper.table-height {
+    height: -webkit-calc(100vh - 274px);
+    height: calc(100vh - 274px);
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+      height: -webkit-calc(100vh - 252px);
+      height: calc(100vh - 252px);
+    }
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+      height: -webkit-calc(100vh - 252px);
+      height: calc(100vh - 252px);
+    }
+  }
+}
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 504px);
-  height: calc(100vh - 504px);
+  height: -webkit-calc(100vh - 488px);
+  height: calc(100vh - 488px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 411px);
-    height: calc(100vh - 411px);
+    height: -webkit-calc(100vh - 454px);
+    height: calc(100vh - 454px);
   }
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 411px);
-    height: calc(100vh - 411px);
-  }
-
-  .newWorker {
-    background-color: $red;
+    height: -webkit-calc(100vh - 454px);
+    height: calc(100vh - 454px);
   }
 }
 
 .table-wrapper.table-height {
-  height: -webkit-calc(100vh - 340px);
-  height: calc(100vh - 340px);
+  height: -webkit-calc(100vh - 324px);
+  height: calc(100vh - 324px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 259px);
-    height: calc(100vh - 259px);
+    height: -webkit-calc(100vh - 302px);
+    height: calc(100vh - 302px);
   }
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 259px);
-    height: calc(100vh - 259px);
+    height: -webkit-calc(100vh - 302px);
+    height: calc(100vh - 302px);
   }
-
 }
+
 </style>

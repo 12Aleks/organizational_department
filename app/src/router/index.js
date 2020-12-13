@@ -39,7 +39,7 @@ const router =  new Router({
       component: () => import('../views/Department.vue'),
     },
     {
-      path: '/worker',
+      path: '/:process/:id/:name',
       name: 'Worker',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Worker.vue')

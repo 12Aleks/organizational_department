@@ -17,7 +17,7 @@
             :to="link.url"
             :exact="link.exact"
         >
-          <a href="#" class="waves-effect pointer">{{link.title}}</a>
+          <a href="#" class="pointer">{{link.title}}</a>
         </router-link>
         <li>
           <a class="dropdown-trigger black-text profile-wrapper"
@@ -59,11 +59,11 @@ export default {
     time: new Date(),
     interval: null,
     links: [
-      {title: 'Import danych', url: '/', exact: true},
-      {title: 'Zespoły', url: '/departments'},
-      {title: 'Podział zespolów', url: '/recruitment'},
       {title: 'Lista pracowników', url: '/lists'},
       {title: 'Nowi pracownicy', url: '/new_workers'},
+      {title: 'Zespoły', url: '/departments'},
+      {title: 'Podział zespolów', url: '/recruitment'},
+      {title: 'Import danych', url: '/', exact: true}
     ]
   }),
   mounted() {
@@ -107,14 +107,17 @@ export default {
     display: none !important;
   }
   li{
-    a.waves-effect{
+    a{
       color: #525252;
     }
   }
   li.active{
-    a.waves-effect{
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+    a{
       color: #ffffff;
     }
+
   }
 }
 

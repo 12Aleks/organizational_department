@@ -8,13 +8,13 @@
         <div class="row img_attachment">
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
-              <li class="tab col s3"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
-              <li class="tab col s3"><a href="#tabSecond">Wykres słupkowy</a></li>
+              <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
+              <li class="tab col s6"><a href="#tabSecond">Wykres słupkowy</a></li>
             </ul>
           </div>
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12">
-            <div class="table-wrapper">
+            <div class="table-wrapper z-depth-1">
               <table class="highlight">
                 <thead>
                 <tr>
@@ -44,8 +44,8 @@
                   <td>{{ value.name }}</td>
                   <td>{{ value.process }}</td>
                   <td>
-                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process :
-                          value.department}`">{{
+                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
+                          value.department.toLowerCase()}`">{{
                         value.sections === '(puste)' && value.department === '(puste)' ? value.process
                             : value.department
                       }}

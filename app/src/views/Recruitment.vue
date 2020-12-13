@@ -7,7 +7,7 @@
         </div>
         <div class="row img_attachment">
           <div class="col s12 m12">
-            <div class="table-wrapper">
+            <div class="table-wrapper z-depth-1">
               <table class="responsive-table">
                 <thead>
                 <tr>
@@ -424,13 +424,18 @@ export default {
 
 <style scoped lang="scss">
 $white: rgba(254, 255, 250, 1);
-$red: rgba(255, 104, 115, 0.9);
+$red: rgba(255, 104, 115, 1);
 .table-wrapper{
   height: calc(100vh - 213px);
   height: -webkit-calc(100vh - 213px);
   table{
     background-color: $white;
     tr{
+      th {
+        &:after, &:before {
+          content: none;
+        }
+      }
       td.red{
         background-color: $red;
         color: $white;

@@ -141,8 +141,8 @@ $red: rgba(255, 104, 115, 1);
       background: white;
       font-weight: 300;
       line-height: 1.7;
-      max-height: -webkit-calc(100vh - 245px);
-      max-height: calc(100vh - 245px);
+      max-height: -webkit-calc(100vh - 216px);
+      max-height: calc(100vh - 216px);
       overflow: auto;
 
       p {
@@ -169,10 +169,12 @@ $red: rgba(255, 104, 115, 1);
   .tabordion {
     width: 100%;
     color: $black;
-
     section {
       h5 {
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: 1.2rem;
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
           font-size: 1.2rem;
         }
         margin-bottom: 1.2rem;
@@ -185,7 +187,17 @@ $red: rgba(255, 104, 115, 1);
         font-size: 0.9rem;
         width: 20%;
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          width: 24%;
           padding: 0.35em 2.5%;
+          font-size: .85rem;
+          i {
+            font-size: 1.2rem;
+          }
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+          width: 24%;
+          padding: 0.35em 2.5%;
+          font-size: .85rem;
           i {
             font-size: 1.2rem;
           }
@@ -197,6 +209,13 @@ $red: rgba(255, 104, 115, 1);
         width: 77.5%;
         left: 22.5%;
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          width: 74%;
+          left: 26%;
+          padding: 1rem 1.5rem;
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+          width: 74%;
+          left: 26%;
           padding: 1rem 1.5rem;
         }
       }
