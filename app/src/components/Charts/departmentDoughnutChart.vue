@@ -14,15 +14,11 @@ import {Doughnut} from 'vue-chartjs'
 export default {
   name: "departmentDoughnutChart",
   extends: Doughnut,
-  data: () => ({
-    departmentWorkers: []
-  }),
-  async mounted() {
-    this.departmentWorkers = await this.$store.dispatch('selectedProcessAndDepartment', {
-      departmentName: this.$route.params.id.toUpperCase(),
-      selectProcessName: this.$route.params.process.toUpperCase()
-    })
-    this.chartDepartment(this.departmentWorkers)
+  props: [ 'departmentInfo'],
+  watch: {
+    departmentInfo() {
+      this.chartDepartment(this.departmentInfo)
+    }
   },
   methods: {
     chartDepartment(departmentWorkers) {

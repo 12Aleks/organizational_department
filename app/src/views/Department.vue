@@ -26,10 +26,10 @@
             <process :process="selectedElement" />
           </div>
           <div id="tabSecond" class="col s12">
-             <departmentBarChart :newWorkerInSections="newWorkerInSections" />
+             <departmentBarChart :newWorkerInSections="newWorkerInSections" :departmentInfo="departmentInfo" />
           </div>
           <div id="tabthird" class="col s12">
-            <departmentDoughnutChart />
+            <departmentDoughnutChart :departmentInfo="departmentInfo"/>
           </div>
         </div>
       </div>

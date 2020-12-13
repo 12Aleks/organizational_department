@@ -33,32 +33,24 @@ import {Bar} from 'vue-chartjs'
 export default {
   name: "departmentBarChart",
   extends: Bar,
-  props: ['newWorkerInSections'],
+  props: ['newWorkerInSections', 'departmentInfo'],
   data: () => ({
-    departmentWorkers: [],
     select: null,
     current: 'all',
     selectedElement: null,
   }),
-  async mounted() {
-    this.departmentWorkers = await this.$store.dispatch('selectedProcessAndDepartment', {
-      departmentName: this.$route.params.id.toUpperCase(),
-      selectProcessName: this.$route.params.process.toUpperCase()
-    })
-    this.chartDepartment(this.departmentWorkers)
-  },
   computed: {
-    // newWorkerInSections(){
-    //   return Object.keys(this.departmentWorkers.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
-    // },
     process() {
-     return Object.keys(Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
+     return Object.keys(Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
     }
   },
   watch: {
+    departmentInfo() {
+      this.chartDepartment(this.departmentInfo)
+    },
     current(selected) {
       let renameSelected = selected === 'INNE'? '(puste)' : selected;
-      const result = Object.values(this.departmentWorkers).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})
+      const result = Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})
       if (renameSelected !== 'all') {
         let selectedSection = Object.keys(result).filter(key => key === renameSelected ).reduce((obj, key) => {
           obj[key] = result[key];
@@ -66,14 +58,14 @@ export default {
         }, {});
         this.selectedElement = selectedSection[renameSelected];
       } else {
-        this.selectedElement = this.departmentWorkers
+        this.selectedElement = this.departmentInfo
       }
       this.chartDepartment(this.selectedElement)
     }
   },
   methods: {
     departmentData(data) {
-      let originalState = this.selectedElement !== null ? this.selectedElement : this.departmentWorkers
+      let originalState = this.selectedElement !== null ? this.selectedElement : this.departmentInfo
       if (data === 'surname') {
         const newSurname = originalState.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.chartDepartment(newSurname);
@@ -83,7 +75,7 @@ export default {
         });
         this.chartDepartment(newSalary);
       } else {
-        this.chartDepartment(this.departmentWorkers)
+        this.chartDepartment(this.departmentInfo)
       }
     },
     chartDepartment(departmentWorkers) {
