@@ -52,9 +52,9 @@ export default {
     instance: null,
     select: null,
     current: 'all',
-    departmentInfo: [],
     selectProcess: null,
-    selectedElement: null
+    departmentInfo: [],
+    selectedElement: []
   }),
   metaInfo() {
     return {
@@ -68,8 +68,7 @@ export default {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.departmentName = this.$route.params.id.toUpperCase();
     this.selectProcess = this.$route.params.process.toUpperCase();
-    this.departmentInfo = await this.$store.dispatch('selectedProcessAndDepartment', {departmentName: this.departmentName, selectProcessName: this.selectProcess })
-    this.selectedElement = this.departmentInfo;
+    this.departmentInfo = this.selectedElement = await this.$store.dispatch('selectedProcessAndDepartment', {departmentName: this.departmentName, selectProcessName: this.selectProcess })
     this.loader = false
   },
   watch: {
