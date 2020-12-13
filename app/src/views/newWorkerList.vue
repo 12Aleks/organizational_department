@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="app-page">
       <div>
         <div class="page-title">
@@ -65,7 +64,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

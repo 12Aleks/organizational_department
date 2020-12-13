@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="grey darken-1 empty-layout">
       <form class="card auth-card" @submit.prevent="submitHandler">
         <div class="card-content">
@@ -80,7 +79,6 @@
       </form>
 
     </div>
-  </div>
 </template>
 
 <script>

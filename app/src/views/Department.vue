@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="app-page">
       <div>
         <div class="row img_attachment">
@@ -34,7 +33,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 <script>
 import M from 'materialize-css'

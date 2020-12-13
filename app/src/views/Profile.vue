@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="app-page">
       <div class="page-title">
         <h3 class="flow-text">Twoje konto</h3>
@@ -10,7 +9,6 @@
         <updateUserProfile :userInfo="userInfo" />
       </div>
     </div>
-  </div>
 </template>
 
 <script>
