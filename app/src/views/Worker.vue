@@ -7,15 +7,15 @@
             <div class="row img_attachment">
                 <Loader v-if="loader"/>
                 <div v-show="!loader" class="col s12 m12">
-                    <div class="profile-header"
-                         :class="{'newWorker_profile-header': worker.final_salary  || worker.salary_HR}">
+                    <div class="profile-header z-depth-1"
+                         :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR}">
                         <div class="profile-img">
                             <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
                         </div>
                         <div class="profile-nav-info">
                             <h3 class="user-name">{{worker.name}}</h3>
                             <div class="address">
-                                <p class="worker_process">{{worker.process}}, {{worker.department}}</p>
+                                <p class="worker_process">ZESPÓŁ: {{worker.department}}</p>
                             </div>
                         </div>
                     </div>
@@ -23,16 +23,24 @@
                     <table>
                       <thead>
                       <tr>
+                        <th>Process</th>
                         <th>Komórka</th>
                         <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
-                        <th>Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span></th>
+                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja pracownika<br/><span>CKP / za godzinę</span></th>
+                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu pracownika<br/><span>CKP / za godzinę</span></th>
+                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu personalnego<br/><span>CKP / za godzinę</span></th>
+                        <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span></th>
                       </tr>
                       </thead>
                       <tbody>
                       <tr>
-                        <td ></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{worker.process}}</td>
+                        <td>{{worker.sections}}</td>
+                        <td>{{worker.salary}}zł / {{worker.per_hour }}zł/god.</td>
+                        <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{ worker.per_hour_worker }}zł/god.</td>
+                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_department}}zł / {{ worker.per_hour_department }}zł/god.</td>
+                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_HR}}zł / {{ worker.per_hour_HR }}zł/god.</td>
+                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.final_salary}}zł / {{ worker.final_per_hour }}zł/god.</td>
                       </tr>
                       </tbody>
                     </table>
@@ -77,7 +85,7 @@
 
 <style scoped lang="scss">
     $turquoise: #26a69a;
-    $red: rgba(255, 104, 115, 1);
+    $backgroundDarkRed: #b71c1c;
 
     .profile-header {
         background-color: $turquoise;
@@ -91,6 +99,7 @@
         height: 170px;
         position: relative;
         box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 2px;
 
         .profile-img {
             float: left;
@@ -113,7 +122,7 @@
     }
 
     .newWorker_profile-header {
-        background-color: #b71c1c;
+        background-color:$backgroundDarkRed;
     }
 
     h3.user-name {
@@ -240,6 +249,15 @@
     //    font-size: 0.7rem;
     //  }
     //}
-
+    .table-wrapper{
+      margin-top: 2px;
+      height: 100%;
+     table th {
+       background-color: #26a69a;
+       &:before, &:after{
+        content: none;
+       }
+     }
+    }
 
 </style>

@@ -115,12 +115,11 @@ export default {
         const list = [];
         const keys = [];
         const result = (Object.values(this.collection).map(el => Object.keys(el).length)).reduce((result, number) => number % 2 === 0 && number > result ? number : result);
-        for (let i = 0; i < result; i++) {
+        for (let i = 0; i <= result; i++) {
           await keys.push(`__EMPTY_${i}`)
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
         const res = Object.values(newArr).filter(el => Object.keys(el).length > 8 && el['__EMPTY_0'] !== '(puste)' && typeof el['__EMPTY_3'] === 'string' && typeof el['__EMPTY_4'] === 'number');
-        console.log(res);
         Object.keys(res).map((key) => {
           list.push({
             name: res[key]['__EMPTY_3'],
@@ -136,7 +135,12 @@ export default {
             salary_HR: res[key]['__EMPTY_10'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_10']),
             per_hour_HR: res[key]['__EMPTY_11'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_11']),
             final_salary: res[key]['__EMPTY_12'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_12']),
-            final_per_hour: res[key]['__EMPTY_13'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_13'])
+            final_per_hour: res[key]['__EMPTY_13'] === undefined ? 'data not found' : Math.round(res[key]['__EMPTY_13']),
+            link: res[key]['__EMPTY_14'] === undefined || res[key]['__EMPTY_14'] === '(puste)' || !res[key]['__EMPTY_14'].trim() ? 'data not found': res[key]['__EMPTY_14'],
+            worker_project_opinion: res[key]['__EMPTY_15'] === undefined || res[key]['__EMPTY_15'] === '(puste)' || !res[key]['__EMPTY_15'].trim()? 'data not found': res[key]['__EMPTY_15'],
+            worker_dkz_opinion: res[key]['__EMPTY_16'] === undefined || res[key]['__EMPTY_16'] === '(puste)' || !res[key]['__EMPTY_16'].trim()? 'data not found': res[key]['__EMPTY_16'],
+            worker_hr_offer: res[key]['__EMPTY_17'] === undefined || res[key]['__EMPTY_17'] === '(puste)' || !res[key]['__EMPTY_17'].trim()? 'data not found': res[key]['__EMPTY_17'],
+            worker_comments:  res[key]['__EMPTY_18'] === undefined || res[key]['__EMPTY_18'] === '(puste)' || !res[key]['__EMPTY_18'].trim()? 'data not found': res[key]['__EMPTY_18']
           });
         });
         const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);

@@ -1,71 +1,81 @@
 <template>
-    <div class="app-page">
-      <div>
-        <div class="page-title">
-          <h3 class="flow-text">Nowi pracownicy</h3>
+  <div class="app-page">
+    <div>
+      <div class="page-title">
+        <h3 class="flow-text">Nowi pracownicy</h3>
+      </div>
+      <div class="row img_attachment">
+        <div class="col s12 m12">
+          <ul class="tabs" ref="tabs">
+            <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
+            <li class="tab col s6"><a href="#tabSecond">Wykres słupkowy</a></li>
+          </ul>
         </div>
-        <div class="row img_attachment">
-          <div class="col s12 m12">
-            <ul class="tabs" ref="tabs">
-              <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
-              <li class="tab col s6"><a href="#tabSecond">Wykres słupkowy</a></li>
-            </ul>
-          </div>
-          <Loader v-if="loader"/>
-          <div v-show="!loader" id="tabFirst" class="col s12">
-            <div class="table-wrapper z-depth-1">
-              <table class="highlight">
-                <thead>
-                <tr>
-                  <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
-                  <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">Nawisko i
-                    Imię
-                  </th>
-                  <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">Process
-                  </th>
-                  <th :class="{active: sortParam==='department', toggle: toggle}" @click="sort('department')">
-                    Zespół
-                  </th>
-                  <th :class="{active: sortParam==='sections', toggle: toggle}" @click="sort('sections')">
-                    Komórka
-                  </th>
-                  <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne
-                    wynagrodzenie <br><span>CKP / za godzinę</span>
-                  </th>
-                  <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">
-                    Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
-                  </th>
-                </tr>
-                </thead>
-                <tbody id="table" v-for="(value, index) in sortedList" :key="index">
-                <tr>
-                  <td style="width: 50px">{{ index + 1 }}</td>
-                  <td>
-                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
-          value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}</router-link></td>
-                  <td>{{ value.process }}</td>
-                  <td>
-                    <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
+        <Loader v-if="loader"/>
+        <div v-show="!loader" id="tabFirst" class="col s12">
+          <div class="table-wrapper z-depth-1">
+            <table class="highlight">
+              <thead>
+              <tr>
+                <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
+                <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">Nawisko i
+                  Imię
+                </th>
+                <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">Process
+                </th>
+                <th :class="{active: sortParam==='department', toggle: toggle}" @click="sort('department')">
+                  Zespół
+                </th>
+                <th :class="{active: sortParam==='sections', toggle: toggle}" @click="sort('sections')">
+                  Komórka
+                </th>
+                <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne
+                  wynagrodzenie <br><span>CKP / za godzinę</span>
+                </th>
+                <th :class="{active: sortParam==='salary_worker', toggle: toggle}" @click="sort('salary_worker')">Propozycja pracownika<br/><span>CKP / za godzinę</span></th>
+                <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja zespolu
+                  pracownika<br/><span>CKP / za godzinę</span>
+                </th>
+                <th :class="{active: sortParam==='salary_HR', toggle: toggle}" @click="sort('salary_HR')">Propozycja zespolu personalnego<br/><span>CKP / za godzinę</span></th>
+                <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">
+                  Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody id="table" v-for="(value, index) in sortedList" :key="index">
+              <tr>
+                <td style="width: 50px">{{ index + 1 }}</td>
+                <td>
+                  <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
+          value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}
+                  </router-link>
+                </td>
+                <td>{{ value.process }}</td>
+                <td>
+                  <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
                           value.department.toLowerCase()}`">{{
-                        value.sections === '(puste)' && value.department === '(puste)' ? value.process
-                            : value.department
-                      }}
-                    </router-link>
-                  </td>
-                  <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
-                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
-                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
+                      value.sections === '(puste)' && value.department === '(puste)' ? value.process
+                          : value.department
+                    }}
+                  </router-link>
+                </td>
+                <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
+                <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
+                <td>{{ value.salary_worker}}zł / {{ value.per_hour_worker }}zł/god.</td>
+                <td>{{ value.salary_department }}zł / {{ value.per_hour_department }}zł/god.</td>
+                <td>{{ value.salary_HR }}zł / {{ value.per_hour_HR }}zł/god.</td>
+                <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-          <div id="tabSecond" class="col s12">
-            <worker-chart/>
-          </div>
+        </div>
+        <div id="tabSecond" class="col s12">
+          <worker-chart/>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -123,6 +133,15 @@ export default {
         case 'salary':
           let salary = this.newWorkers.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
           return this.toggle ? salary : salary.reverse()
+        case 'salary_worker':
+          let salary_worker = this.newWorkers.sort((d1, d2) => d1.salary_worker > d2.salary_worker ? 1 : -1);
+          return this.toggle ? salary_worker : salary_worker.reverse()
+        case 'salary_department':
+          let salary_department = this.newWorkers.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
+          return this.toggle ? salary_department : salary_department.reverse()
+        case 'salary_HR':
+          let salary_HR = this.newWorkers.sort((d1, d2) => d1.salary_HR > d2.salary_HR ? 1 : -1);
+          return this.toggle ? salary_HR : salary_HR.reverse()
         case 'final_salary':
           let final_salary = this.newWorkers.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
           return this.toggle ? final_salary : final_salary.reverse()
