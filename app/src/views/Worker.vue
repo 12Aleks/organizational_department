@@ -57,7 +57,12 @@ export default {
 <style scoped lang="scss">
 $turquoise: #26a69a;
  .profile-header {
-   background: $turquoise;
+   background-color: $turquoise;
+   background-image: url("../assets/images/technical.png");
+   background-repeat: no-repeat;
+   background-size: 60%;
+   background-position-y: center;
+   background-position-x: right;
    width: 100%;
    display: flex;
    height: 170px;
