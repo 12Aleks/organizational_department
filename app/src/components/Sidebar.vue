@@ -19,10 +19,10 @@ export default {
   props: ['value'],
   data: () => ({
     links: [
-      {title: 'Lista pracowników', url: '/lists'},
       {title: 'Nowi pracownicy', url: '/new_workers'},
       {title: 'Zespoły', url: '/departments'},
-      {title: 'Podział zespolów', url: '/recruitment'},
+      {title: 'Zespoł Personalny', url: '/recruitment'},
+      {title: 'Lista pracowników', url: '/lists'},
       {title: 'Import danych', url: '/', exact: true}
     ]
   })

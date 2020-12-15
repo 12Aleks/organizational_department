@@ -7,7 +7,7 @@
       <div class="row img_attachment">
         <div class="col s12 m12">
           <ul class="tabs" ref="tabs">
-            <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowzch pracownikow</a></li>
+            <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowych pracowników</a></li>
             <li class="tab col s6"><a href="#tabSecond">Wykres słupkowy</a></li>
           </ul>
         </div>
@@ -18,10 +18,10 @@
               <thead>
               <tr>
                 <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
-                <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">Nawisko i
+                <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">Nazwisko i
                   Imię
                 </th>
-                <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">Process
+                <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">Proces
                 </th>
                 <th :class="{active: sortParam==='department', toggle: toggle}" @click="sort('department')">
                   Zespół
@@ -33,12 +33,12 @@
                   wynagrodzenie <br><span>CKP / za godzinę</span>
                 </th>
                 <th :class="{active: sortParam==='salary_worker', toggle: toggle}" @click="sort('salary_worker')">Propozycja pracownika<br/><span>CKP / za godzinę</span></th>
-                <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja zespolu
+                <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja zespołu
                   pracownika<br/><span>CKP / za godzinę</span>
                 </th>
-                <th :class="{active: sortParam==='salary_HR', toggle: toggle}" @click="sort('salary_HR')">Propozycja zespolu personalnego<br/><span>CKP / za godzinę</span></th>
+                <th :class="{active: sortParam==='salary_HR', toggle: toggle}" @click="sort('salary_HR')">Propozycja zespołu personalnego<br/><span>CKP / za godzinę</span></th>
                 <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">
-                  Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
+                  Uzgodnione z pracownikiem <br><span>CKP / za godzinę</span>
                 </th>
               </tr>
               </thead>
@@ -60,11 +60,11 @@
                   </router-link>
                 </td>
                 <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
-                <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
-                <td>{{ value.salary_worker}}zł / {{ value.per_hour_worker }}zł/god.</td>
-                <td>{{ value.salary_department }}zł / {{ value.per_hour_department }}zł/god.</td>
-                <td>{{ value.salary_HR }}zł / {{ value.per_hour_HR }}zł/god.</td>
-                <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
+                <td>{{ value.salary }}zł / {{ value.per_hour }}zł/h</td>
+                <td>{{ value.salary_worker}}zł / {{ value.per_hour_worker }}zł/h</td>
+                <td>{{ value.salary_department }}zł / {{ value.per_hour_department }}zł/h</td>
+                <td>{{ value.salary_HR }}zł / {{ value.per_hour_HR }}zł/h</td>
+                <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
               </tr>
               </tbody>
             </table>

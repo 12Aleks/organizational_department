@@ -23,14 +23,14 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Process</th>
+                                <th>Proces</th>
                                 <th>Komórka</th>
                                 <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
                                 <th v-if="worker.final_salary || worker.salary_HR">Propozycja pracownika<br/><span>CKP / za godzinę</span>
                                 </th>
-                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu
+                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespołu
                                     pracownika<br/><span>CKP / za godzinę</span></th>
-                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu
+                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespołu
                                     personalnego<br/><span>CKP / za godzinę</span></th>
                                 <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
                                 </th>
@@ -40,18 +40,18 @@
                             <tr>
                                 <td>{{worker.process}}</td>
                                 <td>{{worker.sections}}</td>
-                                <td>{{worker.salary}}zł / {{worker.per_hour }}zł/god.</td>
+                                <td>{{worker.salary}}zł / {{worker.per_hour }}zł/h</td>
                                 <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{
-                                    worker.per_hour_worker }}zł/god.
+                                    worker.per_hour_worker }}zł/h
                                 </td>
                                 <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_department}}zł / {{
-                                    worker.per_hour_department }}zł/god.
+                                    worker.per_hour_department }}zł/h
                                 </td>
                                 <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_HR}}zł / {{
-                                    worker.per_hour_HR }}zł/god.
+                                    worker.per_hour_HR }}zł/h
                                 </td>
                                 <td v-if="worker.final_salary || worker.salary_HR">{{worker.final_salary}}zł / {{
-                                    worker.final_per_hour }}zł/god.
+                                    worker.final_per_hour }}zł/h
                                 </td>
                             </tr>
                             </tbody>

@@ -2,7 +2,7 @@
     <div class="app-page">
       <div>
         <div class="page-title">
-          <h3 class="flow-text">Podział zespolów</h3>
+          <h3 class="flow-text">Zespoł Personalny - Podział zespolów</h3>
         </div>
         <div class="row img_attachment">
           <div class="col s12 m12">

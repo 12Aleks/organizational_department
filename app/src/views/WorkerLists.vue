@@ -7,7 +7,9 @@
         <div class="row img_attachment">
           <Loader v-if="loader"/>
           <div v-show="!loader" class="col s12 m12">
-            <input type="text" v-model="selectWorker" placeholder="Wyszukiwanie po imieniu i nazwisku">
+            <div class="search-wrapper">
+              <i class="material-icons">search</i><input id="search" type="text" v-model="selectWorker" placeholder="Wyszukiwanie po imieniu i nazwisku">
+            </div>
             <div class="table-wrapper z-depth-1">
               <table class="highlight">
                 <thead>
@@ -15,11 +17,11 @@
                   <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
                   <th :class="{active: sortParam==='name' && selectWorker==='', toggle: toggle}"
                       @click="sort('name'); selectWorker = ''"
-                  >Nawisko i Imię
+                  >Nazwisko i Imię
                   </th>
                   <th :class="{active: sortParam==='process' && selectWorker==='', toggle: toggle}"
                       @click="sort('process'); selectWorker = ''"
-                  >Process
+                  >Proces
                   </th>
                   <th :class="{active: sortParam==='department' && selectWorker==='', toggle: toggle}"
                       @click="sort('department'); selectWorker = '' "
@@ -32,10 +34,6 @@
                   <th :class="{active: sortParam==='salary'&& selectWorker === '', toggle: toggle}"
                       @click="sort('salary'); selectWorker = '' "
                   >Aktualne wynagrodzenie <br/><span>CKP / za godzinę</span>
-                  </th>
-                  <th :class="{active: sortParam==='final_salary'&& selectWorker==='', toggle: toggle}"
-                      @click="sort('final_salary'); selectWorker = ''"
-                  >Uzgodnione z Pracownikiem <br/><span>CKP / za godzinę</span>
                   </th>
                 </tr>
                 </thead>
@@ -53,8 +51,7 @@
                     </router-link>
                   </td>
                   <td>{{ value.sections !== '(puste)' ? value.sections : '(puste)' }}</td>
-                  <td>{{ value.salary }}zł / {{ value.per_hour }}zł/god.</td>
-                  <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/god.</td>
+                  <td>{{ value.salary }} zł / {{ value.per_hour }} zł/h</td>
                 </tr>
                 </tbody>
               </table>
@@ -116,9 +113,6 @@ export default {
       } else if (this.sortParam === 'salary' && !this.selectWorker.length) {
         let salary = this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
         return this.toggle ? salary : salary.reverse()
-      } else if (this.sortParam === 'final_salary' && !this.selectWorker.length) {
-        let final_salary = this.workersInfo.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
-        return this.toggle ? final_salary : final_salary.reverse()
       } else if (this.selectWorker.length) {
         let selectWorker = this.selectWorker.toUpperCase();
         return this.defaultWorkersInfo.filter(function (elem) {
@@ -135,30 +129,44 @@ export default {
 
 <style scoped lang="scss">
 $red: rgba(255, 104, 115, 1);
+.search-wrapper{
+  color: #777;
+  margin-top: -1px;
+  position: relative;
+  -webkit-transition: margin .25s ease;
+  transition: margin .25s ease;
+  input[type='text']{
+    margin-bottom: 15px;
+    border-bottom: 1px solid $red;
+  }
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    text-transform: uppercase;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    text-transform: uppercase;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    text-transform: uppercase;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    text-transform: uppercase;
+  }
+  ::placeholder { /* Recent browsers */
+    text-transform: uppercase;
+  }
+  i{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+  }
+}
 .table-wrapper {
   height: -webkit-calc(100vh - 276px);
   height: calc(100vh - 276px);
+  table {
+    table-layout: fixed;
+  }
 }
-input[type='text']{
- margin-bottom: 15px;
- border-bottom: 1px solid $red;
-}
-::-webkit-input-placeholder { /* WebKit browsers */
-  text-transform: uppercase;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  text-transform: uppercase;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  text-transform: uppercase;
-}
-:-ms-input-placeholder { /* Internet Explorer 10+ */
-  text-transform: uppercase;
-}
-::placeholder { /* Recent browsers */
-  text-transform: uppercase;
-}
-table {
-  table-layout: fixed;
-}
+
 </style>

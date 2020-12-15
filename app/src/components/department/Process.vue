@@ -5,8 +5,8 @@
         <thead>
         <tr>
           <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
-          <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')">Nawisko i Imię</th>
-          <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )">Process</th>
+          <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')">Nazwisko i Imię</th>
+          <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )">Proces</th>
           <th :class="{active: sortParam==='sections',toggle: toggle}" @click="sort('sections')">Komórka</th>
           <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne wynagrodzenie<br/><span>CKP / za godzinę</span>
           </th>
@@ -14,9 +14,9 @@
             pracownika<br/><span>CKP / za godzinę</span>
           </th>
           <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja
-            zespolu pracownika<br/><span>CKP / za godzinę</span>
+            zespołu pracownika<br/><span>CKP / za godzinę</span>
           </th>
-          <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">Uzgodnione z Pracownikiem
+          <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">Uzgodnione z pracownikiem
             <br/><span>CKP / za godzinę</span>
           </th>
         </tr>
@@ -29,10 +29,10 @@
           v.department.toLowerCase()}/${v.name.toLowerCase()}`">{{ v.name }}</router-link></td>
           <td>{{ v.process }}</td>
           <td>{{ v.sections }}</td>
-          <td>{{ v.salary }}zł / {{ v.per_hour }}zł/god.</td>
-          <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker }}zł/god.</td>
-          <td>{{ v.salary_department }}zł / {{ v.per_hour_department }}zł/god.</td>
-          <td>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/god.</td>
+          <td>{{ v.salary }}zł / {{ v.per_hour }}zł/h</td>
+          <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker }}zł/h</td>
+          <td>{{ v.salary_department }}zł / {{ v.per_hour_department }}zł/h</td>
+          <td>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/h</td>
         </tr>
         </tbody>
       </table>
