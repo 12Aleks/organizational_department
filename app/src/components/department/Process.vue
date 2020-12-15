@@ -16,6 +16,7 @@
           <th :class="{active: sortParam==='salary_department', toggle: toggle}" @click="sort('salary_department')">Propozycja
             zespołu pracownika<br/><span>CKP / za godzinę</span>
           </th>
+          <th :class="{active: sortParam==='salary_HR', toggle: toggle}" @click="sort('salary_HR')">Propozycja zespołu personalnego<br/><span>CKP / za godzinę</span></th>
           <th :class="{active: sortParam==='final_salary', toggle: toggle}" @click="sort('final_salary')">Uzgodnione z pracownikiem
             <br/><span>CKP / za godzinę</span>
           </th>
@@ -32,6 +33,7 @@
           <td>{{ v.salary }}zł / {{ v.per_hour }}zł/h</td>
           <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker }}zł/h</td>
           <td>{{ v.salary_department }}zł / {{ v.per_hour_department }}zł/h</td>
+          <td>{{ v.salary_HR }}zł / {{ v.per_hour_HR }}zł/h</td>
           <td>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/h</td>
         </tr>
         </tbody>
@@ -83,6 +85,9 @@ export default {
         case 'salary_department':
           let salary_department = this.process.sort((d1, d2) => d1.salary_department > d2.salary_department ? 1 : -1);
           return this.toggle ? salary_department : salary_department.reverse()
+        case 'salary_HR':
+          let salary_HR = this.process.sort((d1, d2) => d1.salary_HR > d2.salary_HR ? 1 : -1);
+          return this.toggle ? salary_HR : salary_HR.reverse()
         case 'final_salary':
           let final_salary = this.process.sort((d1, d2) => d1.final_salary > d2.final_salary ? 1 : -1);
           return this.toggle ? final_salary : final_salary.reverse()
@@ -95,12 +100,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$red: rgba(255, 104, 115, .7);
 .subtitle {
   background-color: #4184491c;
-}
-.newWorker {
-  background-color: $red;
 }
 .quantitySections{
   .table-wrapper {

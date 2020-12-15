@@ -37,7 +37,7 @@
                   </th>
                 </tr>
                 </thead>
-                <tbody id="table" v-for="(value, index) in sortedList" :key="index">
+                <tbody id="table" v-for="(value, index) in sortedList" :key="index" :class="{newWorker: value.final_salary}">
                 <tr>
                   <td style="width: 50px">{{ index + 1 }}</td>
                   <td>{{ value.name }}</td>
@@ -82,9 +82,7 @@ export default {
     }
   },
   async mounted() {
-    const defaultWorkersInfo = await this.$store.dispatch('receiveData');
-    this.defaultWorkersInfo = defaultWorkersInfo;
-    this.workersInfo = defaultWorkersInfo;
+    this.workersInfo = this.defaultWorkersInfo  = await this.$store.dispatch('receiveData');
     this.loader = false;
   },
   methods:{

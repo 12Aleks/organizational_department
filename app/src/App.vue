@@ -34,7 +34,7 @@ $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgba(120, 151, 163, 0.98);
 $light-blue: rgba(120, 151, 163, 0.5);
-$red: rgba(255, 104, 115, 1);
+$red: rgba(255, 104, 115, .7);
 .app-content {
   height: 100vh;
   .app-page {
@@ -133,6 +133,9 @@ $red: rgba(255, 104, 115, 1);
       background-color: $blue;
     }
   }
+}
+.newWorker {
+  background-color: $red;
 }
 .newWorkerClass{
   color: $red!important;
