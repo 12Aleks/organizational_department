@@ -19,33 +19,69 @@
                             </div>
                         </div>
                     </div>
-                  <div class="table-wrapper z-depth-1">
-                    <table>
-                      <thead>
-                      <tr>
-                        <th>Process</th>
-                        <th>Komórka</th>
-                        <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
-                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja pracownika<br/><span>CKP / za godzinę</span></th>
-                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu pracownika<br/><span>CKP / za godzinę</span></th>
-                        <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu personalnego<br/><span>CKP / za godzinę</span></th>
-                        <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span></th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td>{{worker.process}}</td>
-                        <td>{{worker.sections}}</td>
-                        <td>{{worker.salary}}zł / {{worker.per_hour }}zł/god.</td>
-                        <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{ worker.per_hour_worker }}zł/god.</td>
-                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_department}}zł / {{ worker.per_hour_department }}zł/god.</td>
-                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_HR}}zł / {{ worker.per_hour_HR }}zł/god.</td>
-                        <td v-if="worker.final_salary || worker.salary_HR">{{worker.final_salary}}zł / {{ worker.final_per_hour }}zł/god.</td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                    {{worker}}
+                    <div ref="firstTable" class="table-wrapper z-depth-1" >
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Komórka</th>
+                                <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
+                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja pracownika<br/><span>CKP / za godzinę</span>
+                                </th>
+                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu
+                                    pracownika<br/><span>CKP / za godzinę</span></th>
+                                <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespolu
+                                    personalnego<br/><span>CKP / za godzinę</span></th>
+                                <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{worker.process}}</td>
+                                <td>{{worker.sections}}</td>
+                                <td>{{worker.salary}}zł / {{worker.per_hour }}zł/god.</td>
+                                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{
+                                    worker.per_hour_worker }}zł/god.
+                                </td>
+                                <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_department}}zł / {{
+                                    worker.per_hour_department }}zł/god.
+                                </td>
+                                <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_HR}}zł / {{
+                                    worker.per_hour_HR }}zł/god.
+                                </td>
+                                <td v-if="worker.final_salary || worker.salary_HR">{{worker.final_salary}}zł / {{
+                                    worker.final_per_hour }}zł/god.
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div ref="secondTable" class="table-wrapper z-depth-1">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="5">Opinia o pracowniku i rezultaty jego działań</th>
+                            </tr>
+                            <tr>
+                                <th>Projekty/rezutaty działań Pracownika (konkretnie przykłady)</th>
+                                <th>DKZ w trakcie / do podjęcia Pracownika</th>
+                                <th>Uzasadnienie propozycji Zespołu Personalnego</th>
+                                <th>Komentarz do fotografi czasu pracy)</th>
+                                <th>Link do tabeli oceny</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{worker.worker_project_opinion}}</td>
+                                <td>{{worker.worker_dkz_opinion}}</td>
+                                <td>{{worker.worker_hr_offer}}</td>
+                                <td>{{worker.worker_comments}}</td>
+                                <td><a :href="`${worker.link}`">LINK</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,8 +98,13 @@
                 selectProcess: null,
                 workerName: null,
                 departmentInfo: [],
-                selectedElement: []
+                selectedElement: [],
+                isMounted: false,
+                theight: null
             }
+        },
+        created() {
+            window.addEventListener("resize", this.myEventHandler);
         },
         async mounted() {
             this.departmentName = this.$route.params.id.toUpperCase();
@@ -72,14 +113,22 @@
             this.departmentInfo = this.selectedElement = await this.$store.dispatch('selectedProcessAndDepartment', {
                 departmentName: this.departmentName,
                 selectProcessName: this.selectProcess
-            })
+            });
             this.loader = false
+        },
+        methods:{
+            // myEventHandler() {
+            //   this.theight  =  (this.$refs.secondTable.clientHeight - this.$refs.firstTable.clientHeight)
+            // }
         },
         computed: {
             worker() {
                 return this.departmentInfo.filter((item, i, arr) => arr[i].name === this.workerName)[0]
             }
-        }
+        },
+        destroyed() {
+            window.removeEventListener("resize", this.myEventHandler);
+        },
     }
 </script>
 
@@ -122,7 +171,7 @@
     }
 
     .newWorker_profile-header {
-        background-color:$backgroundDarkRed;
+        background-color: $backgroundDarkRed;
     }
 
     h3.user-name {
@@ -249,15 +298,24 @@
     //    font-size: 0.7rem;
     //  }
     //}
-    .table-wrapper{
-      margin-top: 2px;
-      height: 100%;
-     table th {
-       background-color: #26a69a;
-       &:before, &:after{
-        content: none;
-       }
-     }
+    .table-wrapper {
+        margin-top: 2px;
+        height: 100%;
+
+        table th {
+            background-color: #26a69a;
+            font-size: .8rem;
+
+            &:before, &:after {
+                content: none;
+            }
+        }
+    }
+
+    .table-wrapper:nth-last-child(1) {
+        margin-top: 10px;
+        height: -webkit-calc(100vh - 537px);
+        height: calc(100vh - 537px);
     }
 
 </style>

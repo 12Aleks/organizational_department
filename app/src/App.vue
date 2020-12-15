@@ -72,7 +72,7 @@ $red: rgba(255, 104, 115, 1);
       }
     }
     th:not(:first-child) {
-      font-size: .9rem;
+      font-size: .8rem;
       &:after {
         position: absolute;
         bottom: 0.5em;
