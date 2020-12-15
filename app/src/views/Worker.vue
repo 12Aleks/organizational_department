@@ -16,6 +16,7 @@
                             <h3 class="user-name">{{worker.name}}</h3>
                             <div class="address">
                                 <p class="worker_process">ZESPÓŁ: {{worker.department}}</p>
+                                <p class="worker_position" v-if="worker.position">STANOWISKO: {{worker.position}}</p>
                             </div>
                         </div>
                     </div>
@@ -178,13 +179,12 @@
         margin: 0;
         color: #fff;
     }
-
     .profile-nav-info {
         float: left;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 60px;
+        padding-top: 55px;
     }
 
     .profile-nav-info h3 {
@@ -193,7 +193,12 @@
         font-family: sans-serif;
         font-weight: bold;
     }
-
+    p.worker_process{
+      margin-bottom: 3px;
+    }
+    p.worker_position{
+      margin-top: 3px;
+    }
     .profile-nav-info .address {
         //display: flex;
         font-weight: bold;

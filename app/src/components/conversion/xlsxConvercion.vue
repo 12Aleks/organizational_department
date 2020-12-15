@@ -140,7 +140,8 @@ export default {
             worker_project_opinion: res[key]['__EMPTY_15'] === undefined || res[key]['__EMPTY_15'] === '(puste)' || !res[key]['__EMPTY_15'].trim()? 'data not found': res[key]['__EMPTY_15'],
             worker_dkz_opinion: res[key]['__EMPTY_16'] === undefined || res[key]['__EMPTY_16'] === '(puste)' || !res[key]['__EMPTY_16'].trim()? 'data not found': res[key]['__EMPTY_16'],
             worker_hr_offer: res[key]['__EMPTY_17'] === undefined || res[key]['__EMPTY_17'] === '(puste)' || !res[key]['__EMPTY_17'].trim()? 'data not found': res[key]['__EMPTY_17'],
-            worker_comments:  res[key]['__EMPTY_18'] === undefined || res[key]['__EMPTY_18'] === '(puste)' || !res[key]['__EMPTY_18'].trim()? 'data not found': res[key]['__EMPTY_18']
+            worker_comments:  res[key]['__EMPTY_18'] === undefined || res[key]['__EMPTY_18'] === '(puste)' || !res[key]['__EMPTY_18'].trim()? 'data not found': res[key]['__EMPTY_18'],
+            position: res[key]['__EMPTY_19'] === undefined || res[key]['__EMPTY_19'] === '(puste)' || !res[key]['__EMPTY_19'].trim()? 'data not found': res[key]['__EMPTY_19'],
           });
         });
         const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);
