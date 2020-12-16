@@ -61,6 +61,7 @@
               </template>
             </xlsx-sheets>
             <div class="table-wrapper z-depth-1" v-show="!loading && !load">
+              <h4>Wybierz z rozwijanej listy potrzebną zakładkę</h4>
               <xlsx-table :sheet="selectedSheet"/>
             </div>
             <xlsx-json :sheet="selectedSheet" v-if="!loading && !load" @parsed="jsonData">
@@ -285,11 +286,37 @@ section.second {
   }
 }
 
+.table-wrapper table td {
+  font-size: 0.95rem!important;
+  word-break: break-word!important;
+}
 .table-wrapper {
   overflow: auto;
+  position: relative;
   height: -webkit-calc(100vh - 275px);
   height: calc(100vh - 275px);
   border: 1px solid #90a4ae;
+  table td {
+    font-size: 0.65rem !important;
+    word-break: break-word !important;
+  }
+  h4{
+    position: absolute;
+    color: $black;
+    text-transform: uppercase;
+    top: 49%;
+    left: 50%;
+    margin: 0 -50% 0 0;
+    transform: translate(-50%, -50%);
+    font-size: 1.4em;
+    font-weight: 400;
+    text-shadow:
+        0 1px 0 #ccc,
+        0 2px 0 #c9c9c9,
+        0 3px 0 #bbb,
+        0 4px 0 #b9b9b9;
+
+  }
 }
 
 .btn-file {

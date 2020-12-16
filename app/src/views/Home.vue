@@ -3,9 +3,7 @@
     <div class="row-wrapper">
       <div class="row img_attachment">
         <div class="col s12 m12">
-          <div>
             <xlsx-convercion></xlsx-convercion>
-          </div>
         </div>
       </div>
     </div>
@@ -32,7 +30,6 @@ export default {
 .contet-wrapper {
   height: 100%;
   padding: 2rem;
-
   .img_attachment {
     height: calc(100vh - 145px);
     height: -webkit-calc(100vh - 145px);
