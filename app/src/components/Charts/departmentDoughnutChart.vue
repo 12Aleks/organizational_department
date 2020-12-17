@@ -10,7 +10,7 @@
 
 <script>
 import {Doughnut} from 'vue-chartjs'
-// import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
   name: "departmentDoughnutChart",
   extends: Doughnut,
@@ -48,18 +48,36 @@ export default {
           }
         ]
       };
-
+      let lengthArr = departmentWorkers.map((c) => c.name).length
       const options = {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {display: true},
-        // plugins: {
-        //   datalabels: {
-        //     formatter: function(value) {
-        //       return value + " zł";
-        //     }
-        //   }
-        // },
+        legend: {display: true, position: 'left'},
+        plugins: {
+          datalabels: {
+            formatter: function(value) {
+              return value + " zł";
+            },
+            color: "black",
+            extAlign: "center",
+            // font: {
+            //   weight: 500,
+            //   size: lengthArr <= 18? 12 : 0
+            // },
+            font: function(context) {
+              if(lengthArr <= 18){
+                let width = context.chart.width;
+                let size = Math.round(width / 100);
+                return {
+                  size: size,
+                  weight: 400
+                };
+              }
+            },
+            anchor: 'center',
+            align: 'center',
+          }
+        },
       };
       this.renderChart(data, options)
     }

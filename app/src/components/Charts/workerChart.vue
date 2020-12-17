@@ -20,8 +20,9 @@
 
 <script>
 import {Bar} from 'vue-chartjs'
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
-name: "workerChart",
+  name: "workerChart",
   extends: Bar,
   data: () =>({
     workersInfo: []
@@ -90,6 +91,8 @@ name: "workerChart",
           }
         ]
       };
+      let lengthArr = newWorkers.map((c) => c.name).length
+
       const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -100,6 +103,36 @@ name: "workerChart",
               beginAtZero: true
             }
           }]
+        },
+        plugins: {
+          datalabels: {
+            formatter: function(value) {
+              return value + " zł";
+            },
+            color: "black",
+            extAlign: "center",
+            // font: {
+            //   weight: 500,
+            //   size: lengthArr <= 18? 12 : 0
+            // },
+            anchor: 'end',
+            align: 'end',
+            font: function(context) {
+              if(lengthArr <= 18){
+                let width = context.chart.width;
+                let size = Math.round(width / 100);
+                return {
+                  size: size,
+                  weight: 400
+                };
+              }
+            },
+            display: function(context) {
+              let index = context.dataIndex;
+              let value = context.dataset.data[index];
+              return value > 0;
+            }
+          }
         }
       };
       this.renderChart(data, options)
@@ -118,12 +151,12 @@ name: "workerChart",
 .button_wrapper {
   display: flex;
   justify-content: center;
-a {
-  width: 280px;
-  max-width: 280px;
-  margin: 15px;
-  text-align: left;
-  font-size: 14px;
-}
+  a {
+    width: 280px;
+    max-width: 280px;
+    margin: 15px;
+    text-align: left;
+    font-size: 14px;
+  }
 }
 </style>

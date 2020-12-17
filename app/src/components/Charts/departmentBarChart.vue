@@ -29,7 +29,7 @@
 
 <script>
 import {Bar} from 'vue-chartjs'
-
+import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
   name: "departmentBarChart",
   extends: Bar,
@@ -41,7 +41,7 @@ export default {
   }),
   computed: {
     process() {
-     return Object.keys(Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
+      return Object.keys(Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)
     }
   },
   watch: {
@@ -134,15 +134,46 @@ export default {
               }),
               label: 'Aktualne wynagrodzenie',
               backgroundColor: 'rgba(255, 104, 115, 0.8)',
-              order: 1
+              order: 1,
             }]
         }
       }
-
+      let lengthArr = departmentWorkers.map((c) => c.name).length
       const options = {
         responsive: true,
         maintainAspectRatio: false,
         legend: {display: true},
+        plugins: {
+          datalabels: {
+            formatter: function(value) {
+              return value + " zł";
+            },
+            color: "black",
+            extAlign: "center",
+            // font: {
+            //   weight: 500,
+            //   size: lengthArr <= 18? 12 : 0
+            // },
+            font: function(context) {
+              if(lengthArr <= 18){
+                let width = context.chart.width;
+                let size = Math.round(width / 100);
+                return {
+                  size: size,
+                  weight: 400,
+                };
+              }
+            },
+            rotation: 0,
+            anchor: 'end',
+            align: 'end',
+            display: function(context) {
+              let index = context.dataIndex;
+              let value = context.dataset.data[index];
+              return value > 0;
+            }
+          }
+        },
         scales: {
           yAxes: [{
             ticks: {
