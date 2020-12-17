@@ -28,7 +28,7 @@
              <departmentBarChart :newWorkerInSections="newWorkerInSections" :departmentInfo="departmentInfo" />
           </div>
           <div id="tabthird" class="col s12">
-            <departmentDoughnutChart :departmentInfo="departmentInfo"/>
+            <departmentDoughnutChart :departmentInfo="departmentInfo" :newWorkerInSections="newWorkerInSections" />
           </div>
         </div>
       </div>

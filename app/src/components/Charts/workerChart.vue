@@ -98,9 +98,9 @@ export default {
         maintainAspectRatio: false,
         legend: {display: true},
         scales: {
-          yAxes: [{
+          xAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
             }
           }]
         },
@@ -111,10 +111,6 @@ export default {
             },
             color: "black",
             extAlign: "center",
-            // font: {
-            //   weight: 500,
-            //   size: lengthArr <= 18? 12 : 0
-            // },
             anchor: 'end',
             align: 'end',
             font: function(context) {

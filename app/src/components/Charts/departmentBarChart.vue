@@ -150,21 +150,24 @@ export default {
             },
             color: "black",
             extAlign: "center",
-            // font: {
-            //   weight: 500,
-            //   size: lengthArr <= 18? 12 : 0
-            // },
             font: function(context) {
-              if(lengthArr <= 18){
+              if(lengthArr <= 20){
                 let width = context.chart.width;
-                let size = Math.round(width / 100);
+                let size = Math.round(width / 100 - 2);
                 return {
                   size: size,
                   weight: 400,
                 };
+              }else{
+                return {
+                  size: 0
+                }
               }
             },
-            rotation: 0,
+            // rotation: function(context){
+            //   let width = context.chart.width;
+            //   return  Math.round(width /  lengthArr);
+            // },
             anchor: 'end',
             align: 'end',
             display: function(context) {
@@ -177,7 +180,7 @@ export default {
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
             }
           }]
         }
