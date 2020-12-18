@@ -93,15 +93,15 @@ export default {
             formatter: function(value) {
               return value + " zł";
             },
-            color: "black",
+            color: " rgba(48, 69, 92, 1)",
             extAlign: "center",
             font: function(context) {
-              if(lengthArr <= 25){
+              if(lengthArr <= 30){
                 let width = context.chart.width;
-                let size = Math.round(width / 100);
+                let size = Math.round(width / (100 + lengthArr) );
                 return {
                   size: size,
-                  weight: 400
+                  weight: 500
                 };
               }else{
                 return {
@@ -109,6 +109,7 @@ export default {
                 }
               }
             },
+            display: 'auto',
             anchor: 'center',
             align: 'center',
           }

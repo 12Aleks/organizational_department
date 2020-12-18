@@ -98,7 +98,7 @@ export default {
                 return arr[i].salary_worker
               }),
               label: 'Propozycja pracownika',
-              backgroundColor: 'rgba(255, 183, 77, 0.8)',
+              backgroundColor: 'rgba(255, 183, 77, 0.9)',
               hidden: true,
               fill: false,
               order: 2
@@ -120,7 +120,7 @@ export default {
               label: 'Propozycja zespółu pracownika',
               backgroundColor: 'rgba(41, 182, 246, 0.8)',
               hidden: true,
-              order: 4
+              order: 4,
             }
           ]
         };
@@ -146,9 +146,9 @@ export default {
         plugins: {
           datalabels: {
             formatter: function(value) {
-              return value + " zł";
+              return value > 0 ? value + " zł": null;
             },
-            color: "black",
+            color: "#fff",
             extAlign: "center",
             font: function(context) {
               if(lengthArr <= 20){
@@ -156,7 +156,7 @@ export default {
                 let size = Math.round(width / 100 - 2);
                 return {
                   size: size,
-                  weight: 400,
+                  weight: 600,
                 };
               }else{
                 return {
@@ -164,25 +164,18 @@ export default {
                 }
               }
             },
-            // rotation: function(context){
-            //   let width = context.chart.width;
-            //   return  Math.round(width /  lengthArr);
-            // },
-            anchor: 'end',
-            align: 'end',
-            display: function(context) {
-              let index = context.dataIndex;
-              let value = context.dataset.data[index];
-              return value > 0;
-            }
-          }
+            rotation: -90,
+            anchor: 'center',
+            align: 'center',
+            // display: 'auto',
+          },
         },
         scales: {
           yAxes: [{
             ticks: {
               beginAtZero: true,
             }
-          }]
+          }],
         }
       };
       this.renderChart(data, options)

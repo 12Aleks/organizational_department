@@ -1,6 +1,6 @@
 <template>
   <div class="box-wrappers">
-    <div class="table-wrapper" :class="{'table-height': changeTable }">
+    <div class="table-wrapper z-depth-1" :class="{'table-height': changeTable }">
       <table class="highlight">
         <thead>
         <tr>

@@ -76,7 +76,7 @@ export default {
               return arr[i].salary_worker
             }),
             label: 'Propozycja pracownika',
-            backgroundColor: 'rgba(255, 183, 77, 0.8)',
+            backgroundColor: 'rgba(255, 183, 77, 0.9)',
             hidden: true,
             order: 3
           },
@@ -97,38 +97,39 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
         legend: {display: true},
+        plugins: {
+          datalabels: {
+            formatter: function(value) {
+              return value > 0 ? value + " zł": null;
+            },
+            color: "#fff",
+            extAlign: "center",
+            font: function(context) {
+              if(lengthArr <= 20){
+                let width = context.chart.width;
+                let size = Math.round(width / 100 - 2);
+                return {
+                  size: size,
+                  weight: 500,
+                };
+              }else{
+                return {
+                  size: 0
+                }
+              }
+            },
+            rotation: -90,
+            anchor: 'center',
+            align: 'center',
+            // display: 'auto',
+          }
+        },
         scales: {
-          xAxes: [{
+          yAxes: [{
             ticks: {
               beginAtZero: true,
             }
           }]
-        },
-        plugins: {
-          datalabels: {
-            formatter: function(value) {
-              return value + " zł";
-            },
-            color: "black",
-            extAlign: "center",
-            anchor: 'end',
-            align: 'end',
-            font: function(context) {
-              if(lengthArr <= 18){
-                let width = context.chart.width;
-                let size = Math.round(width / 100);
-                return {
-                  size: size,
-                  weight: 400
-                };
-              }
-            },
-            display: function(context) {
-              let index = context.dataIndex;
-              let value = context.dataset.data[index];
-              return value > 0;
-            }
-          }
         }
       };
       this.renderChart(data, options)

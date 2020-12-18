@@ -1,6 +1,6 @@
 <template>
   <div class="department-wrapper">
-    <table class="responsive-table">
+    <table class="responsive-table z-depth-1">
       <thead>
       <tr class="subtitle">
         <th colspan="4">
@@ -9,7 +9,7 @@
               <i class="material-icons left">people_outline</i>
               ZESPÓŁ - {{ departmentName }} <span v-if="current !== 'all'">/ KOMÓRKA - {{current}}</span>
             </h3>
-            <a class="btn-floating grey lighten-5 button-right" @click="isHiddenTable" >
+            <a class="btn-floating grey lighten-5 button-right z-depth-1" @click="isHiddenTable" >
               <i v-if="!isHidden" class="material-icons">expand_more</i>
               <i v-else class="material-icons">expand_less</i>
             </a>
