@@ -13,52 +13,60 @@
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
             </div>
             <div class="profile-nav-info">
-              <h3 class="user-name">{{worker.name}}</h3>
+              <h3 class="user-name">{{ worker.name }}</h3>
               <div class="address">
-                <p class="worker_process">ZESPÓŁ: {{worker.department}}</p>
-                <p class="worker_position" v-if="worker.position">STANOWISKO: {{worker.position}}</p>
+                <p class="worker_process">ZESPÓŁ: {{ worker.department }}</p>
+                <p class="worker_position" v-if="worker.position">STANOWISKO: {{ worker.position }}</p>
               </div>
             </div>
+            <router-link class="btn-large orange darken-1" :to="`/${selectProcess.toLowerCase()}` + `/` +`${departmentName.toLowerCase()}`">Powrót do zespołu</router-link>
           </div>
-          <div ref="firstTable" class="table-wrapper z-depth-1" >
+          <div ref="firstTable" class="table-wrapper z-depth-1">
             <table>
               <thead>
               <tr>
                 <th>Proces</th>
                 <th>Komórka</th>
                 <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
-                <th v-if="worker.final_salary || worker.salary_HR">Propozycja pracownika<br/><span>CKP / za godzinę</span>
+                <th v-if="worker.final_salary || worker.salary_HR">Propozycja
+                  pracownika<br/><span>CKP / za godzinę</span>
                 </th>
                 <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespołu
                   pracownika<br/><span>CKP / za godzinę</span></th>
                 <th v-if="worker.final_salary || worker.salary_HR">Propozycja zespołu
                   personalnego<br/><span>CKP / za godzinę</span></th>
-                <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem <br><span>CKP / za godzinę</span>
+                <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem
+                  <br><span>CKP / za godzinę</span>
                 </th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td>{{worker.process}}</td>
-                <td>{{worker.sections}}</td>
-                <td>{{worker.salary}}zł / {{worker.per_hour }}zł/h</td>
+                <td>{{ worker.process }}</td>
+                <td>{{ worker.sections }}</td>
+                <td>{{ worker.salary }}zł / {{ worker.per_hour }}zł/h</td>
                 <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{
-                    worker.per_hour_worker }}zł/h
+                    worker.per_hour_worker
+                  }}zł/h
                 </td>
-                <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_department}}zł / {{
-                    worker.per_hour_department }}zł/h
+                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_department }}zł / {{
+                    worker.per_hour_department
+                  }}zł/h
                 </td>
-                <td v-if="worker.final_salary || worker.salary_HR">{{worker.salary_HR}}zł / {{
-                    worker.per_hour_HR }}zł/h
+                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_HR }}zł / {{
+                    worker.per_hour_HR
+                  }}zł/h
                 </td>
-                <td v-if="worker.final_salary || worker.salary_HR">{{worker.final_salary}}zł / {{
-                    worker.final_per_hour }}zł/h
+                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.final_salary }}zł / {{
+                    worker.final_per_hour
+                  }}zł/h
                 </td>
               </tr>
               </tbody>
             </table>
           </div>
-          <div ref="secondTable" class="table-wrapper z-depth-1">
+          <div ref="secondTable" class="table-wrapper secondTable z-depth-1"
+               v-if="worker.final_salary || worker.salary_HR">
             <table>
               <thead>
               <tr>
@@ -74,10 +82,10 @@
               </thead>
               <tbody>
               <tr>
-                <td>{{worker.worker_project_opinion}}</td>
-                <td>{{worker.worker_dkz_opinion}}</td>
-                <td>{{worker.worker_hr_offer}}</td>
-                <td>{{worker.worker_comments}}</td>
+                <td>{{ worker.worker_project_opinion }}</td>
+                <td>{{ worker.worker_dkz_opinion }}</td>
+                <td>{{ worker.worker_hr_offer }}</td>
+                <td>{{ worker.worker_comments }}</td>
                 <td><a :href="`${worker.link}`">LINK</a></td>
               </tr>
               </tbody>
@@ -117,7 +125,7 @@ export default {
     });
     this.loader = false
   },
-  methods:{
+  methods: {
     // myEventHandler() {
     //   this.theight  =  (this.$refs.secondTable.clientHeight - this.$refs.firstTable.clientHeight)
     // }
@@ -179,6 +187,7 @@ h3.user-name {
   margin: 0;
   color: #fff;
 }
+
 .profile-nav-info {
   float: left;
   display: flex;
@@ -193,12 +202,15 @@ h3.user-name {
   font-family: sans-serif;
   font-weight: bold;
 }
-p.worker_process{
+
+p.worker_process {
   margin-bottom: 3px;
 }
-p.worker_position{
+
+p.worker_position {
   margin-top: 3px;
 }
+
 .profile-nav-info .address {
   //display: flex;
   font-weight: bold;
@@ -317,10 +329,35 @@ p.worker_position{
   }
 }
 
-.table-wrapper:nth-last-child(1) {
+.secondTable {
   margin-top: 10px;
   height: -webkit-calc(100vh - 537px);
   height: calc(100vh - 537px);
 }
+
+.btn-large {
+  position: absolute;
+  width: 256px;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 72px;
+  -webkit-border-bottom-left-radius: 72px;
+  box-shadow:  0 3px 4px rgba(0, 0, 0, 0.2);
+  &:before{
+    position: absolute;
+    //box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    content: "";
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 248px;
+    border-top: 30px solid #fb8c00;
+    border-left: 22px solid transparent;
+  }
+  }
+
+
+
+
 
 </style>

@@ -61,7 +61,7 @@ export default {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
-        return "rgba(" + r + "," + g + "," + b + ", 0.6)";
+        return "rgba(" + r + "," + g + "," + b + ", 0.8)";
       }
 
       function poolColors(a) {
@@ -87,7 +87,10 @@ export default {
       const options = {
         responsive: true,
         maintainAspectRatio: false,
-        legend: {display: true, position: 'left'},
+        legend: {
+          display: true,
+          position: 'left',
+        },
         plugins: {
           datalabels: {
             formatter: function(value) {
