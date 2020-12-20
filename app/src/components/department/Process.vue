@@ -68,13 +68,13 @@ export default {
     sortedList() {
       switch (this.sortParam) {
         case 'name':
-          let name = this.process.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          let name = this.process.sort((d1, d2) =>  d1.name.toLowerCase().localeCompare(d2.name.toLowerCase()));
           return this.toggle ? name : name.reverse()
         case 'process':
-          let process = this.process.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+          let process = this.process.sort((d1, d2) => d1.process.toLowerCase().localeCompare(d2.process.toLowerCase()));
           return this.toggle ? process : process.reverse()
         case 'sections':
-          let sections = this.process.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          let sections = this.process.sort((d1, d2) => d1.sections.toLowerCase().localeCompare(d2.sections.toLowerCase()));
           return this.toggle ? sections : sections.reverse()
         case 'salary':
           let salary = this.process.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);

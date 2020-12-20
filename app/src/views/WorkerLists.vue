@@ -98,16 +98,16 @@ export default {
   computed: {
     sortedList() {
       if (this.sortParam === 'name' && !this.selectWorker.length) {
-        let name = this.workersInfo.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+        let name = this.workersInfo.sort((d1, d2) => d1.name.toLowerCase().localeCompare(d2.name.toLowerCase()));
         return this.toggle ? name : name.reverse()
       } else if (this.sortParam === 'process' && !this.selectWorker.length) {
-        let process =  this.workersInfo.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+        let process =  this.workersInfo.sort((d1, d2) => d1.process.toLowerCase().localeCompare(d2.process.toLowerCase()));
         return this.toggle ? process : process.reverse()
       } else if (this.sortParam === 'department' && !this.selectWorker.length) {
-        let department = this.workersInfo.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+        let department = this.workersInfo.sort((d1, d2) => d1.department.toLowerCase().localeCompare(d2.department.toLowerCase()));
         return this.toggle ? department  : department .reverse()
       } else if (this.sortParam === 'sections' && !this.selectWorker.length) {
-        let sections = this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+        let sections = this.workersInfo.sort((d1, d2) => d1.sections.toLowerCase().localeCompare(d2.sections.toLowerCase()))
         return this.toggle ? sections : sections.reverse()
       } else if (this.sortParam === 'salary' && !this.selectWorker.length) {
         let salary = this.workersInfo.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);

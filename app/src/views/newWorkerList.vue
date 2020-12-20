@@ -119,16 +119,16 @@ export default {
     sortedList() {
       switch (this.sortParam) {
         case 'name':
-          let name = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
+          let name = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase().localeCompare(d2.name.toLowerCase()));
           return this.toggle ? name : name.reverse()
         case 'process':
-          let process = this.newWorkers.sort((d1, d2) => d1.process.toLowerCase() > d2.process.toLowerCase() ? 1 : -1);
+          let process = this.newWorkers.sort((d1, d2) => d1.process.toLowerCase().localeCompare(d2.process.toLowerCase()));
           return this.toggle ? process : process.reverse()
         case 'department':
-          let department = this.newWorkers.sort((d1, d2) => d1.department.toLowerCase() > d2.department.toLowerCase() ? 1 : -1);
+          let department = this.newWorkers.sort((d1, d2) => d1.department.toLowerCase().localeCompare(d2.department.toLowerCase()));
           return this.toggle ? department : department.reverse()
         case 'sections':
-          let sections = this.newWorkers.sort((d1, d2) => d1.sections.toLowerCase() > d2.sections.toLowerCase() ? 1 : -1);
+          let sections = this.newWorkers.sort((d1, d2) => d1.sections.toLowerCase().localeCompare(d2.sections.toLowerCase()));
           return this.toggle ? sections : sections.reverse()
         case 'salary':
           let salary = this.newWorkers.sort((d1, d2) => d1.salary > d2.salary ? 1 : -1);
