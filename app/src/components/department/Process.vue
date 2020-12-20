@@ -1,10 +1,10 @@
 <template>
-  <div class="box-wrappers">
+  <div class="box-wrappers" :class="{sections_class: current !== 'all'}">
     <div class="table-wrapper z-depth-1" :class="{'table-height': changeTable }">
       <table class="highlight">
         <thead>
         <tr>
-          <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
+          <th style="width: 50px; color: #fff">&#8470</th>
           <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')">Nazwisko i Imię</th>
           <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )">Proces</th>
           <th :class="{active: sortParam==='sections',toggle: toggle}" @click="sort('sections')">Komórka</th>
@@ -47,7 +47,7 @@ import {styleTable} from "@/main";
 
 export default {
   name: "Process",
-  props: ['process'],
+  props: ['process', 'current'],
   data: () => ({
     sortParam: '',
     toggle: false,
@@ -100,6 +100,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+$sectionsClass: #297f75;
 .subtitle {
   background-color: #4184491c;
 }
@@ -153,6 +154,13 @@ export default {
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     height: -webkit-calc(100vh - 302px);
     height: calc(100vh - 302px);
+  }
+}
+.sections_class{
+  .table-wrapper{
+     table th {
+       background-color: $sectionsClass;
+     }
   }
 }
 

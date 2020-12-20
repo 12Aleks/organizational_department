@@ -1,5 +1,5 @@
 <template>
-  <div class="department-wrapper">
+  <div class="department-wrapper" :class="{sections_class: current !== 'all'}">
     <table class="responsive-table z-depth-1">
       <thead>
       <tr class="subtitle">
@@ -7,9 +7,9 @@
           <div class="title-wrapper">
             <h3 class="flow-text valign-wrapper border">
               <i class="material-icons left">people_outline</i>
-              ZESPÓŁ - {{ departmentName }} <span v-if="current !== 'all'">/ KOMÓRKA - {{current}}</span>
+              ZESPÓŁ - {{ departmentName }} <span v-if="current !== 'all'">/ KOMÓRKA - {{ current }}</span>
             </h3>
-            <a class="btn-floating grey lighten-5 button-right z-depth-1" @click="isHiddenTable" >
+            <a class="btn-floating grey lighten-5 button-right z-depth-1" @click="isHiddenTable">
               <i v-if="!isHidden" class="material-icons">expand_more</i>
               <i v-else class="material-icons">expand_less</i>
             </a>
@@ -19,8 +19,10 @@
       </thead>
       <tbody v-show="isHidden">
       <tr>
-        <td colspan="2"><h6 class="center border">Liczba osób w <span v-if="current === 'all'">zespołe</span><span v-else>komórce</span>: {{ departmentInfo.length }}</h6></td>
-        <td colspan="2"><h6 class="center border">Suma wynagrodzeń <span v-if="current === 'all'">zespołu</span><span v-else>komórki</span>: {{all}} zł.</h6></td>
+        <td colspan="2"><h6 class="center border">Liczba osób w <span v-if="current === 'all'">zespołe</span><span
+            v-else>komórce</span>: {{ departmentInfo.length }}</h6></td>
+        <td colspan="2"><h6 class="center border">Suma wynagrodzeń <span v-if="current === 'all'">zespołu</span><span
+            v-else>komórki</span>: {{ all }} zł.</h6></td>
       </tr>
       <tr>
         <td>
@@ -98,7 +100,7 @@ export default {
     minHour() {
       return Math.min.apply(null, this.departmentInfo.map(el => (el.per_hour)))
     },
-    all(){
+    all() {
       return this.departmentInfo.map(el => (el.salary)).reduce((arr, el) => (arr + el), 0).toFixed(2)
     }
   }
@@ -111,22 +113,7 @@ $lightTurquoise: rgba(38, 166, 154, .4);
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgb(81, 110, 133);
-$yellow: #d8a339;
-$darkYellow: #B17703;
-.section-wrapper{
-  table {
-    tr {
-      th {
-        background-color: $yellow;
-        i {
-          line-height: 35px;
-          padding-right: 1px;
-          color: $darkYellow;
-        }
-      }
-    }
-  }
-}
+$sectionsClass: #297f75;
 .department-wrapper {
   max-width: 100%;
   display: block;
@@ -260,6 +247,7 @@ $darkYellow: #B17703;
   .info-wrapper {
     display: block;
     margin: 15px 5px 15px 25px;
+
     li {
       list-style-type: circle;
       margin-bottom: 5px;
@@ -269,6 +257,38 @@ $darkYellow: #B17703;
       text-align: left;
     }
 
+  }
+}
+
+.department-wrapper.sections_class {
+  table {
+    thead {
+      tr {
+        th {
+          background-color: $sectionsClass;
+
+          .button-right {
+            i {
+              color: $sectionsClass;
+            }
+          }
+        }
+      }
+    }
+
+    h3.border, h6.border {
+      text-transform: uppercase;
+      font-weight: 600;
+
+      i {
+        border: 1px solid $sectionsClass;
+        background-color: $sectionsClass;
+      }
+    }
+
+    h6.border, h6.border span {
+      color: $sectionsClass;
+    }
   }
 }
 </style>

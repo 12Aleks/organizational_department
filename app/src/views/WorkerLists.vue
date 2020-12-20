@@ -42,7 +42,7 @@
                   <td style="width: 50px">{{ index + 1 }}</td>
                   <td><router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
           value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}</router-link></td>
-                  <td>{{ value.process }}</td>
+                  <td><router-link :to="`/departments`">{{ value.process }}</router-link></td>
                   <td @click="processName(value.process)">
                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
                           value.department.toLowerCase()}`">{{

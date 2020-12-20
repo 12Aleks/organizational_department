@@ -12,7 +12,7 @@
           <Loader v-if="loader"/>
           <div v-show="!loader" id="tabFirst" class="col s12" :class="{quantitySections: !quantity }">
             <detail :departmentInfo='selectedElement' :departmentName="departmentName" :current="current"/>
-            <div class="section button_wrapper" v-if="quantity">
+            <div class="section button_wrapper" v-if="quantity" :class="{sections_class: current !== 'all'}">
               <select class="browser-default z-depth-1" ref="select" v-model="current" >
                 <option value="all">Wszystkie komorki</option>
                 <option v-for="(c, index) of process"
@@ -22,7 +22,7 @@
                   {{ c }}</option>
               </select>
             </div>
-            <process :process="selectedElement" />
+            <process :process="selectedElement" :current="current"/>
           </div>
           <div id="tabSecond" class="col s12">
              <departmentBarChart :newWorkerInSections="newWorkerInSections" :departmentInfo="departmentInfo" />
@@ -105,6 +105,7 @@ export default {
 
 <style scoped lang="scss">
 $turquoise: #26a69a;
+$sectionsClass: #297f75;
 .img_attachment {
   height: calc(100vh - 111px);
   height: -webkit-calc(100vh - 111px);
@@ -125,5 +126,7 @@ $turquoise: #26a69a;
     margin-left: 15px;
   }
 }
-
+.section.sections_class{
+  background-color: $sectionsClass;
+}
 </style>

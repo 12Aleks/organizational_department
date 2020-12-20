@@ -15,11 +15,10 @@
             <div class="profile-nav-info">
               <h3 class="user-name">{{ worker.name }}</h3>
               <div class="address">
-                <p class="worker_process">ZESPÓŁ: {{ worker.department }}</p>
-                <p class="worker_position" v-if="worker.position">STANOWISKO: {{ worker.position }}</p>
+                <p class="worker_process"><router-link :to="`/${selectProcess.toLowerCase()}` + `/` +`${departmentName.toLowerCase()}`">ZESPÓŁ: {{ worker.department }} </router-link></p>
+                <p class="worker_position" v-if="worker.position && worker.position !== 'data not found'">STANOWISKO: {{ worker.position }}</p>
               </div>
             </div>
-            <router-link class="btn-large orange darken-1" :to="`/${selectProcess.toLowerCase()}` + `/` +`${departmentName.toLowerCase()}`">Powrót do zespołu</router-link>
           </div>
           <div ref="firstTable" class="table-wrapper z-depth-1">
             <table>
@@ -42,7 +41,7 @@
               </thead>
               <tbody>
               <tr>
-                <td>{{ worker.process }}</td>
+                <td><router-link :to="`/departments`">{{ worker.process }}</router-link></td>
                 <td>{{ worker.sections }}</td>
                 <td>{{ worker.salary }}zł / {{ worker.per_hour }}zł/h</td>
                 <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{
@@ -205,6 +204,9 @@ h3.user-name {
 
 p.worker_process {
   margin-bottom: 3px;
+  a{
+    color: #ffffff;
+  }
 }
 
 p.worker_position {
@@ -335,29 +337,84 @@ p.worker_position {
   height: calc(100vh - 537px);
 }
 
-.btn-large {
-  position: absolute;
-  width: 256px;
-  top: 0;
-  right: 0;
-  border-bottom-left-radius: 72px;
-  -webkit-border-bottom-left-radius: 72px;
-  box-shadow:  0 3px 4px rgba(0, 0, 0, 0.2);
-  &:before{
-    position: absolute;
-    //box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
-    content: "";
-    width: 0;
-    height: 0;
-    top: 0;
-    right: 248px;
-    border-top: 30px solid #fb8c00;
-    border-left: 22px solid transparent;
-  }
-  }
+//.button_wrapper {
+//  overflow: hidden;
+//  position: relative;
+//  width: 258px;
+//  margin-left: auto;
 
-
-
-
-
+//  .button {
+//    background-color: #4db6ac;
+//    position: absolute;
+//    right: 0;
+//    top: 0;
+//    width: 100px;
+//    height: 100px;
+//    display: block;
+//    padding: 10px 30px;
+//    box-sizing: border-box;
+//    border-radius: 50%;
+//    //float: left;
+//    //border-bottom-left-radius: 12px;
+//    //-webkit-border-bottom-left-radius: 12px;
+//    cursor: pointer;
+//    //-webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, .7));
+//    //filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, .7));
+//    //z-index: 1;
+//
+//    a {
+//      color: #fff;
+//      font-size: 14px;
+//      text-transform: uppercase;
+//      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+//    }
+//
+//    &:before {
+//      content: "";
+//      width: 24px;
+//      height: 24px;
+//      position: absolute;
+//      border-radius: 50%;
+//      pointer-events: none;
+//      right: 241px;
+//      top: -4px;
+//      border-top: 4px solid #4db6ac;
+//      border-right: 4px solid transparent;
+//      border-left: 4px solid transparent;
+//      border-bottom: 4px solid transparent;
+//      -webkit-transform: rotate(45deg);
+//      -moz-transform: rotate(45deg);
+//      -o-transform: rotate(45deg);
+//      transform: rotate(45deg);
+//    }
+//  }
+//
+//  .button, .button:before {
+//    -webkit-transition: 0s;
+//    transition: 0s;
+//  }
+//
+//  .button:hover {
+//    background-color: #00897b;
+//
+//    a {
+//      color: #fff;
+//      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+//    }
+//  }
+//
+//  .button:hover:before {
+//    border-top: 4px solid #00897b;
+//  }
+//}
+//
+//.button_wrapper {
+//  .button.return {
+//    background-color: #f44336;
+//
+//    &:before {
+//      border-top: 4px solid #f44336;
+//    }
+//  }
+//}
 </style>
