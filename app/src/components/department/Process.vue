@@ -28,7 +28,7 @@
 
           <td><router-link :to="`/${v.process.toLowerCase()}/${v.sections === '(puste)' && v.department === '(puste)' ? v.process.toLowerCase() :
           v.department.toLowerCase()}/${v.name.toLowerCase()}`">{{ v.name }}</router-link></td>
-          <td>{{ v.process }}</td>
+          <td><router-link :to="`/departments`">{{ v.process }}</router-link></td>
           <td>{{ v.sections }}</td>
           <td>{{ v.salary }}zł / {{ v.per_hour }}zł/h</td>
           <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker }}zł/h</td>
