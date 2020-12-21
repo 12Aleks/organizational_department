@@ -128,11 +128,6 @@ export default {
     });
     this.loader = false
   },
-  methods: {
-    // myEventHandler() {
-    //   this.theight  =  (this.$refs.secondTable.clientHeight - this.$refs.firstTable.clientHeight)
-    // }
-  },
   computed: {
     worker() {
       return this.departmentInfo.filter((item, i, arr) => arr[i].name === this.workerName)[0]
@@ -232,99 +227,6 @@ p.worker_position {
   margin-right: 5px;
 }
 
-//@media (max-width: 1100px) {
-//  .profile-side {
-//    width: 250px;
-//    padding: 90px 15px 20px;
-//  }
-//
-//  .profile-img img {
-//    height: 200px;
-//    width: 200px;
-//    left: 50px;
-//    top: 50px;
-//  }
-//}
-//
-//@media (max-width: 900px) {
-//  .profile-header {
-//    display: flex;
-//    height: 100%;
-//    flex-direction: column;
-//    text-align: center;
-//    padding-bottom: 20px;
-//  }
-//
-//  .profile-img {
-//    float: left;
-//    width: 100%;
-//    height: 200px;
-//  }
-//
-//  .profile-img img {
-//    position: relative;
-//    height: 200px;
-//    width: 200px;
-//    left: 0;
-//  }
-//
-//  .profile-nav-info {
-//    text-align: center;
-//  }
-//
-//  .profile-option {
-//    right: 20px;
-//    top: 75%;
-//    transform: translateY(50%);
-//  }
-//
-//
-//  .profile-side {
-//    width: 100%;
-//    text-align: center;
-//    padding: 20px;
-//    margin: 5px 0;
-//  }
-//
-//  .profile-nav-info .address {
-//    justify-content: center;
-//  }
-//
-//  .user-rating {
-//    justify-content: center;
-//  }
-//}
-//
-//@media (max-width: 400px) {
-//  .profile-header h3 {
-//  }
-//
-//  .profile-option {
-//    width: 30px;
-//    height: 30px;
-//    position: absolute;
-//    right: 15px;
-//    top: 83%;
-//  }
-//
-//  .profile-option .notification .alert-message {
-//    top: -3px;
-//    right: -4px;
-//    padding: 4px;
-//    height: 15px;
-//    width: 15px;
-//    font-size: 0.7rem;
-//  }
-//
-//  .profile-nav-info h3 {
-//    font-size: 1.9rem;
-//  }
-//
-//  .profile-nav-info .address p,
-//  .profile-nav-info .address span {
-//    font-size: 0.7rem;
-//  }
-//}
 .table-wrapper {
   margin-top: 2px;
   height: 100%;
@@ -344,88 +246,6 @@ p.worker_position {
   height: -webkit-calc(100vh - 537px);
   height: calc(100vh - 537px);
 }
-
-//.button_wrapper {
-//  overflow: hidden;
-//  position: relative;
-//  width: 258px;
-//  margin-left: auto;
-
-//  .button {
-//    background-color: #4db6ac;
-//    position: absolute;
-//    right: 0;
-//    top: 0;
-//    width: 100px;
-//    height: 100px;
-//    display: block;
-//    padding: 10px 30px;
-//    box-sizing: border-box;
-//    border-radius: 50%;
-//    //float: left;
-//    //border-bottom-left-radius: 12px;
-//    //-webkit-border-bottom-left-radius: 12px;
-//    cursor: pointer;
-//    //-webkit-filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, .7));
-//    //filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, .7));
-//    //z-index: 1;
-//
-//    a {
-//      color: #fff;
-//      font-size: 14px;
-//      text-transform: uppercase;
-//      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-//    }
-//
-//    &:before {
-//      content: "";
-//      width: 24px;
-//      height: 24px;
-//      position: absolute;
-//      border-radius: 50%;
-//      pointer-events: none;
-//      right: 241px;
-//      top: -4px;
-//      border-top: 4px solid #4db6ac;
-//      border-right: 4px solid transparent;
-//      border-left: 4px solid transparent;
-//      border-bottom: 4px solid transparent;
-//      -webkit-transform: rotate(45deg);
-//      -moz-transform: rotate(45deg);
-//      -o-transform: rotate(45deg);
-//      transform: rotate(45deg);
-//    }
-//  }
-//
-//  .button, .button:before {
-//    -webkit-transition: 0s;
-//    transition: 0s;
-//  }
-//
-//  .button:hover {
-//    background-color: #00897b;
-//
-//    a {
-//      color: #fff;
-//      text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
-//    }
-//  }
-//
-//  .button:hover:before {
-//    border-top: 4px solid #00897b;
-//  }
-//}
-//
-//.button_wrapper {
-//  .button.return {
-//    background-color: #f44336;
-//
-//    &:before {
-//      border-top: 4px solid #f44336;
-//    }
-//  }
-//}
-
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   .profile-header {
     height: 115px;

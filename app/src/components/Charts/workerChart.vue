@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     newWorkers() {
-      return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0);
+      return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0 || arr[i].salary_worker !== 0 && arr[i].per_hour_worker !== 0);
     },
   },
   methods: {
@@ -56,18 +56,18 @@ export default {
         datasets: [
           {
             data: newWorkers.map((item, i, arr) => {
-              return arr[i].final_salary
-            }),
-            label: 'Uzgodnione z pracownikiem',
-            backgroundColor: 'rgba(38, 166, 154, 0.8)',
-            order: 1
-          },
-          {
-            data: newWorkers.map((item, i, arr) => {
               return arr[i].salary
             }),
             label: 'Aktualne wynagrodzenie',
             backgroundColor: 'rgba(255, 104, 115, 0.8)',
+            order: 1
+          },
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].final_salary
+            }),
+            label: 'Uzgodnione z pracownikiem',
+            backgroundColor: 'rgba(38, 166, 154, 0.8)',
             hidden: true,
             order: 2
           },
@@ -84,7 +84,7 @@ export default {
             data: newWorkers.map((item, i, arr) => {
               return arr[i].salary_department
             }),
-            label: 'Propozycja zespółu pracownika',
+            label: 'Propozycja zespołu pracownika',
             backgroundColor: 'rgba(41, 182, 246, 0.8)',
             hidden: true,
             order: 4
@@ -93,7 +93,7 @@ export default {
             data: newWorkers.map((item, i, arr) => {
               return arr[i].salary_HR
             }),
-            label: 'Propozycja zespółu personalneg',
+            label: 'Propozycja zespołu personalnego',
             backgroundColor: 'rgba(156, 39, 179, 0.8)',
             hidden: true,
             order: 5,

@@ -95,20 +95,20 @@ export default {
             },
             {
               data: departmentWorkers.map((item, i, arr) => {
-                return arr[i].salary_worker
+                return arr[i].final_salary
               }),
-              label: 'Propozycja pracownika',
-              backgroundColor: 'rgba(255, 183, 77, 0.9)',
+              label: 'Uzgodnione z pracownikiem',
+              backgroundColor: 'rgba(38, 166, 154, 0.8)',
               hidden: true,
               fill: false,
               order: 2
             },
             {
               data: departmentWorkers.map((item, i, arr) => {
-                return arr[i].final_salary
+                return arr[i].salary_worker
               }),
-              label: 'Uzgodnione z pracownikiem',
-              backgroundColor: 'rgba(38, 166, 154, 0.8)',
+              label: 'Propozycja pracownika',
+              backgroundColor: 'rgba(255, 183, 77, 0.9)',
               hidden: true,
               fill: false,
               order: 3
@@ -117,7 +117,7 @@ export default {
               data: departmentWorkers.map((item, i, arr) => {
                 return arr[i].salary_department
               }),
-              label: 'Propozycja zespółu pracownika',
+              label: 'Propozycja zespołu pracownika',
               backgroundColor: 'rgba(41, 182, 246, 0.8)',
               hidden: true,
               order: 4,
@@ -126,7 +126,7 @@ export default {
               data: departmentWorkers.map((item, i, arr) => {
                 return arr[i].salary_HR
               }),
-              label: 'Propozycja zespółu personalneg',
+              label: 'Propozycja zespołu personalnego',
               backgroundColor: 'rgba(156, 39, 179, 0.8)',
               hidden: true,
               order: 5,
