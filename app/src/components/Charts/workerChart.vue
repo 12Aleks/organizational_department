@@ -88,6 +88,15 @@ export default {
             backgroundColor: 'rgba(41, 182, 246, 0.8)',
             hidden: true,
             order: 4
+          },
+          {
+            data: newWorkers.map((item, i, arr) => {
+              return arr[i].salary_HR
+            }),
+            label: 'Propozycja zespółu personalneg',
+            backgroundColor: 'rgba(156, 39, 179, 0.8)',
+            hidden: true,
+            order: 5,
           }
         ]
       };
