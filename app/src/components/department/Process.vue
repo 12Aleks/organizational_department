@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody id="table" v-for="(v, i) in sortedList" :key="i" :class="{newWorker: v.final_salary}">
-        <tr>
+        <tr  :class="{decision: v.decision.toUpperCase() === 'NIE' }">
           <td style="width: 50px">{{ i + 1 }}</td>
 
           <td><router-link :to="`/${v.process.toLowerCase()}/${v.sections === '(puste)' && v.department === '(puste)' ? v.process.toLowerCase() :

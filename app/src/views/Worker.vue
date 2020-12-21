@@ -8,7 +8,7 @@
         <Loader v-if="loader"/>
         <div v-show="!loader" class="col s12 m12">
           <div class="profile-header z-depth-1"
-               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR}">
+               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE'} ">
             <div class="profile-img">
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
             </div>
@@ -37,6 +37,9 @@
                 <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem
                   <br><span>CKP / za godzinę</span>
                 </th>
+                <th v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'" >
+                  Kontynuacja zatrudnienia TAK/NIE
+                </th>
               </tr>
               </thead>
               <tbody>
@@ -60,12 +63,13 @@
                     worker.final_per_hour
                   }}zł/h
                 </td>
+                <td>{{ worker.decision.toUpperCase() }}</td>
               </tr>
               </tbody>
             </table>
           </div>
           <div ref="secondTable" class="table-wrapper secondTable z-depth-1"
-               v-if="worker.final_salary || worker.salary_HR">
+               v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">
             <table>
               <thead>
               <tr>
@@ -143,7 +147,10 @@ export default {
 <style scoped lang="scss">
 $turquoise: #26a69a;
 $backgroundDarkRed: #B10303;
-
+$darkPurple: #0d47a1;
+.profile-header.decision{
+  background-color: $darkPurple;
+}
 .profile-header {
   background-color: $turquoise;
   background-image: url("../assets/images/technical.png");
@@ -181,6 +188,7 @@ $backgroundDarkRed: #B10303;
 .newWorker_profile-header {
   background-color: $backgroundDarkRed;
 }
+
 
 h3.user-name {
   margin: 0;

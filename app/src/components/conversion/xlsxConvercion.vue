@@ -143,6 +143,7 @@ export default {
             worker_hr_offer: res[key]['__EMPTY_17'] === undefined || res[key]['__EMPTY_17'] === '(puste)' || !res[key]['__EMPTY_17'].trim()? 'data not found': res[key]['__EMPTY_17'],
             worker_comments:  res[key]['__EMPTY_18'] === undefined || res[key]['__EMPTY_18'] === '(puste)' || !res[key]['__EMPTY_18'].trim()? 'data not found': res[key]['__EMPTY_18'],
             position: res[key]['__EMPTY_19'] === undefined || res[key]['__EMPTY_19'] === '(puste)' || !res[key]['__EMPTY_19'].trim()? 'data not found': res[key]['__EMPTY_19'],
+            decision: res[key]['__EMPTY_20'] === undefined || res[key]['__EMPTY_20'] === '(puste)' || !res[key]['__EMPTY_20'].trim()? 'data not found': res[key]['__EMPTY_20']
           });
         });
         const workers = Object.values(list).filter((k) => k.name !== undefined && k.name !== '(puste)' && k.name != 0);

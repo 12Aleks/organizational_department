@@ -35,12 +35,15 @@ $white: rgba(254, 255, 250, 1);
 $blue: rgba(120, 151, 163, 0.98);
 $light-blue: rgba(120, 151, 163, 0.5);
 $red: rgba(255, 104, 115, .7);
+$purple: #bbdefb;
+$darkPurple: #90caf9;
 .app-content {
   height: 100vh;
   .app-page {
     height: 100%;
   }
 }
+
 .table-wrapper {
   overflow: auto;
   height: -webkit-calc(100vh - 273px);
@@ -50,6 +53,14 @@ $red: rgba(255, 104, 115, .7);
     background-color: #fff;
     table-layout: fixed;
     position: relative;
+    tbody{
+      tr.decision {
+        background-color: $purple ;
+        &:hover{
+          background-color: $darkPurple;
+        }
+      }
+    }
     th {
       background-color: $turquoise;
       text-transform: uppercase;

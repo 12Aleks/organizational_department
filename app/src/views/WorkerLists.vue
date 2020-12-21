@@ -38,7 +38,7 @@
                 </tr>
                 </thead>
                 <tbody id="table" v-for="(value, index) in sortedList" :key="index" :class="{newWorker: value.final_salary}">
-                <tr>
+                <tr :class="{decision: value.decision.toUpperCase() === 'NIE'}">
                   <td style="width: 50px">{{ index + 1 }}</td>
                   <td><router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
           value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}</router-link></td>
