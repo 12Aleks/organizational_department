@@ -63,7 +63,7 @@
                     worker.final_per_hour
                   }}zł/h
                 </td>
-                <td>{{ worker.decision.toUpperCase() }}</td>
+                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.decision.toUpperCase() }}</td>
               </tr>
               </tbody>
             </table>
@@ -147,9 +147,9 @@ export default {
 <style scoped lang="scss">
 $turquoise: #26a69a;
 $backgroundDarkRed: #B10303;
-$darkPurple: #0d47a1;
+$darkPurple: #1c4aa1;
 .profile-header.decision{
-  background-color: $darkPurple;
+  background-color: $backgroundDarkRed;
 }
 .profile-header {
   background-color: $turquoise;
@@ -186,7 +186,7 @@ $darkPurple: #0d47a1;
 }
 
 .newWorker_profile-header {
-  background-color: $backgroundDarkRed;
+  background-color: $darkPurple;
 }
 
 

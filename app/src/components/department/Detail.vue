@@ -32,7 +32,7 @@
               <span v-if="current === 'all'"> Najwyższe wynagrodzenie w zespołe</span>
               <span v-else> Najwyższe wynagrodzenie w komórce</span>:</h6>
             <ul class="info-wrapper">
-              <li>Wynagrodzenie całkowite (CKP): {{ max }} zł.</li>
+              <li>Całkowity Koszt Pracodawcy (CKP): {{ max }} zł.</li>
               <li>Za godzinę (CKP): {{ maxHour }} zł.</li>
             </ul>
           </div>
@@ -43,7 +43,7 @@
               <span v-if="current === 'all'">Przeciętne wynagrodzenie w zespołe</span>
               <span v-else>Przeciętne wynagrodzenie w komórce</span>:</h6>
             <ul class="info-wrapper">
-              <li>Wynagrodzenie całkowite (CKP): {{ average }} zł.</li>
+              <li>Całkowity Koszt Pracodawcy (CKP): {{ average }} zł.</li>
               <li>Za godzinę (CKP): {{ averageHour }} zł.</li>
             </ul>
           </div>
@@ -54,7 +54,7 @@
               <span v-if="current === 'all'">Najniższe wynagrodzenie w zespołe</span>
               <span v-else>Najniższe wynagrodzenie w komórce</span>:</h6>
             <ul class="info-wrapper">
-              <li> Wynagrodzenie całkowite (CKP): {{ min }} zł.</li>
+              <li> Całkowity Koszt Pracodawcy (CKP): {{ min }} zł.</li>
               <li> Za godzinę (CKP): {{ minHour }} zł.</li>
             </ul>
           </div>

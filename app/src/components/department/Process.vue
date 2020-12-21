@@ -5,8 +5,8 @@
         <thead>
         <tr>
           <th style="width: 50px; color: #fff">&#8470</th>
-          <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')">Nazwisko i Imię</th>
-          <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )">Proces</th>
+          <th :class="{active: sortParam==='name', toggle: toggle}" @click="sort('name')"><i class="material-icons tiny right" >search</i>Nazwisko i Imię</th>
+          <th :class="{active: sortParam==='process',toggle: toggle}" @click="sort('process' )"><i class="material-icons tiny right" >search</i>Proces</th>
           <th :class="{active: sortParam==='sections',toggle: toggle}" @click="sort('sections')">Komórka</th>
           <th :class="{active: sortParam==='salary', toggle: toggle}" @click="sort('salary')">Aktualne wynagrodzenie<br/><span>CKP / za godzinę</span>
           </th>

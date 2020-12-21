@@ -17,15 +17,15 @@
                   <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
                   <th :class="{active: sortParam==='name' && selectWorker==='', toggle: toggle}"
                       @click="sort('name'); selectWorker = ''"
-                  >Nazwisko i Imię
+                  ><i class="material-icons tiny right" >search</i>Nazwisko i Imię
                   </th>
                   <th :class="{active: sortParam==='process' && selectWorker==='', toggle: toggle}"
                       @click="sort('process'); selectWorker = ''"
-                  >Proces
+                  ><i class="material-icons tiny right" >search</i>Proces
                   </th>
                   <th :class="{active: sortParam==='department' && selectWorker==='', toggle: toggle}"
                       @click="sort('department'); selectWorker = '' "
-                  >Zespół
+                  ><i class="material-icons tiny right" >search</i>Zespół
                   </th>
                   <th :class="{active: sortParam==='sections'&& selectWorker==='', toggle: toggle}"
                       @click="sort('sections'); selectWorker = ''"
@@ -38,7 +38,7 @@
                 </tr>
                 </thead>
                 <tbody id="table" v-for="(value, index) in sortedList" :key="index" :class="{newWorker: value.final_salary}">
-                <tr :class="{decision: value.decision.toUpperCase() === 'NIE'}">
+                <tr :class="{decision: value.decision.toUpperCase() === 'NIE'}" >
                   <td style="width: 50px">{{ index + 1 }}</td>
                   <td><router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
           value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}</router-link></td>

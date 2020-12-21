@@ -19,14 +19,14 @@
                             <tr>
                                 <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
                                 <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">
-                                    Nazwisko i
+                                    <i class="material-icons tiny right">search</i> Nazwisko i
                                     Imię
                                 </th>
                                 <th :class="{active: sortParam==='process', toggle: toggle}" @click="sort('process')">
-                                    Proces
+                                    <i class="material-icons tiny right" >search</i> Proces
                                 </th>
                                 <th :class="{active: sortParam==='department', toggle: toggle}"
-                                    @click="sort('department')">
+                                    @click="sort('department')"><i class="material-icons tiny right">search</i>
                                     Zespół
                                 </th>
                                 <th :class="{active: sortParam==='sections', toggle: toggle}" @click="sort('sections')">
@@ -57,14 +57,15 @@
                             </thead>
                             <tbody id="table">
                             <tr v-for="(value, index) in sortedList" :key="index"
-                                :class="{decision: value.decision.toUpperCase() !== 'TAK' }">
+                                :class="{decision: value.decision.toUpperCase() !== 'TAK'}"
+                            >
                                 <td style="width: 50px">{{ index + 1 }}</td>
                                 <td>
                                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
           value.department.toLowerCase()}/${value.name.toLowerCase()}`">{{ value.name }}
                                     </router-link>
                                 </td>
-                                <td>{{ value.process }}</td>
+                                <td><router-link :to="`/departments`">{{ value.process }}</router-link></td>
                                 <td>
                                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
                           value.department.toLowerCase()}`">{{

@@ -61,7 +61,7 @@ export default {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
-        return "rgba(" + r + "," + g + "," + b + ", 0.8)";
+        return "rgba(" + r + "," + g + "," + b + ", 0.6)";
       }
 
       function poolColors(a) {

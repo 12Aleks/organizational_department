@@ -2,9 +2,9 @@
   <ul class="collapsible z-depth-1" ref="accord">
     <li>
       <div class="collapsible-header grey lighten-3">
-        <div>
+        <div @click.stop="departmentPath">
           <i class="large material-icons left">people_outline</i>
-          <h6 @click.stop="departmentPath">Zespół: {{ value[0] }}</h6>
+          <h6>Zespół: {{ value[0] }}</h6>
           <i class="material-icons right" v-if="newWorkerInDepartment"  v-tooltipe="`Nowy pracownik - zespół ${value[0]}`">fiber_new</i>
         </div>
         <i class="tiny material-icons" v-if="$options.filters.sectionsFilter(value).length > 0">play_circle_outline</i>

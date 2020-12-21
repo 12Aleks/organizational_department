@@ -35,6 +35,7 @@ $white: rgba(254, 255, 250, 1);
 $blue: rgba(120, 151, 163, 0.98);
 $light-blue: rgba(120, 151, 163, 0.5);
 $red: rgba(255, 104, 115, .7);
+$darkRed: rgba(255, 104, 115, 1);
 $purple: #bbdefb;
 $darkPurple: #90caf9;
 .app-content {
@@ -55,9 +56,9 @@ $darkPurple: #90caf9;
     position: relative;
     tbody{
       tr.decision {
-        background-color: $purple ;
+        background-color: $red ;
         &:hover{
-          background-color: $darkPurple;
+          background-color: $darkRed;
         }
       }
     }
@@ -84,6 +85,11 @@ $darkPurple: #90caf9;
     }
     th:not(:first-child) {
       font-size: .8rem;
+      i.material-icons.tiny {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+      }
       &:after {
         position: absolute;
         bottom: 0.5em;
@@ -146,7 +152,8 @@ $darkPurple: #90caf9;
   }
 }
 .newWorker {
-  background-color: $red;
+  background-color: $purple;
+
 }
 .newWorkerClass{
   color: $red!important;
