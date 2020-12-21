@@ -10,6 +10,7 @@ import message from './message/message.info'
 import Loader from '@/components/Loader'
 import Information from "./components/ather/Information";
 import Tooltipe from './directives/tooltip.directive'
+import newWorker from './directives/new.workers.tooltip'
 
 import titlePlugin from './utils/title.plugin'
 
@@ -23,6 +24,7 @@ export const styleTable = new Vue();
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);
 Vue.directive('tooltipe', Tooltipe)
+Vue.directive('newWorker', newWorker)
 Vue.component('Information', Information)
 
 Vue.use(Vuelidate)

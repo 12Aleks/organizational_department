@@ -63,7 +63,7 @@ export default {
       return Object.keys(this.newWorkersInProcess)
     },
     newWorkersInProcess() {
-      return this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n.department), acc), {})
+      return this.proc.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0 || arr[i].salary_worker !== 0 && arr[i].per_hour_worker !== 0  ).reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n.department), acc), {})
       },
     process() {
       return this.proc.reduce((acc, n) => ((acc[n.process] = acc[n.process] || []).push(n), acc), {});

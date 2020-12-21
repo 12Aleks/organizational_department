@@ -8,7 +8,7 @@
         <Loader v-if="loader"/>
         <div v-show="!loader" class="col s12 m12">
           <div class="profile-header z-depth-1"
-               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE'} ">
+               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE'} ">
             <div class="profile-img">
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
             </div>
@@ -63,7 +63,7 @@
                     worker.final_per_hour
                   }}zł/h
                 </td>
-                <td v-if="worker.final_salary || worker.salary_HR">{{ worker.decision.toUpperCase() }}</td>
+                <td v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">{{ worker.decision.toUpperCase() }}</td>
               </tr>
               </tbody>
             </table>
@@ -72,9 +72,6 @@
                v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">
             <table>
               <thead>
-              <tr>
-                <th colspan="5">Opinia o pracowniku i rezultaty jego działań</th>
-              </tr>
               <tr>
                 <th>Projekty/rezutaty działań Pracownika (konkretnie przykłady)</th>
                 <th>DKZ w trakcie / do podjęcia Pracownika</th>
@@ -142,9 +139,13 @@ export default {
 <style scoped lang="scss">
 $turquoise: #26a69a;
 $backgroundDarkRed: #B10303;
-$darkPurple: #1c4aa1;
+$darkPurple: #1976d2;
+$orange: #ffb74d ;
 .profile-header.decision{
   background-color: $backgroundDarkRed;
+}
+.profile-header.doubt{
+  background-color: $orange;
 }
 .profile-header {
   background-color: $turquoise;
@@ -243,8 +244,8 @@ p.worker_position {
 
 .secondTable {
   margin-top: 10px;
-  height: -webkit-calc(100vh - 537px);
-  height: calc(100vh - 537px);
+  height: -webkit-calc(100vh - 552px);
+  height: calc(100vh - 552px);
 }
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   .profile-header {
@@ -271,8 +272,8 @@ p.worker_position {
     }
   }
   .secondTable[data-v-06627738] {
-    height: -webkit-calc(100vh - 442px);
-    height: calc(100vh - 442px);
+    height: -webkit-calc(100vh - 465px);
+    height: calc(100vh - 465px);
   }
 }
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
@@ -300,8 +301,8 @@ p.worker_position {
     }
   }
   .secondTable[data-v-06627738] {
-    height: -webkit-calc(100vh - 442px);
-    height: calc(100vh - 442px);
+    height: -webkit-calc(100vh - 465px);
+    height: calc(100vh - 465px);
   }
 }
 </style>

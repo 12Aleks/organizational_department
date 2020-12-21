@@ -38,6 +38,8 @@ $red: rgba(255, 104, 115, .7);
 $darkRed: rgba(255, 104, 115, 1);
 $purple: #bbdefb;
 $darkPurple: #90caf9;
+$orange: #ffe0b2;
+$darkOrange: #ffcc80;
 .app-content {
   height: 100vh;
   .app-page {
@@ -56,9 +58,15 @@ $darkPurple: #90caf9;
     position: relative;
     tbody{
       tr.decision {
-        background-color: $red ;
+        background-color: $darkRed;
         &:hover{
-          background-color: $darkRed;
+          background-color: $red;
+        }
+      }
+      tr.doubt{
+        background-color: $darkOrange;
+        &:hover{
+          background-color: $orange;
         }
       }
     }

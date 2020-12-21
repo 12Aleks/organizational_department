@@ -57,7 +57,8 @@
                             </thead>
                             <tbody id="table">
                             <tr v-for="(value, index) in sortedList" :key="index"
-                                :class="{decision: value.decision.toUpperCase() !== 'TAK'}"
+                                :class="{decision: value.decision.toUpperCase() !== 'TAK', doubt: (value.decision.toUpperCase() === 'TAK' && !value.final_salary)}"
+                                v-new-worker="`${value.decision.toUpperCase() !== 'TAK'? 'NIE': value.decision.toUpperCase() === 'TAK' && !value.final_salary? 'false' : null }`"
                             >
                                 <td style="width: 50px">{{ index + 1 }}</td>
                                 <td>
@@ -130,7 +131,7 @@
         },
         computed: {
             newWorkers() {
-                return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0 || arr[i].decision !== 'data not found');
+                return this.workersInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0 || arr[i].decision !== 'data not found' || arr[i].salary_worker !== 0 && arr[i].per_hour_worker !== 0 );
             },
             sortedList() {
                 switch (this.sortParam) {
