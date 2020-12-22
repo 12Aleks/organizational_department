@@ -6,7 +6,7 @@
       </div>
       <div class="row img_attachment">
         <Loader v-if="loader"/>
-        <div v-show="!loader" class="col s12 m12">
+        <div v-show="!loader" class="col s12 m12 l12 h100">
           <div class="profile-header z-depth-1"
                :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} ">
             <div class="profile-img">
@@ -20,7 +20,7 @@
               </div>
             </div>
           </div>
-          <div ref="firstTable" class="table-wrapper z-depth-1">
+          <div ref="firstTable" class="table-wrapper firstTable z-depth-1">
             <table>
               <thead>
               <tr>
@@ -147,6 +147,8 @@ $orange: #ffb74d ;
 .profile-header.doubt{
   background-color: $orange;
 }
+
+
 .profile-header {
   background-color: $turquoise;
   background-image: url("../assets/images/technical.png");
@@ -230,7 +232,6 @@ p.worker_position {
 
 .table-wrapper {
   margin-top: 2px;
-  height: 100%;
 
   table th {
     background-color: #26a69a;
@@ -241,7 +242,9 @@ p.worker_position {
     }
   }
 }
-
+.firstTable{
+  height: auto;
+}
 .secondTable {
   margin-top: 10px;
   height: -webkit-calc(100vh - 552px);

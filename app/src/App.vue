@@ -46,7 +46,9 @@ $darkOrange: #ffcc80;
     height: 100%;
   }
 }
-
+.h100{
+  height: 100%;
+}
 .table-wrapper {
   overflow: auto;
   height: -webkit-calc(100vh - 273px);

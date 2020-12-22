@@ -6,7 +6,7 @@
         </div>
         <div class="row img_attachment">
           <Loader v-if="loader"/>
-          <div v-else class="col s12 m12 l12">
+          <div v-else class="col s12 m12 l12 ">
             <div class="tabordion">
               <section v-for="(value, name, index) in process" :key="value.index" :id="name">
                 <input type="radio" name="sections" :id="`${name}-${index}`" :checked="index === 0">
