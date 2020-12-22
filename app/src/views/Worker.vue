@@ -8,7 +8,7 @@
         <Loader v-if="loader"/>
         <div v-show="!loader" class="col s12 m12">
           <div class="profile-header z-depth-1"
-               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE'} ">
+               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} ">
             <div class="profile-img">
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
             </div>
