@@ -57,9 +57,7 @@
                             </thead>
                             <tbody id="table">
                             <tr v-for="(value, index) in sortedList" :key="index"
-                                :class="{decision: value.decision.toUpperCase() !== 'TAK', doubt: (value.decision.toUpperCase() === 'TAK' && !value.final_salary)}"
-                                v-new-worker="`${value.decision.toUpperCase() !== 'TAK'? 'NIE': value.decision.toUpperCase() === 'TAK' && !value.final_salary? 'false' : null }`"
-                            >
+                                :class="{decision: value.decision.toUpperCase() !== 'TAK', doubt: (value.decision.toUpperCase() === 'TAK' && !value.final_salary)}">
                                 <td style="width: 50px">{{ index + 1 }}</td>
                                 <td>
                                     <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
