@@ -6,9 +6,8 @@
       </div>
       <div class="row img_attachment">
         <Loader v-if="loader"/>
-        <div v-show="!loader" class="col s12 m12 l12 h100">
-          <div class="profile-header z-depth-1"
-               :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} ">
+        <div v-show="!loader" class="col s12 m3 l3 first_wrapper">
+          <div class="profile-header z-depth-1">
             <div class="profile-img">
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
             </div>
@@ -20,6 +19,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div v-show="!loader" class="col s12 m9 l9 second_wrapper">
           <div ref="firstTable" class="table-wrapper firstTable z-depth-1">
             <table>
               <thead>
@@ -148,17 +149,23 @@ $orange: #ffb74d ;
   background-color: $orange;
 }
 
+.img_attachment{
+  display:flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+}
+.first_wrapper{
 
+}
+.second_wrapper{
+  flex:1;
+  display: grid;
+}
 .profile-header {
   background-color: $turquoise;
-  background-image: url("../assets/images/technical.png");
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position-y: center;
-  background-position-x: right;
-  width: 100%;
-  display: flex;
-  height: 170px;
   position: relative;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
@@ -247,8 +254,8 @@ p.worker_position {
 }
 .secondTable {
   margin-top: 10px;
-  height: -webkit-calc(100vh - 552px);
-  height: calc(100vh - 552px);
+  flex-grow: 1;
+  height: auto;
 }
 @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
   .profile-header {
