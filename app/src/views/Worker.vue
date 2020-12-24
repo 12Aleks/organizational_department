@@ -6,7 +6,7 @@
       </div>
       <div class="row img_attachment">
         <Loader v-if="loader"/>
-        <div v-show="!loader" class="col s12 m3 l3 first_wrapper">
+        <div v-show="!loader" class="col s12 m9 l9 second_wrapper">
           <div class="profile-header z-depth-1">
             <div class="profile-img">
               <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
@@ -19,8 +19,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div v-show="!loader" class="col s12 m9 l9 second_wrapper">
           <div ref="firstTable" class="table-wrapper firstTable z-depth-1">
             <table>
               <thead>
@@ -172,18 +170,18 @@ $orange: #ffb74d ;
 
   .profile-img {
     float: left;
-    width: 273px;
-    height: 200px;
+    width: 220px;
+    height: 152px;
 
     img {
       border-radius: 50%;
-      height: 175px;
-      width: 175px;
-      border: 5px solid #fff;
+      height: 120px;
+      width: 120px;
+      border: 2px solid #fff;
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       position: absolute;
       left: 50px;
-      top: 15px;
+      top: 16px;
       z-index: 5;
       background: #fff;
     }
@@ -205,12 +203,12 @@ h3.user-name {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 55px;
+  padding-top: 45px;
 }
 
 .profile-nav-info h3 {
   font-variant: small-caps;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: sans-serif;
   font-weight: bold;
 }
