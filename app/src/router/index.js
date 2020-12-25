@@ -21,7 +21,7 @@ const router =  new Router({
       component: () => import('../views/Registration.vue')
     },
     {
-      path: '/',
+      path: '/import',
       name: 'home',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Home.vue')
@@ -63,7 +63,7 @@ const router =  new Router({
       component: () => import('../views/Recruitment.vue')
     },
     {
-      path: '/new_workers',
+      path: '/',
       name: 'newWorkerList',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/newWorkerList.vue')
