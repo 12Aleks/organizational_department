@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h100">
     <Loader v-if='loader'></Loader>
     <div v-else class="app-main-layout grey lighten-4">
       <navbar @click="isOpen = !isOpen"></navbar>
@@ -65,13 +65,11 @@ $darkenGrey: grey;
   background-size: cover;
   background-position: bottom;
   background-attachment: fixed;
-  padding: 20px 15px;
-  //height: calc(100vh - 111px);
-  //height: -webkit-calc(100vh - 111px);
+  padding: 15px 5px;
   height: -webkit-calc(100vh - 175px);
   height: calc(100vh - 175px);
-  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  //-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  //box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 
   ul.tabs {
     margin-bottom: 10px;
