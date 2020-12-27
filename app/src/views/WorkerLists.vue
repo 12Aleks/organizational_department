@@ -1,20 +1,19 @@
 <template>
-  <div>
-    <div class="page-title">
-      <h3 class="flow-text">Lista pracowników</h3>
-    </div>
-    <div class="row img_attachment h100">
+    <div class="row img_attachment">
       <Loader v-if="loader"/>
       <div v-show="!loader" class="col s12 m12 l12 h100">
+        <div class="page-title">
+          <h3 class="flow-text">Lista pracowników</h3>
+        </div>
         <div class="search-wrapper">
           <i class="material-icons">search</i><input id="search" type="text" v-model="selectWorker"
                                                      placeholder="Wyszukiwanie po imieniu i nazwisku">
         </div>
-        <div class="table-wrapper z-depth-1">
+        <div class="table-wrapper">
           <table class="highlight">
             <thead>
             <tr>
-              <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
+              <th>&#8470</th>
               <th :class="{active: sortParam==='name' && selectWorker==='', toggle: toggle}"
                   @click="sort('name'); selectWorker = ''"
               ><i class="material-icons tiny right">search</i>Nazwisko i Imię
@@ -65,7 +64,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -174,8 +172,8 @@ $red: rgba(255, 104, 115, 1);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 276px);
-  height: calc(100vh - 276px);
+  height: -webkit-calc(100vh - 254px);
+  height: calc(100vh - 254px);
 
   table {
     table-layout: fixed;
