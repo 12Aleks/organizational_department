@@ -1,5 +1,5 @@
 <template>
-    <div class="app-page">
+    <div>
       <div class="page-title">
         <h3 class="flow-text">Twoje konto</h3>
       </div>

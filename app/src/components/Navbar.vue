@@ -1,11 +1,12 @@
 <template>
-  <nav class="navbar grey lighten-2">
+  <nav class="navbar white">
     <div class="nav-wrapper">
       <div class="navbar-left">
         <a href="#" @click.prevent="$emit('click')" class="hide-button">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{time | dateFilter('date time')}}</span>
+        <router-link to="/" class="logo_link"><img src="../assets/images/logo_terma.png" alt="logo"></router-link>
+<!--        <span class="black-text">{{time | dateFilter('date time')}}</span>-->
       </div>
 
       <ul class="right hide-on-large-and-down">
@@ -59,11 +60,11 @@ export default {
     time: new Date(),
     interval: null,
     links: [
-      {title: 'Nowi pracownicy', url: '/new_workers'},
+      {title: 'Nowi pracownicy', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
       {title: 'Zespoł Personalny', url: '/recruitment'},
       {title: 'Lista pracowników', url: '/lists'},
-      {title: 'Import danych', url: '/', exact: true}
+      {title: 'Import danych', url: '/import'}
     ]
   }),
   mounted() {
@@ -95,6 +96,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.logo_link{
+  height: 42px;
+}
 .hide-button{
   display: inherit;
   @media only screen and (min-width: 1099.98px) {
@@ -132,6 +136,7 @@ export default {
     max-width: 40px;
     max-height: 40px;
     margin-right: 10px;
+    border: 1px solid #c8c7c7;
     position: relative;
     display: inline-flex;
     display: -webkit-inline-flex;

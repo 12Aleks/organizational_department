@@ -1,5 +1,4 @@
 <template>
-    <div class="app-page">
       <div>
         <div class="page-title">
           <h3 class="flow-text">Zespoł Personalny - Podział zespolów</h3>
@@ -401,7 +400,6 @@
           </div>
         </div>
       </div>
-    </div>
 </template>
 
 <script>

@@ -1,6 +1,4 @@
 <template>
-    <div class="app-page">
-      <div>
         <div class="row img_attachment">
           <div class="col s12 m12">
             <ul class="tabs" ref="tabs">
@@ -31,8 +29,6 @@
             <departmentDoughnutChart :departmentInfo="departmentInfo" :newWorkerInSections="newWorkerInSections" />
           </div>
         </div>
-      </div>
-    </div>
 </template>
 <script>
 import M from 'materialize-css'
