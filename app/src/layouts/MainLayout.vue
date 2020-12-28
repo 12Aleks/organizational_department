@@ -1,7 +1,11 @@
 <template>
-  <div>
+  <div class="h100">
     <Loader v-if='loader'></Loader>
+<<<<<<< HEAD
     <div v-else class="app-main-layout grey lighten-5">
+=======
+    <div v-else class="app-main-layout">
+>>>>>>> ff05918949bb5abd358bd4204577f00ad4ab4ddf
       <navbar @click="isOpen = !isOpen"></navbar>
       <sidebar :value="isOpen"></sidebar>
 
@@ -60,6 +64,7 @@ $darkenGrey: grey;
   margin-bottom: 0 !important;
   position: relative;
   background-color: rgba(255, 255, 255, 1);
+<<<<<<< HEAD
   background-image: url("../assets/images/fabrik.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,6 +76,12 @@ $darkenGrey: grey;
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 
+=======
+  padding: 15px 5px;
+  height: 100%;
+  //height: -webkit-calc(100vh - 163px);
+  //height: calc(100vh - 64px - 3rem);
+>>>>>>> ff05918949bb5abd358bd4204577f00ad4ab4ddf
   ul.tabs {
     margin-bottom: 10px;
     border-bottom: 1px solid $red;
