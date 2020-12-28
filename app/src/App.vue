@@ -82,7 +82,7 @@ $borderTable: #e0e0e0;
     }
 
     th {
-      background-color: $grey;
+      background-color: $turquoise;
       text-transform: uppercase;
       letter-spacing: 1.8px;
       cursor: pointer;
@@ -93,7 +93,8 @@ $borderTable: #e0e0e0;
       position: sticky;
       top: 0;
       transition: all .5s;
-
+      -webkit-box-shadow: 0 1px 4px 0 $light-blue;
+      box-shadow: 0 1px 4px 0 $light-blue;
       span {
         font-size: .6875rem;
         font-style: italic;
@@ -138,7 +139,7 @@ $borderTable: #e0e0e0;
       }
 
       &:hover {
-        background-color: $darkenGrey;
+        background-color: $backgroundTurquoise;
         transition: background-color .5s;
       }
     }

@@ -13,7 +13,8 @@
             <div class="profile-nav-info">
               <h3 class="user-name">{{ worker.name }}</h3>
               <div class="address">
-                <p class="worker_process"><router-link :to="`/${selectProcess.toLowerCase()}` + `/` +`${departmentName.toLowerCase()}`">ZESPÓŁ: {{ worker.department }} </router-link></p>
+                <p class="worker_process"><router-link :to="`/${selectProcess.toLowerCase()}` + `/` + <div class="profile-header z-depth-1"
+                  :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} ">`${departmentName.toLowerCase()}`">ZESPÓŁ: {{ worker.department }} </router-link></p>
                 <p class="worker_position" v-if="worker.position && worker.position !== 'data not found'">STANOWISKO: {{ worker.position }}</p>
               </div>
             </div>
@@ -157,8 +158,9 @@ $orange: #ffb74d ;
 
 }
 .second_wrapper{
-  flex:1;
-  display: grid;
+  margin-top: 10px;
+  height: -webkit-calc(100vh - 552px);
+  height: calc(100vh - 552px);
 }
 .profile-header {
   background-color: $turquoise;

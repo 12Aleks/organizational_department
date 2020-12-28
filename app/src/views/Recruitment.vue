@@ -9,7 +9,7 @@
               <table class="responsive-table">
                 <thead>
                 <tr>
-                  <th>Zespół</th>
+                  <th style="width: auto;">Zespół</th>
                   <th>Binkiewicz Magdalena</th>
                   <th>Gasperowicz Jadwiga</th>
                   <th>Bigott Alicja</th>

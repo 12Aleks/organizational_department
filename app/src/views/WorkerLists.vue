@@ -1,14 +1,11 @@
 <template>
-<<<<<<< HEAD
-      <div>
-=======
+  <div>
+    <div class="page-title">
+      <h3 class="flow-text">Lista pracowników</h3>
+    </div>
     <div class="row img_attachment">
       <Loader v-if="loader"/>
-      <div v-show="!loader" class="col s12 m12 l12 h100">
->>>>>>> ff05918949bb5abd358bd4204577f00ad4ab4ddf
-        <div class="page-title">
-          <h3 class="flow-text">Lista pracowników</h3>
-        </div>
+      <div v-show="!loader" class="col s12 m12 l12">
         <div class="search-wrapper">
           <i class="material-icons">search</i><input id="search" type="text" v-model="selectWorker"
                                                      placeholder="Wyszukiwanie po imieniu i nazwisku">
@@ -67,6 +64,8 @@
           </table>
         </div>
       </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -175,8 +174,8 @@ $red: rgba(255, 104, 115, 1);
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 254px);
-  height: calc(100vh - 254px);
+  height: -webkit-calc(100vh - 276px);
+  height: calc(100vh - 276px);
 
   table {
     table-layout: fixed;
