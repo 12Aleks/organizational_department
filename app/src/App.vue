@@ -28,7 +28,7 @@ export default {
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/styles/index.css';
 
-$turquoise: #26a69a;
+$turquoise: #555555;
 $lightTurquoise: rgba(38, 166, 154, .4);
 $backgroundTurquoise: rgb(38, 166, 154, .95);
 $black: rgba(48, 69, 92, 1);
@@ -41,9 +41,9 @@ $purple: #bbdefb;
 $darkPurple: #90caf9;
 $orange: #ffe0b2;
 $darkOrange: #ffcc80;
-$grey: #bdbdbd;
+$grey: #929292;
 $darkenGrey: #b5b5b5;
-$borderTable: #e0e0e0;
+$borderTable: #d1d0d2;
 .app-content {
   height: 100vh;
 
@@ -63,26 +63,26 @@ $borderTable: #e0e0e0;
     table-layout: fixed;
     position: relative;
 
-    tbody {
-      tr.decision {
-        background-color: $darkRed;
-
-        &:hover {
-          background-color: $red;
-        }
-      }
-
-      tr.doubt {
-        background-color: $darkOrange;
-
-        &:hover {
-          background-color: $orange;
-        }
-      }
-    }
+    //tbody {
+    //  tr.decision {
+    //    background-color: $darkRed;
+    //
+    //    &:hover {
+    //      background-color: $red;
+    //    }
+    //  }
+    //
+    //  tr.doubt {
+    //    background-color: $darkOrange;
+    //
+    //    &:hover {
+    //      background-color: $orange;
+    //    }
+    //  }
+    //}
 
     th {
-      background-color: $turquoise;
+      background-color: $grey;
       text-transform: uppercase;
       letter-spacing: 1.8px;
       cursor: pointer;
@@ -139,7 +139,7 @@ $borderTable: #e0e0e0;
       }
 
       &:hover {
-        background-color: $backgroundTurquoise;
+        background-color: $darkenGrey;
         transition: background-color .5s;
       }
     }

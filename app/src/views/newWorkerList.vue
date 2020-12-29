@@ -16,7 +16,7 @@
                         <table class="highlight">
                             <thead>
                             <tr>
-                                <th style="width: 50px; background-color: #26a69a; color: #fff">&#8470</th>
+                                <th style="width: 50px;">&#8470</th>
                                 <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">
                                     <i class="material-icons tiny right">search</i> Nazwisko i
                                     Imię

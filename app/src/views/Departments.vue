@@ -72,6 +72,7 @@ export default {
 
 <style scoped lang="scss">
 $turquoise: #26a69a;
+$termaRed: #e52529;
 $black: rgba(48, 69, 92, 1);
 $white: rgba(254, 255, 250, 1);
 $blue: rgb(81, 110, 133);
@@ -105,7 +106,7 @@ $red: rgba(255, 104, 115, 1);
 
       &:checked + label {
         background: $white;
-        color: $turquoise;
+        color: $termaRed;
       }
 
       &:checked ~ article {
@@ -114,8 +115,8 @@ $red: rgba(255, 104, 115, 1);
     }
 
     label {
-      background: $turquoise;
-      border-bottom: 1px solid $blue;
+      background: $termaRed;
+      border-bottom: 1px solid $white;
       font-size: .85rem;
       font-weight: 400;
       color: $white;
@@ -177,7 +178,7 @@ $red: rgba(255, 104, 115, 1);
       }
 
       label {
-        background: $turquoise;
+        background: $termaRed;
         border-left: 1px solid $blue;
         padding: 0.6em 2.5%;
         font-size: 0.9rem;
