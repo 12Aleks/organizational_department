@@ -207,8 +207,8 @@ button.btn.waves-effect.waves-light {
 
 section.first, .dropZone {
   position: relative;
-  height: -webkit-calc(100vh - 398px);
-  height: calc(100vh - 398px);
+  height: -webkit-calc(100vh - 360px);
+  height: calc(100vh - 360px);
 }
 .dropZone {
   border: 2px dashed $light-blue;

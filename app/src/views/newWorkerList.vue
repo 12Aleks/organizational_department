@@ -12,7 +12,7 @@
                 </div>
                 <Loader v-if="loader"/>
                 <div v-show="!loader" id="tabFirst" class="col s12">
-                    <div class="table-wrapper z-depth-1">
+                    <div class="table-wrapper">
                         <table class="highlight">
                             <thead>
                             <tr>

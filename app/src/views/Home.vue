@@ -29,10 +29,9 @@ export default {
 <style scoped lang="scss">
 .contet-wrapper {
   height: 100%;
-  padding: 2rem;
   .img_attachment {
-    height: calc(100vh - 145px);
-    height: -webkit-calc(100vh - 145px);
+    height: calc(100vh - 110px);
+    height: -webkit-calc(100vh - 110px);
   }
 }
 </style>

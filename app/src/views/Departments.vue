@@ -106,7 +106,7 @@ $red: rgba(255, 104, 115, 1);
 
       &:checked + label {
         background: $white;
-        color: $termaRed;
+        color: $turquoise;
       }
 
       &:checked ~ article {
@@ -115,7 +115,7 @@ $red: rgba(255, 104, 115, 1);
     }
 
     label {
-      background: $termaRed;
+      background: $turquoise;
       border-bottom: 1px solid $white;
       font-size: .85rem;
       font-weight: 400;
@@ -178,7 +178,7 @@ $red: rgba(255, 104, 115, 1);
       }
 
       label {
-        background: $termaRed;
+        background: $turquoise;
         border-left: 1px solid $blue;
         padding: 0.6em 2.5%;
         font-size: 0.9rem;

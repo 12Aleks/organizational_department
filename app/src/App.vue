@@ -28,7 +28,7 @@ export default {
 @import '~materialize-css/dist/css/materialize.min.css';
 @import 'assets/styles/index.css';
 
-$turquoise: #555555;
+$turquoise: #26a69a;
 $lightTurquoise: rgba(38, 166, 154, .4);
 $backgroundTurquoise: rgb(38, 166, 154, .95);
 $black: rgba(48, 69, 92, 1);
@@ -82,7 +82,7 @@ $borderTable: #d1d0d2;
     //}
 
     th {
-      background-color: $grey;
+      background-color: $turquoise;
       text-transform: uppercase;
       letter-spacing: 1.8px;
       cursor: pointer;
@@ -139,7 +139,7 @@ $borderTable: #d1d0d2;
       }
 
       &:hover {
-        background-color: $darkenGrey;
+        background-color: $backgroundTurquoise;
         transition: background-color .5s;
       }
     }
