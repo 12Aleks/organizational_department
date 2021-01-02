@@ -132,7 +132,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$red: rgba(255, 104, 115, 1);
 .search-wrapper {
   color: #777;
   margin-top: -1px;
