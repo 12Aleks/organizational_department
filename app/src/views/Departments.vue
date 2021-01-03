@@ -71,12 +71,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise: #26a69a;
 $termaRed: #e52529;
-$black: rgba(48, 69, 92, 1);
-$white: rgba(254, 255, 250, 1);
 $blue: rgb(81, 110, 133);
-$red: rgba(255, 104, 115, 1);
+
 .img_attachment {
   background-image: url("../assets/images/terma_0.png");
   position: relative;

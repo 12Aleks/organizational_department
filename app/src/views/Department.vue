@@ -100,12 +100,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise: #26a69a;
-$sectionsClass: #297f75;
 .img_attachment {
   height: calc(100vh - 111px);
   height: -webkit-calc(100vh - 111px);
-  background: #ffffff;
+  background: $white;
 }
 .section{
   height: 40px;
@@ -116,13 +114,13 @@ $sectionsClass: #297f75;
     height: 30px;
     max-width: 400px;
     text-transform: uppercase;
-    color: grey;
+    color: $grey;
     font-size: 14px;
     padding: 4px;
     margin-left: 15px;
   }
 }
 .section.sections_class{
-  background-color: $sectionsClass;
+  background-color: $backgroundTurquoise;
 }
 </style>

@@ -133,7 +133,7 @@ export default {
 
 <style scoped lang="scss">
 .search-wrapper {
-  color: #777;
+  color: #777777;
   margin-top: -1px;
   position: relative;
   -webkit-transition: margin .25s ease;
