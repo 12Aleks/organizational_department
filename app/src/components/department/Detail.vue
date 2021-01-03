@@ -1,6 +1,6 @@
 <template>
   <div class="department-wrapper" :class="{sections_class: current !== 'all'}">
-    <table class="responsive-table z-depth-1">
+    <table class="responsive-table">
       <thead>
       <tr class="subtitle">
         <th colspan="4">
@@ -108,12 +108,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise: #26a69a;
-$lightTurquoise: rgba(38, 166, 154, .4);
-$black: rgba(48, 69, 92, 1);
-$white: rgba(254, 255, 250, 1);
-$blue: rgb(81, 110, 133);
-$sectionsClass: #297f75;
 .department-wrapper {
   max-width: 100%;
   display: block;
@@ -218,11 +212,6 @@ $sectionsClass: #297f75;
           font-size: 1.7rem;
         }
 
-        //span {
-        //  text-transform: lowercase;
-        //  margin-left: 5px;
-        //}
-
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           font-size: 1rem;
           margin: 0;
@@ -265,11 +254,11 @@ $sectionsClass: #297f75;
     thead {
       tr {
         th {
-          background-color: $sectionsClass;
+          background-color: $backgroundTurquoise;
 
           .button-right {
             i {
-              color: $sectionsClass;
+              color: $backgroundTurquoise;
             }
           }
         }
@@ -281,13 +270,13 @@ $sectionsClass: #297f75;
       font-weight: 600;
 
       i {
-        border: 1px solid $sectionsClass;
-        background-color: $sectionsClass;
+        border: 1px solid $backgroundTurquoise;
+        background-color: $backgroundTurquoise;
       }
     }
 
     h6.border, h6.border span {
-      color: $sectionsClass;
+      color: $backgroundTurquoise;
     }
   }
 }

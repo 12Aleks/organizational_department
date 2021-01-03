@@ -175,13 +175,6 @@
 </script>
 
 <style lang="scss" scoped>
-    $turquoise: #26a69a;
-    $black: rgba(48, 69, 92, 1);
-    $white: rgba(254, 255, 250, 1);
-    $blue: #57758c94;
-    .img_attachment {
-
-    }
 
     h6 {
         text-transform: uppercase;

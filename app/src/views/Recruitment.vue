@@ -419,8 +419,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$white: rgba(254, 255, 250, 1);
-$red: rgba(255, 104, 115, 1);
 .table-wrapper{
   height: calc(100vh - 213px);
   height: -webkit-calc(100vh - 213px);

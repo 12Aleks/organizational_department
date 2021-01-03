@@ -152,6 +152,7 @@
 
 .newWorkerClass {
   color: $red !important;
+
 }
 
 .img_attachment {
@@ -165,20 +166,20 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   ul.tabs {
     margin-bottom: 10px;
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid $lightSecondRed;
     li.indicator{
-      background-color: $white;
+      background-color: $red;
       height: 1px;
     }
     .tab a {
-      color: $white;
-      background-color: $darkenGrey;
+      color: $grey;
+      background-color: $lightFirstRed;
     }
 
 
     .tab a.active, .tab a:hover, .tab a:focus, .tab a:focus.active {
-      color: $white;
-      background-color: $grey;
+      color: $grey;
+      background-color: $lightSecondRed;
     }
   }
 

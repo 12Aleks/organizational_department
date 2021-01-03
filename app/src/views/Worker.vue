@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$turquoise: #26a69a;
+
 $backgroundDarkRed: #B10303;
 $darkPurple: #1976d2;
 $orange: #ffb74d ;

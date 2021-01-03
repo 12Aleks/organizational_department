@@ -1,6 +1,6 @@
 <template>
   <div class="box-wrappers" :class="{sections_class: current !== 'all'}">
-    <div class="table-wrapper z-depth-1" :class="{'table-height': changeTable }">
+    <div class="table-wrapper" :class="{'table-height': changeTable }">
       <table class="highlight">
         <thead>
         <tr >
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$sectionsClass: #297f75;
+
 .subtitle {
   background-color: #4184491c;
 }
@@ -159,7 +159,7 @@ $sectionsClass: #297f75;
 .sections_class{
   .table-wrapper{
      table th {
-       background-color: $sectionsClass;
+       background-color: $backgroundTurquoise;
      }
   }
 }
