@@ -1,5 +1,5 @@
 <template>
-  <ul class="collapsible z-depth-1" ref="accord">
+  <ul class="collapsible" ref="accord">
     <li>
       <div class="collapsible-header grey lighten-3">
         <div @click.stop="departmentPath">
@@ -43,7 +43,7 @@ export default {
     newWorkerInDepartment() {
       let departments = Object.keys(this.newWorkersInProcess).filter(key => key === this.name).reduce((obj, key) => ( obj[key] = this.newWorkersInProcess[key], obj[key] ), {});
       return departments.length > 0? departments.includes(this.value[0]): false
-      }
+    }
   },
   methods: {
     async departmentPath() {
@@ -58,67 +58,3 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-.collapsible {
-  margin-top: 0;
-  margin-bottom: 0;
-
-  .active .collapsible-header {
-    i.tiny {
-      transform: rotate(-90deg);
-      -webkit-transform: rotate(-90deg);
-      -moz-transform: rotate(-90deg);
-      -o-transform: rotate(-90deg);;
-    }
-  }
-
-  .collapsible-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    div {
-      width: 80%;
-      display: inline-flex;
-      align-items: center;
-
-      h6 {
-        margin: .5rem 0;
-        font-size: 1rem;
-        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-          font-size: .95rem;
-        }
-      }
-    }
-
-    padding: 0.3rem 1rem;
-
-    i.tiny {
-      font-size: 1.4rem !important;
-      transform: rotate(90deg);
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -o-transform: rotate(90deg);;
-    }
-  }
-
-  .collapsible-body {
-    padding: 1rem 2rem;
-
-    li {
-      span {
-        font-size: .9rem;
-        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-          font-size: .85rem;
-        }
-      }
-    }
-
-  }
-
-  .collapsible-body.passive {
-    border-bottom: 0 !important;
-    padding: 0 !important;
-  }
-}
-</style>

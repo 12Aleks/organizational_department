@@ -116,7 +116,7 @@ export default {
     margin-bottom: 10px;
 
     th, td {
-      border: 1px solid $lightTurquoise;
+      border: 1px solid $borderTable;
       border-collapse: collapse;
       text-align: center;
       padding: 5px 5px;
@@ -125,8 +125,7 @@ export default {
     thead {
       tr {
         th {
-          background-color: $turquoise;
-
+          background-color: $grey_darken_2;
           .button-right {
             height: 34px;
             width: 34px;
@@ -134,7 +133,7 @@ export default {
             i {
               line-height: 35px;
               padding-right: 1px;
-              color: $turquoise;
+              color: $grey_darken_2;
             }
 
             @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -179,11 +178,11 @@ export default {
       font-weight: 600;
 
       i {
-        border: 1px solid $turquoise;
+        border: 1px solid $grey_darken_2;
         font-size: 1rem;
         padding: 3px;
         color: $white;
-        background-color: $turquoise;
+        background-color: $grey_darken_2;
         border-radius: 50%;
       }
     }
@@ -223,7 +222,7 @@ export default {
     }
 
     h6.border, h6.border span {
-      color: $turquoise;
+      color: $grey_darken_2;
       font-size: 1rem;
       @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .9rem;
@@ -240,7 +239,7 @@ export default {
     li {
       list-style-type: circle;
       margin-bottom: 5px;
-      color: $black;
+      color: $grey_darken_3;
       text-transform: uppercase;
       font-size: 13px;
       text-align: left;
@@ -254,11 +253,11 @@ export default {
     thead {
       tr {
         th {
-          background-color: $backgroundTurquoise;
+          background-color: $grey_darken_2;
 
           .button-right {
             i {
-              color: $backgroundTurquoise;
+              color: $grey_darken_2;
             }
           }
         }
@@ -270,13 +269,13 @@ export default {
       font-weight: 600;
 
       i {
-        border: 1px solid $backgroundTurquoise;
-        background-color: $backgroundTurquoise;
+        border: 1px solid $grey_darken_2;
+        background-color: $grey_darken_2;
       }
     }
 
     h6.border, h6.border span {
-      color: $backgroundTurquoise;
+      color: $grey_darken_2;
     }
   }
 }

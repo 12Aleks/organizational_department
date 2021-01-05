@@ -9,6 +9,9 @@ $white: rgba(254, 255, 250, 1);
 $black: rgba(48, 69, 92, 1);
 $blue: rgba(120, 151, 163, 0.98);
 $light-blue: rgba(120, 151, 163, 0.5);
+$blue_grey_darken-1: #546e7a;
+$blue_grey_darken-2: #455a64;
+$blue_grey_darken-3: #37474f;
 
 $purple: #bbdefb;
 $darkPurple: #90caf9;
@@ -16,6 +19,9 @@ $darkPurple: #90caf9;
 $orange: #ffe0b2;
 $darkOrange: #ffcc80;
 
+$grey_darken_1: #757575;
+$grey_darken_2: #616161;
+$grey_darken_3: #424242;
 $grey: #929292;
 $darkenGrey: #b5b5b5;
 $borderTable: #d1d0d2;
@@ -23,6 +29,92 @@ $borderTable: #d1d0d2;
 //red
 $red: rgba(255, 104, 115, 1);
 $darkRed: rgba(255, 104, 115, 1);
+$text-color: #d0021b;
 $backgroundDarkRed: #B10303;
-$lightFirstRed: rgba(255,235,238, 1);
-$lightSecondRed: rgba(255,205,210, 1);
+$lightFirstRed: #ef9a9a ;
+$lightSecondRed: #e57373;
+
+
+//flex
+@mixin flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-direction($direction: row) {
+  @if $direction == row-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: reverse;
+    -moz-box-orient: horizontal;
+  } @else if $direction == column {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: normal;
+    -moz-box-orient: vertical;
+  } @else if $direction == column-reverse {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -moz-box-orient: vertical;
+  } @else {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
+  }
+  -webkit-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin justify-content($value: flex-start) {
+  @if $value == flex-start {
+    -webkit-box-pack: start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+  } @else if $value == flex-end {
+    -webkit-box-pack: end;
+    -moz-box-pack: end;
+    -ms-flex-pack: end;
+  } @else if $value == space-between {
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+  } @else {
+    -webkit-box-pack: $value;
+    -moz-box-pack: $value;
+    -ms-flex-pack: $value;
+  }
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin align-items($value: stretch) {
+  @if $value == flex-start {
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+  } @else if $value == flex-end {
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -ms-flex-align: end;
+  } @else {
+    -webkit-box-align: $value;
+    -moz-box-align: $value;
+    -ms-flex-align: $value;
+  }
+  -webkit-align-items: $value;
+  align-items: $value;
+}

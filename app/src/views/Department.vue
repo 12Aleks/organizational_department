@@ -1,34 +1,34 @@
 <template>
-        <div class="row img_attachment">
-          <div class="col s12 m12">
-            <ul class="tabs" ref="tabs">
-              <li class="tab col s4"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
-              <li class="tab col s4"><a href="#tabthird">Wykres kołowy aktualnych wynagrodzeń</a></li>
-              <li class="tab col s4"><a href="#tabSecond">Wykres słupkowy (wszystkie parametry)</a></li>
-            </ul>
-          </div>
-          <Loader v-if="loader"/>
-          <div v-show="!loader" id="tabFirst" class="col s12" :class="{quantitySections: !quantity }">
-            <detail :departmentInfo='selectedElement' :departmentName="departmentName" :current="current"/>
-            <div class="section button_wrapper" v-if="quantity" :class="{sections_class: current !== 'all'}">
-              <select class="browser-default z-depth-1" ref="select" v-model="current" >
-                <option value="all">Wszystkie komorki</option>
-                <option v-for="(c, index) of process"
-                        :key="index"
-                        :value="c"
-                        :class="{newWorkerClass:  (newWorkerInSections.length > 0? newWorkerInSections.includes(c) : false)}">
-                  {{ c }}</option>
-              </select>
-            </div>
-            <process :process="selectedElement" :current="current"/>
-          </div>
-          <div id="tabSecond" class="col s12">
-             <departmentBarChart :newWorkerInSections="newWorkerInSections" :departmentInfo="departmentInfo" />
-          </div>
-          <div id="tabthird" class="col s12">
-            <departmentDoughnutChart :departmentInfo="departmentInfo" :newWorkerInSections="newWorkerInSections" />
-          </div>
-        </div>
+  <div class="row img_attachment">
+    <div class="col s12 m12">
+      <ul class="tabs" ref="tabs">
+        <li class="tab col s4"><a class="active" href="#tabFirst">Informacja o zespole</a></li>
+        <li class="tab col s4"><a href="#tabthird">Wykres kołowy aktualnych wynagrodzeń</a></li>
+        <li class="tab col s4"><a href="#tabSecond">Wykres słupkowy (wszystkie parametry)</a></li>
+      </ul>
+    </div>
+    <Loader v-if="loader"/>
+    <div v-show="!loader" id="tabFirst" class="col s12" :class="{quantitySections: !quantity }">
+      <detail :departmentInfo='selectedElement' :departmentName="departmentName" :current="current"/>
+      <div class="section button_wrapper" v-if="quantity" :class="{sections_class: current !== 'all'}">
+        <select class="browser-default z-depth-1" ref="select" v-model="current" >
+          <option value="all">Wszystkie komorki</option>
+          <option v-for="(c, index) of process"
+                  :key="index"
+                  :value="c"
+                  :class="{newWorkerClass:  (newWorkerInSections.length > 0? newWorkerInSections.includes(c) : false)}">
+            {{ c }}</option>
+        </select>
+      </div>
+      <process :process="selectedElement" :current="current"/>
+    </div>
+    <div id="tabSecond" class="col s12">
+      <departmentBarChart :newWorkerInSections="newWorkerInSections" :departmentInfo="departmentInfo" />
+    </div>
+    <div id="tabthird" class="col s12">
+      <departmentDoughnutChart :departmentInfo="departmentInfo" :newWorkerInSections="newWorkerInSections" />
+    </div>
+  </div>
 </template>
 <script>
 import M from 'materialize-css'
@@ -107,7 +107,7 @@ export default {
 }
 .section{
   height: 40px;
-  background-color: $turquoise;
+  background-color: $grey_darken_2;
   padding: 5px 0;
   margin-bottom: 10px;
   select {
@@ -121,6 +121,6 @@ export default {
   }
 }
 .section.sections_class{
-  background-color: $backgroundTurquoise;
+  background-color: $grey_darken_2;
 }
 </style>

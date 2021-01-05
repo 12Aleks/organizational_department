@@ -1,5 +1,5 @@
 @import "variables";
-
+@import "departments";
 .app-content {
   height: 100vh;
 
@@ -38,7 +38,7 @@
     //}
 
     th {
-      background-color: $turquoise;
+      background-color: $blue_grey_darken-2;
       text-transform: uppercase;
       letter-spacing: 1.8px;
       cursor: pointer;
@@ -95,7 +95,7 @@
       }
 
       &:hover {
-        background-color: $backgroundTurquoise;
+        background-color: $blue_grey_darken-3;
         transition: background-color .5s;
       }
     }
@@ -172,13 +172,15 @@
       height: 1px;
     }
     .tab a {
-      color: $grey;
+      color: $white;
+      text-shadow: 0 0 1px rgba(150, 150, 150, 1);
       background-color: $lightFirstRed;
+      letter-spacing: 1px;
     }
 
 
     .tab a.active, .tab a:hover, .tab a:focus, .tab a:focus.active {
-      color: $grey;
+      color: $white;
       background-color: $lightSecondRed;
     }
   }

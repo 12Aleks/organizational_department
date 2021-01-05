@@ -6,7 +6,7 @@
           <i class="material-icons black-text">dehaze</i>
         </a>
         <router-link to="/" class="logo_link"><img src="../assets/images/logo_terma.png" alt="logo"></router-link>
-<!--        <span class="black-text">{{time | dateFilter('date time')}}</span>-->
+        <!--        <span class="black-text">{{time | dateFilter('date time')}}</span>-->
       </div>
 
       <ul class="right hide-on-large-and-down">
@@ -112,11 +112,14 @@ export default {
   }
   li{
     a{
-      color: #525252;
+      color: $blue_grey_darken-2;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      font-size: 13px;
     }
   }
   li.active{
-    background-color: rgba(0,0,0,0.3);
+    background-color: $blue_grey_darken-2;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     a{
       color: $white;
