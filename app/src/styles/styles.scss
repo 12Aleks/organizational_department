@@ -166,22 +166,22 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   ul.tabs {
     margin-bottom: 10px;
-    border-bottom: 1px solid $lightSecondRed;
+    border-bottom: 1px solid $text-color;
     li.indicator{
-      background-color: $red;
+      background-color: $text-color;
       height: 1px;
     }
     .tab a {
       color: $white;
       text-shadow: 0 0 1px rgba(150, 150, 150, 1);
-      background-color: $lightFirstRed;
+      background-color: $firstTab;
       letter-spacing: 1px;
     }
 
 
     .tab a.active, .tab a:hover, .tab a:focus, .tab a:focus.active {
       color: $white;
-      background-color: $lightSecondRed;
+      background-color: $secondTab;
     }
   }
 

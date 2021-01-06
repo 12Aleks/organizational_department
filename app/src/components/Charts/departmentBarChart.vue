@@ -28,12 +28,14 @@
 </template>
 
 <script>
+import gradient from '../../mixins/gradient.mixin'
 import {Bar} from 'vue-chartjs'
 import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
 export default {
   name: "departmentBarChart",
   extends: Bar,
   props: ['newWorkerInSections', 'departmentInfo'],
+  mixins: [gradient],
   data: () => ({
     select: null,
     current: 'all',
@@ -90,7 +92,10 @@ export default {
                 return arr[i].salary
               }),
               label: 'Aktualne wynagrodzenie',
-              backgroundColor: 'rgba(255, 104, 115, 0.8)',
+              backgroundColor: this.gradient_first,
+              hoverBackgroundColor: this.gradient_first,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(183,28,28,.8)',
               order: 1
             },
             {
@@ -98,9 +103,11 @@ export default {
                 return arr[i].final_salary
               }),
               label: 'Uzgodnione z pracownikiem',
-              backgroundColor: 'rgba(38, 166, 154, 0.8)',
+              backgroundColor: this.gradient_second,
+              hoverBackgroundColor: this.gradient_second,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(27,94,32,.8)',
               hidden: true,
-              fill: false,
               order: 2
             },
             {
@@ -108,9 +115,11 @@ export default {
                 return arr[i].salary_worker
               }),
               label: 'Propozycja pracownika',
-              backgroundColor: 'rgba(255, 183, 77, 0.9)',
+              backgroundColor: this.gradient_third,
+              hoverBackgroundColor: this.gradient_third,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(245,127,23,.8)',
               hidden: true,
-              fill: false,
               order: 3
             },
             {
@@ -118,16 +127,22 @@ export default {
                 return arr[i].salary_department
               }),
               label: 'Propozycja zespołu pracownika',
-              backgroundColor: 'rgba(41, 182, 246, 0.8)',
+              backgroundColor: this.gradient_fourth,
+              hoverBackgroundColor: this.gradient_fourth,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(1,87,155,.8)',
               hidden: true,
-              order: 4,
+              order: 4
             },
             {
               data: departmentWorkers.map((item, i, arr) => {
                 return arr[i].salary_HR
               }),
               label: 'Propozycja zespołu personalnego',
-              backgroundColor: 'rgba(156, 39, 179, 0.8)',
+              backgroundColor: this.gradient_fifth ,
+              hoverBackgroundColor: this.gradient_fifth,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(84,110,122,0.7)',
               hidden: true,
               order: 5,
             }
@@ -142,8 +157,11 @@ export default {
                 return arr[i].salary
               }),
               label: 'Aktualne wynagrodzenie',
-              backgroundColor: 'rgba(255, 104, 115, 0.8)',
-              order: 1,
+              backgroundColor: this.gradient_first,
+              hoverBackgroundColor: this.gradient_first,
+              hoverBorderWidth: 1,
+              hoverBorderColor: 'rgba(183,28,28,.8)',
+              order: 1
             }]
         }
       }

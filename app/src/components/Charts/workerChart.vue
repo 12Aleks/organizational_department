@@ -19,17 +19,21 @@
 </template>
 
 <script>
+
 import {Bar} from 'vue-chartjs'
 import ChartJsPluginDataLabels from 'chartjs-plugin-datalabels';
+import gradient from "../../mixins/gradient.mixin";
+
 export default {
   name: "workerChart",
+  mixins: [gradient],
   extends: Bar,
-  data: () =>({
+  data: () => ({
     workersInfo: []
   }),
   async mounted() {
     this.workersInfo = await this.$store.dispatch('receiveData');
-    this.setup(this.newWorkers)
+    this.setup(this.newWorkers,);
   },
   computed: {
     newWorkers() {
@@ -59,7 +63,10 @@ export default {
               return arr[i].salary
             }),
             label: 'Aktualne wynagrodzenie',
-            backgroundColor: 'rgba(255, 104, 115, 0.8)',
+            backgroundColor: this.gradient_first,
+            hoverBackgroundColor: this.gradient_first,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'rgba(183,28,28,.8)',
             order: 1
           },
           {
@@ -67,7 +74,10 @@ export default {
               return arr[i].final_salary
             }),
             label: 'Uzgodnione z pracownikiem',
-            backgroundColor: 'rgba(38, 166, 154, 0.8)',
+            backgroundColor: this.gradient_second,
+            hoverBackgroundColor: this.gradient_second,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'rgba(27,94,32,.8)',
             hidden: true,
             order: 2
           },
@@ -76,7 +86,10 @@ export default {
               return arr[i].salary_worker
             }),
             label: 'Propozycja pracownika',
-            backgroundColor: 'rgba(255, 183, 77, 0.9)',
+            backgroundColor: this.gradient_third,
+            hoverBackgroundColor: this.gradient_third,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'rgba(245,127,23,.8)',
             hidden: true,
             order: 3
           },
@@ -85,7 +98,10 @@ export default {
               return arr[i].salary_department
             }),
             label: 'Propozycja zespołu pracownika',
-            backgroundColor: 'rgba(41, 182, 246, 0.8)',
+            backgroundColor: this.gradient_fourth,
+            hoverBackgroundColor: this.gradient_fourth,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'rgba(1,87,155,.8)',
             hidden: true,
             order: 4
           },
@@ -94,7 +110,10 @@ export default {
               return arr[i].salary_HR
             }),
             label: 'Propozycja zespołu personalnego',
-            backgroundColor: 'rgba(156, 39, 179, 0.8)',
+            backgroundColor: this.gradient_fifth ,
+            hoverBackgroundColor: this.gradient_fifth,
+            hoverBorderWidth: 1,
+            hoverBorderColor: 'rgba(84,110,122,0.7)',
             hidden: true,
             order: 5,
           }
@@ -108,20 +127,20 @@ export default {
         legend: {display: true},
         plugins: {
           datalabels: {
-            formatter: function(value) {
-              return value > 0 ? value + " zł": null;
+            formatter: function (value) {
+              return value > 0 ? value + " zł" : null;
             },
             color: "#fff",
             extAlign: "center",
-            font: function(context) {
-              if(lengthArr <= 20){
+            font: function (context) {
+              if (lengthArr <= 20) {
                 let width = context.chart.width;
                 let size = Math.round(width / 100 - 2);
                 return {
                   size: size,
                   weight: 500,
                 };
-              }else{
+              } else {
                 return {
                   size: 0
                 }
@@ -154,9 +173,11 @@ export default {
   height: calc(100vh - 320px);
   position: relative;
 }
+
 .button_wrapper {
   display: flex;
   justify-content: center;
+
   a {
     width: 280px;
     max-width: 280px;
