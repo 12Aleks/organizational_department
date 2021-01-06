@@ -107,7 +107,7 @@ export default {
 }
 .section{
   height: 40px;
-  background-color: $grey_darken_2;
+  background-color: $blue_grey_darken-2;
   padding: 5px 0;
   margin-bottom: 10px;
   select {

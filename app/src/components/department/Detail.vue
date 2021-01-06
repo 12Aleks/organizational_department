@@ -253,11 +253,11 @@ export default {
     thead {
       tr {
         th {
-          background-color: $grey_darken_2;
+          background-color: $blue_grey_darken-2;
 
           .button-right {
             i {
-              color: $grey_darken_2;
+              color: $text-color;
             }
           }
         }
@@ -269,13 +269,13 @@ export default {
       font-weight: 600;
 
       i {
-        border: 1px solid $grey_darken_2;
-        background-color: $grey_darken_2;
+        border: 1px solid $blue_grey_darken-2;
+        background-color: $blue_grey_darken-2;
       }
     }
 
     h6.border, h6.border span {
-      color: $grey_darken_2;
+      color: $blue_grey_darken-2;
     }
   }
 }

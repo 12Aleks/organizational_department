@@ -95,7 +95,7 @@ export default {
               backgroundColor: this.gradient_first,
               hoverBackgroundColor: this.gradient_first,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(183,28,28,.8)',
+              hoverBorderColor: 'rgba(69,90,100,1)',
               order: 1
             },
             {
@@ -106,7 +106,7 @@ export default {
               backgroundColor: this.gradient_second,
               hoverBackgroundColor: this.gradient_second,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(27,94,32,.8)',
+              hoverBorderColor: 'rgba(136,164,178,1)',
               hidden: true,
               order: 2
             },
@@ -118,7 +118,7 @@ export default {
               backgroundColor: this.gradient_third,
               hoverBackgroundColor: this.gradient_third,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(245,127,23,.8)',
+              hoverBorderColor: 'rgba(86,86,71,1)',
               hidden: true,
               order: 3
             },
@@ -130,7 +130,7 @@ export default {
               backgroundColor: this.gradient_fourth,
               hoverBackgroundColor: this.gradient_fourth,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(1,87,155,.8)',
+              hoverBorderColor: 'rgba(109,118,81,1)',
               hidden: true,
               order: 4
             },
@@ -142,7 +142,7 @@ export default {
               backgroundColor: this.gradient_fifth ,
               hoverBackgroundColor: this.gradient_fifth,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(84,110,122,0.7)',
+              hoverBorderColor: 'rgba(158,134,107,1)',
               hidden: true,
               order: 5,
             }
@@ -160,7 +160,7 @@ export default {
               backgroundColor: this.gradient_first,
               hoverBackgroundColor: this.gradient_first,
               hoverBorderWidth: 1,
-              hoverBorderColor: 'rgba(183,28,28,.8)',
+              hoverBorderColor: 'rgba(69,90,100,1)',
               order: 1
             }]
         }

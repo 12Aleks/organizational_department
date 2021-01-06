@@ -19,7 +19,7 @@
 export default {
   name: 'Loader',
   mounted() {
-    const colors = ['#e57373', '#26a69a', '#90a4ae'];
+    const colors = ['rgba(158,134,107,1)', 'rgba(69,90,100,1)', '#90a4ae'];
     const rez = colors[Math.trunc(Math.random() * 3)];
     document.querySelectorAll('.preloader > div').forEach(el => el.style.setProperty('--element-color', rez));
   }
