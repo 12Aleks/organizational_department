@@ -7,7 +7,9 @@
     height: 100%;
   }
 }
-
+.navbar{
+  border-bottom: 1px solid $terma-color;
+}
 .table-wrapper {
   overflow: auto;
   height: -webkit-calc(100vh - 273px);
@@ -242,6 +244,17 @@ div.profile, div#preview {
 
     .app-sidenav.open {
       transform: translateX(-105%);
+    }
+  }
+}
+
+.button_wrapper {
+  .btn-surname, .btn-final_salary{
+    background-color: $blue_grey_darken-2;
+    transition: all .7s;
+    &:hover{
+      transition: all .7s;
+      background-color: $terma-color;
     }
   }
 }

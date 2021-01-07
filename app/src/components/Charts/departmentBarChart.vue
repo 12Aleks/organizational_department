@@ -11,10 +11,10 @@
           >{{ c }}
           </option>
         </select>
-        <a class="waves-effect waves-light btn-small orange lighten-2"
+        <a class="btn-small btn-surname"
            @click="departmentData('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
-        <a class="waves-effect waves-light btn-small orange lighten-2"
+        <a class="btn-small btn-final_salary"
            @click="departmentData('salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
