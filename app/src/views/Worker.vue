@@ -8,19 +8,35 @@
       <div v-show="!loader" class="col s12 m3 l2 first_wrapper">
         <div class="profile-header">
           <div class="profile-img">
-            <img src="../assets/images/profile.jpg" width="200" alt="Profile Image">
+            <p class="icons">new</p>
+            <img src="../assets/images/worker_default.jpeg" width="200" alt="Profile Image" v-show="photo === null">
+            <img :src="photo" width="200" alt="Profile Image" v-show="photo !== null">
+            <p>{{photo}}</p>
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name">{{ worker.name }}</h3>
             <div class="address">
               <p class="worker_process">
-                <i class="material-icons left">group</i>ZESPÓŁ
-                <router-link :to="`/${selectProcess.toLowerCase()}` + `/` +  `${departmentName.toLowerCase()}`">{{ worker.department }}</router-link>
+                Zespol:
+                <router-link
+                    :to="`/${selectProcess.toLowerCase()}` + `/` +  `${departmentName.toLowerCase()}`">
+                  {{ worker.department }}
+                </router-link>
               </p>
               <div class="profile-header "
                    :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} "></div>
-              <p class="worker_position" v-if="worker.position && worker.position !== 'data not found'">STANOWISKO: {{ worker.position }}</p>
+              <p class="worker_position" v-if="worker.position && worker.position !== 'data not found'">
+                Stanowisko: {{ worker.position }}</p>
             </div>
+            <a class="btn-small button-link z-depth-0" :href="`${worker.link}`">Tabela oceny</a>
+            <form class="form" @submit.prevent="onUpload">
+              <div class="input-field">
+                    <span class="btn btn-small btn-file z-depth-0">
+                           Wybierz zdjęcie<input type="file" @change="onFileChanged">
+                    </span>
+              </div>
+              <button class="btn btn-small z-depth-0" type="submit">Zaktualizuj dane</button>
+            </form>
           </div>
         </div>
       </div>
@@ -29,8 +45,8 @@
           <table>
             <thead>
             <tr>
-              <th>Proces</th>
-              <th>Komórka</th>
+              <!--              <th>Proces</th>-->
+              <!--              <th>Komórka</th>-->
               <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
               <th v-if="worker.final_salary || worker.salary_HR">Propozycja
                 pracownika<br/><span>CKP / za godzinę</span>
@@ -42,15 +58,15 @@
               <th v-if="worker.final_salary || worker.salary_HR">Uzgodnione z Pracownikiem
                 <br><span>CKP / za godzinę</span>
               </th>
-              <th v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'" >
+              <th v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">
                 Kontynuacja zatrudnienia TAK/NIE
               </th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <td><router-link :to="`/departments`">{{ worker.process }}</router-link></td>
-              <td>{{ worker.sections }}</td>
+              <!--              <td><router-link :to="`/departments`">{{ worker.process }}</router-link></td>-->
+              <!--              <td>{{ worker.sections }}</td>-->
               <td>{{ worker.salary }}zł / {{ worker.per_hour }}zł/h</td>
               <td v-if="worker.final_salary || worker.salary_HR">{{ worker.salary_worker }}zł / {{
                   worker.per_hour_worker
@@ -68,7 +84,9 @@
                   worker.final_per_hour
                 }}zł/h
               </td>
-              <td v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">{{ worker.decision.toUpperCase() }}</td>
+              <td v-if="worker.final_salary || worker.salary_HR || worker.decision.toUpperCase() === 'NIE'">
+                {{ worker.decision.toUpperCase() }}
+              </td>
             </tr>
             </tbody>
           </table>
@@ -82,7 +100,6 @@
               <th>DKZ w trakcie / do podjęcia Pracownika</th>
               <th>Uzasadnienie propozycji Zespołu Personalnego</th>
               <th>Komentarz do fotografi czasu pracy)</th>
-              <th>Link do tabeli oceny</th>
             </tr>
             </thead>
             <tbody>
@@ -91,7 +108,6 @@
               <td>{{ worker.worker_dkz_opinion }}</td>
               <td>{{ worker.worker_hr_offer }}</td>
               <td>{{ worker.worker_comments }}</td>
-              <td><a :href="`${worker.link}`">LINK</a></td>
             </tr>
             </tbody>
           </table>
@@ -113,7 +129,10 @@ export default {
       departmentInfo: [],
       selectedElement: [],
       isMounted: false,
-      theight: null
+      theight: null,
+      photo: null,
+      photoSrc: null,
+      abbreviatedData: ''
     }
   },
   created() {
@@ -129,6 +148,26 @@ export default {
     });
     this.loader = false
   },
+  methods: {
+    onFileChanged(event) {
+      this.photoSrc = event.target.files[0]
+
+    },
+    async onUpload() {
+      try {
+        this.photo = null;
+        this.abbreviatedData = this.workerName.slice(0,4).toLowerCase() + '_' + this.departmentName.slice(0,3).toLowerCase();
+        console.log(this.abbreviatedData)
+        const updateData = {
+          photo: this.photoSrc,
+          abbreviatedData: this.abbreviatedData
+        };
+        this.photo = await this.$store.dispatch('workerPhoto', updateData);
+        this.$message('Success')
+      } catch (e) {
+      }
+    }
+  },
   computed: {
     worker() {
       return this.departmentInfo.filter((item, i, arr) => arr[i].name === this.workerName)[0]
@@ -141,21 +180,94 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.img_attachment{
+.img_attachment {
   @include flex();
   @include flex-direction(row);
   -webkit-align-content: stretch;
   align-content: stretch;
 }
-.first_wrapper{
+
+.first_wrapper {
   background-color: $blue_grey_darken-2;
+  position: relative;
+
+  span.btn-small {
+    width: 100%;
+    background-color: $grey;
+    transition: all .7s;
+    letter-spacing: 1px;
+
+    &:hover {
+      transition: all .7s;
+      background-color: $terma-color;
+    }
+  }
+
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+
+  button {
+    width: 100%;
+    background-color: $grey;
+    transition: all .7s;
+    letter-spacing: 1px;
+
+    &:hover {
+      transition: all .7s;
+      background-color: $terma-color;
+    }
+  }
+
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+  }
 
   .profile-header {
     position: relative;
+
     .profile-img {
       width: 100%;
       height: 200px;
       position: relative;
+
+      .icons {
+        position: absolute;
+        z-index: 1000;
+        top: 57%;
+        left: 62%;
+        border: 1px solid $grey;
+        background: $white;
+        color: $grey;
+        font-size: 11px;
+        padding: 5px 4.5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+        transition: background .7s;
+
+        &:hover {
+          transition: background .7s;
+          border: 1px solid $white;
+          background: $terma-color;
+          color: $white;
+        }
+      }
+
       img {
         border-radius: 50%;
         height: 120px;
@@ -171,6 +283,19 @@ export default {
         transform: translate(-50%, -50%)
       }
     }
+
+    .button-link {
+      margin-top: 15px;
+      background-color: $grey;
+      transition: all .7s;
+      letter-spacing: 1px;
+
+      &:hover {
+        transition: all .7s;
+        background-color: $terma-color;
+      }
+    }
+
   }
 
   h3.user-name {
@@ -185,19 +310,24 @@ export default {
     flex-direction: column;
     justify-content: center;
     padding-top: 30px;
+    width: 100%;
   }
 
   .profile-nav-info h3 {
     font-variant: small-caps;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
     text-align: center;
     font-family: sans-serif;
     font-weight: bold;
+    margin-bottom: 10px;
   }
-  p.worker_process,  p.worker_position{
+
+  p.worker_process, p.worker_position {
     font-size: 14px;
     letter-spacing: 1px;
-    a{
+
+    a {
       color: $white;
     }
   }
@@ -208,91 +338,44 @@ export default {
 
   }
 
-  .profile-nav-info .address p {
-    margin-right: 5px;
-  }
-
-
 }
-.second_wrapper{
-  height: -webkit-calc(100vh - 552px);
-  height: calc(100vh - 552px);
+
+.second_wrapper {
+  height: auto;
+  overflow: auto;
+
   .table-wrapper {
     margin-top: 2px;
+
     table th {
       font-size: .8rem;
       width: auto;
+
       &:before, &:after {
         content: none;
       }
     }
   }
-  .firstTable{
+
+  .firstTable {
     height: auto;
   }
+
   .secondTable {
-    height: auto;
+    overflow: initial;
+    height: calc(100vh - 359px);
+    height: -webkit-calc(100vh - 359px);
+
+    table {
+      tbody {
+        tr {
+          td {
+            vertical-align: top;
+            text-align: left;
+          }
+        }
+      }
+    }
   }
 }
-
-
-
-/*@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {*/
-/*  .profile-header {*/
-/*    height: 115px;*/
-/*    .profile-img {*/
-/*      float: left;*/
-/*      width: 205px;*/
-/*      height: 115px;*/
-
-/*      img {*/
-/*        height: 110px;*/
-/*        width: 110px;*/
-/*        border: 2px solid #fff;*/
-/*        left: 50px;*/
-/*        top: 25px;*/
-/*      }*/
-/*    }*/
-/*    h3.user-name {*/
-/*      font-size: 1.5rem;*/
-/*      color: #fff;*/
-/*    }*/
-/*    .profile-nav-info {*/
-/*      padding-top: 27px;*/
-/*    }*/
-/*  }*/
-/*  .secondTable[data-v-06627738] {*/
-/*    height: -webkit-calc(100vh - 465px);*/
-/*    height: calc(100vh - 465px);*/
-/*  }*/
-/*}*/
-/*@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {*/
-/*  .profile-header {*/
-/*    height: 115px;*/
-/*    .profile-img {*/
-/*      float: left;*/
-/*      width: 205px;*/
-/*      height: 115px;*/
-
-/*      img {*/
-/*        height: 110px;*/
-/*        width: 110px;*/
-/*        border: 2px solid #fff;*/
-/*        left: 50px;*/
-/*        top: 25px;*/
-/*      }*/
-/*    }*/
-/*    h3.user-name {*/
-/*      font-size: 1.5rem;*/
-/*      color: #fff;*/
-/*    }*/
-/*    .profile-nav-info {*/
-/*      padding-top: 27px;*/
-/*    }*/
-/*  }*/
-/*  .secondTable[data-v-06627738] {*/
-/*    height: -webkit-calc(100vh - 465px);*/
-/*    height: calc(100vh - 465px);*/
-/*  }*/
-/*}*/
 </style>

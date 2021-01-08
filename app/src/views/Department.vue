@@ -121,6 +121,6 @@ export default {
   }
 }
 .section.sections_class{
-  background-color: $grey_darken_2;
+  background-color: $blue_grey_darken-2;
 }
 </style>

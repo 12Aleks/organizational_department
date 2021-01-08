@@ -257,4 +257,7 @@ div.profile, div#preview {
       background-color: $terma-color;
     }
   }
+  select.browser-default{
+    border: 1px solid $grey;
+  }
 }

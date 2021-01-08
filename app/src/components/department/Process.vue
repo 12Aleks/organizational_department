@@ -156,12 +156,4 @@ export default {
     height: calc(100vh - 302px);
   }
 }
-.sections_class{
-  .table-wrapper{
-     table th {
-       background-color: $backgroundTurquoise;
-     }
-  }
-}
-
 </style>

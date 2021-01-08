@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
-        <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="process.length > 1  ">
+        <select class="browser-default" ref="select" v-model="current" v-if="process.length > 1  ">
           <option value="all">Wszystkie komorki</option>
           <option v-for="(c, index) of process"
                   :key="index"

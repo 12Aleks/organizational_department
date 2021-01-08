@@ -7,7 +7,8 @@
           <div class="title-wrapper">
             <h3 class="flow-text valign-wrapper border">
               <i class="material-icons left">people_outline</i>
-              ZESPÓŁ - {{ departmentName }} <span v-if="current !== 'all'">/ KOMÓRKA - {{ current }}</span>
+              ZESPÓŁ - {{ departmentName }} <span
+                v-if="current !== 'all'">/ KOMÓRKA - {{ current }}</span>
             </h3>
             <a class="btn-floating grey lighten-5 button-right z-depth-1" @click="isHiddenTable">
               <i v-if="!isHidden" class="material-icons">expand_more</i>
@@ -19,7 +20,8 @@
       </thead>
       <tbody v-show="isHidden">
       <tr>
-        <td colspan="2"><h6 class="center border">Liczba osób w <span v-if="current === 'all'">zespołe</span><span
+        <td colspan="2"><h6 class="center border">Liczba osób w <span
+            v-if="current === 'all'">zespołe</span><span
             v-else>komórce</span>: {{ departmentInfo.length }}</h6></td>
         <td colspan="2"><h6 class="center border">Suma wynagrodzeń <span v-if="current === 'all'">zespołu</span><span
             v-else>komórki</span>: {{ all }} zł.</h6></td>
@@ -125,7 +127,8 @@ export default {
     thead {
       tr {
         th {
-          background-color: $grey_darken_2;
+          background-color: $blue_grey_darken-2;
+
           .button-right {
             height: 34px;
             width: 34px;
@@ -133,7 +136,7 @@ export default {
             i {
               line-height: 35px;
               padding-right: 1px;
-              color: $grey_darken_2;
+              color: $blue_grey_darken-2;
             }
 
             @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
@@ -178,11 +181,11 @@ export default {
       font-weight: 600;
 
       i {
-        border: 1px solid $grey_darken_2;
+        border: 1px solid $blue_grey_darken-2;
         font-size: 1rem;
         padding: 3px;
         color: $white;
-        background-color: $grey_darken_2;
+        background-color: $blue_grey_darken-2;
         border-radius: 50%;
       }
     }
@@ -197,6 +200,7 @@ export default {
 
         i {
           font-size: 1.2rem;
+          color: $text-color;
         }
       }
 

@@ -4,7 +4,11 @@ export default {
     actions: {
         async dataUsers({commit}, cats) {
             try {
-                await firebase.database().ref('/users').set(cats);
+                for (const item of cats) {
+                    await firebase.database().ref('/users').push(cats[item]);
+                    console.log('Success')
+                }
+                // await firebase.database().ref('/users').set(cats);
             } catch (e) {
                 commit('setError', true);
                 throw e

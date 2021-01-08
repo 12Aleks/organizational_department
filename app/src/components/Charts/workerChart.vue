@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
-        <a class="btn-small btn-surname"
+        <a class="btn-small btn-surname z-depth-0"
            @click="salaryWorkers('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
-        <a class="btn-small btn-final_salary"
+        <a class="btn-small btn-final_salary z-depth-0"
            @click="salaryWorkers('final_salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>

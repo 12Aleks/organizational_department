@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col s12 m12 l12">
       <div class="button_wrapper">
-        <select class="browser-default z-depth-1" ref="select" v-model="current" v-if="process.length > 1  ">
+        <select class="browser-default" ref="select" v-model="current" v-if="process.length > 1  ">
           <option value="all">Wszystkie komorki</option>
           <option v-for="(c, index) of process"
                   :key="index"
@@ -11,10 +11,10 @@
           >{{ c }}
           </option>
         </select>
-        <a class="btn-small btn-surname"
+        <a class="btn-small btn-surname z-depth-0"
            @click="departmentData('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
-        <a class="btn-small btn-final_salary"
+        <a class="btn-small btn-final_salary z-depth-0"
            @click="departmentData('salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
