@@ -11,7 +11,6 @@
             <p class="icons">new</p>
             <img src="../assets/images/worker_default.jpeg" width="200" alt="Profile Image" v-show="photo === null">
             <img :src="photo" width="200" alt="Profile Image" v-show="photo !== null">
-            <p>{{photo}}</p>
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name">{{ worker.name }}</h3>
@@ -132,7 +131,7 @@ export default {
       theight: null,
       photo: null,
       photoSrc: null,
-      abbreviatedData: ''
+      abbreviatedData: '',
     }
   },
   created() {
@@ -146,6 +145,11 @@ export default {
       departmentName: this.departmentName,
       selectProcessName: this.selectProcess
     });
+
+    this.photo = await this.$store.dispatch('receiveWorkerData', {
+      workerName: this.workerName,
+      departmentName: this.departmentName
+    } )
     this.loader = false
   },
   methods: {
