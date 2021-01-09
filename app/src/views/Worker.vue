@@ -8,15 +8,14 @@
       <div v-show="!loader" class="col s12 m3 l2 first_wrapper">
         <div class="profile-header">
           <div class="profile-img">
-            <p class="icons">new</p>
-            <img src="../assets/images/worker_default.jpeg" width="200" alt="Profile Image" v-show="photo === null">
-            <img :src="photo" width="200" alt="Profile Image" v-show="photo !== null">
+            <p class="icons" v-if="worker.final_salary || worker.salary_HR">new</p>
+            <img src="../assets/images/worker_default.jpeg"  alt="Profile Image" v-show="photo === null">
+            <img :src="photo"  alt="Profile Image" v-show="photo !== null">
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name">{{ worker.name }}</h3>
             <div class="address">
               <p class="worker_process">
-                Zespol:
                 <router-link
                     :to="`/${selectProcess.toLowerCase()}` + `/` +  `${departmentName.toLowerCase()}`">
                   {{ worker.department }}
@@ -28,24 +27,24 @@
                 Stanowisko: {{ worker.position }}</p>
             </div>
             <a class="btn-small button-link z-depth-0" :href="`${worker.link}`">Tabela oceny</a>
-            <form class="form" @submit.prevent="onUpload">
-              <div class="input-field">
+            <router-link class="btn-small button-link-department z-depth-0" :to="`/${worker.process.toLowerCase()}/${worker.sections === '(puste)' && worker.department === '(puste)' ? worker.process.toLowerCase() :
+                          worker.department.toLowerCase()}`">Powrót do zespołu</router-link>
+          </div>
+        </div>
+        <form class="form" @submit.prevent="onUpload">
+          <div class="input-field">
                     <span class="btn btn-small btn-file z-depth-0">
                            Wybierz zdjęcie<input type="file" @change="onFileChanged">
                     </span>
-              </div>
-              <button class="btn btn-small z-depth-0" type="submit">Zaktualizuj dane</button>
-            </form>
           </div>
-        </div>
+          <button class="btn btn-small z-depth-0" type="submit">Zaktualizuj dane</button>
+        </form>
       </div>
       <div v-show="!loader" class="col s12 m9 l10 second_wrapper">
         <div ref="firstTable" class="table-wrapper firstTable">
           <table>
             <thead>
             <tr>
-              <!--              <th>Proces</th>-->
-              <!--              <th>Komórka</th>-->
               <th>Aktualne wynagrodzenie <br><span>CKP / za godzinę</span></th>
               <th v-if="worker.final_salary || worker.salary_HR">Propozycja
                 pracownika<br/><span>CKP / za godzinę</span>
@@ -194,7 +193,10 @@ export default {
 .first_wrapper {
   background-color: $blue_grey_darken-2;
   position: relative;
-
+  padding-bottom: 15px;
+  @include flex();
+  @include flex-direction(column);
+  @include justify-content(space-between);
   span.btn-small {
     width: 100%;
     background-color: $grey;
@@ -207,42 +209,8 @@ export default {
     }
   }
 
-  .btn-file {
-    position: relative;
-    overflow: hidden;
-  }
-
-  button {
-    width: 100%;
-    background-color: $grey;
-    transition: all .7s;
-    letter-spacing: 1px;
-
-    &:hover {
-      transition: all .7s;
-      background-color: $terma-color;
-    }
-  }
-
-  .btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-  }
-
   .profile-header {
     position: relative;
-
     .profile-img {
       width: 100%;
       height: 200px;
@@ -287,9 +255,63 @@ export default {
         transform: translate(-50%, -50%)
       }
     }
+    .button-link{
+      margin: 15px 0 5px;
+    }
+    .button-link-department{
+      margin: 5px 0 15px;
+    }
+    .button-link, .button-link-department {
+      margin-bottom: 15px;
+      background-color: $white;
+      transition: all .7s;
+      letter-spacing: 1px;
+      color: $grey;
+      &:hover {
+        transition: all .7s;
+        color: $white;
+        background-color: $terma-color;
+      }
+    }
 
-    .button-link {
-      margin-top: 15px;
+    .profile-nav-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      h3.user-name {
+        color: #fff;
+        font-variant: small-caps;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-align: center;
+        font-family: sans-serif;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      p.worker_process, p.worker_position {
+        font-size: 14px;
+        letter-spacing: 1px;
+        text-align: center;
+        a {
+          color: $white;
+        }
+      }
+
+      .address {
+        color: #f9f6f6;
+      }
+    }
+  }
+
+  form{
+    .btn-file {
+      position: relative;
+      overflow: hidden;
+    }
+
+    button {
+      width: 100%;
       background-color: $grey;
       transition: all .7s;
       letter-spacing: 1px;
@@ -300,46 +322,21 @@ export default {
       }
     }
 
-  }
-
-  h3.user-name {
-    margin: 0;
-    color: #fff;
-    letter-spacing: 1px;
-  }
-
-  .profile-nav-info {
-    float: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 30px;
-    width: 100%;
-  }
-
-  .profile-nav-info h3 {
-    font-variant: small-caps;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    text-align: center;
-    font-family: sans-serif;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  p.worker_process, p.worker_position {
-    font-size: 14px;
-    letter-spacing: 1px;
-
-    a {
-      color: $white;
+    .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
     }
-  }
-
-  .profile-nav-info .address {
-
-    color: #f9f6f6;
-
   }
 
 }
