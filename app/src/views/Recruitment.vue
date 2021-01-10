@@ -434,13 +434,13 @@ export default {
     background-color: $white;
     tr{
       th {
-        &:after, &:before {
-          content: none;
+        &:after, &:before{
+          content: none !important;
         }
       }
       td.red{
-        background-color: $red;
-        color: $white;
+        background: $white !important;
+        color: $text-color;
       }
     }
   }

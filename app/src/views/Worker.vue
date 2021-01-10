@@ -404,8 +404,13 @@ export default {
     margin-top: 2px;
 
     table th {
-      font-size: .8rem;
       width: auto;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        padding: 15px 5px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        padding: 15px 5px;
+      }
         &:after, &:before{
           content: none;
         }
@@ -439,6 +444,13 @@ export default {
           td {
             vertical-align: top;
             text-align: left;
+            letter-spacing: 1px;
+            @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+              letter-spacing: .5px;
+            }
+            @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+              letter-spacing: .5px;
+            }
           }
         }
       }
