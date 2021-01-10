@@ -61,7 +61,7 @@ export default {
         let r = Math.floor(Math.random() * 255);
         let g = Math.floor(Math.random() * 255);
         let b = Math.floor(Math.random() * 255);
-        return "rgba(" + r + "," + g + "," + b + ", 0.3)";
+        return "rgba(" + r + "," + g + "," + b + ", 0.4)";
       }
 
       function poolColors(a) {
@@ -126,19 +126,19 @@ export default {
 
 <style scoped lang="scss">
 .wrapper {
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   margin-top: 10px;
   height: -webkit-calc(100vh - 222px);
   height: calc(100vh - 222px);
   position: relative;
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 210px);
-    height: calc(100vh - 210px);
+    height: -webkit-calc(100vh - 205px);
+    height: calc(100vh - 205px);
   }
 
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 210px);
-    height: calc(100vh - 210px);
+    height: -webkit-calc(100vh - 205px);
+    height: calc(100vh - 205px);
   }
 }
 

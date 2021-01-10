@@ -213,10 +213,19 @@ export default {
 
 <style scoped lang="scss">
 .wrapper {
-  padding-bottom: 30px;
+  padding-bottom: 15px;
   height: -webkit-calc(100vh - 250px);
   height: calc(100vh - 250px);
   position: relative;
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    height: -webkit-calc(100vh - 230px);
+    height: calc(100vh - 230px);
+  }
+
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    height: -webkit-calc(100vh - 230px);
+    height: calc(100vh - 230px);
+  }
 }
 
 .button_wrapper {

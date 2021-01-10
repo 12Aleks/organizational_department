@@ -5,7 +5,7 @@
     </div>
     <div class="row img_attachment">
       <Loader v-if="loader"/>
-      <div v-show="!loader" class="col s12 m3 l2 first_wrapper">
+      <div v-show="!loader" class="col s12 m3 l3 xl2 first_wrapper">
         <div class="profile-header">
           <div class="profile-img">
             <p class="icons" v-if="worker.final_salary || worker.salary_HR">new</p>
@@ -40,7 +40,7 @@
           <button class="btn btn-small z-depth-0" type="submit">Zaktualizuj dane</button>
         </form>
       </div>
-      <div v-show="!loader" class="col s12 m9 l10 second_wrapper">
+      <div v-show="!loader" class="col s12 m9 l9 xl10 second_wrapper">
         <div ref="firstTable" class="table-wrapper firstTable">
           <table>
             <thead>
@@ -215,6 +215,12 @@ export default {
       width: 100%;
       height: 200px;
       position: relative;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        height: 150px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        height: 150px;
+      }
 
       .icons {
         position: absolute;
@@ -252,17 +258,37 @@ export default {
         top: 50%;
         left: 50%;
         margin-right: -50%;
-        transform: translate(-50%, -50%)
+        transform: translate(-50%, -50%);
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          height: 100px;
+          width: 100px;
+        }
+
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+          height: 100px;
+          width: 100px;
+        }
       }
     }
     .button-link{
-      margin: 15px 0 5px;
+      margin: 15px 0 7px;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        margin: 7px 0 3px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        margin: 7px 0 3px;
+      }
     }
     .button-link-department{
-      margin: 5px 0 15px;
+      margin: 8px 0 15px;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        margin: 3px 0 7px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        margin: 3px 0 7px;
+      }
     }
     .button-link, .button-link-department {
-      margin-bottom: 15px;
       background-color: $white;
       transition: all .7s;
       letter-spacing: 1px;
@@ -271,6 +297,12 @@ export default {
         transition: all .7s;
         color: $white;
         background-color: $terma-color;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: 12px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        font-size: 12px;
       }
     }
 
@@ -295,6 +327,14 @@ export default {
         text-align: center;
         a {
           color: $white;
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          font-size: 12px;
+          margin: 10px 0;
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+          font-size: 12px;
+          margin: 10px 0;
         }
       }
 
@@ -321,7 +361,16 @@ export default {
         background-color: $terma-color;
       }
     }
+    .input-field{
+      margin: 1rem 0;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        margin: 7px 0 6px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        margin: 7px 0 6px;
+      }
 
+    }
     .btn-file input[type=file] {
       position: absolute;
       top: 0;
@@ -336,6 +385,12 @@ export default {
       background: white;
       cursor: inherit;
       display: block;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: 12px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        font-size: 12px;
+      }
     }
   }
 
@@ -351,9 +406,12 @@ export default {
     table th {
       font-size: .8rem;
       width: auto;
-
-      &:before, &:after {
-        content: none;
+        &:after, &:before{
+          content: none;
+        }
+        &:hover {
+          background-color: $blue_grey_darken-3;
+          transition: background-color .5s;
       }
     }
   }
@@ -364,8 +422,16 @@ export default {
 
   .secondTable {
     overflow: initial;
-    height: calc(100vh - 359px);
-    height: -webkit-calc(100vh - 359px);
+    height: calc(100vh - 335px);
+    height: -webkit-calc(100vh - 335px);
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+      height: calc(100vh - 350px);
+      height: -webkit-calc(100vh - 350px)
+    }
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+      height: calc(100vh - 350px);
+      height: -webkit-calc(100vh - 350px);
+    }
 
     table {
       tbody {

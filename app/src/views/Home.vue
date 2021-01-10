@@ -32,6 +32,14 @@ export default {
   .img_attachment {
     height: calc(100vh - 110px);
     height: -webkit-calc(100vh - 110px);
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+      height: calc(100vh - 100px);
+      height: -webkit-calc(100vh - 100px);
+    }
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+      height: calc(100vh - 100px);
+      height: -webkit-calc(100vh - 100px);
+    }
   }
 }
 </style>

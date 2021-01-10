@@ -175,8 +175,16 @@ export default {
 }
 
 .table-wrapper {
-  height: -webkit-calc(100vh - 276px);
-  height: calc(100vh - 276px);
+  height: -webkit-calc(100vh - 266px);
+  height: calc(100vh - 266px);
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    height: calc(100vh - 234px);
+    height: -webkit-calc(100vh - 234px);
+  }
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    height: calc(100vh - 234px);
+    height: -webkit-calc(100vh - 234px);
+  }
 
   table {
     table-layout: fixed;

@@ -135,12 +135,12 @@ export default {
   height: -webkit-calc(100vh - 488px);
   height: calc(100vh - 488px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 454px);
-    height: calc(100vh - 454px);
+    height: -webkit-calc(100vh - 431px);
+    height: calc(100vh - 431px);
   }
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 454px);
-    height: calc(100vh - 454px);
+    height: -webkit-calc(100vh - 431px);
+    height: calc(100vh - 431px);
   }
 }
 
@@ -148,12 +148,12 @@ export default {
   height: -webkit-calc(100vh - 324px);
   height: calc(100vh - 324px);
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 302px);
-    height: calc(100vh - 302px);
+    height: -webkit-calc(100vh - 279px);
+    height: calc(100vh - 279px);
   }
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 302px);
-    height: calc(100vh - 302px);
+    height: -webkit-calc(100vh - 279px);
+    height: calc(100vh - 279px);
   }
 }
 </style>

@@ -168,10 +168,19 @@ export default {
 
 <style scoped lang="scss">
 .wrapper {
-  padding-bottom: 30px;
-  height: -webkit-calc(100vh - 320px);
-  height: calc(100vh - 320px);
+  padding-bottom: 15px;
+  height: calc(100vh - 305px);
+  height: -webkit-calc(100vh - 305px);
   position: relative;
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    height: calc(100vh - 277px);
+    height: -webkit-calc(100vh - 277px);
+  }
+
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    height: calc(100vh - 277px);
+    height: -webkit-calc(100vh - 277px);
+  }
 }
 
 .button_wrapper {
