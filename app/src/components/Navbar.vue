@@ -60,7 +60,7 @@ export default {
     time: new Date(),
     interval: null,
     links: [
-      {title: 'Nowi pracownicy', url: '/', exact: true},
+      {title: 'Kontynuacja zatrudnienia', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
       {title: 'Zespoł Personalny', url: '/recruitment'},
       {title: 'Lista pracowników', url: '/lists'},

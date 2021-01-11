@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="page-title">
-      <h3 class="flow-text">Nowi pracownicy</h3>
+      <h3 class="flow-text">Kontynuacja zatrudnienia</h3>
     </div>
     <div class="row img_attachment">
       <div class="col s12 m12">
         <ul class="tabs" ref="tabs">
-          <li class="tab col s6"><a class="active" href="#tabFirst">Lista nowych pracowników</a></li>
+          <li class="tab col s6"><a class="active" href="#tabFirst">Lista pracowników</a></li>
           <li class="tab col s6"><a href="#tabSecond">Wykres słupkowy</a></li>
         </ul>
       </div>
@@ -183,4 +183,3 @@ h6 {
   color: #9b9b9b;
 }
 </style>
-

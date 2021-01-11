@@ -237,6 +237,12 @@ export default {
         border-radius: 50%;
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
         transition: background .7s;
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+          top: 55%;
+        }
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+          top: 55%;
+        }
 
         &:hover {
           transition: background .7s;
@@ -442,14 +448,15 @@ export default {
       tbody {
         tr {
           td {
+            padding: 8px;
             vertical-align: top;
             text-align: left;
-            letter-spacing: 1px;
+            line-height: 1.1rem;
             @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-              letter-spacing: .5px;
+              line-height: .9rem;
             }
             @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
-              letter-spacing: .5px;
+              line-height: .9rem;
             }
           }
         }

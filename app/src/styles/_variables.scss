@@ -13,9 +13,6 @@ $blue_grey_darken-1: #546e7a;
 $blue_grey_darken-2: #757575;
 $blue_grey_darken-3: #616161;
 
-$purple: #bbdefb;
-$darkPurple: #90caf9;
-
 $orange: #ffe0b2;
 $darkOrange: #ffcc80;
 
@@ -27,7 +24,8 @@ $darkenGrey: #b5b5b5;
 $borderTable: #d1d0d2;
 
 //red
-$red: rgba(255, 104, 115, 1);
+$red: rgba(255, 104, 115, .15);
+$redHover: rgba(255, 104, 115, .3);
 $darkRed: rgba(255, 104, 115, 1);
 $text-color: #d0021b;
 $backgroundDarkRed: #B10303;

@@ -222,23 +222,16 @@
     table-layout: fixed;
     position: relative;
 
-    //tbody {
-    //  tr.decision {
-    //    background-color: $darkRed;
-    //
-    //    &:hover {
-    //      background-color: $red;
-    //    }
-    //  }
-    //
-    //  tr.doubt {
-    //    background-color: $darkOrange;
-    //
-    //    &:hover {
-    //      background-color: $orange;
-    //    }
-    //  }
-    //}
+    tbody {
+      tr.decision {
+        background-color: $red;
+        transition: all .7s;
+        &:hover {
+          background-color: $redHover;
+          transition: all .7s;
+        }
+      }
+    }
 
     th {
       background-color: $blue_grey_darken-2;
@@ -382,11 +375,16 @@
 }
 
 .newWorker {
-  background-color: $purple;
+  background-color: $red;
+  transition: all .7s;
+  &:hover {
+    background-color: $redHover;
+    transition: all .7s;
+  }
 }
 
 .newWorkerClass {
-  color: $red !important;
+  color: $darkRed !important;
 }
 
 .img_attachment {
