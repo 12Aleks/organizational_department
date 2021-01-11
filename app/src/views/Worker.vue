@@ -225,7 +225,7 @@ export default {
       .icons {
         position: absolute;
         z-index: 1000;
-        top: 57%;
+        top: 66%;
         left: 62%;
         border: 1px solid $grey;
         background: $white;
@@ -248,8 +248,8 @@ export default {
 
       img {
         border-radius: 50%;
-        height: 120px;
-        width: 120px;
+        height: 150px;
+        width: 150px;
         border: 2px solid #fff;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         z-index: 5;
