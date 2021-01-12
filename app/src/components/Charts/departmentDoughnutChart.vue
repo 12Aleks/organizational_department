@@ -132,13 +132,13 @@ export default {
   height: calc(100vh - 222px);
   position: relative;
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 205px);
-    height: calc(100vh - 205px);
+    height: -webkit-calc(100vh - 177px);
+    height: calc(100vh - 177px);
   }
 
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 205px);
-    height: calc(100vh - 205px);
+    height: -webkit-calc(100vh - 177px);
+    height: calc(100vh - 177px);
   }
 }
 

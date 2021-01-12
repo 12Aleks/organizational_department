@@ -6,7 +6,7 @@
            @click="salaryWorkers('surname')"><i
             class="material-icons left ">person</i>Filtrować po nazwisku</a>
         <a class="btn-small btn-final_salary z-depth-0"
-           @click="salaryWorkers('final_salary')"><i
+           @click="salaryWorkers('salary')"><i
             class="material-icons left">monetization_on</i>Filtrować po sumie</a>
       </div>
     </div>
@@ -45,9 +45,9 @@ export default {
       if (data === 'surname') {
         const newSurname = this.newWorkers.sort((d1, d2) => d1.name.toLowerCase() > d2.name.toLowerCase() ? 1 : -1);
         this.setup(newSurname);
-      } else if (data === 'final_salary') {
+      } else if (data === 'salary') {
         const newSalary = this.newWorkers.sort((d1, d2) => {
-          return (d1.final_salary - d2.final_salary)
+          return (d1.salary - d2.salary)
         });
         this.setup(newSalary);
       } else {
@@ -119,7 +119,7 @@ export default {
           }
         ]
       };
-      let lengthArr = newWorkers.map((c) => c.name).length
+      let lengthArr = newWorkers.map((c) => c.name).length;
 
       const options = {
         responsive: true,

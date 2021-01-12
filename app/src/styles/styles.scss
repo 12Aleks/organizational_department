@@ -9,28 +9,34 @@
   padding-top: 5rem;
   height: 100vh;
 }
+
 .auth-card {
   width: 500px;
 }
+
 .auth-submit {
   width: 100%;
 }
+
 .helper-text.invalid {
   color: #f44336;
 }
+
 .app-page {
   padding: 1.5rem 1.2rem;
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     padding: 1.2rem;
   }
-  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     padding: 1.2rem;
   }
 }
+
 .app-main-layout {
   position: relative;
   min-height: 100vh;
 }
+
 .app-sidenav {
   padding-top: 5px;
   position: absolute;
@@ -41,10 +47,12 @@
   bottom: 0 !important;
   height: auto !important;
 }
+
 .app-sidenav.open {
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+
 .navbar {
   position: absolute;
   top: 0;
@@ -54,6 +62,7 @@
   padding: 0 1rem;
   z-index: 1000;
 }
+
 .nav-wrapper {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -65,6 +74,7 @@
   -ms-flex-align: center;
   align-items: center;
 }
+
 .navbar-left {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -72,19 +82,23 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  >a {
+
+  > a {
     margin-right: 1rem;
   }
 }
+
 .app-content {
   padding-top: 64px;
   padding-left: 250px;
   transition: padding-left .3s;
   position: relative;
 }
+
 .app-content.full {
   padding-left: 0;
 }
+
 .page-title {
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -93,15 +107,17 @@
   -ms-flex-align: center;
   align-items: center;
   padding-bottom: 0.7rem;
-  border-bottom: solid 1px rgba(51,51,51,.12);
+  border-bottom: solid 1px rgba(51, 51, 51, .12);
   margin-bottom: .8rem;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+
   a {
     color: #000;
     opacity: .8;
   }
+
   h3, h4 {
     margin: 0;
     font-size: 2rem;
@@ -109,15 +125,17 @@
     font-weight: 200;
     text-transform: uppercase;
   }
+
   h3 {
     @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
       font-size: 1.5rem;
     }
-    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
       font-size: 1.5rem;
     }
   }
 }
+
 .page-subtitle {
   h4 {
     margin: 0;
@@ -125,6 +143,7 @@
     margin-bottom: .8rem;
   }
 }
+
 .app-loader {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -135,6 +154,7 @@
   justify-content: center;
   padding-top: 2rem;
 }
+
 .currency-line {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -145,19 +165,24 @@
   border-bottom: 2px solid #fff;
   padding-bottom: 1rem;
   padding-top: 1.5rem;
+
   span {
     font-size: 1.5rem;
   }
 }
+
 .bill-card {
   height: 310px;
 }
+
 .pointer {
   cursor: pointer;
 }
+
 .form {
   max-width: 500px;
 }
+
 .breadcrumb-wrap {
   -webkit-align-items: center;
   -ms-flex-align: center;
@@ -166,6 +191,7 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+
   a {
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -173,7 +199,8 @@
     display: -webkit-inline-flex;
     display: -ms-inline-flexbox;
     display: inline-flex;
-    color: rgba(0,0,0,.7) !important;
+    color: rgba(0, 0, 0, .7) !important;
+
     &:before {
       -webkit-align-items: center;
       -ms-flex-align: center;
@@ -181,10 +208,11 @@
       display: -webkit-inline-flex;
       display: -ms-inline-flexbox;
       display: inline-flex;
-      color: rgba(0,0,0,.7) !important;
+      color: rgba(0, 0, 0, .7) !important;
     }
   }
 }
+
 .history-chart {
   max-width: 600px;
   margin: 0 auto;
@@ -199,9 +227,11 @@
     height: 100%;
   }
 }
-.navbar{
+
+.navbar {
   border-bottom: 1px solid $terma-color;
 }
+
 .table-wrapper {
   overflow: auto;
   height: -webkit-calc(100vh - 263px);
@@ -212,7 +242,7 @@
     height: -webkit-calc(100vh - 225px);
     height: calc(100vh - 225px);
   }
-  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     height: -webkit-calc(100vh - 225px);
     height: calc(100vh - 225px);
   }
@@ -226,6 +256,7 @@
       tr.decision {
         background-color: $red;
         transition: all .7s;
+
         &:hover {
           background-color: $redHover;
           transition: all .7s;
@@ -248,13 +279,16 @@
       transition: all .5s;
       -webkit-box-shadow: 0 1px 4px 0 $light-blue;
       box-shadow: 0 1px 4px 0 $light-blue;
+
       span {
         font-size: .55rem;
         font-style: italic;
       }
+
       &:first-child {
         width: 50px;
       }
+
       &:not(:first-child) {
         i.material-icons.tiny {
           position: absolute;
@@ -286,6 +320,7 @@
           background-color: $blue_grey_darken-3;
           transition: background-color .5s;
         }
+
         @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
           &:after {
             bottom: 0.3em;
@@ -296,7 +331,7 @@
             bottom: 0.3em;
           }
         }
-        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
           &:after {
             bottom: 0.2em;
             right: 0.2em;
@@ -307,20 +342,20 @@
           }
         }
       }
+
       @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .7rem;
         line-height: .9rem;
         letter-spacing: 1.5px;
         padding: 17px 10px 18px;
       }
-      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
         font-size: .7rem;
         line-height: .9rem;
         letter-spacing: 1.5px;
         padding: 17px 10px 18px;
       }
     }
-
 
 
     th.active.toggle {
@@ -351,14 +386,21 @@
         font-size: .8rem;
         padding: 7px;
       }
-      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
         font-size: .8rem;
         padding: 7px;
+      }
+      &:hover {
+        a{
+          color: $terma-color;
+          transition: color .7s;
+        }
       }
       a {
         display: block;
         cursor: pointer;
         color: $black;
+        transition: color .7s;
       }
     }
 
@@ -377,6 +419,7 @@
 .newWorker {
   background-color: $red;
   transition: all .7s;
+
   &:hover {
     background-color: $redHover;
     transition: all .7s;
@@ -401,18 +444,21 @@
     height: calc(100vh - 145px);
     padding: 15px 5px;
   }
-  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+  @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     height: -webkit-calc(100vh - 145px);
     height: calc(100vh - 145px);
     padding: 15px 5px;
   }
+
   ul.tabs {
     margin-bottom: 10px;
     border-bottom: 1px solid $text-color;
-    li.indicator{
+
+    li.indicator {
       background-color: $text-color;
       height: 1px;
     }
+
     .tab a {
       color: $white;
       text-shadow: 0 0 1px rgba(150, 150, 150, 1);
@@ -430,6 +476,7 @@
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
     ul.tabs {
       height: 40px;
+
       .tab {
         line-height: 40px;
         height: 40px;
@@ -489,15 +536,17 @@ div.profile, div#preview {
 }
 
 .button_wrapper {
-  .btn-surname, .btn-final_salary{
+  .btn-surname, .btn-final_salary {
     background-color: $blue_grey_darken-2;
     transition: all .7s;
-    &:hover{
+
+    &:hover {
       transition: all .7s;
       background-color: $terma-color;
     }
   }
-  select.browser-default{
+
+  select.browser-default {
     border: 1px solid $grey;
   }
 }
