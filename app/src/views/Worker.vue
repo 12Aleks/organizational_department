@@ -8,9 +8,10 @@
       <div v-show="!loader" class="col s12 m3 l3 xl2 first_wrapper">
         <div class="profile-header">
           <div class="profile-img">
-            <p class="icons" v-if="worker.final_salary || worker.salary_HR">new</p>
-            <img src="../assets/images/worker_default.jpeg"  alt="Profile Image" v-show="photo === null">
-            <img :src="photo"  alt="Profile Image" v-show="photo !== null">
+            <div class="photo">
+              <img src="../assets/images/worker_default.jpeg"  alt="Profile Image" v-show="photo === null" class="personPhoto">
+              <img :src="photo"  alt="Profile Image" v-show="photo !== null" class="personPhoto">
+            </div>
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name">{{ worker.name }}</h3>
@@ -147,7 +148,8 @@ export default {
 
     this.photo = await this.$store.dispatch('receiveWorkerData', {
       workerName: this.workerName,
-      departmentName: this.departmentName
+      departmentName: this.departmentName,
+      selectProcess: this.selectProcess
     } )
     this.loader = false
   },
@@ -159,7 +161,7 @@ export default {
     async onUpload() {
       try {
         this.photo = null;
-        this.abbreviatedData = this.workerName.slice(0,4).toLowerCase() + '_' + this.departmentName.slice(0,3).toLowerCase();
+        this.abbreviatedData = this.workerName.slice(0,4).toLowerCase() + '_' + this.departmentName.slice(0,3).toLowerCase() + '_' + this.selectProcess.slice(0,3).toLowerCase();
         console.log(this.abbreviatedData)
         const updateData = {
           photo: this.photoSrc,
@@ -222,44 +224,21 @@ export default {
         height: 150px;
       }
 
-      .icons {
-        position: absolute;
-        z-index: 1000;
-        top: 66%;
-        left: 62%;
-        border: 1px solid $grey;
-        background: $white;
-        color: $grey;
-        font-size: 11px;
-        padding: 5px 4.5px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        transition: background .7s;
-        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-          top: 55%;
-        }
-        @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
-          top: 55%;
-        }
-
-        &:hover {
-          transition: background .7s;
-          border: 1px solid $white;
-          background: $terma-color;
-          color: $white;
-        }
+      img.personPhoto{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
       }
-
-      img {
+      .photo {
         border-radius: 50%;
         height: 150px;
         width: 150px;
         border: 2px solid #fff;
+        overflow: hidden;
+        background-color: #fefefe;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         z-index: 5;
-        background: #fff;
         position: absolute;
         top: 50%;
         left: 50%;
