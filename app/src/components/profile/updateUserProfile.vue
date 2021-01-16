@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m6 l6 updateProfile">
+  <div class="col s12 m8 l8 h-100">
     <div class="section">
       <div class="page-subtitle">
         <h4>Zmiana danych osobowych</h4>
@@ -39,11 +39,11 @@
           </div>
         </div>
         <div class="input-field" >
-                    <span class="btn btn-file">
-                           Zmień zdjęcie profilowe<input type="file" @change="onFileChanged">
-                    </span>
+               <span class="btn btn-file">
+                 Zmień zdjęcie profilowe<input type="file" @change="onFileChanged">
+               </span>
         </div>
-        <button class="btn waves-effect waves-light " type="submit">
+        <button class="btn" type="submit">
           Zaktualizuj swoje dane
           <i class="material-icons right">send</i>
         </button>
@@ -113,12 +113,26 @@ export default {
 <style scoped lang="scss">
 .section {
   padding: 20px 31px;
+  h4{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 100;
+  }
   .btn-file {
     position: relative;
     overflow: hidden;
   }
   button.btn.waves-effect.waves-light {
     margin-top: 15px;
+  }
+  .btn{
+    background-color: $blue_grey_darken-2;
+    transition: all .7s;
+
+    &:hover {
+      transition: all .7s;
+      background-color: $terma-color;
+    }
   }
   .btn-file input[type=file] {
     position: absolute;
