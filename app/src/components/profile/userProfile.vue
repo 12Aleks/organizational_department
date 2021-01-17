@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m4 l4 h-100">
+  <div class="col s12 m3 l3 xl2 h-100">
     <div class="userInfoWrapper">
       <div class="profile-header">
         <div class="profile-img">
@@ -129,13 +129,13 @@ export default {
       width: 100%;
       h3.user-name, h6 {
         color: #fff;
-        font-variant: small-caps;
+        //font-variant: small-caps;
         letter-spacing: 1px;
         text-align: center;
         font-family: sans-serif;
-        font-weight: bold;
+        font-weight: 100;
         margin: 10px 0;
-        text-transform: uppercase;
+        //text-transform: uppercase;
       }
       h3{
         font-size: 1.2rem;
@@ -144,7 +144,7 @@ export default {
         font-size: 1rem;
       }
       p.worker_process, p.worker_position {
-        font-size: 14px;
+        font-size: 1.2rem;
         letter-spacing: 1px;
         text-align: center;
         a {

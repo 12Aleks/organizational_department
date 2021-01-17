@@ -1,5 +1,5 @@
 <template>
-  <div class="col s12 m8 l8 h-100">
+  <div class="col s12 m9 l9 xl10 h-100">
     <div class="section">
       <div class="page-subtitle">
         <h4>Zmiana danych osobowych</h4>
