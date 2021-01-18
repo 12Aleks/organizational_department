@@ -6,7 +6,7 @@
       </div>
       <form class="form" @submit.prevent="onUpload">
         <div class="input-field">
-          <input  v-model="name"
+          <input  v-model.trim="name"
                   id="name"
                   type="text"
                   :class="{invalid: $v.name.$dirty && !$v.name.minLength}"
@@ -16,7 +16,7 @@
         </div>
         <div class="input-field">
           <input
-              v-model="department"
+              v-model.trim="department"
               id="department"
               type="text"
               :class="{invalid: $v.department.$dirty && !$v.department.minLength}"
@@ -26,7 +26,7 @@
         </div>
         <div class="input-field">
           <input
-              v-model="email"
+              v-model.trim="email"
               id="email"
               type="text"
               :class="{invalid: $v.email.$dirty && !$v.email.email}"

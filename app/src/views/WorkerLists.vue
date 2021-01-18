@@ -7,8 +7,12 @@
       <Loader v-if="loader"/>
       <div v-show="!loader" class="col s12 m12 l12">
         <div class="search-wrapper">
-          <i class="material-icons">search</i><input id="search" type="text" v-model="selectWorker"
-                                                     placeholder="Wyszukiwanie po imieniu i nazwisku">
+          <i class="material-icons">search</i>
+          <input
+              id="search"
+              type="text"
+              v-model.trim="selectWorker"
+              placeholder="Wyszukiwanie po imieniu i nazwisku">
         </div>
         <div class="table-wrapper">
           <table class="highlight">
