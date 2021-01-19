@@ -239,7 +239,7 @@
       font-size: .8rem;
     }
     td{
-      font-size: .95rem;
+      font-size: .85rem;
       @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
         font-size: .8rem;
         padding: 7px;
@@ -248,7 +248,10 @@
         font-size: .8rem;
         padding: 7px;
       }
-
+      @media (max-width: 1199.98px) {
+        font-size: .7rem;
+        padding: 7px;
+      }
     }
   }
 }
@@ -420,8 +423,8 @@
     }
 
     td {
-      letter-spacing: .5px;
-      line-height: 1rem;
+      letter-spacing: .6px;
+      line-height: 1.3rem;
       &:hover {
         a{
           color: $terma-color;

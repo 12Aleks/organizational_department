@@ -202,7 +202,7 @@ export default {
             ticks: {
               beginAtZero: true,
             }
-          }],
+          }]
         }
       };
       this.renderChart(data, options)
