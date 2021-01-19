@@ -14,7 +14,7 @@
         <div v-if="load && !collection" class="importButton">
           <div id="app">
             <div v-if="!file">
-              <div class="dropZone ">
+              <div class="dropZone">
                 <div class="dropZone-info" @drag="onChange">
                   <span class="fa fa-cloud-upload dropZone-title"></span>
                   <span class="dropZone-title">Przeciągnij i upuść dokument programu Microsoft Excel (XLSX), aby przekonwertować go i dodać na serwer</span><br>
@@ -46,21 +46,21 @@
               <template #default="{sheets}" ref="details">
                 <div class="submit-wrapper">
                   <div class="input-field select-wrapper">
-                    <select v-model="selectedSheet" class="browser-default z-depth-1">
+                    <select v-model="selectedSheet" class="browser-default">
                       <option v-for="sheet in sheets" :key="sheet" :value="sheet">
                         {{ sheet }}
                       </option>
                     </select>
                     <label v-if="selectedSheet === null">Wybierz potrzebną tabelę</label>
                   </div>
-                  <button class="btn waves-effect waves-light tableSend" type="submit"
+                  <button class=" btn tableSend" type="submit"
                           @click="receiveData">Dodaj potrzebną zakładkę tabeli
                     <i class="material-icons right">send</i>
                   </button>
                 </div>
               </template>
             </xlsx-sheets>
-            <div class="table-wrapper z-depth-1" v-show="!loading && !load">
+            <div class="table-wrapper-conversion" v-show="!loading && !load">
               <h4>Wybierz z rozwijanej listy potrzebną zakładkę</h4>
               <xlsx-table :sheet="selectedSheet"/>
             </div>
@@ -172,8 +172,16 @@ $red: rgba(255, 104, 115, 1);
 }
 
 
-button.btn.waves-effect.waves-light {
+button.btn {
   margin-top: 15px;
+  background-color: $blue_grey_darken-2;
+  transition: all .7s;
+  box-shadow: inherit;
+
+  &:hover {
+    transition: all .7s;
+    background-color: $terma-color;
+  }
 }
 
 .page-subtitle h4 {
@@ -285,30 +293,24 @@ section.second {
   option:disabled {
     color: #000;
     font-weight: bold;
+    padding: 5px;
   }
 
   .browser-default {
     max-width: 400px;
     width: 400px;
-    border: 1px solid #26a69a;
+    border: 1px solid $blue_grey_darken-2;
     border-radius: 3px;
   }
 }
 
-.table-wrapper table td {
-  font-size: 0.95rem!important;
-  word-break: break-word!important;
-}
-.table-wrapper {
+
+.table-wrapper-conversion {
   overflow: auto;
   position: relative;
-  height: -webkit-calc(100vh - 275px);
-  height: calc(100vh - 275px);
+  height: -webkit-calc(100vh - 225px);
+  height: calc(100vh - 225px);
   border: 1px solid #90a4ae;
-  table td {
-    font-size: 0.65rem !important;
-    word-break: break-word !important;
-  }
   h4{
     position: absolute;
     color: $black;
@@ -319,11 +321,11 @@ section.second {
     transform: translate(-50%, -50%);
     font-size: 1.4em;
     font-weight: 400;
-    text-shadow:
-        0 1px 0 #ccc,
-        0 2px 0 #c9c9c9,
-        0 3px 0 #bbb,
-        0 4px 0 #b9b9b9;
+    //text-shadow:
+    //    0 1px 0 #ccc,
+    //    0 2px 0 #c9c9c9,
+    //    0 3px 0 #bbb,
+    //    0 4px 0 #b9b9b9;
 
   }
 }

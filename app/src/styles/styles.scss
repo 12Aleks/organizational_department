@@ -233,8 +233,47 @@
 .navbar {
   border-bottom: 1px solid $terma-color;
 }
+.table-wrapper{
+  table {
+    th {
+      font-size: .8rem;
+    }
+    td{
+      font-size: .95rem;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: .8rem;
+        padding: 7px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+        font-size: .8rem;
+        padding: 7px;
+      }
 
-.table-wrapper {
+    }
+  }
+}
+.table-wrapper-conversion {
+  table {
+    td {
+      font-size: .7rem;
+      word-break: break-word;
+      width: 100px;
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+        font-size: .65rem;
+        width: 80px;
+      }
+      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+        font-size: .65rem;
+        width: 80px;
+      }
+      @media (max-width: 1199.98px) {
+        font-size: .6rem;
+        width: 80px;
+      }
+    }
+  }
+}
+.table-wrapper, .table-wrapper-conversion {
   overflow: auto;
   height: -webkit-calc(100vh - 263px);
   height: calc(100vh - 263px);
@@ -381,17 +420,8 @@
     }
 
     td {
-      font-size: .95rem;
       letter-spacing: .5px;
       line-height: 1rem;
-      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-        font-size: .8rem;
-        padding: 7px;
-      }
-      @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-        font-size: .8rem;
-        padding: 7px;
-      }
       &:hover {
         a{
           color: $terma-color;
