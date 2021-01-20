@@ -20,7 +20,7 @@
                 <router-link
                     :to="`/${selectProcess.toLowerCase()}` + `/` +  `${departmentName.toLowerCase()}`">
                   {{ worker.department }}
-                </router-link>
+                </router-link> <span v-if="worker.sections && worker.sections !== '(puste)'">- {{worker.sections}}</span>
               </p>
               <div class="profile-header "
                    :class="{'newWorker_profile-header': worker.final_salary || worker.salary_HR, decision: worker.decision.toUpperCase() === 'NIE', doubt: !worker.final_salary && worker.decision.toUpperCase() !== 'NIE' && worker.decision !== 'data not found'} "></div>
@@ -415,12 +415,12 @@ export default {
     height: calc(100vh - 335px);
     height: -webkit-calc(100vh - 335px);
     @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-      height: calc(100vh - 350px);
-      height: -webkit-calc(100vh - 350px)
+      height: calc(100vh - 284px);
+      height: -webkit-calc(100vh - 284px)
     }
     @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
-      height: calc(100vh - 350px);
-      height: -webkit-calc(100vh - 350px);
+      height: calc(100vh - 284px);
+      height: -webkit-calc(100vh - 284px);
     }
 
     table {

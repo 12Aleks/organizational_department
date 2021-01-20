@@ -82,7 +82,7 @@ export default {
     },
     chartDepartment(departmentWorkers) {
       let data;
-      let newWorkerInDepartment = departmentWorkers.filter((item, i, arr) => (arr[i].final_salary !== 0))
+      let newWorkerInDepartment = departmentWorkers.filter((item, i, arr) => (arr[i].final_salary !== 0 || arr[i].salary_HR !== 0));
       if (newWorkerInDepartment.length) {
         data = {
           labels: departmentWorkers.map((c) => c.name),

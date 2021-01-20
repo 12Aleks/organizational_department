@@ -128,17 +128,17 @@ export default {
 .wrapper {
   padding-bottom: 15px;
   margin-top: 10px;
-  height: -webkit-calc(100vh - 222px);
-  height: calc(100vh - 222px);
+  height: -webkit-calc(100vh - 233px);
+  height: calc(100vh - 233px);
   position: relative;
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-    height: -webkit-calc(100vh - 177px);
-    height: calc(100vh - 177px);
+    height: -webkit-calc(100vh - 203px);
+    height: calc(100vh - 203px);
   }
 
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-    height: -webkit-calc(100vh - 177px);
-    height: calc(100vh - 177px);
+    height: -webkit-calc(100vh - 203px);
+    height: calc(100vh - 203px);
   }
 }
 

@@ -85,7 +85,7 @@ export default {
       return this.process.length > 1? true : 0
     },
     newWorkerInSections(){
-      return Object.keys(this.departmentInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
+      return Object.keys(this.departmentInfo.filter((item, i, arr) => arr[i].final_salary !== 0 && arr[i].final_per_hour !== 0 || arr[i].salary_HR !== 0 && arr[i].per_hour_HR !== 0).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n.sections), acc), {})).map(key => key === '(puste)'? 'INNE' : key)
     },
     process() {
       return Object.keys(Object.values(this.departmentInfo).reduce((acc, n) => ((acc[n.sections] = acc[n.sections] || []).push(n), acc), {})).map(key => key === '(puste)'? 'INNE' : key).sort((d1, d2) => d1.toUpperCase() > d2.toUpperCase() ? 1 : -1)

@@ -15,7 +15,7 @@
         <div class="table-wrapper">
           <table class="highlight">
             <thead>
-            <tr>
+            <tr  >
               <th style="width: 50px;">&#8470</th>
               <th :class="{active: sortParam === 'name', toggle: toggle}" @click="sort('name')">
                 <i class="material-icons tiny right">search</i> Nazwisko i
@@ -55,8 +55,10 @@
             </tr>
             </thead>
             <tbody id="table">
+
             <tr v-for="(value, index) in sortedList" :key="index"
-                :class="{decision: value.decision.toUpperCase() !== 'TAK', doubt: (value.decision.toUpperCase() === 'TAK' && !value.final_salary)}">
+                :class="{decision: value.decision.toUpperCase() !== 'TAK', doubt: (value.decision.toUpperCase() === 'TAK' && !value.final_salary)}"
+            >
               <td style="width: 50px">{{ index + 1 }}</td>
               <td>
                 <router-link :to="`/${value.process.toLowerCase()}/${value.sections === '(puste)' && value.department === '(puste)' ? value.process.toLowerCase() :
@@ -77,7 +79,8 @@
               <td>{{ value.salary_worker}}zł / {{ value.per_hour_worker }}zł/h</td>
               <td>{{ value.salary_department }}zł / {{ value.per_hour_department }}zł/h</td>
               <td>{{ value.salary_HR }}zł / {{ value.per_hour_HR }}zł/h</td>
-              <td>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
+              <td v-if="value.decision.toUpperCase() === 'TAK' && !value.final_salary" v-tooltipe="`Wynagrodzenie do uzgodnienia`">{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
+              <td v-else>{{ value.final_salary }}zł / {{ value.final_per_hour }}zł/h</td>
               <td>{{ value.decision.toUpperCase() }}</td>
             </tr>
             </tbody>
@@ -175,6 +178,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .doubt{
+    background-color: rgba(0, 0, 255, 0.08);
+    &:hover{
+      background-color: rgba(0, 0, 255, 0.15);
+    }
+  }
 h6 {
   text-transform: uppercase;
   font-weight: 400;

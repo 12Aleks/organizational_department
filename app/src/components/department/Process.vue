@@ -34,7 +34,8 @@
           <td>{{ v.salary_worker }}zł / {{ v.per_hour_worker }}zł/h</td>
           <td>{{ v.salary_department }}zł / {{ v.per_hour_department }}zł/h</td>
           <td>{{ v.salary_HR }}zł / {{ v.per_hour_HR }}zł/h</td>
-          <td>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/h</td>
+          <td  v-if="v.decision.toUpperCase() === 'TAK' && !v.final_salary" v-tooltipe="`Wynagrodzenie do uzgodnienia`">{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/h</td>
+          <td v-else>{{ v.final_salary }}zł / {{ v.final_per_hour }}zł/h</td>
         </tr>
         </tbody>
       </table>
@@ -154,6 +155,12 @@ export default {
   @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
     height: -webkit-calc(100vh - 279px);
     height: calc(100vh - 279px);
+  }
+}
+.doubt{
+  background-color: rgba(0, 0, 255, 0.08);
+  &:hover{
+    background-color: rgba(0, 0, 255, 0.15);
   }
 }
 </style>
