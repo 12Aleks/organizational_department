@@ -85,6 +85,7 @@ export default {
   },
   computed: {
     max() {
+      console.log(this.departmentInfo)
       return Math.max.apply(null, this.departmentInfo.map(el => (el.salary)))
     },
     maxHour() {
