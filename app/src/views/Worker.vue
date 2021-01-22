@@ -162,7 +162,6 @@ export default {
       try {
         this.photo = null;
         this.abbreviatedData = this.workerName.slice(0,4).toLowerCase() + '_' + this.departmentName.slice(0,3).toLowerCase() + '_' + this.selectProcess.slice(0,3).toLowerCase();
-        console.log(this.abbreviatedData)
         const updateData = {
           photo: this.photoSrc,
           abbreviatedData: this.abbreviatedData

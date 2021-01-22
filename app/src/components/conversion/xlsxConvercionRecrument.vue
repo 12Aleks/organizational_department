@@ -52,7 +52,6 @@ export default {
       this.collection = collectionData;
 
       const col = this.collection.reduce((acc, n) => ((acc[n['Zespół']] = acc[n['Zespół']] || []).push(Object.keys(n)), acc), {})
-      console.log(col)
       this.loading = false;
     },
     async receiveData() {
@@ -64,7 +63,6 @@ export default {
           await keys.push(`__EMPTY_${i}`)
         }
         const newArr = Object.values(this.collection).map(n => Object.fromEntries(Object.values(n).map((m, i) => [keys[i], m])));
-        console.log(newArr)
 
       } catch (e) {
       }

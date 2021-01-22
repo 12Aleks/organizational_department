@@ -14,12 +14,12 @@ const router =  new Router({
       meta: {layout: 'empty'},
       component: () => import('../views/Login.vue')
     },
-    {
-      path: '/registration',
-      name: 'register',
-      meta: {layout: 'empty'},
-      component: () => import('../views/Registration.vue')
-    },
+    // {
+    //   path: '/registration',
+    //   name: 'register',
+    //   meta: {layout: 'empty'},
+    //   component: () => import('../views/Registration.vue')
+    // },
     {
       path: '/import',
       name: 'home',
