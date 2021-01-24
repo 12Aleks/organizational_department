@@ -1,4 +1,6 @@
 Organizational departments - project is written in vue 2, vue-cli, and vuex.
+Materialize.css library
+
 (Only for laptops and desktop computers (display size 13 and more). Not work on Internet Explorer and older versions of browsers)
 
 The program is working with the xlsx file. The file must have the recommended format (an example can be downloaded here https://departments-1c007.web.app/import)
