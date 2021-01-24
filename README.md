@@ -16,8 +16,11 @@ You can compare the salary of new and old employees of the company in a way that
 In the graph, you can add and delete a part of the data for analysis.
 
 Guest Account: 
+
 Email: admin80@gmail.com
+
 Password: admin80
+
 
 Project setup:
 - npm install
