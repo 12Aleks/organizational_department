@@ -130,21 +130,28 @@ export default {
       h3.user-name, h6 {
         color: #fff;
         letter-spacing: 1px;
-        text-align: center;
         font-family: sans-serif;
         font-weight: 100;
         margin: 10px 0;
       }
       h3{
         font-size: 1.2rem;
+        letter-spacing: 1.2px;
       }
       h6{
-        font-size: 1rem;
+        font-size: .8rem;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 2px;
+      }
+      h3, p.worker_process, p.worker_position{
+        padding-bottom: 15px;
+        text-align: center;
       }
       p.worker_process, p.worker_position {
         font-size: 1.2rem;
         letter-spacing: 1px;
-        text-align: center;
+        margin: 5px 0;
         a {
           color: $white;
         }

@@ -3,7 +3,7 @@
     <section v-if="load" class="second">
       <h6>Jak dodać plik XLSX do aplikacji?</h6>
       <ol>
-        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a :href="`${publicPath}file/file.xlsx`"  download>(przyklad potrzebnego pliku)</a></li>
+        <li>Przygotuj plik lub zakładkę w pliku Excel w potrzebnym formacie <a :href="`${publicPath}file/new_file.xlsx`"  download>(przyklad potrzebnego pliku)</a></li>
         <li>Upewnij się, że plik nie przekracza rozmiaru 5MB</li>
         <li>Przeciągnij i upuść przygotowany plik, lub kliknij pole i wybierz go aby przekonwertować go i dodać na serwer</li>
         <li>Po dodaniu pliku wybierz z rozwijanej listy potrzebną zakładkę</li>
@@ -13,7 +13,7 @@
       <div>
         <div v-if="load && !collection" class="importButton">
           <div id="app">
-            <div v-if="!file">
+            <div v-if="!file">SS
               <div class="dropZone">
                 <div class="dropZone-info" @drag="onChange">
                   <span class="fa fa-cloud-upload dropZone-title"></span>

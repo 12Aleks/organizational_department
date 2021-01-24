@@ -38,17 +38,27 @@ export default {
         async onFileChange({commit, dispatch}, {photo, name, department, email}){
           try{
               const uid = await dispatch('getUid');
-              const storageData =  await firebase.storage().ref(`/profiles/${uid}/photo`)
-                    storageData.put(photo)
-              let newPhoto = await storageData.getDownloadURL();
-              await firebase.database().ref(`/profiles/${uid}/info/`).update({
-                  name: name,
-                  department: department,
-                  email: email,
-                  photo: newPhoto
-              });
-              return newPhoto
-
+              if(photo != null){
+                  const storageData = await firebase.storage().ref(`/profiles/${uid}/photo`)
+                  storageData.put(photo)
+                  let newPhoto = await storageData.getDownloadURL();
+                  await firebase.database().ref(`/profiles/${uid}/info/`).update({
+                      name: name,
+                      department: department,
+                      email: email,
+                      photo: newPhoto
+                  });
+                  return newPhoto
+              }else{
+                  const photoUp = (await firebase.database().ref(`/profiles/${uid}/info/photo`).once('value')).val()
+                  await firebase.database().ref(`/profiles/${uid}/info/`).update({
+                      name: name,
+                      department: department,
+                      email: email,
+                      photo: photoUp
+                  });
+                  return photoUp
+              }
           }catch(e){
              commit('setError', e)
              throw e

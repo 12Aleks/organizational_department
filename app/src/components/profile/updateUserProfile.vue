@@ -68,7 +68,7 @@ export default {
     department: '',
     email: '',
     photo: null,
-    photoSrc:  null,
+    photoSrc: null,
   }),
   validations:{
     name: {minLength: minLength(2)},
@@ -85,7 +85,6 @@ export default {
           document.getElementById('preview').style.backgroundImage = "url(" + fr.result + ")";
         }, false);
         fr.readAsDataURL(this.photoSrc)
-
       }
     },
     async onUpload() {
@@ -101,12 +100,16 @@ export default {
           department: this.department.length? this.department : this.userInfo.department,
           photo: this.photoSrc
         };
-
-        this.photo =  await this.$store.dispatch('onFileChange', updateData );
+        this.photo = await this.$store.dispatch('onFileChange', updateData );
         this.$message('Success')
       }catch(e){}
     }
   },
+  watch:{
+    photo(value){
+      console.log(value)
+    }
+  }
 }
 </script>
 
