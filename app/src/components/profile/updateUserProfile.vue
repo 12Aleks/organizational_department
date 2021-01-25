@@ -54,7 +54,7 @@
 
 <script>
 import {minLength, email} from 'vuelidate/lib/validators'
-
+import {userPhoto} from "@/main"
 export default {
   name: "updateUserProfile",
   props: {
@@ -101,15 +101,11 @@ export default {
           photo: this.photoSrc
         };
         this.photo = await this.$store.dispatch('onFileChange', updateData );
+        userPhoto.$emit("userchange", this.photo);
         this.$message('Success')
       }catch(e){}
     }
   },
-  watch:{
-    photo(value){
-      console.log(value)
-    }
-  }
 }
 </script>
 

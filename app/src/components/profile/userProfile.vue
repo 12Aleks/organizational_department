@@ -4,7 +4,7 @@
       <div class="profile-header">
         <div class="profile-img">
           <div class="photo">
-            <img :src="`${userInfo.photo}`" alt="user photo" class="personPhoto">
+            <img :src="user_photo" alt="user photo" class="personPhoto">
           </div>
         </div>
         <div class="profile-nav-info">
@@ -28,13 +28,24 @@
 </template>
 
 <script>
+import {userPhoto} from "@/main"
 export default {
   name: "userProfile",
+  data(){
+    return{
+      user_photo: this.userInfo.photo
+    }
+  },
   props: {
     userInfo: {
       type: Object,
       required: true
     }
+  },
+  created(){
+      userPhoto.$on("userchange", (value)=>{
+        this.user_photo = value;
+      });
   }
 }
 </script>

@@ -20,6 +20,7 @@ import sections from "./filters/sections";
 import department from "./filters/department";
 
 export const styleTable = new Vue();
+export const userPhoto = new Vue();
 
 Vue.config.productionTip = false
 Vue.component('Loader', Loader);

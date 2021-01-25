@@ -53,12 +53,13 @@
 
 <script>
 import M from "materialize-css";
-
+import {userPhoto} from "@/main"
 export default {
   data: () => ({
     dropdown: null,
     time: new Date(),
     interval: null,
+    user_photo: null,
     links: [
       {title: 'Kontynuacja zatrudnienia', url: '/', exact: true},
       {title: 'Zespoły', url: '/departments'},
@@ -67,6 +68,11 @@ export default {
       {title: 'Import danych', url: '/import'}
     ]
   }),
+  created(){
+    userPhoto.$on('userchange', (value) =>{
+      this.userInfo.photo = value;
+    })
+  },
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: true
