@@ -38,7 +38,7 @@
                            Wybierz zdjęcie<input type="file" @change="onFileChanged">
                     </span>
           </div>
-          <button class="btn btn-small z-depth-0" type="submit">Zaktualizuj dane</button>
+          <button class="btn btn-small z-depth-0" type="submit" :disabled="photoSrc == null">Zaktualizuj dane</button>
         </form>
       </div>
       <div v-show="!loader" class="col s12 m9 l9 xl10 second_wrapper">
@@ -156,7 +156,6 @@ export default {
   methods: {
     onFileChanged(event) {
       this.photoSrc = event.target.files[0]
-
     },
     async onUpload() {
       try {
@@ -167,7 +166,8 @@ export default {
           abbreviatedData: this.abbreviatedData
         };
         this.photo = await this.$store.dispatch('workerPhoto', updateData);
-        this.$message('Success')
+        this.photoSrc = null;
+        this.$message('Success');
       } catch (e) {
       }
     }
