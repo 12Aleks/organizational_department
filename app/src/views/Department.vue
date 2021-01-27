@@ -126,6 +126,7 @@ export default {
     font-size: 14px;
     padding: 4px;
     margin-left: 15px;
+    background-color: #fff;
   }
 }
 .section.sections_class{

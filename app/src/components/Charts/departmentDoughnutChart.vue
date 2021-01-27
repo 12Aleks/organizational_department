@@ -57,11 +57,15 @@ export default {
   },
   methods: {
     chartDepartment(departmentWorkers) {
+
+
+
+
       function dynamicColors() {
-        let r = Math.floor(Math.random() * 255);
-        let g = Math.floor(Math.random() * 255);
-        let b = Math.floor(Math.random() * 255);
-        return "rgba(" + r + "," + g + "," + b + ", 0.4)";
+        let r = Math.floor(Math.random() * 360),
+            g = Math.floor(Math.random() * 100),
+            b = Math.floor(Math.random() * 50);
+        return "hsl(" + r + "," + g + "%," + b + "%, 0.45)";
       }
 
       function poolColors(a) {

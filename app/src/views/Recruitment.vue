@@ -403,7 +403,7 @@
 </template>
 
 <script>
-import xlsxConvercionRecrument from "@/components/conversion/xlsxConvercionRecrument";
+
 
 export default {
   name: "Recruitment",
@@ -411,9 +411,6 @@ export default {
     return {
       title: this.$titleApp('Podział zespolów')
     }
-  },
-  components: {
-    xlsxConvercionRecrument
   }
 }
 </script>
