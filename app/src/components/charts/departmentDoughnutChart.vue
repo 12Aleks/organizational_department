@@ -57,10 +57,6 @@ export default {
   },
   methods: {
     chartDepartment(departmentWorkers) {
-
-
-
-
       function dynamicColors() {
         let r = Math.floor(Math.random() * 360),
             g = Math.floor(Math.random() * 100),
@@ -100,7 +96,7 @@ export default {
             formatter: function(value) {
               return value + " zł";
             },
-            color: " rgba(48, 69, 92, 1)",
+            color: "#ffffff",
             extAlign: "center",
             font: function(context) {
               if(lengthArr <= 30){
@@ -122,6 +118,28 @@ export default {
           }
         },
       };
+
+      // Chart.pluginService.register({
+      //   beforeDraw: function(chart) {
+      //     var width = chart.chart.width,
+      //             height = chart.chart.height,
+      //             ctx = chart.chart.ctx;
+      //
+      //     ctx.restore();
+      //     var fontSize = (height / 200).toFixed(2);
+      //     ctx.font = fontSize + "em sans-serif";
+      //     ctx.textBaseline = "middle";
+      //
+      //     var text = "75%",
+      //             textX = Math.round((width - ctx.measureText(text).width) / 1.5),
+      //             textY = height / 2;
+      //
+      //     ctx.fillText(text, textX, textY);
+      //     ctx.save();
+      //   }
+      // });
+
+
       this.renderChart(data, options)
     }
   }

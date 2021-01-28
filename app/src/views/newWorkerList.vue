@@ -97,7 +97,7 @@
 <script>
 
 import M from 'materialize-css'
-import workerChart from "@/components/Charts/workerChart";
+import workerChart from "@/components/charts/workerChart";
 
 export default {
   name: "newWorkerList",

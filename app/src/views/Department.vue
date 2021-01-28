@@ -34,8 +34,8 @@
 import M from 'materialize-css'
 import detail from "@/components/department/Detail";
 import process from "@/components/department/Process";
-import departmentBarChart from "@/components/Charts/departmentBarChart";
-import departmentDoughnutChart from "@/components/Charts/departmentDoughnutChart";
+import departmentBarChart from "@/components/charts/departmentBarChart";
+import departmentDoughnutChart from "@/components/charts/departmentDoughnutChart";
 
 
 export default {
