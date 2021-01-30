@@ -112,11 +112,13 @@ export default {
     instance: null,
     loader: true,
     surnames: true,
-    workersInfo: []
+    workersInfo: [],
+    currency: null
   }),
   async mounted() {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.workersInfo = await this.$store.dispatch('receiveData');
+    this.currency = await this.$store.dispatch('fetchCurrency');
     this.loader = false;
   },
   components: {

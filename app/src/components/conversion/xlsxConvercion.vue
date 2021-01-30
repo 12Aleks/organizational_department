@@ -13,7 +13,7 @@
       <div>
         <div v-if="load && !collection" class="importButton">
           <div id="app">
-            <div v-if="!file">SS
+            <div v-if="!file">
               <div class="dropZone">
                 <div class="dropZone-info" @drag="onChange">
                   <span class="fa fa-cloud-upload dropZone-title"></span>

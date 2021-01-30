@@ -15,6 +15,11 @@ import xlsxConvercion from "../components/conversion/xlsxConvercion";
 
 export default {
   name: "Home",
+  data(){
+    return{
+      currency: null
+    }
+  },
   metaInfo() {
     return {
       title: this.$titleApp('Import danych')
