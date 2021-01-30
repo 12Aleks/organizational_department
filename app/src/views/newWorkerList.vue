@@ -119,7 +119,8 @@ export default {
     this.instance = M.Tabs.init(this.$refs.tabs);
     this.workersInfo = await this.$store.dispatch('receiveData');
     this.currency = await this.$store.dispatch('fetchCurrency');
-    console.log(this.currency[0].rates)
+    console.log(this.currency[0].rates);
+    console.log('Test')
     this.loader = false;
   },
   components: {
