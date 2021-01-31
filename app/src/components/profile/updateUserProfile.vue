@@ -69,13 +69,17 @@ export default {
     email: '',
     photo: null,
     photoSrc: null,
+    currency: null
   }),
   validations:{
     name: {minLength: minLength(2)},
     department: {minLength: minLength(2)},
     email: {email}
   },
-
+ async mounted(){
+    this.currency = await this.$store.dispatch('fetchCurrency');
+    console.log(this.currency.filter(elem => elem.code === 'USD'))
+  },
   methods: {
     onFileChanged (event) {
       this.photoSrc = event.target.files[0]
