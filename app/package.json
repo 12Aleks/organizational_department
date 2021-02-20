@@ -2,10 +2,13 @@
   "name": "app",
   "version": "0.1.2",
   "private": true,
+  "description": "```\r npm install\r ```",
+  "author": "",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
+  "main": "babel.config.js",
   "dependencies": {
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
@@ -24,7 +27,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.9",
-    "@vue/cli-plugin-pwa": "~4.5.9",
+    "@vue/cli-plugin-pwa": "^4.5.11",
     "@vue/cli-plugin-router": "~4.5.9",
     "@vue/cli-plugin-vuex": "~4.5.9",
     "@vue/cli-service": "~4.5.9",
@@ -37,8 +40,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "description": "```\r npm install\r ```",
-  "main": "babel.config.js",
-  "author": "",
   "license": "ISC"
 }
