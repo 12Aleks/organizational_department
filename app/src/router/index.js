@@ -67,6 +67,10 @@ const router =  new Router({
       name: 'newWorkerList',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/newWorkerList.vue')
+    }, {
+      path: '*',
+      name: 'NotFound',
+      component: () => import('../views/NotFound.vue')
     }
   ]
 });
