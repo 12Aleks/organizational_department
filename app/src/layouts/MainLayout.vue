@@ -1,4 +1,4 @@
-<template>
+.<template>
   <div>
     <Loader v-if='loader'></Loader>
     <div v-else class="app-main-layout grey lighten-5">
