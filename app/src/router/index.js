@@ -1,6 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import firebase from "firebase/app";
+import {
+  DEPARTMENTS_PATH,
+  IMPORT_PATH,
+  LISTS_PATH,
+  LOGIN_PATH,
+  MAIN_PATH,
+  PROFILE_PATH,
+  RECRUITMENT_PATH
+} from "@/utils/path";
 
 Vue.use(Router)
 
@@ -9,7 +18,7 @@ const router =  new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/login',
+      path: LOGIN_PATH,
       name: 'login',
       meta: {layout: 'empty'},
       component: () => import('../views/Login.vue')
@@ -21,13 +30,13 @@ const router =  new Router({
     //   component: () => import('../views/Registration.vue')
     // },
     {
-      path: '/import',
+      path: IMPORT_PATH,
       name: 'home',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Home.vue')
     },
     {
-      path: '/departments',
+      path: DEPARTMENTS_PATH,
       name: 'Departments',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Departments.vue'),
@@ -45,25 +54,25 @@ const router =  new Router({
       component: () => import('../views/Worker.vue')
     },
     {
-      path: '/profile',
+      path: PROFILE_PATH,
       name: 'profile',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Profile.vue')
     },
     {
-      path: '/lists',
+      path: LISTS_PATH,
       name: 'WorkerLists',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/WorkerLists.vue')
     },
     {
-      path: '/recruitment',
+      path: RECRUITMENT_PATH,
       name: 'Recruitment',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/Recruitment.vue')
     },
     {
-      path: '/',
+      path: MAIN_PATH,
       name: 'newWorkerList',
       meta: {layout: 'main', auth: true},
       component: () => import('../views/newWorkerList.vue')
